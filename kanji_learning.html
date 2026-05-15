@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanji Learning Quiz</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #f0efe9;
+    --text: #1a1918;
+    --text2: #6b6a66;
+    --text3: #9e9c97;
+    --border: rgba(26,25,24,0.12);
+    --border2: rgba(26,25,24,0.22);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --green: #2d7d46;
+    --green-bg: #eaf3de;
+    --amber: #854f0b;
+    --amber-bg: #faeeda;
+    --red: #a32d2d;
+    --red-bg: #fcebeb;
+    --blue: #185fa5;
+    --blue-bg: #e6f1fb;
+    --font: 'Georgia', 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1b1a;
+      --bg2: #252421;
+      --bg3: #2e2c2a;
+      --text: #f0ede8;
+      --text2: #a09e99;
+      --text3: #706e6a;
+      --border: rgba(240,237,232,0.1);
+      --border2: rgba(240,237,232,0.2);
+      --green: #97c459;
+      --green-bg: #173404;
+      --amber: #ef9f27;
+      --amber-bg: #412402;
+      --red: #f09595;
+      --red-bg: #501313;
+      --blue: #85b7eb;
+      --blue-bg: #042c53;
+    }
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .site-title {
+    font-family: var(--font);
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--text);
+  }
+
+  .timer-container {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text2);
+    background: var(--bg2);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+  }
+
+  /* Quiz Content */
+  .quiz-box {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .kanji-display {
+    font-family: var(--font);
+    font-size: 72px;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    background: var(--bg);
+  }
+
+  .option-label:hover {
+    background: var(--bg2);
+    border-color: var(--text3);
+  }
+
+  .option-label input[type="radio"] {
+    accent-color: var(--text);
+    width: 18px;
+    height: 18px;
+  }
+
+  .option-text {
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .option-label.correct {
+    background: var(--green-bg);
+    border-color: var(--green);
+  }
+
+  .option-label.incorrect {
+    background: var(--red-bg);
+    border-color: var(--red);
+  }
+
+  .option-label.disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  /* Results Table */
+  .results-section {
+    margin-top: 2rem;
+  }
+
+  .score-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .score-big {
+    font-family: var(--font);
+    font-size: 64px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 14px;
+  }
+
+  .results-table th, .results-table td {
+    padding: 12px;
+    border-bottom: 0.5px solid var(--border);
+    text-align: left;
+  }
+
+  .results-table th {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text3);
+    background: var(--bg2);
+  }
+
+  .indicator {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .c-green { color: var(--green); }
+  .c-red { color: var(--red); }
+
+  .btn-retry {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 14px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .btn-retry:hover { opacity: 0.85; }
+
+  @media (max-width: 560px) {
+    .page { padding: 2rem 1rem 4rem; }
+    .kanji-display { font-size: 54px; }
+  }
+</style>
+<script src="data/vocabulary.js"></script>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <h1 class="site-title">Kanji Quiz</h1>
+    <div class="timer-container" id="timer">00:00</div>
+  </header>
+
+  <div id="quiz-container">
+    <div class="quiz-box">
+      <div id="question-count" style="font-size: 12px; color: var(--text3); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Word 1 of 25</div>
+      <div class="kanji-display" id="kanji-target">...</div>
+      <div class="options-grid" id="options-grid">
+        <!-- Options will be injected here -->
+      </div>
+      <button id="next-btn" class="btn-retry" style="display: none; margin-top: 1.5rem;" onclick="nextQuestion()">Next Word</button>
+    </div>
+  </div>
+
+  <div id="results-container" style="display: none;">
+    <div class="score-header">
+      <div class="sec-label" style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px;">Final Score</div>
+      <div class="score-big" id="final-score">0 / 25</div>
+      <div id="final-time" style="color: var(--text2); font-size: 14px;">Time: 00:00</div>
+    </div>
+
+    <div class="results-section">
+      <div class="sec-label" style="font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px;">Review</div>
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th style="width: 40px;"></th>
+            <th>Kanji</th>
+            <th>Reading</th>
+            <th>Meaning</th>
+          </tr>
+        </thead>
+        <tbody id="results-body">
+          <!-- Rows will be injected here -->
+        </tbody>
+      </table>
+    </div>
+
+    <button class="btn-retry" onclick="location.reload()">Start New Quiz</button>
+  </div>
+</div>
+
+<script>
+  let vocabulary = [];
+  let quizSet = [];
+  let currentIndex = 0;
+  let score = 0;
+  let history = [];
+  let startTime;
+  let timerInterval;
+
+  async function init() {
+    try {
+      if (typeof vocabularyData !== 'undefined') {
+        console.log('Using pre-loaded vocabularyData');
+        vocabulary = vocabularyData;
+        startQuiz();
+        return;
+      }
+      
+      if (window.location.protocol === 'file:') {
+        console.warn('Running from file:// protocol. Fetch may fail due to CORS.');
+      }
+      console.log('Fetching vocabulary...');
+      const response = await fetch('data/vocabulary.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      vocabulary = await response.json();
+      console.log('Vocabulary loaded:', vocabulary.length, 'items');
+      startQuiz();
+    } catch (err) {
+      console.error('Failed to load vocabulary:', err);
+      let msg = err.message;
+      if (window.location.protocol === 'file:') {
+        msg += ' (CORS restriction? Try running with a local server like "python -m http.server")';
+      }
+      document.getElementById('kanji-target').textContent = 'Error loading data: ' + msg;
+      document.getElementById('kanji-target').style.fontSize = '24px';
+    }
+  }
+
+  function startQuiz() {
+    // Filter words with Kanji and shuffle
+    const kanjiWords = vocabulary.filter(w => w.kanji && w.kanji.trim() !== '');
+    quizSet = shuffle(kanjiWords).slice(0, 25);
+    
+    currentIndex = 0;
+    score = 0;
+    history = [];
+    
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimer, 1000);
+    
+    showQuestion();
+  }
+
+  function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+    const secs = (elapsed % 60).toString().padStart(2, '0');
+    document.getElementById('timer').textContent = `${mins}:${secs}`;
+  }
+
+  function showQuestion() {
+    const currentWord = quizSet[currentIndex];
+    document.getElementById('question-count').textContent = `Word ${currentIndex + 1} of 25`;
+    document.getElementById('kanji-target').textContent = currentWord.kanji;
+    document.getElementById('next-btn').style.display = 'none';
+    
+    // Generate options
+    let options = [currentWord];
+    while (options.length < 4) {
+      const randomWord = vocabulary[Math.floor(Math.random() * vocabulary.length)];
+      if (!options.find(o => o.index === randomWord.index)) {
+        options.push(randomWord);
+      }
+    }
+    options = shuffle(options);
+    
+    const grid = document.getElementById('options-grid');
+    grid.innerHTML = '';
+    
+    options.forEach((opt, idx) => {
+      const label = document.createElement('label');
+      label.className = 'option-label';
+      label.dataset.index = opt.index;
+      
+      const radio = document.createElement('input');
+      radio.type = 'radio';
+      radio.name = 'kanji-option';
+      radio.value = opt.index;
+      radio.onchange = () => handleChoice(opt, label);
+      
+      const span = document.createElement('span');
+      span.className = 'option-text';
+      span.textContent = `${opt.reading} — ${opt.meaning}`;
+      
+      label.appendChild(radio);
+      label.appendChild(span);
+      grid.appendChild(label);
+    });
+  }
+
+  function handleChoice(chosenOpt, selectedLabel) {
+    const correctWord = quizSet[currentIndex];
+    const isCorrect = chosenOpt.index === correctWord.index;
+    
+    // Disable all options
+    const labels = document.querySelectorAll('.option-label');
+    labels.forEach(l => {
+      l.classList.add('disabled');
+      if (l.dataset.index === correctWord.index) {
+        l.classList.add('correct');
+      } else if (l === selectedLabel && !isCorrect) {
+        l.classList.add('incorrect');
+      }
+    });
+
+    if (isCorrect) score++;
+    
+    history.push({
+      kanji: correctWord.kanji,
+      reading: correctWord.reading,
+      meaning: correctWord.meaning,
+      isCorrect: isCorrect
+    });
+    
+    document.getElementById('next-btn').style.display = 'block';
+  }
+
+  function nextQuestion() {
+    currentIndex++;
+    if (currentIndex < 25) {
+      showQuestion();
+    } else {
+      endQuiz();
+    }
+  }
+
+  function endQuiz() {
+    clearInterval(timerInterval);
+    document.getElementById('quiz-container').style.display = 'none';
+    document.getElementById('results-container').style.display = 'block';
+    
+    document.getElementById('final-score').textContent = `${score} / 25`;
+    document.getElementById('final-time').textContent = `Time: ${document.getElementById('timer').textContent}`;
+    
+    const body = document.getElementById('results-body');
+    body.innerHTML = '';
+    
+    history.forEach(item => {
+      const row = document.createElement('tr');
+      
+      const tdIndicator = document.createElement('td');
+      tdIndicator.className = 'indicator ' + (item.isCorrect ? 'c-green' : 'c-red');
+      tdIndicator.textContent = item.isCorrect ? '✓' : '✗';
+      
+      const tdKanji = document.createElement('td');
+      tdKanji.style.fontFamily = 'var(--font)';
+      tdKanji.style.fontSize = '18px';
+      tdKanji.textContent = item.kanji;
+      
+      const tdReading = document.createElement('td');
+      tdReading.textContent = item.reading;
+      
+      const tdMeaning = document.createElement('td');
+      tdMeaning.textContent = item.meaning;
+      
+      row.appendChild(tdIndicator);
+      row.appendChild(tdKanji);
+      row.appendChild(tdReading);
+      row.appendChild(tdMeaning);
+      body.appendChild(row);
+    });
+  }
+
+  function shuffle(array) {
+    const newArr = [...array];
+    for (let i = newArr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+    }
+    return newArr;
+  }
+
+  init();
+</script>
+
+</body>
+</html>
