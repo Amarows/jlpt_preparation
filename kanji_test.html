@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kanji Learning Quiz</title>
+<title>Kanji Test</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -223,6 +223,30 @@
   }
   .btn-retry:hover { opacity: 0.85; }
 
+  .mode-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-mode {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    background: var(--bg2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-mode.active {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+
   @media (max-width: 560px) {
     .page { padding: 2rem 1rem 4rem; }
     .kanji-display { font-size: 54px; }
@@ -234,11 +258,15 @@
 
 <div class="page">
   <header>
-    <h1 class="site-title">Kanji Quiz</h1>
+    <a href="index.html" class="site-title" style="text-decoration: none;">Kanji Test</a>
     <div class="timer-container" id="timer">00:00</div>
   </header>
 
   <div id="quiz-container">
+    <div class="mode-toggle">
+      <button id="mode-k2r" class="btn-mode active" onclick="setMode('k2r')">Kanji → Reading</button>
+      <button id="mode-r2k" class="btn-mode" onclick="setMode('r2k')">Reading → Kanji</button>
+    </div>
     <div class="quiz-box">
       <div id="question-count" style="font-size: 12px; color: var(--text3); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em;">Word 1 of 25</div>
       <div class="kanji-display" id="kanji-target">...</div>
@@ -285,6 +313,17 @@
   let history = [];
   let startTime;
   let timerInterval;
+  let quizMode = 'k2r'; // 'k2r' = Kanji to Reading, 'r2k' = Reading to Kanji
+
+  function setMode(mode) {
+    if (currentIndex > 0 && !confirm('Switching modes will restart the quiz. Continue?')) {
+      return;
+    }
+    quizMode = mode;
+    document.getElementById('mode-k2r').classList.toggle('active', mode === 'k2r');
+    document.getElementById('mode-r2k').classList.toggle('active', mode === 'r2k');
+    startQuiz();
+  }
 
   async function init() {
     try {
@@ -326,6 +365,9 @@
     score = 0;
     history = [];
     
+    // Clear timer if exists
+    if (timerInterval) clearInterval(timerInterval);
+    
     startTime = Date.now();
     timerInterval = setInterval(updateTimer, 1000);
     
@@ -342,14 +384,20 @@
   function showQuestion() {
     const currentWord = quizSet[currentIndex];
     document.getElementById('question-count').textContent = `Word ${currentIndex + 1} of 25`;
-    document.getElementById('kanji-target').textContent = currentWord.kanji;
+    
+    if (quizMode === 'k2r') {
+      document.getElementById('kanji-target').textContent = currentWord.kanji;
+    } else {
+      document.getElementById('kanji-target').textContent = currentWord.reading;
+    }
+    
     document.getElementById('next-btn').style.display = 'none';
     
     // Generate options
     let options = [currentWord];
     while (options.length < 4) {
       const randomWord = vocabulary[Math.floor(Math.random() * vocabulary.length)];
-      if (!options.find(o => o.index === randomWord.index)) {
+      if (randomWord.kanji && randomWord.kanji.trim() !== '' && !options.find(o => o.index === randomWord.index)) {
         options.push(randomWord);
       }
     }
@@ -371,7 +419,11 @@
       
       const span = document.createElement('span');
       span.className = 'option-text';
-      span.textContent = `${opt.reading} — ${opt.meaning}`;
+      if (quizMode === 'k2r') {
+        span.textContent = `${opt.reading} — ${opt.meaning}`;
+      } else {
+        span.textContent = opt.kanji || opt.reading; // Fallback to reading if no kanji (shouldn't happen with filtered set)
+      }
       
       label.appendChild(radio);
       label.appendChild(span);

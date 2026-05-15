@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JLPT Vocabulary</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #f0efe9;
+    --text: #1a1918;
+    --text2: #6b6a66;
+    --text3: #9e9c97;
+    --border: rgba(26,25,24,0.12);
+    --border2: rgba(26,25,24,0.22);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --font: 'Georgia', 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1b1a;
+      --bg2: #252421;
+      --bg3: #2e2c2a;
+      --text: #f0ede8;
+      --text2: #a09e99;
+      --text3: #706e6a;
+      --border: rgba(240,237,232,0.1);
+      --border2: rgba(240,237,232,0.2);
+    }
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--font);
+    font-size: 42px;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  p {
+    color: var(--text2);
+    margin-bottom: 3rem;
+    font-size: 18px;
+  }
+
+  .nav-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .nav-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-card:hover {
+    background: var(--bg3);
+    border-color: var(--text3);
+    transform: translateY(-4px);
+  }
+
+  .nav-card h2 {
+    font-family: var(--font);
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  .nav-card span {
+    font-size: 14px;
+    color: var(--text2);
+  }
+
+  .icon {
+    font-size: 48px;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 560px) {
+    .nav-grid {
+      grid-template-columns: 1fr;
+    }
+    h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>JLPT Vocabulary</h1>
+  <p>Choose your learning path</p>
+
+  <div class="nav-grid">
+    <a href="kanji_learn.html" class="nav-card">
+      <div class="icon">📖</div>
+      <h2>Kanji Learn</h2>
+      <span>Study kanji one by one with all details.</span>
+    </a>
+    <a href="kanji_test.html" class="nav-card">
+      <div class="icon">✏️</div>
+      <h2>Kanji Test</h2>
+      <span>Test your knowledge with randomized quizzes.</span>
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

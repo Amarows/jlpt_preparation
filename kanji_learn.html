@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanji Learn</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f6f3;
+    --bg3: #f0efe9;
+    --text: #1a1918;
+    --text2: #6b6a66;
+    --text3: #9e9c97;
+    --border: rgba(26,25,24,0.12);
+    --border2: rgba(26,25,24,0.22);
+    --radius: 10px;
+    --radius-sm: 6px;
+    --green: #2d7d46;
+    --green-bg: #eaf3de;
+    --amber: #854f0b;
+    --amber-bg: #faeeda;
+    --red: #a32d2d;
+    --red-bg: #fcebeb;
+    --blue: #185fa5;
+    --blue-bg: #e6f1fb;
+    --font: 'Georgia', 'Times New Roman', serif;
+    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1b1a;
+      --bg2: #252421;
+      --bg3: #2e2c2a;
+      --text: #f0ede8;
+      --text2: #a09e99;
+      --text3: #706e6a;
+      --border: rgba(240,237,232,0.1);
+      --border2: rgba(240,237,232,0.2);
+      --green: #97c459;
+      --green-bg: #173404;
+      --amber: #ef9f27;
+      --amber-bg: #412402;
+      --red: #f09595;
+      --red-bg: #501313;
+      --blue: #85b7eb;
+      --blue-bg: #042c53;
+    }
+  }
+
+  body {
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--text);
+    background: var(--bg);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .site-title {
+    font-family: var(--font);
+    font-size: 24px;
+    font-weight: normal;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .id-display {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text2);
+    background: var(--bg2);
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+  }
+
+  /* Learn Content */
+  .box {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    margin-bottom: 2rem;
+  }
+
+  .kanji-display {
+    font-family: var(--font);
+    font-size: 120px;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    text-align: left;
+    margin-top: 2rem;
+  }
+
+  .info-item {
+    padding: 14px 18px;
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius-sm);
+    background: var(--bg2);
+  }
+
+  .info-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text3);
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    font-size: 18px;
+    color: var(--text);
+  }
+
+  .input-group {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  input[type="number"] {
+    padding: 10px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border2);
+    width: 100px;
+    font-size: 16px;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .btn {
+    padding: 10px 24px;
+    background: var(--text);
+    color: var(--bg);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+
+  .btn:hover { opacity: 0.85; }
+
+  .btn-next {
+    display: block;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 14px;
+  }
+
+  .home-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .home-link:hover { text-decoration: underline; }
+
+  @media (max-width: 560px) {
+    .page { padding: 2rem 1rem 4rem; }
+    .kanji-display { font-size: 80px; }
+  }
+</style>
+<script src="data/vocabulary.js"></script>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <a href="index.html" class="site-title">Kanji Learn</a>
+    <div class="id-display" id="id-display">ID: -</div>
+  </header>
+
+  <a href="index.html" class="home-link">← Back to Menu</a>
+
+  <div class="input-group" id="start-controls">
+    <input type="number" id="id-input" placeholder="ID" min="1">
+    <button class="btn" onclick="startLearning()">Start</button>
+  </div>
+
+  <div id="learn-container" style="display: none;">
+    <div class="box">
+      <div class="kanji-display" id="kanji-target">...</div>
+      
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Reading</div>
+          <div class="info-value" id="val-reading">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Romaji</div>
+          <div class="info-value" id="val-romaji">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Type</div>
+          <div class="info-value" id="val-type">-</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Meaning</div>
+          <div class="info-value" id="val-meaning">-</div>
+        </div>
+      </div>
+
+      <button class="btn btn-next" onclick="nextWord()">Next Word</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let vocabulary = [];
+  let currentIndex = -1;
+
+  async function init() {
+    try {
+      if (typeof vocabularyData !== 'undefined') {
+        vocabulary = vocabularyData;
+        return;
+      }
+      const response = await fetch('data/vocabulary.json');
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      vocabulary = await response.json();
+    } catch (err) {
+      console.error('Failed to load vocabulary:', err);
+    }
+  }
+
+  function startLearning() {
+    const input = document.getElementById('id-input');
+    const startId = parseInt(input.value);
+    
+    if (isNaN(startId)) {
+      alert('Please enter a valid ID');
+      return;
+    }
+
+    // Find the item with that index string or numeric index
+    // Vocabulary items have "index" as a string in the JSON
+    const idx = vocabulary.findIndex(v => parseInt(v.index) === startId);
+    
+    if (idx === -1) {
+      alert('Word with this ID not found');
+      return;
+    }
+
+    currentIndex = idx;
+    showWord();
+    document.getElementById('learn-container').style.display = 'block';
+    document.getElementById('start-controls').style.display = 'none';
+  }
+
+  function showWord() {
+    if (currentIndex < 0 || currentIndex >= vocabulary.length) return;
+    
+    const word = vocabulary[currentIndex];
+    document.getElementById('id-display').textContent = `ID: ${word.index}`;
+    document.getElementById('kanji-target').textContent = word.kanji || word.reading;
+    document.getElementById('val-reading').textContent = word.reading || '-';
+    document.getElementById('val-romaji').textContent = word.romaji || '-';
+    document.getElementById('val-type').textContent = word.type || '-';
+    document.getElementById('val-meaning').textContent = word.meaning || '-';
+    
+    // Smooth scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function nextWord() {
+    currentIndex++;
+    if (currentIndex >= vocabulary.length) {
+      alert('You have reached the end of the vocabulary list!');
+      currentIndex = 0;
+    }
+    showWord();
+  }
+
+  init();
+</script>
+
+</body>
+</html>
