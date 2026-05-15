@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82509de5-4b14-4f08-bdf6-2238ff7bbe68" name="Changes" comment="Add a Kanji learning quiz interface with responsive design">
-      <change beforePath="$PROJECT_DIR$/kanji_learning.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/raw_data/vacabulary.txt" beforeDir="false" afterPath="$PROJECT_DIR$/raw_data/vacabulary.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +64,13 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecapSpentCounter">
+    <option name="endsOfQuotaMs" value="1781344849281" />
+    <option name="spentUsd" value="0.07715525" />
+  </component>
+  <component name="RecapUselessUpdatesCounter">
+    <option name="suspendCountdown" value="9" />
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -78,7 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1778883782983</updated>
       <workItem from="1778883784025" duration="2217000" />
-      <workItem from="1778886039959" duration="1109000" />
+      <workItem from="1778886039959" duration="2253000" />
     </task>
     <task id="LOCAL-00001" summary="Add a Kanji learning quiz interface with responsive design">
       <option name="closed" value="true" />

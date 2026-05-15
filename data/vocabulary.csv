@@ -98,7 +98,7 @@ index,kanji,reading,romaji,type,meaning
 97,払う,はらう,harau,"Verb, Godan verb, Transitive verb",to pay
 98,発音,はつおん,hatsuon,"Noun, Suru verb",pronunciation
 99,林,はやし,hayashi,Noun,woods; forest
-100,恥ずかしい,はずかしい,hazukashii,#,ごい	Vocabulary	Type	Meaning
+100,恥ずかしい,はずかしい,hazukashii,"Adjective, い-adjective",embarrassed
 101,変,へん,hen,"Noun, Adjective, な-adjective",strange; peculiar; weird
 102,返事,へんじ,henji,"Noun, Suru verb",reply; answer; response
 103,火,ひ,hi,Noun,fire
@@ -198,7 +198,7 @@ index,kanji,reading,romaji,type,meaning
 197,毛,け,ke,Noun,hair or fur
 198,ケーキ,ケーキ,keeki,"Noun, Katakana",cake
 199,怪我,けが,kega,"Noun, Suru verb",to injure
-200,計画,けいかく,keikaku,#,ごい	Vocabulary	Type	Meaning
+200,計画,けいかく,keikaku,"Noun, Suru verb",to plan
 201,経験,けいけん,keiken,"Noun, Suru verb",to experience
 202,警察,けいさつ,keisatsu,Noun,police
 203,経済,けいざい,keizai,Noun,"finance, economy"
@@ -298,7 +298,7 @@ index,kanji,reading,romaji,type,meaning
 297,もうすぐ,もうすぐ,mousugu,"Adverb, Expression",soon
 298,迎える,むかえる,mukaeru,"Verb, Ichidan verb, Transitive verb",to go out to meet
 299,昔,むかし,mukashi,"Noun, Adverbial noun","olden days, former"
-300,向かう,むかう,mukau,#,ごい	Vocabulary	Type	Meaning
+300,向かう,むかう,mukau,"Verb, Godan verb, Intransitive verb",to head towards
 301,無理,むり,muri,"Noun, Adjective, な-adjective, Suru verb",impossible
 302,虫,むし,mushi,Noun,insect
 303,息子,むすこ,musuko,Noun,son
@@ -398,7 +398,7 @@ index,kanji,reading,romaji,type,meaning
 397,サンドイッチ,サンドイッチ,sandoicchi,"Noun, Katakana",sandwich
 398,産業,さんぎょう,sangyou,Noun,industry
 399,サラダ,サラダ,sarada,"Noun, Katakana",salad
-400,再来月,さらいげつ,saraigetsu,#,ごい	Vocabulary	Type	Meaning
+400,再来月,さらいげつ,saraigetsu,"Noun, Adverbial Noun",month after next
 401,再来週,さらいしゅう,saraishuu,"Noun, Adverbial Noun",week after next
 402,差し上げる,さしあげる,sashiageru,"Verb, Ichidan verb, Transitive verb",to give
 403,騒ぐ,さわぐ,sawagu,"Verb, Godan verb, Intransitive verb","to make noise,to be excited"
@@ -498,7 +498,7 @@ index,kanji,reading,romaji,type,meaning
 497,寺,てら,tera,Noun,temple
 498,手伝う,てつだう,tetsudau,"Verb, Godan verb, Transitive verb",to help; to assist; to aid​
 499,途中,とちゅう,tochuu,"Noun, Adverbial Noun",on the way
-500,届ける,とどける,todokeru,#,ごい	Vocabulary	Type	Meaning
+500,届ける,とどける,todokeru,"Verb, Ichidan verb, Transitive verb",to send​
 501,特急,とっきゅう,tokkyuu,Noun,"limited express (train, faster than an express)"
 502,床屋,とこや,tokoya,Noun,barber
 503,特別,とくべつ,tokubetsu,"Noun, Adjective, な-adjective",special; particular; extraordinary; exceptional

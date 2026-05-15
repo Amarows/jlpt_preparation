@@ -544,7 +544,6 @@ hazukashii
 
 Adjective, い-adjective	embarrassed
 
-#	ごい	Vocabulary	Type	Meaning
 101	
 変
 hen
@@ -1134,7 +1133,6 @@ keikaku
 
 Noun, Suru verb	to plan
 
-#	ごい	Vocabulary	Type	Meaning
 201	
 経験
 keiken
@@ -1718,7 +1716,7 @@ mukau
 
 Verb, Godan verb, Intransitive verb	to head towards
 
-#	ごい	Vocabulary	Type	Meaning
+
 301	
 無理
 muri
@@ -2296,7 +2294,7 @@ saraigetsu
 
 Noun, Adverbial Noun	month after next
 
-#	ごい	Vocabulary	Type	Meaning
+
 401	
 再来週
 saraishuu
@@ -2862,7 +2860,6 @@ todokeru
 
 Verb, Ichidan verb, Transitive verb	to send​
 
-#	ごい	Vocabulary	Type	Meaning
 501	
 特急
 tokkyuu

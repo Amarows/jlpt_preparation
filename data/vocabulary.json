@@ -796,8 +796,8 @@
     "kanji": "恥ずかしい",
     "reading": "はずかしい",
     "romaji": "hazukashii",
-    "type": "#",
-    "meaning": "ごい\tVocabulary\tType\tMeaning"
+    "type": "Adjective, い-adjective",
+    "meaning": "embarrassed"
   },
   {
     "index": "101",
@@ -1596,8 +1596,8 @@
     "kanji": "計画",
     "reading": "けいかく",
     "romaji": "keikaku",
-    "type": "#",
-    "meaning": "ごい\tVocabulary\tType\tMeaning"
+    "type": "Noun, Suru verb",
+    "meaning": "to plan"
   },
   {
     "index": "201",
@@ -2396,8 +2396,8 @@
     "kanji": "向かう",
     "reading": "むかう",
     "romaji": "mukau",
-    "type": "#",
-    "meaning": "ごい\tVocabulary\tType\tMeaning"
+    "type": "Verb, Godan verb, Intransitive verb",
+    "meaning": "to head towards"
   },
   {
     "index": "301",
@@ -3196,8 +3196,8 @@
     "kanji": "再来月",
     "reading": "さらいげつ",
     "romaji": "saraigetsu",
-    "type": "#",
-    "meaning": "ごい\tVocabulary\tType\tMeaning"
+    "type": "Noun, Adverbial Noun",
+    "meaning": "month after next"
   },
   {
     "index": "401",
@@ -3996,8 +3996,8 @@
     "kanji": "届ける",
     "reading": "とどける",
     "romaji": "todokeru",
-    "type": "#",
-    "meaning": "ごい\tVocabulary\tType\tMeaning"
+    "type": "Verb, Ichidan verb, Transitive verb",
+    "meaning": "to send​"
   },
   {
     "index": "501",
