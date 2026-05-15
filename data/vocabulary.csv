@@ -1,22 +1,22 @@
 index,kanji,reading,romaji,type,meaning
-1,,あ,a,Expression,Ah; oh
-2,,ああ,aa,Adverb,ah; yes
-3,,アフリカ,afurika,"Noun, Katakana",Africa
+1,あ,あ,a,Expression,Ah; oh
+2,ああ,ああ,aa,Adverb,ah; yes
+3,アフリカ,アフリカ,afurika,"Noun, Katakana",Africa
 4,上がる,あがる,agaru,"Verb, Godan verb, Intransitive verb",to rise
 5,挨拶,あいさつ,aisatsu,"Noun, Suru verb",to greet
 6,味,あじ,aji,Noun,flavor; taste​; uniqueness; attractiveness; experience
-7,,アジア,ajia,"Noun, Katakana",Asia
+7,アジア,アジア,ajia,"Noun, Katakana",Asia
 8,赤ちゃん,あかちゃん,akachan,Noun,baby; infant
 9,赤ん坊,あかんぼう,akanbou,Noun,baby; infant
-10,,アクセサリー,akusesarii,"Noun, Katakana",accessory
-11,,アメリカ,amerika,"Noun, Katakana",America
-12,,アナウンサー,anaunsaa,"Noun, Katakana",announcer
-13,,あんな,anna,Pre-noun adjectival,such
+10,アクセサリー,アクセサリー,akusesarii,"Noun, Katakana",accessory
+11,アメリカ,アメリカ,amerika,"Noun, Katakana",America
+12,アナウンサー,アナウンサー,anaunsaa,"Noun, Katakana",announcer
+13,あんな,あんな,anna,Pre-noun adjectival,such
 14,案内,あんない,annai,"Noun, Suru verb",to guide
 15,安心,あんしん,anshin,"Noun, Adjective, な-adjective, Suru verb",peace of mind
 16,安全,あんぜん,anzen,"Noun, Adjective, な-adjective",safety; security​
-17,,アルバイト,arubaito,"Noun, Suru verb, Katakana",part-time job
-18,,アルコール,arukooru,"Noun, Katakana",alcohol
+17,アルバイト,アルバイト,arubaito,"Noun, Suru verb, Katakana",part-time job
+18,アルコール,アルコール,arukooru,"Noun, Katakana",alcohol
 19,浅い,あさい,asai,"Adjective, い-adjective",shallow
 20,遊び,あそび,asobi,Noun,playing
 21,集まる,あつまる,atsumaru,"Verb, Godan verb, Intransitive verb",to gather; to collect; to assemble
@@ -25,19 +25,19 @@ index,kanji,reading,romaji,type,meaning
 24,倍,ばい,bai,Noun,double
 25,番組,ばんぐみ,bangumi,Noun,program (e.g. TV)
 26,場所,ばしょ,basho,Noun,place
-27,,ベル,beru,"Noun, Katakana",bell
+27,ベル,ベル,beru,"Noun, Katakana",bell
 28,美術館,びじゅつかん,bijutsukan,Noun,art gallery; art museum
-29,,びっくり,bikkuri,"Adverb, Suru verb",to be surprised
-30,,ビル,biru,"Noun, Katakana",building
+29,びっくり,びっくり,bikkuri,"Adverb, Suru verb",to be surprised
+30,ビル,ビル,biru,"Noun, Katakana",building
 31,僕,ぼく,boku,Pronoun,I (used by males)
 32,貿易,ぼうえき,boueki,"Noun, Suru verb",trade
 33,部長,ぶちょう,buchou,Noun,"manager; head (chief, director) of a section or department"
-34,,ぶどう,budou,Noun,grapes
+34,ぶどう,ぶどう,budou,Noun,grapes
 35,文学,ぶんがく,bungaku,Noun,literature
 36,文化,ぶんか,bunka,Noun,culture
 37,文法,ぶんぽう,bunpou,Noun,grammar
-38,,ちゃん,chan,Suffix,suffix for familiar female person
-39,,チェック,chekku,"Noun, Suru verb, Katakana",to check
+38,ちゃん,ちゃん,chan,Suffix,suffix for familiar female person
+39,チェック,チェック,chekku,"Noun, Suru verb, Katakana",to check
 40,血,ち,chi,Noun,blood
 41,力,ちから,chikara,Noun,energy; force; strength; might; power
 42,地理,ちり,chiri,Noun,geography
@@ -51,18 +51,18 @@ index,kanji,reading,romaji,type,meaning
 50,大体,だいたい,daitai,Noun,roughly
 51,暖房,だんぼう,danbou,"Noun, Suru verb",heating
 52,男性,だんせい,dansei,Noun,man; male
-53,,できるだけ,dekiru dake,"Adverb, Expression",as much as possible
+53,できるだけ,できるだけ,dekiru dake,"Adverb, Expression",as much as possible
 54,電報,でんぽう,denpou,Noun,telegram
 55,電灯,でんとう,dentou,Noun,electric light
-56,,どんどん,dondon,Adverb,rapidly; more and more
+56,どんどん,どんどん,dondon,Adverb,rapidly; more and more
 57,泥棒,どろぼう,dorobou,Noun,thief
 58,動物園,どうぶつえん,doubutsuen,Noun,zoo; zoological gardens
 59,道具,どうぐ,dougu,Noun,tool
 60,枝,えだ,eda,Noun,branch
 61,遠慮,えんりょ,enryo,"Noun, Suru verb",reserve; refraining
 62,選ぶ,えらぶ,erabu,"Verb, Godan verb, Transitive verb",to choose
-63,,エスカレーター,esukareetaa,"Noun, Katakana",escalator
-64,,ファックス,fakkusu,"Noun, Suru verb, Katakana",fax
+63,エスカレーター,エスカレーター,esukareetaa,"Noun, Katakana",escalator
+64,ファックス,ファックス,fakkusu,"Noun, Suru verb, Katakana",fax
 65,不便,ふべん,fuben,"Noun, Adjective, な-adjective",inconvenience
 66,増える,ふえる,fueru,"Verb, Ichidan verb, Intransitive verb",to increase
 67,深い,ふかい,fukai,"Adjective, い-adjective",deep
@@ -74,15 +74,15 @@ index,kanji,reading,romaji,type,meaning
 73,布団,ふとん,futon,Noun,"Japanese bedding, futon"
 74,太る,ふとる,futoru,"Verb, Godan verb, Intransitive verb",to become fat
 75,普通,ふつう,futsuu,"Noun, Adverb",usually
-76,,ガラス,garasu,"Noun, Katakana",a glass
-77,,ガソリン,gasorin,"Noun, Katakana",gasoline; petrol
-78,,ガソリンスタンド,gasorin sutando,"Noun, Katakana",petrol station
-79,,ガス,gasu,"Noun, Katakana",petrol
+76,ガラス,ガラス,garasu,"Noun, Katakana",a glass
+77,ガソリン,ガソリン,gasorin,"Noun, Katakana",gasoline; petrol
+78,ガソリンスタンド,ガソリンスタンド,gasorin sutando,"Noun, Katakana",petrol station
+79,ガス,ガス,gasu,"Noun, Katakana",petrol
 80,原因,げんいん,genin,"Noun, Suru verb",cause
 81,下宿,げしゅく,geshuku,"Noun, Suru verb",lodging
 82,技術,ぎじゅつ,gijutsu,Noun,"art,technology,skill"
-83,,ごちそう,gochisou,"Noun, Suru verb",a feast
-84,,ごみ,gomi,Noun,rubbish
+83,ごちそう,ごちそう,gochisou,"Noun, Suru verb",a feast
+84,ごみ,ごみ,gomi,Noun,rubbish
 85,ご覧になる,ごらんになる,goran ni naru,"Verb, Godan verb, Expression",(respectful) to see
 86,ご主人,ごしゅじん,goshujin,Noun,your husband; her husband
 87,ご存じ,ごぞんじ,gozonji,Noun,knowing
@@ -90,10 +90,10 @@ index,kanji,reading,romaji,type,meaning
 89,葉,は,ha,Noun,leaves; leaf
 90,拝見,はいけん,haiken,"Noun, Suru verb",seeing; looking at​
 91,歯医者,はいしゃ,haisha,Noun,dentist
-92,,はっきり,hakkiri,Adverb,clearly
+92,はっきり,はっきり,hakkiri,Adverb,clearly
 93,運ぶ,はこぶ,hakobu,"Verb, Godan verb, Transitive verb",to carry
 94,花見,はなみ,hanami,"Noun, Verb, Suru verb",cherry blossom viewing; flower viewing
-95,,ハンドバッグ,handobaggu,"Noun, Katakana",handbag
+95,ハンドバッグ,ハンドバッグ,handobaggu,"Noun, Katakana",handbag
 96,反対,はんたい,hantai,"Noun, Adjective, な-adjective, Suru verb",opposition
 97,払う,はらう,harau,"Verb, Godan verb, Transitive verb",to pay
 98,発音,はつおん,hatsuon,"Noun, Suru verb",pronunciation
@@ -120,13 +120,13 @@ index,kanji,reading,romaji,type,meaning
 119,褒める,ほめる,homeru,"Verb, Ichidan verb, Transitive verb",to praise
 120,翻訳,ほんやく,honyaku,"Noun, Suru verb",translation
 121,星,ほし,hoshi,Noun,star
-122,,ほとんど,hotondo,Adverbial Noun,mostly
+122,ほとんど,ほとんど,hotondo,Adverbial Noun,mostly
 123,法律,ほうりつ,houritsu,Noun,law
 124,放送,ほうそう,housou,"Noun, Suru verb",to broadcast
 125,一度,いちど,ichido,Noun,once; one time; on one occasion
 126,以外,いがい,igai,Noun,with the exception of; excepting
 127,医学,いがく,igaku,Noun,medical science; medicine
-128,,いじめる,ijimeru,"Verb, Ichidan verb, Transitive verb",to tease
+128,いじめる,いじめる,ijimeru,"Verb, Ichidan verb, Transitive verb",to tease
 129,以上,いじょう,ijou,"Noun, Adverbial Noun",... and more; ... and upwards​
 130,以下,いか,ika,Noun,not exceeding
 131,意見,いけん,iken,"Noun, Verb, Suru verb",opinion; view; comment
@@ -135,7 +135,7 @@ index,kanji,reading,romaji,type,meaning
 134,以内,いない,inai,"Noun, Suffix",within
 135,田舎,いなか,inaka,Noun,countryside
 136,祈る,いのる,inoru,"Verb, Godan verb, Transitive verb",to pray
-137,,いっぱい,ippai,"Noun, Adjective, な-adjective, Adverb",full
+137,いっぱい,いっぱい,ippai,"Noun, Adjective, な-adjective, Adverb",full
 138,色んな,いろんな,ironna,Pre-noun adjectival,various
 139,石,いし,ishi,Noun,stone
 140,急ぐ,いそぐ,isogu,"Verb, Godan verb, Intransitive verb",to hurry; to rush; to hasten; to make something happen sooner
@@ -143,7 +143,7 @@ index,kanji,reading,romaji,type,meaning
 142,頂く,いただく,itadaku,"Verb, Godan verb, Transitive verb",(humble) to receive
 143,致す,いたす,itasu,"Verb, Godan verb, Transitive verb",(humble) to do
 144,糸,いと,ito,Noun,thread
-145,,ジャム,jamu,"Noun, Katakana",jam
+145,ジャム,ジャム,jamu,"Noun, Katakana",jam
 146,字,じ,ji,Noun,character
 147,時代,じだい,jidai,Noun,period
 148,事故,じこ,jiko,Noun,accident
@@ -159,7 +159,7 @@ index,kanji,reading,romaji,type,meaning
 158,十分,じゅうぶん,juubun,"Noun, Adjective, な-adjective, Adverb",enough; sufficient; plenty; adequate; satisfactory
 159,柔道,じゅうどう,juudou,Noun,judo
 160,住所,じゅうしょ,juusho,Noun,address
-161,,カーテン,kaaten,"Noun, Katakana",curtain
+161,カーテン,カーテン,kaaten,"Noun, Katakana",curtain
 162,壁,かべ,kabe,Noun,wall
 163,課長,かちょう,kachou,Noun,section manager; section chief
 164,帰り,かえり,kaeri,Noun,return; coming back
@@ -196,7 +196,7 @@ index,kanji,reading,romaji,type,meaning
 195,通う,かよう,kayou,"Verb, Godan verb, Intransitive verb",to commute
 196,飾る,かざる,kazaru,"Verb, Godan verb, Transitive verb",to decorate
 197,毛,け,ke,Noun,hair or fur
-198,,ケーキ,keeki,"Noun, Katakana",cake
+198,ケーキ,ケーキ,keeki,"Noun, Katakana",cake
 199,怪我,けが,kega,"Noun, Suru verb",to injure
 200,計画,けいかく,keikaku,#,ごい	Vocabulary	Type	Meaning
 201,経験,けいけん,keiken,"Noun, Suru verb",to experience
@@ -206,7 +206,7 @@ index,kanji,reading,romaji,type,meaning
 205,喧嘩,けんか,kenka,"Noun, Suru verb",to quarrel
 206,研究,けんきゅう,kenkyuu,"Noun, Suru verb",research
 207,研究室,けんきゅうしつ,kenkyuushitsu,Noun,laboratory
-208,,消しゴム,keshigomu,Noun,eraser
+208,消しゴム,消しゴム,keshigomu,Noun,eraser
 209,景色,けしき,keshiki,Noun,scenery
 210,気,き,ki,Noun,spirit
 211,厳しい,きびしい,kibishii,"Adjective, い-adjective",strict
@@ -232,15 +232,15 @@ index,kanji,reading,romaji,type,meaning
 231,込む,こむ,komu,"Verb, Godan verb, Intransitive verb",to be crowded
 232,今度,こんど,kondo,Noun,this time; next time
 233,この間,このあいだ,kono aida,Adverbial Noun,the other day; recently
-234,,このごろ,kono goro,Adverbial Noun,these days; nowadays
-235,,コンピュータ,konpyuuta,"Noun, Katakana",computer
-236,,コンサート,konsaato,"Noun, Katakana",concert
+234,このごろ,このごろ,kono goro,Adverbial Noun,these days; nowadays
+235,コンピュータ,コンピュータ,konpyuuta,"Noun, Katakana",computer
+236,コンサート,コンサート,konsaato,"Noun, Katakana",concert
 237,今夜,こんや,konya,Noun,this evening; tonigh
-238,,これから,korekara,Conjunction,after this
+238,これから,これから,korekara,Conjunction,after this
 239,故障,こしょう,koshou,"Noun, Suru verb",to break-down
 240,答え,こたえ,kotae,Noun,response
 241,小鳥,ことり,kotori,Noun,small bird
-242,,こう,kou,Adverb,this way
+242,こう,こう,kou,Adverb,this way
 243,校長,こうちょう,kouchou,Noun,principal; headmaster
 244,講堂,こうどう,koudou,Noun,auditorium
 245,郊外,こうがい,kougai,Noun,suburb; residential area on the outskirt of a city
@@ -279,7 +279,7 @@ index,kanji,reading,romaji,type,meaning
 278,真ん中,まんなか,mannaka,Noun,middle; centre; center
 279,周り,まわり,mawari,Noun,around
 280,回る,まわる,mawaru,"Verb, Godan verb, Intransitive verb",to go around
-281,,まず,mazu,Adverb,first of all
+281,まず,まず,mazu,Adverb,first of all
 282,召し上がる,めしあがる,meshiagaru,"Verb, Godan verb, Transitive verb",to eat; to drink​
 283,珍しい,めずらしい,mezurashii,"Adjective, い-adjective",unusual; rare
 284,見える,みえる,mieru,"Verb, Ichidan verb, Intransitive verb",to be seen; to be in sight; to look; to seem
@@ -292,10 +292,10 @@ index,kanji,reading,romaji,type,meaning
 291,戻る,もどる,modoru,"Verb, Godan verb, Intransitive verb",to turn back
 292,木綿,もめん,momen,Noun,cotton (material)
 293,森,もり,mori,Noun,forest
-294,,もし,moshi,Adverb,if; in case; supposing
+294,もし,もし,moshi,Adverb,if; in case; supposing
 295,申し上げる,もうしあげる,moushiageru,"Verb, Ichidan verb, Transitive verb",to say; to offer
 296,申す,もうす,mousu,"Verb, Godan verb, Transitive verb",to be called; to say
-297,,もうすぐ,mousugu,"Adverb, Expression",soon
+297,もうすぐ,もうすぐ,mousugu,"Adverb, Expression",soon
 298,迎える,むかえる,mukaeru,"Verb, Ichidan verb, Transitive verb",to go out to meet
 299,昔,むかし,mukashi,"Noun, Adverbial noun","olden days, former"
 300,向かう,むかう,mukau,#,ごい	Vocabulary	Type	Meaning
@@ -312,7 +312,7 @@ index,kanji,reading,romaji,type,meaning
 311,治る,なおる,naoru,"Verb, Godan verb, Intransitive verb",to be cured; to heal
 312,慣れる,なれる,nareru,"Verb, Ichidan verb, Intransitive verb",to get used to
 313,鳴る,なる,naru,"Verb, Godan verb, Intransitive verb",to sound
-314,,なるほど,naruhodo,"Adverb, Expression",now I understand
+314,なるほど,なるほど,naruhodo,"Adverb, Expression",now I understand
 315,寝坊,ねぼう,nebou,"Noun, Verb, Suru verb",sleeping in late; oversleeping
 316,値段,ねだん,nedan,Noun,price; cost
 317,眠い,ねむい,nemui,"Adjective, い-adjective",sleepy
@@ -352,10 +352,10 @@ index,kanji,reading,romaji,type,meaning
 351,お祭り,おまつり,omatsuri,Noun,festival
 352,お見舞い,おみまい,omimai,Noun,visiting ill or distressed people
 353,お土産,おみやげ,omiyage,Noun,souvenir
-354,,おもちゃ,omocha,Noun,toy
+354,おもちゃ,おもちゃ,omocha,Noun,toy
 355,思い出す,おもいだす,omoidasu,"Verb, Godan verb, Transitive verb",to remember
 356,表,おもて,omote,Noun,the front
-357,,オートバイ,ootobai,"Noun, Katakana",motorcycle
+357,オートバイ,オートバイ,ootobai,"Noun, Katakana",motorcycle
 358,お礼,おれい,orei,Noun,thanks
 359,折れる,おれる,oreru,"Verb, Ichidan verb, Intransitive verb",to break; to be broken
 360,下りる,おりる,oriru,"Verb, Ichidan verb, Intransitive verb",to get off
@@ -370,15 +370,15 @@ index,kanji,reading,romaji,type,meaning
 369,終わり,おわり,owari,Noun,the end
 370,親,おや,oya,Noun,parents
 371,泳ぎ方,およぎかた,oyogikata,Noun,way of swimming
-372,,パート,paato,"Noun, Katakana",part; part time
-373,,パソコン,pasokon,"Noun, Katakana",personal computer
-374,,ピアノ,piano,"Noun, Katakana",piano
-375,,プレゼント,purezento,"Noun, Katakana",present; gift
+372,パート,パート,paato,"Noun, Katakana",part; part time
+373,パソコン,パソコン,pasokon,"Noun, Katakana",personal computer
+374,ピアノ,ピアノ,piano,"Noun, Katakana",piano
+375,プレゼント,プレゼント,purezento,"Noun, Katakana",present; gift
 376,冷房,れいぼう,reibou,"Noun, Suru verb",air conditioning
-377,,レジ,reji,"Noun, Katakana",cashier​
+377,レジ,レジ,reji,"Noun, Katakana",cashier​
 378,歴史,れきし,rekishi,Noun,history
 379,連絡,れんらく,renraku,Suru verb,to contact; to get in touch​
-380,,レポート,repooto,"Noun, Katakana",report
+380,レポート,レポート,repooto,"Noun, Katakana",report
 381,利用,りよう,riyou,"Noun, Verb, Suru verb",use; utilization; application
 382,理由,りゆう,riyuu,Noun,reason
 383,留守,るす,rusu,"Noun, Suru verb",absence
@@ -394,10 +394,10 @@ index,kanji,reading,romaji,type,meaning
 393,坂,さか,saka,Noun,slope; hill
 394,盛ん,さかん,sakan,"Adjective, な-adjective",popularity; prosperous
 395,昨夜,さくや,sakuya,"Noun, Adverbial Noun",last night
-396,,サンダル,sandaru,"Noun, Katakana",sandal
-397,,サンドイッチ,sandoicchi,"Noun, Katakana",sandwich
+396,サンダル,サンダル,sandaru,"Noun, Katakana",sandal
+397,サンドイッチ,サンドイッチ,sandoicchi,"Noun, Katakana",sandwich
 398,産業,さんぎょう,sangyou,Noun,industry
-399,,サラダ,sarada,"Noun, Katakana",salad
+399,サラダ,サラダ,sarada,"Noun, Katakana",salad
 400,再来月,さらいげつ,saraigetsu,#,ごい	Vocabulary	Type	Meaning
 401,再来週,さらいしゅう,saraishuu,"Noun, Adverbial Noun",week after next
 402,差し上げる,さしあげる,sashiageru,"Verb, Ichidan verb, Transitive verb",to give
@@ -423,7 +423,7 @@ index,kanji,reading,romaji,type,meaning
 422,叱る,しかる,shikaru,"Verb, Godan verb, Transitive verb",to scold
 423,仕方,しかた,shikata,Noun,way; method
 424,試験,しけん,shiken,"Noun, Suru verb",examination
-425,,しっかり,shikkari,"Adverb, Suru verb",firmly; steadily
+425,しっかり,しっかり,shikkari,"Adverb, Suru verb",firmly; steadily
 426,島,しま,shima,Noun,island
 427,市民,市民,shimin,Noun,citizen
 428,品物,しなもの,shinamono,Noun,goods; article; thing
@@ -444,11 +444,11 @@ index,kanji,reading,romaji,type,meaning
 443,祖母,そぼ,sobo,Noun,grandmother
 444,育てる,そだてる,sodateru,"Verb, Ichidan verb, Transitive verb","to rear,to bring up"
 445,祖父,そふ,sofu,Noun,grandfather
-446,,ソフト,sofuto,"Noun, Katakana",soft
-447,,そんな,sonna,Pre-noun adjectival,that sort of
-448,,それで,sore de,Conjunction,because of that
-449,,それほど,sore hodo,Adverb,to that extent
-450,,そろそろ,sorosoro,Adverb,gradually; soon
+446,ソフト,ソフト,sofuto,"Noun, Katakana",soft
+447,そんな,そんな,sonna,Pre-noun adjectival,that sort of
+448,それで,それで,sore de,Conjunction,because of that
+449,それほど,それほど,sore hodo,Adverb,to that extent
+450,そろそろ,そろそろ,sorosoro,Adverb,gradually; soon
 451,卒業,そつぎょう,sotsugyou,"Noun, Suru verb",graduation
 452,相談,そうだん,soudan,"Noun, Suru verb",to discuss
 453,素晴らしい,すばらしい,subarashii,"Adjective, い-adjective",wonderful
@@ -456,26 +456,26 @@ index,kanji,reading,romaji,type,meaning
 455,凄い,すごい,sugoi,"Adjective, い-adjective",terrific
 456,水道,すいどう,suidou,Noun,water supply
 457,水泳,すいえい,suiei,"Noun, Suru verb",swimming
-458,,すっかり,sukkari,Adverb,completely
+458,すっかり,すっかり,sukkari,Adverb,completely
 459,空く,すく,suku,"Verb, Godan verb, Intransitive verb",to be hungry
-460,,スクリーン,sukuriin,"Noun, Katakana",screen
+460,スクリーン,スクリーン,sukuriin,"Noun, Katakana",screen
 461,隅,すみ,sumi,Noun,corner; nook
 462,済む,すむ,sumu,"Verb, Godan verb, Intransitive verb",to finish
 463,砂,すな,suna,Noun,sand
-464,,すり,suri,Noun,pickpocket
-465,,スーツケース,sustsukeesu,"Noun, Katakana",suitcase
+464,すり,すり,suri,Noun,pickpocket
+465,スーツケース,スーツケース,sustsukeesu,"Noun, Katakana",suitcase
 466,進む,すすむ,susumu,"Verb, Godan verb, Intransitive verb",to make progress
-467,,ステーキ,suteeki,"Noun, Katakana",steak
-468,,ステレオ,sutereo,"Noun, Katakana",stereo
+467,ステーキ,ステーキ,suteeki,"Noun, Katakana",steak
+468,ステレオ,ステレオ,sutereo,"Noun, Katakana",stereo
 469,捨てる,すてる,suteru,"Verb, Ichidan verb, Transitive verb",to throw away
 470,数学,すうがく,suugaku,Noun,mathematics; arithmetic
-471,,スーツ,suutsu,"Noun, Katakana",suit
+471,スーツ,スーツ,suutsu,"Noun, Katakana",suit
 472,正しい,ただしい,tadashii,"Adjective, い-adjective",right; correct
 473,退院,たいいん,tai'in,"Noun, Verb, Suru verb",leaving hospital; discharge from hospital
 474,台風,たいふう,taifuu,Noun,typhoon
-475,,タイプ,taipu,Noun,"type,style"
-476,,たいてい,taitei,"Noun, Adjective, な-adjective, Adverb",usually
-477,,たまに,tamani,Adverb,occasionally
+475,タイプ,タイプ,taipu,Noun,"type,style"
+476,たいてい,たいてい,taitei,"Noun, Adjective, な-adjective, Adverb",usually
+477,たまに,たまに,tamani,Adverb,occasionally
 478,棚,たな,tana,Noun,shelves
 479,誕生,たんじょう,tanjou,"Noun, Suru verb",birth
 480,楽しみ,たのしみ,tanoshimi,"Noun, Adjective, な-adjective",looking forward to​
@@ -488,11 +488,11 @@ index,kanji,reading,romaji,type,meaning
 487,訪ねる,たずねる,tazuneru,"Verb, Ichidan verb, Transitive verb",to visit
 488,手袋,てぶくろ,tebukuro,Noun,glove
 489,丁寧,ていねい,teinei,"Noun, Adjective, な-adjective",polite
-490,,テキスト,tekisuto,"Noun, Katakana",text; textbook
+490,テキスト,テキスト,tekisuto,"Noun, Katakana",text; textbook
 491,適当,てきとう,tekitou,"Noun, Adjective, な-adjective",suitable
 492,点,てん,ten,Noun,point; dot
 493,店員,てんいん,ten'in,Noun,employee (of a store); shop assistant; clerk
-494,,テニス,tenisu,"Noun, Katakana",tennis
+494,テニス,テニス,tenisu,"Noun, Katakana",tennis
 495,天気予報,てんきよほう,tenkiyohou,Noun,weather forecast
 496,展覧会,てんらんかい,tenrankai,Noun,exhibition
 497,寺,てら,tera,Noun,temple
@@ -537,7 +537,7 @@ index,kanji,reading,romaji,type,meaning
 536,美しい,うつくしい,utsukushii,"Adjective, い-adjective",beautiful
 537,移る,うつる,utsuru,"Verb, Godan verb, Intransitive verb",to move house or transfer
 538,写す,うつす,utsusu,"Verb, Godan verb, Transitive verb",to copy or photograph
-539,,ワープロ,waapuro,"Noun, Katakana",word processor
+539,ワープロ,ワープロ,waapuro,"Noun, Katakana",word processor
 540,別れる,わかれる,wakareru,"Verb, Ichidan verb, Intransitive verb",to separate
 541,沸かす,わかす,wakasu,"Verb, Godan verb, Transitive verb",to boil; to heat
 542,沸く,わく,waku,"Verb, Godan verb, Intransitive verb",to boil
@@ -550,7 +550,7 @@ index,kanji,reading,romaji,type,meaning
 549,役に立つ,やくにたつ,yakunitatsu,"Verb, Godan verb, Expression",to be helpful
 550,約束,やくそく,yakusoku,"Noun, Suru verb",promise
 551,止む,やむ,yamu,"Verb, Godan verb, Intransitive verb",to stop
-552,,やっぱり,yappari,Adverb,as I thought
+552,やっぱり,やっぱり,yappari,Adverb,as I thought
 553,優しい,やさしい,yasashii,"Adjective, い-adjective",kind
 554,痩せる,やせる,yaseru,"Verb, Ichidan verb, Intransitive verb",to become thin
 555,柔らかい,やわらかい,yawarakai,"Adjective, い-adjective",soft

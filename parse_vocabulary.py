@@ -78,11 +78,14 @@ def process_entry(lines, index):
         entry['romaji'] = remaining[1]
         entry['reading'] = remaining[2]
     elif len(remaining) == 2:
-        # Case without Kanji: Reading and Romaji
-        entry['reading'] = remaining[0]
+        # Case without specific "Reading" line: 
+        # Line 0 is the Word (could be Kanji or Kana), Line 1 is Romaji
+        entry['kanji'] = remaining[0]
+        entry['reading'] = remaining[0] # Fallback reading to the word itself
         entry['romaji'] = remaining[1]
     elif len(remaining) == 1:
         # Fallback for very simple entries
+        entry['kanji'] = remaining[0]
         entry['reading'] = remaining[0]
         
     return entry
