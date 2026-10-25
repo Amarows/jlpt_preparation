@@ -16,12 +16,15 @@ def test_server_run_answer_finish(monkeypatch):
     srv=ThreadingHTTPServer(("127.0.0.1",0),Handler); threading.Thread(target=srv.serve_forever,daemon=True).start()
     try:
         base=f"http://127.0.0.1:{srv.server_port}"
+        with urllib.request.urlopen(base+"/api/status") as r: status=json.loads(r.read())
         with urllib.request.urlopen(base+"/api/run?section=vocab&n=3") as r: run=json.loads(r.read())
         assert len(run["items"])==3
         for item in run["items"]:
             req=urllib.request.Request(base+"/api/answer",data=json.dumps({"run_id":run["run_id"],"item_id":item["id"],"choice":1,"ms":2000,"flag":"none","timed_out":False}).encode(),headers={"Content-Type":"application/json"})
             urllib.request.urlopen(req).read()
         req=urllib.request.Request(base+"/api/finish",data=json.dumps({"run_id":run["run_id"]}).encode(),headers={"Content-Type":"application/json"})
-        assert json.loads(urllib.request.urlopen(req).read())["score"]==3
+        result=json.loads(urllib.request.urlopen(req).read())
+        assert result["score"]==3
+        assert result["p_pass_before"]==status["p_pass"]
         assert len(paths.ATTEMPTS.read_text().splitlines())==3
     finally: srv.shutdown()

@@ -24,3 +24,17 @@ def test_theta_recovery_and_pass_probability_extremes():
             for n in range(100): evidence.append({"ts":f"2026-02-{n%28+1:02d}T{n%24:02d}:00:00+00:00","item_id":f"{sec}{n}","section":sec,"correct":level>0,"ms":10000,"tier_prior":"medium","mondai":"grammar_form"})
         prob=simulate(evidence,draws=1000,write=False)["p_pass"]
         assert (prob>.95)==expected if expected else prob<.2
+
+def test_section_posterior_is_stable_after_large_evidence():
+    rng=random.Random(27)
+    items={"medium":{"section":"vocab","tier_prior":"medium","level":"N4-core"}}
+    attempts=[{"ts":f"2026-10-{n//24+1:02d}T{n%24:02d}:00:00+00:00","item_id":"medium","correct":rng.random()<.8} for n in range(200)]
+    before=simulate(attempts,draws=1000,write=False)["p_pass"]
+    extra=[{"ts":f"2026-10-25T12:{n:02d}:00+00:00","item_id":"medium","correct":rng.random()<.5,"run_id":"new"} for n in range(10)]
+    after=simulate(attempts+extra,draws=1000,write=False)["p_pass"]
+    assert abs(after-before)<.08
+
+def test_consistent_medium_evidence_moves_theta_from_prior():
+    attempts=[{"ts":f"2026-10-{n//24+1:02d}T{n%24:02d}:00:00+00:00","item_id":"medium","correct":n%20!=0,"item":{"section":"grammar","tier_prior":"medium","level":"N4-core"}} for n in range(100)]
+    fitted=fit(attempts,{})
+    assert fitted["sections"]["sec:grammar"]["theta"]>=1.0

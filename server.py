@@ -29,7 +29,9 @@ class Handler(BaseHTTPRequestHandler):
             data=build_run(mode,section,n,seed=uuid.uuid4().int); rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
             public=[]
             for item in originals: public.append({k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes"}})
-            RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"]}
+            try: baseline=json.loads(paths.MODEL_STATE.read_text(encoding="utf-8"))["p_pass"]
+            except (OSError, ValueError, KeyError): baseline=simulate(write=False)["p_pass"]
+            RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline}
             return self.send_json({"run_id":rid,"mode":mode,"time_limit_ms":data["time_limit_ms"],"items":public,"passages":data["passages"]})
         if u.path=="/" or u.path.startswith("/web/"):
             rel="index.html" if u.path=="/" else unquote(u.path[5:]); path=(paths.REPO/"web"/rel).resolve()
@@ -53,8 +55,8 @@ class Handler(BaseHTTPRequestHandler):
         if self.path=="/api/finish":
             rid=data.get("run_id"); run=RUNS.get(rid)
             if not run: return self.send_json({"error":"unknown run"},404)
-            before=simulate(write=False)["p_pass"]; rows=list(run["answers"].values()); correct=sum(bool(x["correct"]) for x in rows); total_ms=sum(x.get("ms") or 0 for x in rows)
-            after=simulate(write=True)["p_pass"]; end=datetime.now().astimezone().isoformat()
+            before=run["p_pass_before"]; rows=list(run["answers"].values()); correct=sum(bool(x["correct"]) for x in rows); total_ms=sum(x.get("ms") or 0 for x in rows)
+            after=simulate(write=True,current_run_id=rid,record_run=True)["p_pass"]; end=datetime.now().astimezone().isoformat()
             append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after})
             result=[]
             for item in run["items"].values():
