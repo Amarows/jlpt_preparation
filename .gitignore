@@ -1,0 +1,17 @@
+# Personal data: Anna's attempts, runs, model state, analysis
+confidential/
+
+# Copyrighted or large materials
+audio/
+materials/
+
+# Question bank and derived data (existing vocabulary files stay tracked)
+data/*
+!data/vocabulary.*
+
+# Python / tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.claude/
