@@ -17,6 +17,4 @@ Double-click `start_portal.bat` (it starts `server.py` without a console window)
 
 Not in git (synced through OneDrive): `data/bank/` (question bank), `audio/` and `materials/` (copyrighted source material), `confidential/` (the learner's attempts and model state).
 
-## Legacy
-
-`index.html`, `kanji_learn.html`, `kanji_test.html`, `parse_vocabulary.py` and `raw_data/` are the original vocabulary and kanji quiz from May 2026. `data/vocabulary.csv` is still used by `tools/gen_vocab_items.py`.
+`data/vocabulary.csv` is the N4 word list `tools/gen_vocab_items.py` builds vocabulary items from. The original May 2026 kanji quiz pages were removed in git history after commit 883b229.
