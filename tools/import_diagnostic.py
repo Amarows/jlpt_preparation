@@ -10,10 +10,12 @@ def main():
     text=test.read_text(encoding="utf-8"); key={x["q"]:x for x in json.loads(keyfile.read_text(encoding="utf-8"))}
     blocks={int(m.group(1)):m.group(2) for m in re.finditer(r"(?ms)^\*\*(\d+)\.\*\*\s*(.*?)(?=^\*\*\d+\.\*\*|^---|\Z)",text)}
     items=[]; passages=[]
-    passage=""; pm=re.search(r"(?s)\*\*Read the (?:text|passage) and answer questions 19–20\.\*\*(.*?)(?=\*\*Read the notice)",text)
-    if pm: passage=re.sub(r"\n\s*", " ",pm.group(1)).strip(); passages.append({"id":"placement-passage-19","text":passage})
-    notice=""; nm=re.search(r"(?s)\*\*Read the notice and answer questions 21–22\.\*\*(.*?)(?=---\s*\n\s*## Part 4)",text)
-    if nm: notice=re.sub(r"\n\s*", " ",nm.group(1)).strip(); passages.append({"id":"placement-notice-21","text":notice})
+    # Passage text stops at its first question; blockquote markers are dropped, line structure (tables) is kept.
+    unquote=lambda s:"\n".join(re.sub(r"^>[ \t]?","",l.strip()) for l in s.strip().splitlines()).strip()
+    pm=re.search(r"(?s)\*\*Read the (?:text|passage) and answer questions 19–20\.\*\*(.*?)(?=^\*\*\d+\.\*\*)",text,re.M)
+    if pm: passages.append({"id":"placement-passage-19","text":unquote(pm.group(1))})
+    nm=re.search(r"(?s)\*\*Read the notice and answer questions 21–22\.\*\*(.*?)(?=^\*\*\d+\.\*\*)",text,re.M)
+    if nm: passages.append({"id":"placement-notice-21","text":unquote(nm.group(1))})
     for q,entry in key.items():
         block=blocks.get(q,""); stem=re.split(r"(?m)^\s*1\.",block,maxsplit=1)[0].strip()
         stem=re.sub(r"\s+", " ",stem)

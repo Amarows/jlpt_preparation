@@ -85,6 +85,12 @@ button:not(.toggle) kbd { border-color: #ffffff55; background: #ffffff22; color:
 .blank { padding: 0 0.15em; border-bottom: 3px solid var(--accent); border-radius: 4px 4px 0 0; background: var(--accent-soft); }
 .blank.filled { border-color: var(--good); background: var(--good-soft); color: var(--good); }
 .passage { padding: var(--space-md); border-radius: var(--radius); background: var(--paper); line-height: 1.8; }
+.passage > * { margin: 0; }
+.passage > * + * { margin-top: var(--space-sm); }
+.passage-table { overflow-x: auto; }
+.passage table { border-collapse: collapse; line-height: 1.5; }
+.passage th, .passage td { padding: var(--space-xs) var(--space-sm); border: var(--border-width) solid var(--line); text-align: left; white-space: nowrap; }
+.passage thead { background: var(--accent-soft); }
 .subtle { color: var(--muted); }
 .good { color: var(--good); }
 .bad { color: var(--bad); }
