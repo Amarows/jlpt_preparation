@@ -5,9 +5,9 @@ confidential/
 audio/
 materials/
 
-# Question bank and derived data (existing vocabulary files stay tracked)
+# Question bank and derived data (the N4 word list stays tracked)
 data/*
-!data/vocabulary.*
+!data/vocabulary.csv
 
 # Python / tooling
 .venv/
