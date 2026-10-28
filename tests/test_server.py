@@ -1,11 +1,10 @@
-import json,threading,urllib.request,tempfile
+import json,threading,urllib.request
 from pathlib import Path
 from http.server import ThreadingHTTPServer
 from server import Handler,RUNS
 
-def test_server_run_answer_finish(monkeypatch):
+def test_server_run_answer_finish(monkeypatch,tmp_path):
     from engine import paths
-    tmp_path=Path(tempfile.mkdtemp(dir=Path(__file__).resolve().parents[1]))
     monkeypatch.setenv("JLPT_HOME",str(tmp_path))
     monkeypatch.setattr(paths,"HOME",tmp_path); monkeypatch.setattr(paths,"BANK",tmp_path/"data"/"bank"); monkeypatch.setattr(paths,"CONFIDENTIAL",tmp_path/"confidential"); monkeypatch.setattr(paths,"ATTEMPTS",tmp_path/"confidential"/"attempts.jsonl"); monkeypatch.setattr(paths,"RUNS",tmp_path/"confidential"/"runs.jsonl"); monkeypatch.setattr(paths,"MODEL_STATE",tmp_path/"confidential"/"model_state.json")
     folder=paths.BANK/"vocab"; folder.mkdir(parents=True)
