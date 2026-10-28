@@ -23,12 +23,15 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         u=urlparse(self.path); q=parse_qs(u.query)
         if u.path=="/api/status": return self.send_json(simulate())
+        if u.path=="/api/report":
+            from engine.report import build_report
+            return self.send_json(build_report(ITEMS or load_bank()[0]))
         if u.path=="/api/run":
             from engine.select import build_run
             mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0])))
             data=build_run(mode,section,n,seed=uuid.uuid4().int); rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
             public=[]
-            for item in originals: public.append({k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes"}})
+            for item in originals: public.append({**{k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes"}},"target_ms":target_ms(item)})
             try: baseline=json.loads(paths.MODEL_STATE.read_text(encoding="utf-8"))["p_pass"]
             except (OSError, ValueError, KeyError): baseline=simulate(write=False)["p_pass"]
             RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline}
@@ -49,6 +52,7 @@ class Handler(BaseHTTPRequestHandler):
             if item["id"] in run["answers"]: return self.send_json({"ok":True})
             choice=data.get("choice"); correct=choice==item["answer"] and not data.get("timed_out")
             a={"ts":datetime.now().astimezone().isoformat(),"run_id":data["run_id"],"item_id":item["id"],"choice":choice,"correct":correct,"ms":data.get("ms"),"flag":data.get("flag") or "none","mode":run["mode"],"timed_out":bool(data.get("timed_out"))}
+            if run["section"]=="mistakes": a["review"]=True
             append(paths.ATTEMPTS,a); run["answers"][item["id"]]={**a,"item":item}; out={"ok":True}
             if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice))})
             return self.send_json(out)

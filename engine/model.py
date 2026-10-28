@@ -33,6 +33,29 @@ def _timestamp(value):
         return None
 
 
+def current_attempts(attempts: list[dict], items: dict[str, dict]) -> list[dict]:
+    """Drop attempts made before an item's `revised` date; they answered an older version of it."""
+    out = []
+    for a in attempts:
+        revised = _timestamp(items.get(a.get("item_id"), {}).get("revised"))
+        ts = _timestamp(a.get("ts"))
+        if revised and ts and ts < revised:
+            continue
+        out.append(a)
+    return out
+
+
+def open_mistakes(attempts: list[dict], items: dict[str, dict]) -> dict[str, dict]:
+    """Return item id -> latest attempt, for items whose latest attempt was wrong, oldest first."""
+    when = lambda x: _timestamp(x.get("ts")) or datetime.min.replace(tzinfo=timezone.utc)
+    latest = {}
+    for a in sorted(current_attempts(attempts, items), key=when):
+        if a.get("item_id") in items:
+            latest.pop(a["item_id"], None)
+            latest[a["item_id"]] = a
+    return {i: a for i, a in latest.items() if not a.get("correct") or a.get("timed_out")}
+
+
 def _difficulty(item: dict) -> float:
     value = {"easy": -1.5, "medium": 0.0, "hard": 1.5}.get(item.get("tier_prior"), 0.0)
     if item.get("level") == "N5":
@@ -65,7 +88,9 @@ def _posterior(rows: list[tuple[float, float, bool]], prior: float) -> tuple[flo
 def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | None = None) -> dict:
     """Recompute section posteriors from attempts; replay tag skills and item offsets."""
     items = items if items is not None else load_bank()[0]
-    ordered = sorted(attempts, key=lambda x: x.get("ts", ""))
+    attempts = current_attempts(attempts, items)
+    # Mistake reviews repeat known items with feedback, so they move Leitner boxes but not abilities.
+    ordered = sorted((a for a in attempts if not a.get("review")), key=lambda x: x.get("ts", ""))
     section_rows = defaultdict(list)
     tag = defaultdict(float)
     tag_n = defaultdict(int)

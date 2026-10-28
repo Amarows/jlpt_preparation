@@ -46,17 +46,20 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 - `passage_id` points to `data/bank/reading/passages.json` → `{"id", "text", "image"?}`; listening items use `audio: {"file": "audio/x.mp3", "start": 12.5, "end": 48.0}` (seconds).
 - `tags` use prefixes: `grammar:`, `word:`, `kanji:`, `skill:` (e.g. `skill:long_vowel`), `phrase:`.
 - Only items with `verified: true` are served.
+- Optional `revised: "YYYY-MM-DD"`: set when an item's stem, options or answer change. Attempts made before that date answered the old version, so the engine, the selection and the report ignore them.
 
 ## Attempt (`confidential/attempts.jsonl`)
 ```json
 {"ts": "2026-10-30T19:02:11+01:00", "run_id": "r-20261030-190000", "item_id": "gr-noni-001",
  "choice": 1, "correct": false, "ms": 14230, "flag": "none | unclear | guess", "mode": "drill | timed | practice | mock", "timed_out": false}
 ```
+Optional `"review": true` marks an answer given in a "My mistakes" run (run `section: "mistakes"`, items whose latest answer was wrong). Review answers move Leitner boxes and can clear a mistake, but do not update section or tag abilities, P(pass) or the accuracy report, because the learner has already seen these items with feedback.
+
 `ms` is measured in the browser (`performance.now()`), from the moment the item is shown to the moment it is answered. For a reading passage, the time spent reading the passage goes to the first question of that passage.
 
 ## Run (`confidential/runs.jsonl`)
 ```json
-{"run_id": "r-20261030-190000", "start": "...", "end": "...", "mode": "timed", "section": "grammar | mixed | ...",
+{"run_id": "r-20261030-190000", "start": "...", "end": "...", "mode": "timed", "section": "grammar | mixed | mistakes | ...",
  "n": 20, "correct": 16, "total_ms": 412000, "p_pass_before": 0.88, "p_pass_after": 0.89}
 ```
 
