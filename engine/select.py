@@ -73,5 +73,6 @@ def _assemble(mode,selected,pool,n,items,passages):
     for pid,xs in grouped.items(): porder.append((pid,sorted(xs,key=lambda x:list(items).index(x["id"]))))
     runitems=[x for _,xs in porder for x in xs]
     excerpt={pid:passages[pid]["text"] for pid,_ in porder if pid in passages}
-    limit=sum(target_ms({**x,"tier_prior":"medium"}) for x in runitems) if mode=="timed" else None
+    # Listening answer time starts when the clip ends, so the clip itself is added to the limit.
+    limit=sum(target_ms({**x,"tier_prior":"medium"})+round((x.get("audio") or {}).get("duration",0)*1000) for x in runitems) if mode=="timed" else None
     return {"mode":mode,"time_limit_ms":limit,"items":runitems,"passages":excerpt}

@@ -7,6 +7,7 @@ MONDAI = set("kanji_reading orthography contextual paraphrase usage grammar_form
 SECTIONS = {"vocab", "grammar", "reading", "listening"}
 TIERS = {"easy", "medium", "hard"}
 LEVELS = {"N5", "N4-core", "N4-hard"}
+THREE_OPTIONS = {"verbal_expression", "quick_response"}
 
 def load_bank(root: Path | None = None) -> tuple[dict[str, dict], dict[str, dict]]:
     """Load valid item objects and passages, keyed by id."""
@@ -31,5 +32,7 @@ def validate_item(x: dict) -> None:
     required = {"id", "section", "mondai", "tier_prior", "level", "stem", "options", "answer", "tags", "explanation_en", "source", "verified"}
     if not isinstance(x, dict) or not required <= x.keys(): raise ValueError("missing item fields")
     if x["section"] not in SECTIONS or x["mondai"] not in MONDAI or x["tier_prior"] not in TIERS or x["level"] not in LEVELS: raise ValueError(f"invalid item dimensions: {x.get('id')}")
-    if len(x["options"]) != 4 or len(set(x["options"])) != 4 or x["answer"] not in range(1, 5): raise ValueError(f"invalid options/answer: {x['id']}")
+    # Listening 問題3 and 問題4 offer three spoken replies (written placement versions have four); everything else has four options.
+    n = len(x["options"])
+    if n not in ((3, 4) if x["mondai"] in THREE_OPTIONS else (4,)) or len(set(x["options"])) != n or x["answer"] not in range(1, n + 1): raise ValueError(f"invalid options/answer: {x['id']}")
     if not isinstance(x["tags"], list): raise ValueError(f"invalid tags: {x['id']}")

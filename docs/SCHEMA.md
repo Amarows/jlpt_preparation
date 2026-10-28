@@ -11,7 +11,7 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 |---|---|---|
 | `data/bank/<section>/*.json` | Item files, each holding a JSON array of items | tools/, Codex, Claude |
 | `data/bank/mocks/<mock_id>/` | Reserved full mock exams (never drawn in drills) | tools/ |
-| `audio/` | MP3 files referenced by items | Alex, tools/split_audio.py |
+| `audio/` | MP3 files and cropped booklet pictures referenced by items | tools/import_listening.py |
 | `materials/` | Source books and PDFs | Alex |
 | `confidential/attempts.jsonl` | One line per answer | server |
 | `confidential/runs.jsonl` | One line per finished run | server |
@@ -41,9 +41,10 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
   "verified": true
 }
 ```
-- `answer` is 1-based. `options` always has exactly 4 entries.
+- `answer` is 1-based. `options` has exactly 4 entries, except listening `verbal_expression` and `quick_response` items, which may have 3 (the spoken replies of 問題3 and 問題4).
 - `stem` marks the underlined word with 【 】 and the ★ slot with ★.
-- `passage_id` points to `data/bank/reading/passages.json` → `{"id", "text", "image"?}`; listening items use `audio: {"file": "audio/x.mp3", "start": 12.5, "end": 48.0}` (seconds).
+- `passage_id` points to `data/bank/reading/passages.json` → `{"id", "text", "image"?}`; listening items use `audio: {"file": "audio/x.mp3", "start": 12.5, "end": 48.0}` (seconds; `start`/`end` are left out when the file holds one question; `duration` is the clip length, added to timed-run limits).
+- Listening items also carry `script` (the transcript, sent to the browser only after the answer), `hide_options: true` when the options are spoken or drawn rather than printed (the buttons show only numbers until the answer), and `image` (a booklet picture, e.g. `audio/bpt1/img/1-1.png`). The question text (`stem`) is shown only after answering, as in the real test where it is spoken.
 - `tags` use prefixes: `grammar:`, `word:`, `kanji:`, `skill:` (e.g. `skill:long_vowel`), `phrase:`.
 - Only items with `verified: true` are served.
 - Optional `revised: "YYYY-MM-DD"`: set when an item's stem, options or answer change. Attempts made before that date answered the old version, so the engine, the selection and the report ignore them.

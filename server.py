@@ -31,7 +31,7 @@ class Handler(BaseHTTPRequestHandler):
             mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0])))
             data=build_run(mode,section,n,seed=uuid.uuid4().int); rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
             public=[]
-            for item in originals: public.append({**{k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes"}},"target_ms":target_ms(item)})
+            for item in originals: public.append({**{k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes","script"}},"target_ms":target_ms(item)})
             try: baseline=json.loads(paths.MODEL_STATE.read_text(encoding="utf-8"))["p_pass"]
             except (OSError, ValueError, KeyError): baseline=simulate(write=False)["p_pass"]
             RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline}
@@ -42,7 +42,17 @@ class Handler(BaseHTTPRequestHandler):
         elif u.path.startswith("/audio/"): path=paths.under_home(u.path.lstrip("/"))
         else: return self.send_error(404)
         if not path.is_file(): return self.send_error(404)
-        raw=path.read_bytes(); self.send_response(200); self.send_header("Content-Type",mimetypes.guess_type(path.name)[0] or "application/octet-stream"); self.send_header("Content-Length",str(len(raw))); self.end_headers(); self.wfile.write(raw)
+        raw=path.read_bytes(); status=200; first,last=0,len(raw)-1
+        # Browsers can only seek inside an MP3 (listening clips start mid-file) when byte ranges are served.
+        rng=self.headers.get("Range","")
+        if rng.startswith("bytes="):
+            a,_,b=rng[6:].split(",")[0].partition("-")
+            first,last=(len(raw)-int(b),len(raw)-1) if not a else (int(a),min(int(b),len(raw)-1) if b else len(raw)-1)
+            if first>last or first>=len(raw): self.send_response(416); self.send_header("Content-Range",f"bytes */{len(raw)}"); self.end_headers(); return
+            status=206
+        self.send_response(status); self.send_header("Content-Type",mimetypes.guess_type(path.name)[0] or "application/octet-stream"); self.send_header("Accept-Ranges","bytes")
+        if status==206: self.send_header("Content-Range",f"bytes {first}-{last}/{len(raw)}")
+        self.send_header("Content-Length",str(last-first+1)); self.end_headers(); self.wfile.write(raw[first:last+1])
     def do_POST(self):
         try: data=self.body()
         except Exception: return self.send_json({"error":"invalid JSON"},400)
@@ -54,7 +64,7 @@ class Handler(BaseHTTPRequestHandler):
             a={"ts":datetime.now().astimezone().isoformat(),"run_id":data["run_id"],"item_id":item["id"],"choice":choice,"correct":correct,"ms":data.get("ms"),"flag":data.get("flag") or "none","mode":run["mode"],"timed_out":bool(data.get("timed_out"))}
             if run["section"]=="mistakes": a["review"]=True
             append(paths.ATTEMPTS,a); run["answers"][item["id"]]={**a,"item":item}; out={"ok":True}
-            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice))})
+            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script")})
             return self.send_json(out)
         if self.path=="/api/finish":
             rid=data.get("run_id"); run=RUNS.get(rid)
@@ -64,7 +74,7 @@ class Handler(BaseHTTPRequestHandler):
             append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after})
             result=[]
             for item in run["items"].values():
-                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice))})
+                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"section":item["section"]})
             return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"items":result})
         self.send_error(404)
 

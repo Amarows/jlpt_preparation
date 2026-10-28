@@ -141,3 +141,8 @@ button.secondary { border: var(--border-width) solid var(--accent); background: 
   .controls .start-buttons { width: 100%; margin-left: 0; }
   .controls .start-buttons button { flex: 1; }
 }
+.listen-prompt { font-size: 1.1rem; color: var(--muted); }
+.listen-img { display: block; width: 100%; max-width: 560px; margin: 0 auto; border: var(--border-width) solid var(--line); border-radius: var(--radius-control); background: #fff; }
+.script-box summary { cursor: pointer; color: var(--accent); }
+.script { margin-top: var(--space-xs); white-space: pre-wrap; line-height: 1.8; color: var(--ink); }
+.player { display: flex; align-items: center; gap: var(--space-sm); margin: var(--space-sm) 0; }

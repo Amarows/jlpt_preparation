@@ -31,6 +31,7 @@ def main():
                 if x.get("passage_id") and x["passage_id"] not in passages: errors.append(f"missing passage {x['id']}")
                 aud=x.get("audio")
                 if aud and not paths.under_home(aud["file"]).is_file(): errors.append(f"missing audio {x['id']}")
+                if x.get("image") and not paths.under_home(x["image"]).is_file(): errors.append(f"missing image {x['id']}")
             except Exception as e: errors.append(f"{f}: {e}")
     if errors: print("\n".join(errors)); return 1
     print(f"Verified {len(ids)} items"); return 0
