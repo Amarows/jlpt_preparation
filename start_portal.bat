@@ -1,3 +1,2 @@
 @echo off
-cd /d "%~dp0"
-..\..\..\.venv\Scripts\python.exe server.py
+wscript.exe "%~dp0start_portal.vbs"
