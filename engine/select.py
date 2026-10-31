@@ -1,10 +1,24 @@
 """Deterministic adaptive practice run selection."""
 import json, random
+from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from . import paths
 from .bank import load_bank
-from .model import fit, read_attempts, get_theta, current_attempts, open_mistakes
+from .model import fit, read_attempts, get_theta, current_attempts, open_mistakes, _timestamp
 from .leitner import target_ms, due as is_due
+from .simulate import BLUEPRINT
+
+REST_DAYS = 3
+
+def blend(xs, n=None):
+    """Reorder items so question types follow the exam blueprint: always take the type furthest below its share."""
+    pools = defaultdict(list)
+    for x in xs: pools[x["mondai"]].append(x)
+    counts = Counter(); out = []
+    while any(pools.values()) and (n is None or len(out) < n):
+        m = min((m for m in pools if pools[m]), key=lambda m: counts[m] / BLUEPRINT.get(m, 1))
+        out.append(pools[m].pop(0)); counts[m] += 1
+    return out
 
 def has_audio(x):
     return bool(x.get("audio")) and paths.under_home(x["audio"]["file"]).is_file()
@@ -23,12 +37,18 @@ def build_run(mode="practice", section="mixed", n=20, seed=1):
     focus={}
     try: focus=json.loads((paths.CONFIDENTIAL/"focus.json").read_text(encoding="utf-8")).get("boost",{})
     except (OSError,json.JSONDecodeError): pass
-    buckets={k:[] for k in ("weak","due","new","maintenance")}; cutoff=(datetime.now(timezone.utc)-timedelta(days=14)).isoformat()
+    buckets={k:[] for k in ("weak","due","new","maintenance","rest")}; cutoff=(datetime.now(timezone.utc)-timedelta(days=14)).isoformat()
+    rest_cut=datetime.now(timezone.utc)-timedelta(days=REST_DAYS); by_item=defaultdict(list)
+    for a in attempts: by_item[a.get("item_id")].append(a)
     for x in pool:
-        at=[a for a in attempts if a.get("item_id")==x["id"]]; last=at[-1] if at else None
+        at=by_item[x["id"]]; last=at[-1] if at else None
         primary=next((t for t in x.get("tags",[]) if t.startswith(("grammar:","word:","kanji:","skill:"))),None)
         weak=(primary and model["skills"].get(primary,{}).get("theta",0)<get_theta(model,x["section"])) or bool(focus.get(primary)) or any((a.get("ts","")>=cutoff and (not a.get("correct") or a.get("flag")=="unclear")) for a in at)
         box=model["boxes"].get(x["id"],0)
+        # An item answered right comes back only once it is due, and never within REST_DAYS; mistakes come back any time.
+        missed=last and (not last.get("correct") or last.get("timed_out") or last.get("flag")=="unclear")
+        if last and not missed and ((_timestamp(last.get("ts")) or rest_cut)>rest_cut or not is_due(box,last.get("ts"))):
+            buckets["rest"].append(x); continue
         if weak: buckets["weak"].append(x)
         elif not at: buckets["new"].append(x)
         elif box>=3: buckets["maintenance"].append(x)
@@ -37,14 +57,17 @@ def build_run(mode="practice", section="mixed", n=20, seed=1):
     recent_cut=(datetime.now(timezone.utc)-timedelta(hours=24)).isoformat()
     buckets["weak"].sort(key=lambda x:any(a.get("item_id")==x["id"] and a.get("ts","")>=recent_cut for a in attempts))
     rng=random.Random(seed)
-    for v in buckets.values(): rng.shuffle(v)
+    for k,v in buckets.items():
+        rng.shuffle(v); buckets[k]=blend(v)
+    # Resting items only fill a run when nothing else is left, least recently seen first.
+    buckets["rest"].sort(key=lambda x:by_item[x["id"]][-1].get("ts",""))
     # weak includes due work in the high-priority half
     quotas={"weak":round(n*.25),"due":n//2-round(n*.25),"new":round(n*.3),"maintenance":n-round(n*.25)-(n//2-round(n*.25))-round(n*.3)}
     selected=[]
     for key in ("weak","due","new","maintenance"):
         for x in buckets[key][:quotas[key]]:
             if x not in selected: selected.append(x)
-    for key in ("weak","due","new","maintenance"):
+    for key in ("weak","due","new","maintenance","rest"):
         for x in buckets[key]:
             if len(selected)>=n: break
             if x not in selected: selected.append(x)

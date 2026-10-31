@@ -7,6 +7,7 @@ from .bank import SECTIONS
 from .model import _timestamp, current_attempts, open_mistakes, read_attempts
 
 ORDER = ["vocab", "grammar", "reading", "listening"]
+DAILY_TARGET = 100
 
 
 def _runs() -> list[dict]:
@@ -45,11 +46,18 @@ def build_report(items: dict[str, dict], days: int = 14, mistakes: int = 5, now:
         if item and ts and ts >= since and item["section"] in SECTIONS and not a.get("review"):
             counts[item["section"]][0] += bool(a.get("correct"))
             counts[item["section"]][1] += 1
+    # Every answer counts toward the daily target, mistake reviews and mocks included.
+    local_day = lambda a: (_timestamp(a.get("ts")) or now).astimezone().date()
+    today = now.astimezone().date()
+    week_start = today - timedelta(days=today.weekday())
+    all_answers = read_attempts()
     wrong = list(open_mistakes(attempts, items).values())[::-1]
     return {
         "days": days,
         "last_run": {k: last.get(k) for k in ("mode", "section", "n")} if last else None,
         "open_mistakes": len(wrong),
+        "target": {"daily": DAILY_TARGET, "today": sum(local_day(a) == today for a in all_answers),
+                   "week": sum(local_day(a) >= week_start for a in all_answers), "days_into_week": today.weekday() + 1},
         "progress": progress,
         "sections": [{"section": s, "correct": c, "total": t} for s, (c, t) in counts.items()],
         "mistakes": [{
