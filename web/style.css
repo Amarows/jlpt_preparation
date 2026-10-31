@@ -81,7 +81,7 @@ button:not(.toggle) kbd { border-color: #ffffff55; background: #ffffff22; color:
 .feedback { justify-self: stretch; display: grid; gap: var(--space-xs); padding: var(--space-sm) var(--space-md); border-left: 4px solid currentColor; border-radius: var(--radius-control); background: var(--paper); }
 .feedback span { color: var(--ink); }
 .feedback .subtle { color: var(--muted); font-size: 0.9em; }
-.stem { margin-top: var(--space-md); font-size: var(--stem-size); line-height: 1.6; }
+.stem { margin-top: var(--space-md); font-size: var(--stem-size); line-height: 1.6; white-space: pre-line; }
 .blank { padding: 0 0.15em; border-bottom: 3px solid var(--accent); border-radius: 4px 4px 0 0; background: var(--accent-soft); }
 .blank.filled { border-color: var(--good); background: var(--good-soft); color: var(--good); }
 .passage { padding: var(--space-md); border-radius: var(--radius); background: var(--paper); line-height: 1.8; }
