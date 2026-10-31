@@ -10,7 +10,7 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 | Path | Content | Writer |
 |---|---|---|
 | `data/bank/<section>/*.json` | Item files, each holding a JSON array of items | tools/, Codex, Claude |
-| `data/bank/mocks/<mock_id>/` | Reserved full mock exams (never drawn in drills) | tools/ |
+| `data/bank/mocks/<mock_id>/` | Reserved full mock exams: `mock.json` (`id`, `title`, `opens`, `seen_before_mock`; the server adds `taken` and `result`), item files and `passages.json`. Kept out of practice until taken, then served like any other bank file | tools/, server |
 | `audio/` | MP3 files and cropped booklet pictures referenced by items | tools/import_listening.py |
 | `materials/` | Source books and PDFs | Alex |
 | `confidential/attempts.jsonl` | One line per answer | server |

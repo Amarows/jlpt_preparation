@@ -146,3 +146,9 @@ button.secondary { border: var(--border-width) solid var(--accent); background: 
 .script-box summary { cursor: pointer; color: var(--accent); }
 .script { margin-top: var(--space-xs); white-space: pre-wrap; line-height: 1.8; color: var(--ink); }
 .player { display: flex; align-items: center; gap: var(--space-sm); margin: var(--space-sm) 0; }
+
+.mock-list { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.mock-row { border: 1px solid var(--line); border-radius: var(--radius); padding: .75rem 1rem; }
+.mock-row h3 { margin: 0 0 .25rem; }
+.mock-score span { display: block; }
+.mock-break { text-align: center; }

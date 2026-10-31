@@ -14,8 +14,15 @@ def load_bank(root: Path | None = None) -> tuple[dict[str, dict], dict[str, dict
     root = root or paths.BANK
     items: dict[str, dict] = {}
     passages: dict[str, dict] = {}
+    # A mock stays out of practice until it has been taken.
+    taken = set()
+    for meta in root.glob("mocks/*/mock.json"):
+        try:
+            if json.loads(meta.read_text(encoding="utf-8")).get("taken"): taken.add(meta.parent.name)
+        except (OSError, json.JSONDecodeError): pass
     for f in root.rglob("*.json"):
-        if "mocks" in f.parts or f.name.endswith("_key.json"): continue
+        rel = f.relative_to(root).parts
+        if rel[0] == "mocks" and (len(rel) < 3 or rel[1] not in taken) or f.name == "mock.json" or f.name.endswith("_key.json"): continue
         try: data = json.loads(f.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError): continue
         if f.name == "passages.json":

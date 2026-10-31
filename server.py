@@ -6,6 +6,7 @@ from urllib.parse import urlparse, parse_qs, unquote
 from engine import paths
 from engine.bank import load_bank
 from engine.leitner import target_ms
+from engine.mock import assemble, mark_taken, mocks, score
 from engine.simulate import simulate
 
 LOCK=threading.Lock(); RUNS={}; ITEMS={}; PASSAGES={}
@@ -26,16 +27,22 @@ class Handler(BaseHTTPRequestHandler):
         if u.path=="/api/report":
             from engine.report import build_report
             return self.send_json(build_report(ITEMS or load_bank()[0]))
+        if u.path=="/api/mocks": return self.send_json(mocks())
         if u.path=="/api/run":
             from engine.select import build_run
-            mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0])))
-            data=build_run(mode,section,n,seed=uuid.uuid4().int); rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
+            mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0]))); mock_id=None
+            if mode=="mock":
+                mock_id=q.get("mock",[""])[0]; meta=next((m for m in mocks() if m["id"]==mock_id),None)
+                if not meta or not meta["open"]: return self.send_json({"error":"This mock is not open yet."},403)
+                data={**assemble(mock_id),"mode":mode,"time_limit_ms":None}; section="mock"
+            else: data=build_run(mode,section,n,seed=uuid.uuid4().int)
+            rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
             public=[]
             for item in originals: public.append({**{k:v for k,v in item.items() if k not in {"answer","explanation_en","distractor_notes","script"}},"target_ms":target_ms(item)})
             try: baseline=json.loads(paths.MODEL_STATE.read_text(encoding="utf-8"))["p_pass"]
             except (OSError, ValueError, KeyError): baseline=simulate(write=False)["p_pass"]
-            RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline}
-            return self.send_json({"run_id":rid,"mode":mode,"time_limit_ms":data["time_limit_ms"],"items":public,"passages":data["passages"]})
+            RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline,"mock_id":mock_id}
+            return self.send_json({"run_id":rid,"mode":mode,"time_limit_ms":data["time_limit_ms"],"parts":data.get("parts"),"items":public,"passages":data["passages"]})
         if u.path=="/" or u.path.startswith("/web/"):
             rel="index.html" if u.path=="/" else unquote(u.path[5:]); path=(paths.REPO/"web"/rel).resolve()
             if paths.REPO/"web" not in path.parents and path!=paths.REPO/"web": return self.send_error(403)
@@ -70,12 +77,17 @@ class Handler(BaseHTTPRequestHandler):
             rid=data.get("run_id"); run=RUNS.get(rid)
             if not run: return self.send_json({"error":"unknown run"},404)
             before=run["p_pass_before"]; rows=list(run["answers"].values()); correct=sum(bool(x["correct"]) for x in rows); total_ms=sum(x.get("ms") or 0 for x in rows)
+            mock=None
+            if run.get("mock_id"):
+                # Score first: marking the mock taken releases its items into the bank the model reads.
+                mock=score(list(run["items"].values()),{i for i,x in run["answers"].items() if x["correct"]}); mark_taken(run["mock_id"],mock)
+                ITEMS.clear(); ITEMS.update(load_bank()[0])
             after=simulate(write=True,current_run_id=rid,record_run=True)["p_pass"]; end=datetime.now().astimezone().isoformat()
-            append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after})
+            append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,**({"mock_id":run["mock_id"],"mock":mock} if mock else {})})
             result=[]
             for item in run["items"].values():
                 a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"section":item["section"]})
-            return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"items":result})
+            return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"mock":mock,"items":result})
         self.send_error(404)
 
 def serve(port=None):

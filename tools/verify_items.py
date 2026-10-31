@@ -12,7 +12,7 @@ def main():
             try: passages.update(x["id"] for x in json.loads(f.read_text(encoding="utf-8")))
             except Exception as e: errors.append(f"{f}: {e}")
     for f in files:
-        if "mocks" in f.parts: continue
+        if f.name=="mock.json": continue
         try: data=json.loads(f.read_text(encoding="utf-8"))
         except Exception as e: errors.append(f"{f}: {e}"); continue
         if f.name=="passages.json": continue
