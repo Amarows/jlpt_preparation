@@ -37,7 +37,9 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
   "image": null,
   "explanation_en": "のに = 'even though' (unexpected result); ので/から give a reason.",
   "distractor_notes": {"1": "reason instead of contrast"},
-  "source": {"kind": "generated | book | web | official", "ref": "free text, e.g. jlptpracticetest.com/n4/3 q12"},
+  "source": {"kind": "generated | book | web | official", "ref": "free text, e.g. jlptpracticetest.com/n4/3 q12",
+             "author": "codex | claude-opus-5-5 | Japan Times | JLPT | ...", "batch": "grammar/generated_form",
+             "created": "2026-11-01", "page": 42, "parent_item": "gr-noni-001", "parent_attempt": "2026-10-30T19:02:11+01:00"},
   "verified": true
 }
 ```
@@ -46,6 +48,7 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 - `passage_id` points to `data/bank/reading/passages.json` → `{"id", "text", "image"?}`; listening items use `audio: {"file": "audio/x.mp3", "start": 12.5, "end": 48.0}` (seconds; `start`/`end` are left out when the file holds one question; `duration` is the clip length, added to timed-run limits).
 - Listening items also carry `script` (the transcript, sent to the browser only after the answer), `hide_options: true` when the options are spoken or drawn rather than printed (the buttons show only numbers until the answer), and `image` (a booklet picture, e.g. `audio/bpt1/img/1-1.png`). The question text (`stem`) is shown only after answering, as in the real test where it is spoken.
 - `tags` use prefixes: `grammar:`, `word:`, `kanji:`, `skill:` (e.g. `skill:long_vowel`), `phrase:`.
+- `source.author` and `source.batch` are required for new items: the batch groups items made together (a bank file, one generation run), so `tools/item_health.py` can compare batches and pull a bad one. `page` is the book page; `parent_item`/`parent_attempt` name the mistake a generated item was written for. `created` is the date the item was written.
 - Only items with `verified: true` are served.
 - Optional `revised: "YYYY-MM-DD"`: set when an item's stem, options or answer change. Attempts made before that date answered the old version, so the engine, the selection and the report ignore them.
 
