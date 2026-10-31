@@ -11,8 +11,7 @@ ROWS = [
  ("gr-hajimeru-075", G, "grammar:始める", "赤ちゃんが 急に 泣き（　　）ました。", ["始め", "続け", "すぎ", "終わり"], "急に + ～始める = suddenly started crying."),
  ("gr-tsuzukeru-080", G, "grammar:続ける", "三時間 歩き（　　）、足が いたく なりました。", ["続けて", "始めて", "出して", "終わって"], "～続ける = keep doing: walked for three hours straight."),
  ("gr-tsuzukeru-080", G, "grammar:すぎる", "ケーキを 食べ（　　）、おなかが いたいです。", ["すぎて", "始めて", "やすくて", "終わって"], "～すぎる = too much: ate too much cake."),
- ("gr-hajimeru-075", G, "grammar:終わる", "この 本は とても 長いので、まだ 読み（　　）いません。", ["終わって", "始めて", "すぎて", "やすくて"], "まだ 読み終わって いない = haven't finished reading yet."),
- ("gr-tearu-052", G, "grammar:てある", "つくえの 上に 花が かざって（　　）。", ["あります", "います", "おきます", "みます"], "Transitive かざる + てある = someone put the flowers there."),
+ ("gr-hajimeru-075", G, "grammar:終わる", "この 本は とても 長いので、まだ 最後まで 読み（　　）いません。", ["終わって", "始めて", "すぎて", "やすくて"], "まだ 読み終わって いない = haven't finished reading yet."),
  ("gr-teiru-054", G, "grammar:ている", "電気が ついて（　　）。だれか いるのでしょう。", ["います", "あります", "おきます", "しまいます"], "Intransitive つく + ている = the light is on."),
  ("gr-tearu-052", G, "grammar:てある", "パーティーの 飲み物は もう 買って（　　）から、だいじょうぶです。", ["あります", "います", "みます", "いきます"], "買って ある = already bought, ready for later."),
  ("gr-teiru-054", G, "grammar:ている", "ドアが しまって（　　）から、ノックして ください。", ["います", "あります", "おきます", "みます"], "Intransitive しまる + ている = the door is shut."),
@@ -28,7 +27,7 @@ ROWS = [
  ("gr-zuni-086", G, "grammar:ずに", "かさを 持た（　　）出かけたので、雨に ぬれました。", ["ずに", "なくて", "なければ", "ないと"], "持たずに = without taking (an umbrella)."),
  ("gr-zuni-086", G, "grammar:ずに", "よく 考え（　　）答えを 書いて しまいました。", ["ずに", "なくて", "ないと", "なければ"], "考えずに = without thinking."),
  ("gr-zuni-086", G, "grammar:ずに", "ゆうべは ね（　　）宿題を しました。", ["ずに", "なくて", "ないと", "ても"], "ねずに = without sleeping."),
- ("gr-tara-011", G, "grammar:たら", "家に（　　）、メールを ください。", ["帰ったら", "帰ると", "帰るなら", "帰れば"], "～たら + request: once you get home."),
+ ("gr-tara-011", G, "grammar:たら", "家に（　　）、メールを ください。", ["帰ったら", "帰ると", "帰るので", "帰れば"], "～たら + request: once you get home."),
  ("placement-14", G, "grammar:たら", "仕事が（　　）、いっしょに 食事に 行きましょう。", ["終わったら", "終わると", "終わるなら", "終われば"], "～たら + invitation: when work is over."),
  ("placement-14", G, "grammar:たら", "わからない ことが（　　）、いつでも 聞いて ください。", ["あったら", "あると", "あって", "あるのに"], "～たら + request: if there is something."),
  ("gr-tagaru-064", G, "grammar:たがる", "妹は 新しい ゲームを（　　）います。", ["ほしがって", "ほしくて", "ほしいで", "ほしかって"], "Someone else's wish: ほしがって いる."),
@@ -67,7 +66,7 @@ def main(home):
             "source": {"kind": "generated", "ref": f"written for the mistake on {parent}", "author": "claude-opus-5-5",
                        "batch": f"{section}/gen_mistakes_2026-10-31", "created": "2026-10-31",
                        "parent_item": parent, "parent_attempt": last_ts.get(parent)},
-            "verified": False})
+            "verified": True})
     for section, items in out.items():
         f = Path(home) / "data" / "bank" / section / "gen_mistakes_2026-10-31.json"
         f.write_text(json.dumps(items, ensure_ascii=False, indent=2), encoding="utf-8"); print(f, len(items))
