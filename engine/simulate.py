@@ -7,6 +7,7 @@ from .bank import load_bank
 from .leitner import target_ms
 
 BLUEPRINT={"kanji_reading":7,"orthography":5,"contextual":8,"paraphrase":4,"usage":4,"grammar_form":13,"sentence_composition":4,"text_grammar":4,"short_passage":3,"mid_passage":3,"info_retrieval":2,"task_based":8,"key_points":7,"verbal_expression":5,"quick_response":8}
+EXAM_GAP_SD=.6
 def simulate(attempts=None, seed=13, draws=10000, write=True, current_run_id=None, record_run=False):
     """Compute pass probability, score estimates, confidence band and trends."""
     attempts=read_attempts() if attempts is None else attempts; model=fit(attempts,current_run_id=current_run_id); rng=random.Random(seed)
@@ -17,7 +18,8 @@ def simulate(attempts=None, seed=13, draws=10000, write=True, current_run_id=Non
     vover=max(0,min(1,(vtime-25*60000)/max(1,vtime))); gover=max(0,min(1,(grtime-55*60000)/max(1,grtime)))
     outcomes=[]; lks=[]; ls=[]
     for _ in range(draws):
-        theta={s:rng.gauss(means[s],sds[s]) for s in means}; correct={"vocab":0,"grammar":0,"reading":0,"listening":0}
+        # How much harder the real exam is than our bank is unknown, so each draw takes its own gap per section.
+        theta={s:rng.gauss(means[s],sds[s])-rng.gauss(0,EXAM_GAP_SD) for s in means}; correct={"vocab":0,"grammar":0,"reading":0,"listening":0}
         groups={"vocab":["kanji_reading","orthography","contextual","paraphrase","usage"],"grammar":["grammar_form","sentence_composition","text_grammar"],"reading":["short_passage","mid_passage","info_retrieval"],"listening":["task_based","key_points","verbal_expression","quick_response"]}
         for section,mondais in groups.items():
             for m in mondais:

@@ -111,6 +111,9 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
         weight = .5 ** (age_days / 14)
         if a.get("flag") == "guess":
             weight *= .5
+        # Generated items count half until item health shows they behave like book items.
+        if items.get(a.get("item_id"), a.get("item", {})).get("source", {}).get("kind") == "generated":
+            weight *= .5
         raw_weights.append(weight)
         item = items.get(a.get("item_id"), a.get("item", {}))
         section = item.get("section", a.get("section", "vocab"))
@@ -124,7 +127,8 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
         section = item.get("section", a.get("section", "vocab"))
         prior = .4 if section == "listening" else .5
         base = _difficulty(item)
-        difficulty = max(-1.0, min(1.0, base + offsets[item_id]))
+        # Only the learned offset is capped; the label prior keeps its full range.
+        difficulty = base + offsets[item_id]
         weight = raw_weight * caps.get(section, 1.0)
         correct = bool(a.get("correct")) and not a.get("timed_out")
         section_rows[section].append((difficulty, weight, correct))
@@ -157,7 +161,7 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
     return {
         "skills": skills,
         "sections": sections,
-        "item_b": {k: max(-1.0, min(1.0, _difficulty(items.get(k, {})) + v)) for k, v in offsets.items()},
+        "item_b": {k: _difficulty(items.get(k, {})) + v for k, v in offsets.items()},
         "speed": {k: {"median_ms": sorted(v[-50:])[len(v[-50:]) // 2], "target_ms": target_ms({"mondai": k, "tier_prior": "medium"})} for k, v in speeds.items()},
         "boxes": boxes(attempts, items),
     }
