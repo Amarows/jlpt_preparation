@@ -52,7 +52,11 @@ def build(src: Path, materials: Path) -> list[dict]:
 
 def main():
     materials = paths.HOME / "materials"; out_dir = paths.BANK / "listening"; out_dir.mkdir(parents=True, exist_ok=True)
+    # Sets reserved for a mock live in data/bank/mocks/<id>/ and must not reappear in practice.
+    reserved = {x["id"].split("-")[1] for f in paths.BANK.glob("mocks/*/listening*.json") for x in json.loads(f.read_text(encoding="utf-8"))}
     for src in sorted((materials / "listening_src").glob("*.json")):
+        if src.stem in reserved:
+            print(f"{src.stem}: reserved for a mock, skipped"); continue
         items = build(src, materials)
         (out_dir / f"{src.stem}.json").write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"{src.stem}: {len(items)} items")
