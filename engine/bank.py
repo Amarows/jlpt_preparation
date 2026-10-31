@@ -3,7 +3,7 @@ import json
 from pathlib import Path
 from . import paths
 
-MONDAI = set("kanji_reading orthography contextual paraphrase usage grammar_form sentence_composition text_grammar short_passage mid_passage info_retrieval task_based key_points verbal_expression quick_response instruction_phrase".split())
+MONDAI = set("kanji_reading orthography contextual paraphrase usage grammar_form sentence_composition text_grammar short_passage mid_passage info_retrieval task_based key_points verbal_expression quick_response".split())
 SECTIONS = {"vocab", "grammar", "reading", "listening"}
 TIERS = {"easy", "medium", "hard"}
 LEVELS = {"N5", "N4-core", "N4-hard"}

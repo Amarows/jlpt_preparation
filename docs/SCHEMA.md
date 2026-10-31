@@ -24,7 +24,7 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 {
   "id": "gr-noni-001",
   "section": "vocab | grammar | reading | listening",
-  "mondai": "kanji_reading | orthography | contextual | paraphrase | usage | grammar_form | sentence_composition | text_grammar | short_passage | mid_passage | info_retrieval | task_based | key_points | verbal_expression | quick_response | instruction_phrase",
+  "mondai": "kanji_reading | orthography | contextual | paraphrase | usage | grammar_form | sentence_composition | text_grammar | short_passage | mid_passage | info_retrieval | task_based | key_points | verbal_expression | quick_response",
   "tier_prior": "easy | medium | hard",
   "level": "N5 | N4-core | N4-hard",
   "stem": "たくさん べんきょうした (　　)、テストは よく なかったです。",

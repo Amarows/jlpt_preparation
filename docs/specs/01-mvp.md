@@ -32,7 +32,7 @@ start_portal.bat     runs `.venv\Scripts\python server.py` from the repo root
 
 | mondai | easy | medium |
 |---|---|---|
-| kanji_reading, orthography, quick_response, instruction_phrase | 10s | 20s |
+| kanji_reading, orthography, quick_response | 10s | 20s |
 | contextual, paraphrase, grammar_form | 15s | 30s |
 | usage, sentence_composition, text_grammar | 30s | 60s |
 | short_passage, mid_passage, info_retrieval | 60s | 120s |

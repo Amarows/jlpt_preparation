@@ -34,9 +34,11 @@ def _timestamp(value):
 
 
 def current_attempts(attempts: list[dict], items: dict[str, dict]) -> list[dict]:
-    """Drop attempts made before an item's `revised` date; they answered an older version of it."""
+    """Drop attempts made before an item's `revised` date, and attempts on items removed from the bank."""
     out = []
     for a in attempts:
+        if a.get("item_id") not in items and "item" not in a and "section" not in a:
+            continue
         revised = _timestamp(items.get(a.get("item_id"), {}).get("revised"))
         ts = _timestamp(a.get("ts"))
         if revised and ts and ts < revised:

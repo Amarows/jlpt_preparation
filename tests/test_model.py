@@ -38,3 +38,7 @@ def test_consistent_medium_evidence_moves_theta_from_prior():
     attempts=[{"ts":f"2026-10-{n//24+1:02d}T{n%24:02d}:00:00+00:00","item_id":"medium","correct":n%20!=0,"item":{"section":"grammar","tier_prior":"medium","level":"N4-core"}} for n in range(100)]
     fitted=fit(attempts,{})
     assert fitted["sections"]["sec:grammar"]["theta"]>=1.0
+
+def test_attempts_on_removed_items_are_ignored():
+    attempts=[{"ts":f"2026-10-{n%28+1:02d}","item_id":"gone","correct":True,"ms":1000} for n in range(30)]
+    assert fit(attempts,{})["sections"]["sec:vocab"]["theta"]==fit([],{})["sections"]["sec:vocab"]["theta"]
