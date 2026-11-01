@@ -152,3 +152,28 @@ button.secondary { border: var(--border-width) solid var(--accent); background: 
 .mock-row h3 { margin: 0 0 .25rem; }
 .mock-score span { display: block; }
 .mock-break { text-align: center; }
+
+/* Wrong-answer explanation */
+.explain { display: grid; gap: var(--space-sm); margin-top: var(--space-xs); color: var(--ink); }
+.explain p { margin: 0; }
+.explain ruby rt { font-size: 0.6em; color: var(--muted); }
+.explain-sentence { font-size: 1.2rem; line-height: 2.1; }
+.explain-translation { color: var(--muted); font-style: italic; }
+.explain-evidence { display: grid; gap: var(--space-xs); }
+.explain-evidence blockquote { margin: 0; padding: var(--space-xs) var(--space-sm); border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 var(--radius-control) var(--radius-control) 0; line-height: 2; }
+.explain-evidence small { display: block; color: var(--muted); line-height: 1.4; }
+.explain-steps { margin: 0; padding-left: var(--space-lg); line-height: 1.9; }
+.explain-options { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.explain-options li { display: grid; grid-template-columns: 1.6em minmax(8em, auto) 1fr; gap: var(--space-sm); align-items: baseline; padding: 2px var(--space-xs); border-radius: 6px; line-height: 2; }
+.explain-options li.right { background: var(--good-soft); }
+.explain-options li.wrong { background: var(--bad-soft); }
+.explain-options .num { color: var(--muted); }
+.explain-words { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin: 0; }
+.explain-words div { padding: 2px var(--space-sm); border: var(--border-width) solid var(--line); border-radius: var(--radius-control); background: var(--panel); }
+.explain-words dt { display: inline; font-weight: 600; }
+.explain-words dt small { font-weight: 400; color: var(--muted); }
+.explain-words dd { display: inline; margin: 0 0 0 var(--space-xs); }
+.unclear-explain { justify-self: start; }
+.passage mark, .script mark { background: #ffe58a; color: inherit; border-radius: 3px; }
+.mistakes .jp { display: block; line-height: 2; }
+@media (max-width: 560px) { .explain-options li { grid-template-columns: 1.6em 1fr; } .explain-options li > span:last-child { grid-column: 2; } }

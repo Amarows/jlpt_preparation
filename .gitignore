@@ -14,7 +14,8 @@ data/*
 __pycache__/
 *.pyc
 .pytest_cache/
-.claude/
+.claude/*
+!.claude/skills/
 tmp*/
 
 # IDE per-user state

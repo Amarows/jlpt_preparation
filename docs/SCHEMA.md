@@ -13,9 +13,12 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 | `data/bank/mocks/<mock_id>/` | Reserved full mock exams: `mock.json` (`id`, `title`, `opens`, `seen_before_mock`; the server adds `taken` and `result`), item files and `passages.json`. Kept out of practice until taken, then served like any other bank file | tools/, server |
 | `audio/` | MP3 files and cropped booklet pictures referenced by items | tools/import_listening.py |
 | `materials/` | Source books and PDFs | Alex |
+| `data/explain.json` | Wrong-answer explanations, `{item_id: explain}` (see below) | tools/explain_items.py |
+| `data/explain_drafts/<batch>/` | Briefs, drafts and the check report of one explanation batch | tools/explain_items.py |
 | `confidential/attempts.jsonl` | One line per answer | server |
 | `confidential/runs.jsonl` | One line per finished run | server |
 | `confidential/model_state.json` | Latest model output (recomputed from logs) | engine |
+| `confidential/explain_feedback.jsonl` | One line per "Still unclear" click on an explanation: `ts`, `item_id`, `choice` | server |
 | `confidential/focus.json` | Tag boosts written by Claude's analysis | Claude |
 | `confidential/analysis/YYYY-MM-DD.md` | Claude's qualitative gap analysis | Claude |
 
@@ -51,6 +54,24 @@ Set the env var `JLPT_HOME` to point the server, engine and dashboard at a diffe
 - `source.author` and `source.batch` are required for new items: the batch groups items made together (a bank file, one generation run), so `tools/item_health.py` can compare batches and pull a bad one. `page` is the book page; `parent_item`/`parent_attempt` name the mistake a generated item was written for. `created` is the date the item was written.
 - Only items with `verified: true` are served.
 - Optional `revised: "YYYY-MM-DD"`: set when an item's stem, options or answer change. Attempts made before that date answered the old version, so the engine, the selection and the report ignore them.
+
+## Explanation (`data/explain.json`)
+Shown after a wrong answer (in practice, on the results page and in the mistakes list), never before. Kept apart from the
+item files, so it never changes an item or its attempt history.
+```json
+{"gr-noni-001": {
+  "sentence": "たくさん {勉強|べんきょう}したのに、テストは よく なかったです。",
+  "translation_en": "Even though I studied a lot, the test did not go well.",
+  "options": [{"ruby": "ので", "en": "because: …"}, {"ruby": "から", "en": "…"}, {"ruby": "と", "en": "…"}, {"ruby": "のに", "en": "even though"}],
+  "words": [{"w": "勉強する", "r": "べんきょうする", "en": "to study"}],
+  "evidence": [{"text": "exact one-line quote from the passage or script", "ruby": "the same with furigana", "en": "translation"}],
+  "steps": ["How the answer follows, with {漢字|かんじ} furigana."],
+  "for": "3f1c0a9b2d4e", "checked": "2026-11-01", "batch": "mistakes-2026-11-01"}}
+```
+- Furigana is written `{漢字|かんじ}`; every kanji in `sentence`, `options[].ruby` and `evidence[].ruby` has it, and without it the text equals the item's (`sentence`: the stem with the answer filled in, see `tools/explain_prompt.md`).
+- `evidence` is required for reading, listening and `text_grammar`; each `text` appears verbatim in the passage or script, so the runner can highlight it.
+- `for` is a fingerprint of the item's stem, options and answer. When the item changes, its explanation stops being served until it is rewritten.
+- Items without an explanation get `{"fallback": true, "options": [...]}`: option meanings looked up in `data/vocabulary.csv`.
 
 ## Attempt (`confidential/attempts.jsonl`)
 ```json

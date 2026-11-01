@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 
 from . import paths
 from .bank import SECTIONS
+from .explain import for_item
 from .model import _timestamp, current_attempts, open_mistakes, read_attempts
 
 ORDER = ["vocab", "grammar", "reading", "listening"]
@@ -64,5 +65,6 @@ def build_report(items: dict[str, dict], days: int = 14, mistakes: int = 5, now:
             "ts": _timestamp(a.get("ts")).isoformat(), "section": items[a["item_id"]]["section"], "stem": items[a["item_id"]]["stem"],
             "choice": _option(items[a["item_id"]], a.get("choice")), "answer": _option(items[a["item_id"]], items[a["item_id"]]["answer"]),
             "timed_out": bool(a.get("timed_out")), "explanation_en": items[a["item_id"]].get("explanation_en"),
+            "explain": for_item(items[a["item_id"]]),
         } for a in wrong[:mistakes]],
     }

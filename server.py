@@ -5,6 +5,7 @@ from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs, unquote
 from engine import paths
 from engine.bank import load_bank
+from engine.explain import for_item
 from engine.leitner import target_ms
 from engine.mock import assemble, mark_taken, mocks, score
 from engine.simulate import simulate
@@ -71,7 +72,7 @@ class Handler(BaseHTTPRequestHandler):
             a={"ts":datetime.now().astimezone().isoformat(),"run_id":data["run_id"],"item_id":item["id"],"choice":choice,"correct":correct,"ms":data.get("ms"),"flag":data.get("flag") or "none","mode":run["mode"],"timed_out":bool(data.get("timed_out"))}
             if run["section"]=="mistakes": a["review"]=True
             append(paths.ATTEMPTS,a); run["answers"][item["id"]]={**a,"item":item}; out={"ok":True}
-            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script")})
+            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item)})
             return self.send_json(out)
         if self.path=="/api/finish":
             rid=data.get("run_id"); run=RUNS.get(rid)
@@ -86,8 +87,13 @@ class Handler(BaseHTTPRequestHandler):
             append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,**({"mock_id":run["mock_id"],"mock":mock} if mock else {})})
             result=[]
             for item in run["items"].values():
-                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"section":item["section"]})
+                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item),"item_id":item["id"],"section":item["section"]})
             return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"mock":mock,"items":result})
+        if self.path=="/api/explain_feedback":
+            # "Still unclear" on an explanation: kept apart from attempts, so it never touches scores.
+            if not isinstance(data.get("item_id"),str): return self.send_json({"error":"item_id required"},400)
+            append(paths.CONFIDENTIAL/"explain_feedback.jsonl",{"ts":datetime.now().astimezone().isoformat(),"item_id":data["item_id"],"run_id":data.get("run_id"),"choice":data.get("choice")})
+            return self.send_json({"ok":True})
         self.send_error(404)
 
 def serve(port=None):
