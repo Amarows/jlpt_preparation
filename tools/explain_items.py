@@ -34,7 +34,7 @@ ORDER = ["grammar_form", "text_grammar", "short_passage", "mid_passage", "info_r
 # Fixed readings for steps where the analyser is often wrong.
 FIXED = {"何か": "なにか"}
 # Words the analyser reads one way where both readings are standard: (kanji, its reading, the other reading).
-VARIANTS = [("日本", "にっぽん", "にほん"), ("私", "わたくし", "わたし"), ("何", "なん", "なに"), ("何", "なに", "なん"), ("開", "ひら", "あ"), ("開", "あ", "ひら"), ("間", "ま", "あいだ"), ("人", "にん", "じん"), ("母", "はは", "かあ"), ("父", "ちち", "とう")]
+VARIANTS = [("日本", "にっぽん", "にほん"), ("私", "わたくし", "わたし"), ("何", "なん", "なに"), ("何", "なに", "なん"), ("開", "ひら", "あ"), ("開", "あ", "ひら"), ("間", "ま", "あいだ"), ("人", "にん", "じん"), ("母", "はは", "かあ"), ("父", "ちち", "とう"), ("富士山", "ふじやま", "ふじさん"), ("明日", "あす", "あした")]
 
 
 def work(name): return paths.DATA / "explain_drafts" / name
