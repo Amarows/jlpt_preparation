@@ -10,7 +10,7 @@ golden: golden
 precision: 9
 visuals: []
 gate:
-  confidential: ['**/confidential/', 'audio/', 'materials/', 'data/bank/', 'learners/', 'learners.json']
+  confidential: ['**/confidential/', 'audio/', 'materials/', 'data/bank/', 'learners/', 'learners.json', 'backup/']
   data_allow: [data/vocabulary.csv]
   data_ext:
   - .csv
