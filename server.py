@@ -9,7 +9,7 @@ from engine.bank import load_bank
 from engine.explain import explanations, for_item
 from engine.leitner import target_ms
 from engine.mock import assemble, mark_taken, mocks, score
-from engine.simulate import simulate
+from engine.simulate import simulate, status as cached_status
 from engine.units import units
 
 LOCK=threading.Lock(); RUNS={}; BANKS={}
@@ -121,7 +121,7 @@ class Handler(BaseHTTPRequestHandler):
             rows=paths.learners() if access.mode()=="local" or self.ident["admin"] else [r for r in paths.learners() if r["id"]==self.ident["learner_id"]]
             return self.send_json([{k:r[k] for k in ("id","name","ui","track")} for r in rows])
         if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary()})
-        if u.path=="/api/status": return self.send_json(simulate())
+        if u.path=="/api/status": return self.send_json(cached_status())
         if u.path=="/api/report":
             from engine.report import build_report
             return self.send_json(build_report(bank()[0]))

@@ -1,4 +1,4 @@
-import json, math, random
+import hashlib, json, math, random
 from datetime import date
 from . import paths, tracks
 from .model import fit, read_attempts, get_theta
@@ -53,4 +53,34 @@ def simulate(attempts=None, seed=13, draws=10000, write=True, current_run_id=Non
     state.update({"exp_score":{k:sum(v)/draws for k,v in dist.items()},"skills":model["skills"],"speed":model["speed"],"mastered":{"count":sum(v>=3 for v in mastered.values()),"by_section":by},"days_left":(date.fromisoformat(exam["date"])-date.today()).days,"history":past,"ema_history":ema_history})
     if write:
         paths.CONFIDENTIAL.mkdir(parents=True,exist_ok=True); paths.MODEL_STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding="utf-8")
+    return state
+
+
+_status = {}
+
+
+def _stat(f):
+    try:
+        st = f.stat()
+        return st.st_mtime_ns, st.st_size
+    except OSError:
+        return None
+
+
+def _key():
+    try:
+        state = hashlib.sha256(paths.MODEL_STATE.read_bytes()).hexdigest()
+    except OSError:
+        state = None
+    bank = sorted((str(f.relative_to(paths.BANK)), _stat(f)) for f in paths.BANK.rglob("*.json")) if paths.BANK.is_dir() else []
+    return tracks.current()["id"], date.today().isoformat(), _stat(paths.ATTEMPTS), state, hashlib.sha256(repr(bank).encode()).hexdigest()
+
+
+def status():
+    who = (str(paths.HOME), paths.learner()["id"])
+    hit = _status.get(who)
+    if hit and hit[0] == _key():
+        return hit[1]
+    state = simulate()
+    _status[who] = (_key(), state)
     return state
