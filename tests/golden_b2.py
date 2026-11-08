@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from datetime import timedelta
 from pathlib import Path
 
-from tests.golden_n4 import NOW, FixedDate, _patched
+from tests.golden_n4 import NOW, FixedDate, _patched, shifted_real_clock
 
 
 def _item(i, section, mondai, level="B2"):
@@ -32,7 +32,7 @@ def yoko():
         bank = tmp / "data" / "tracks" / "de-work" / "bank"
         bank.mkdir(parents=True)
         (bank / "fixture.json").write_text(json.dumps(ITEMS), encoding="utf-8")
-        with _patched([(paths, "HOME", tmp), (simulate, "date", FixedDate)]), paths.as_learner("yoko"):
+        with _patched(shifted_real_clock() + [(paths, "HOME", tmp), (simulate, "date", FixedDate)]), paths.as_learner("yoko"):
             yield tmp
     finally:
         shutil.rmtree(tmp, ignore_errors=True)

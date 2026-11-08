@@ -1,13 +1,16 @@
+import importlib
 import json
 import os
+import pkgutil
 import shutil
+import sys
 import tempfile
 import threading
 import urllib.error
 import urllib.request
 import uuid
 from contextlib import contextmanager
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from http.server import ThreadingHTTPServer
 from pathlib import Path
 
@@ -53,6 +56,21 @@ def _build(home):
         shutil.copytree(src["audio"], home / "audio")
 
 
+def shifted_real_clock():
+    days = int(os.environ.get("GOLDEN_CLOCK_SHIFT_DAYS") or 0)
+    if not days:
+        return []
+    shift = timedelta(days=days)
+    later_dt = type("LaterDatetime", (datetime,), {"now": classmethod(lambda cls, tz=None: datetime.now(tz) + shift)})
+    later_d = type("LaterDate", (date,), {"today": classmethod(lambda cls: date.today() + shift)})
+    import engine
+    import server
+    for info in pkgutil.iter_modules(engine.__path__):
+        importlib.import_module(f"engine.{info.name}")
+    mods = [m for name, m in list(sys.modules.items()) if name == "server" or name.startswith("engine.")]
+    return [(m, "datetime", later_dt) for m in mods if getattr(m, "datetime", None) is datetime] + [(m, "date", later_d) for m in mods if getattr(m, "date", None) is date]
+
+
 @contextmanager
 def _patched(pairs):
     saved = [(obj, name, getattr(obj, name)) for obj, name, _ in pairs]
@@ -67,15 +85,15 @@ def _patched(pairs):
 
 @contextmanager
 def portal():
-    from engine import explain, leitner, mock, paths, select, simulate
+    from engine import explain, leitner, mock, paths, report, select, simulate
     import server
     tmp = Path(tempfile.mkdtemp()).resolve()
     home = tmp / "home"
     home.mkdir()
     _build(home)
     counter = iter(range(1, 10 ** 6))
-    pairs = [(paths, "HOME", home), (simulate, "date", FixedDate), (mock, "date", FixedDate), (select, "datetime", FixedDatetime),
-             (leitner, "datetime", FixedDatetime), (server, "datetime", FixedDatetime),
+    pairs = shifted_real_clock() + [(paths, "HOME", home), (simulate, "date", FixedDate), (mock, "date", FixedDate), (select, "datetime", FixedDatetime),
+             (leitner, "datetime", FixedDatetime), (report, "datetime", FixedDatetime), (server, "datetime", FixedDatetime),
              (server.uuid, "uuid4", lambda: uuid.UUID(int=next(counter)))]
     explain._cache.clear()
     try:
