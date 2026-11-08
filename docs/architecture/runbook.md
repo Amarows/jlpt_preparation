@@ -1,128 +1,146 @@
-# Runbook: put the portal online with Cloudflare Tunnel + Access
+# Runbook: put the portal online (Raspberry Pi 5 + Cloudflare Tunnel + Access)
 
-Use this runbook only after Alex has approved [online-portal.md](online-portal.md), decisions D1–D8.
+Use this runbook for the design in [online-portal.md](online-portal.md): origin decided on 2026-11-08, with decisions D2–D10 still open.
 
 Each step is marked with who does it:
 
-- **[ALEX]** – only Alex can do this. These steps involve accounts, money, DNS or sharing data, and Claude must not do them.
-- **[CLAUDE]** – a Claude session can do this on Alex's yes. These are code or local configuration changes and are reversible.
+- **[ALEX]** – only Alex can do this. These steps involve accounts, money, DNS, secrets, or installs on the Pi, and Claude must not do them.
+- **[CLAUDE]** – a Claude session can do this on Alex's yes. These are code or local file changes and are reversible.
 - **[CHECK]** – a pass/fail check. Stop if it fails.
 
-Placeholders: `<domain>` is the bought domain, `<host>` is `study.<domain>`, and `<team>` is the Zero Trust team name.
+Placeholders:
+
+- `<domain>` – the bought domain
+- `<host>` – `study.<domain>`
+- `<team>` – the Zero Trust team name
+- `<pi>` – `homeassistant.local`
 
 ## 0. Before anything is exposed
 
-1. **[CLAUDE]** Implement hardening items H1–H10 from the ADR, each with failing-first tests, and merge them to `main`.
-2. **[CHECK]** The suite is green.
-3. **[CHECK]** `curl --path-as-is http://127.0.0.1:8080/audio/../confidential/attempts.jsonl` → 404.
-4. **[CHECK]** `netstat -ano | findstr :8080` shows `127.0.0.1:8080` only, not `0.0.0.0`.
-5. **[CLAUDE]** Add `PyJWT[crypto]` to `requirements.txt`, pinned, then install it into `.venv`.
-6. **[CLAUDE]** Write `tools/backup.ps1`.
-7. **[CHECK]** Run one backup, then restore it into a temporary `JLPT_HOME`. The golden snapshot of the restored copy matches the live one.
+1. **[CLAUDE]** Implement the ADR changes on `multi-learner`, each with failing-first tests, and merge them to `main`:
+   - hardening H1–H11,
+   - the Pi changes P1–P7.
+2. **[CHECK]** The full suite is green.
+3. **[CHECK]** Each of these returns 404:
+   - `curl --path-as-is http://127.0.0.1:8080/audio/../learners.json`
+   - `curl --path-as-is http://127.0.0.1:8080/audio/../learners/anna/attempts.jsonl`
+4. **[CHECK]** With `JLPT_AUTH=access` and no header, every route except `/healthz` returns 403.
 
-## 1. Domain and Cloudflare account
+## 1. Pi preparation
 
-1. **[ALEX]** Create a Cloudflare account, or use an existing one. Turn on 2FA with an authenticator app or security key.
-2. **[ALEX]** Get the domain (D2) onto Cloudflare, either way:
-   - buy it in Cloudflare Registrar, or
-   - add an existing domain and change its nameservers at the current registrar to the two Cloudflare gives. Then wait until the dashboard shows "Active".
-3. **[ALEX]** Zero Trust → choose the team name `<team>` → choose the **Free** plan.
-   - **[CHECK]** The plan is Free with 50 seats.
-   - **[CHECK]** Read the checkout screen: if it asks for a payment method or overage consent, stop and tell Claude before accepting.
+1. **[ALEX]** Home Assistant → Settings → Apps:
+   - Update Studio Code Server, Music Assistant and Claude Terminal Pro, which have updates waiting.
+   - Start **Terminal & SSH** and add Alex's public SSH key in its configuration. Password login stays off.
+2. **[ALEX]** Settings → System → Backups:
+   - Check every configured backup location. **No cloud location Alex has not chosen.**
+   - Add the PC network share as a location (D10).
+3. **[CLAUDE]** On the Pi through SSH, create:
+   - `/media/jlpt/audio/`
+   - `/addons/jlpt_portal/`
+4. **[ALEX]** Copy the audio from the PC to `/media/jlpt/audio/`. This is a copy of copyrighted files, so Alex runs it himself; Claude gives the command.
 
-## 2. Tunnel
+   ```bash
+   scp -r audio/* root@<pi>:/media/jlpt/audio/
+   ```
 
-1. **[ALEX]** Zero Trust → Networks → Tunnels → Create a tunnel, type **Cloudflared**, name `jlpt-portal`, environment **Windows**.
-2. **[ALEX]** Run the install command shown, `cloudflared.exe service install <token>`, in an **admin** PowerShell.
-   - It installs `cloudflared` as a Windows service.
-   - The token is a secret: don't paste it into chat, a file in the repo, or OneDrive.
-3. **[CHECK]** The tunnel shows **Healthy** in the dashboard. The `cloudflared` service shows "Running" with startup type "Automatic" in `services.msc`.
-4. **[ALEX]** Tunnel → Published application routes → add:
-   - Hostname `<host>`
-   - Service `HTTP` → `127.0.0.1:8080`
-   - **Do this only after step 3.1 below is saved in the same sitting.** Until Access protects the hostname, keep the portal stopped.
+5. **[CLAUDE]** `tools/deploy.ps1 <tag>`, first run:
+   - copies `deploy/ha-app/` and the code to `/addons/jlpt_portal/`;
+   - copies `data/bank/` and a `learners.json` that contains **Yoko only** to `/addon_configs/local_jlpt_portal/`.
+6. **[ALEX]** Settings → Apps → ⋮ → Check for updates.
+   - "JLPT portal" appears under Local apps. Install it.
+   - Options: `access_team=<team>`, `access_aud=` empty for now, `origin=https://<host>`.
+   - Do **not** start it yet.
+7. **[CHECK]** The app's Info tab shows:
+   - no network ports;
+   - "Home Assistant API: no";
+   - "Supervisor API: no".
 
-## 3. Access application
+## 2. Domain and Cloudflare account
 
-1. **[ALEX]** Zero Trust → Access → Applications → Add → **Self-hosted**:
-   - Name `JLPT portal`, domain `<host>`, path empty.
-   - Session duration: 1 month (D4).
+1. **[ALEX]** Create a Cloudflare account, or use an existing one. Turn on 2FA with an authenticator app or a security key.
+2. **[ALEX]** Get the domain (D2) onto Cloudflare: buy it in Cloudflare Registrar, or move the nameservers of a domain Alex already owns. Then wait for "Active".
+3. **[ALEX]** Zero Trust → choose the team name `<team>` → **Free** plan.
+   - **[CHECK]** If the checkout asks for a payment method or overage consent, stop and ask Claude before accepting.
+
+## 3. Access application (before any route exists)
+
+1. **[ALEX]** Zero Trust → Access → Applications → Add → **Self-hosted**, with these settings:
+   - Name `JLPT portal`, domain `<host>`.
+   - Session 1 month (D4).
    - Identity provider: **One-time PIN** only.
-   - Policy `learners`: Action **Allow**, Include → Emails → the D3 addresses, Alex's included.
-2. **[ALEX]** Copy the app's **Application Audience (AUD) tag** and give it to Claude together with `<team>` and `<host>`. None of these three values is secret.
-3. **[ALEX]** Optional, for D7: add a second self-hosted app at `<host>/healthz` with one policy, Action **Bypass**, Include **Everyone**.
-4. **[ALEX]** Domain → Caching → Cache Rules → rule "no cache for portal":
-   - When hostname equals `<host>`, then **Bypass cache**.
-5. **[ALEX]** Domain → SSL/TLS:
-   - Edge certificates: **Always Use HTTPS** on.
-   - HSTS: enable, max-age 6 months, no preload.
+   - Policy `learners`: Allow, Emails = the D3 addresses. Yoko and Alex go in now; Anna is added when she moves.
+2. **[ALEX]** Copy the **AUD tag** into the portal app's option `access_aud`.
+3. **[ALEX]** Optional (D7): add a second app at `<host>/healthz` with a single policy, **Bypass**, **Everyone**.
+4. **[ALEX]** On the domain:
+   - Caching → Cache Rules → hostname `<host>` → **Bypass cache**.
+   - SSL/TLS → **Always Use HTTPS** on.
+   - SSL/TLS → HSTS: 6 months, no preload.
 
-## 4. Portal configuration and service
+## 4. Tunnel through the Cloudflared app
 
-1. **[CLAUDE]** Create the deploy checkout `C:\portal\app` (outside OneDrive) at the release tag, with its own `.venv`.
-2. **[CLAUDE]** Write `C:\portal\portal.env`, which is not in any repo:
+1. **[ALEX]** Zero Trust → Networks → Tunnels → Create a tunnel:
+   - Type **Cloudflared**, name `jlpt-pi`, environment Docker.
+   - Copy only the **token**. It is a secret: it goes into the app option and nowhere else (no chat, repo or OneDrive).
+2. **[ALEX]** Home Assistant → Settings → Apps → Install app → ⋮ Repositories → add `https://github.com/brenner-tobias/ha-addons`.
+3. **[ALEX]** Install **Cloudflared** and set the option `tunnel_token` to the token. Leave `external_hostname` and `additional_hosts` **empty**. Start the app.
+4. **[CHECK]** The tunnel shows **Healthy** in the dashboard. The app log has no errors.
+5. **[ALEX]** Start the **JLPT portal** app.
+6. **[CHECK]** The portal app log shows it listening on `0.0.0.0:8080`. Its Info tab shows the hostname, expected `local-jlpt-portal`.
+7. **[ALEX]** Tunnel `jlpt-pi` → Published application routes → add:
+   - hostname `<host>`;
+   - service `HTTP` → `local-jlpt-portal:8080`, using the hostname from step 6.
 
-   ```
-   JLPT_HOME=<path to the OneDrive repo data folder>
-   JLPT_AUTH=access
-   JLPT_ACCESS_TEAM=<team>
-   JLPT_ACCESS_AUD=<AUD tag>
-   JLPT_ORIGIN=https://<host>
-   ```
-
-3. **[CLAUDE]** Add the emails to `learners.json`: Anna's and Yoko's under their learner rows, and Alex's under `admins`.
-4. **[CHECK]** `learners.json` emails equal the Access policy emails.
-5. **[ALEX]** Approve a Task Scheduler task `JLPT portal`:
-   - Trigger **At startup**.
-   - Run whether the user is logged on or not.
-   - Action: `C:\portal\app\.venv\Scripts\pythonw.exe C:\portal\app\server.py`, start in `C:\portal\app`.
-   - Restart on failure every 1 minute, 3 times.
-
-   Claude can prepare the XML for this task. Importing it needs Alex's admin password, so Alex does it.
-6. **[ALEX]** Retire the old autostart: remove `start_portal.bat` from Startup, if it is there.
-7. **[ALEX]** Approve the power settings (D5), in an admin PowerShell:
-   - `powercfg /change standby-timeout-ac 0`
-   - `powercfg /change hibernate-timeout-ac 0`
-   - Or set wake and sleep tasks for the agreed hours.
+   Step 3.1 must already be saved.
 
 ## 5. Go-live checks (all must pass)
 
-1. **[CHECK]** In a private browser window, `https://<host>` shows the Cloudflare login page, not the portal.
-2. **[CHECK]** Alex signs in with his email code and sees the learner picker as admin.
-3. **[CHECK]** In a second private window, an email **not** on the list gets no code. The page still says "sent", which is expected.
-4. **[CHECK]** `curl -i https://<host>/audio/<a real clip>` without a cookie returns a redirect to `<team>.cloudflareaccess.com`, not audio bytes.
-5. **[CHECK]** Signed in, a listening clip plays and seeks. The response headers show `Cache-Control: private, no-store` and `cf-cache-status: BYPASS` or `DYNAMIC`.
-6. **[CHECK]** On the PC, `curl -H "Cf-Access-Jwt-Assertion: x" http://127.0.0.1:8080/` returns 403. This proves the header is verified, not trusted.
-7. **[CHECK]** Restart the PC. Both services come back without a login, and `https://<host>` works within 2 minutes.
-8. **[CHECK]** Anna runs one practice set. Then check two things:
-   - `attempts.jsonl` gains her lines under her learner folder.
-   - `logs/access-*.jsonl` shows her email.
+1. **[CHECK]** In a private window, `https://<host>` shows the Cloudflare login page.
+2. **[CHECK]** Alex signs in with an email code and sees the admin learner picker.
+3. **[CHECK]** An email not on the list receives no code.
+4. **[CHECK]** `curl -i https://<host>/audio/<clip>` returns a redirect to `<team>.cloudflareaccess.com`, not audio.
+5. **[CHECK]** Signed in, a clip plays and seeks, with `Cache-Control: private, no-store` and `cf-cache-status` not `HIT`.
+6. **[CHECK]** From the Studio Code Server terminal on the Pi, `curl -H "Cf-Access-Jwt-Assertion: x" http://local-jlpt-portal:8080/` returns 403, which proves the JWT is verified.
+7. **[CHECK]** `https://homeassistant.<domain>` and any other name do not resolve to the tunnel; only `<host>` does.
+8. **[CHECK]** Restart the Pi. Both apps come back with "Start on boot" on, and `https://<host>` works within 3 minutes.
+9. **[CHECK]** Restart the portal app in the middle of a timed run. The run continues afterwards (P7).
+10. **[CHECK]** After a manual backup:
+    - it contains the JLPT portal app;
+    - it reached the PC share;
+    - the restore test (ADR O1) gives the same golden snapshot.
 
 ## 6. Learner onboarding
 
-1. **[ALEX]** Send each learner the link `https://<host>` with these instructions:
+1. **[ALEX]** Send Yoko `https://<host>` with these instructions:
    1. Enter your email.
-   2. Open the code email and type the code. It expires after 10 minutes.
+   2. Type the code from the email. It expires after 10 minutes.
    3. You stay signed in for a month.
-   4. If you see "This One-Time PIN has already been used", request a new code. Your mail app opened the link first.
-2. **[ALEX]** Yoko: add the page to her home screen.
+   4. If you see "already used", request a new code.
+2. **[ALEX]** Yoko adds the page to her phone's home screen.
 
-## 7. Routine
+## 7. Anna's move (D9: after one clean week, by 2026-11-22, else after 2026-12-06)
 
-- **Updates.** Run `tools/deploy.ps1 <tag>`, before 07:00 or after Anna's evening session. No deploys between 2026-11-29 and 2026-12-06 except fixes Anna asks for.
-- **Weekly [ALEX].** Copy the newest backup zip off the PC (D6).
-- **Adding a learner [ALEX + CLAUDE].** Alex adds the email to the Access policy, and Claude adds the row to `learners.json`. Then run `tools/access_check.py`; it reports no drift.
-- **Removing a learner [ALEX].**
-  1. Remove the email from the Access policy.
-  2. Zero Trust → Users → revoke the user's session.
-  3. Claude removes the email from `learners.json`; the learner's data folder is kept unless Alex says otherwise.
+1. **[ALEX]** Stop the PC portal.
+2. **[CLAUDE]** Copy Anna's learner folder and her `learners.json` row to the Pi.
+3. **[CHECK]** The golden snapshot of Anna's data on the Pi equals the one on the PC.
+4. **[ALEX]** Add Anna's email to the Access policy.
+5. **[CHECK]** Anna signs in and runs one practice set. Her `attempts.jsonl` on the Pi grows.
+6. **[CLAUDE]** Mark the PC copy of Anna's data read-only in place. It is kept as the fallback for one month.
+
+## 8. Routine
+
+- **Deploys.** `tools/deploy.ps1 <tag>`, before 07:00 or in the evening. No deploys between 2026-11-29 and 2026-12-06 except fixes Anna asks for.
+- **Weekly [ALEX].** Copy the newest Home Assistant backup from the PC share to USB.
+- **Add a learner.** **[ALEX]** adds the email to the Access policy. **[CLAUDE]** adds the row to `learners.json` on the Pi. Then run `tools/access_check.py`; it should report no drift.
+- **Remove a learner [ALEX].**
+  1. Remove the email from the policy.
+  2. Zero Trust → Users → revoke the user.
+  3. **[CLAUDE]** removes the row from `learners.json`. The data is kept unless Alex says otherwise.
 
 ## Rollback
 
 Do these in order, and stop when the problem is gone:
 
-1. **[ALEX]** Zero Trust → Tunnels → `jlpt-portal` → delete the published route.
-   - The portal is offline from the internet within seconds.
-   - Local use at `127.0.0.1:8080` keeps working.
-2. **[ALEX]** `sc stop cloudflared`, to stop all tunnel traffic.
+1. **[ALEX]** Delete the published route `<host>`. The portal is offline from the internet within seconds.
+2. **[ALEX]** Stop the Cloudflared app.
 3. **[CLAUDE]** `tools/deploy.ps1 <previous tag>`.
+4. **[ALEX + CLAUDE]** Last resort before the exam: copy `/addon_configs/local_jlpt_portal/learners/anna/` back to the PC, and Anna practises on the PC portal locally.

@@ -1,6 +1,6 @@
 # ADR: Putting the study portal online
 
-Status: proposed, 2026-11-08. Waiting for Alex's decisions (end of this file).
+Status: accepted 2026-11-08. Alex chose the Raspberry Pi 5 as origin; see "Origin: Raspberry Pi 5 with Home Assistant OS". Other open decisions are listed at the end of this file.
 Setup steps: [runbook.md](runbook.md).
 
 ## Context
@@ -81,6 +81,71 @@ Rejected:
 - **B2 (Funnel).** It is public with no auth.
 - **B1 (private tailnet).** It is the right answer if Yoko cannot or will not use Cloudflare's email codes, or if Alex refuses the Cloudflare MITM. It keeps the same server changes, except that `who()` would read Tailscale identity headers from `tailscale serve` instead of the JWT.
 - **C (VPS).** It is the fallback for uptime, not the start: it moves confidential data and copyrighted audio off Alex's PC and breaks the OneDrive model.
+
+## Origin: Raspberry Pi 5 with Home Assistant OS (decided 2026-11-08)
+
+Alex rejected two other first steps:
+- **Sharing the portal through OneDrive.** Yoko would get files, not a portal: Python on a computer, nothing on her phone. It would also need a second copy of the code without Anna's folders.
+- **Using the home PC as the origin.** The PC sleeps.
+
+### The Pi as seen on 2026-11-08
+
+- Raspberry Pi 5 with 16 GB RAM. Home Assistant uses about 5.6 GB.
+- NVMe SSD of 117 GB with 83 GB free, so SD-card wear does not apply.
+- Home Assistant OS 17.3, Core 2026.7.1.
+- Apps running: Whisper, Piper, Music Assistant, Studio Code Server, File editor, Claude Terminal Pro. Terminal & SSH is installed but stopped.
+- No external URL and no Home Assistant Cloud: nothing on it is reachable from the internet.
+
+### Shape
+
+Option A stays unchanged except for the origin host. Access, the JWT check in `who()` and the hardening list are the same. Two Home Assistant apps run on the Pi.
+
+```
+phone / laptop ──HTTPS──► Cloudflare Access (email code) ──► Tunnel
+        ──► app "Cloudflared" (tunnel token, outbound only)
+        ──► http://local-jlpt-portal:8080  (internal app network, no host port)
+        ──► app "JLPT portal" (local app, Python 3.13 + numpy + PyJWT)
+              /config  = JLPT_HOME  (app_config, rw): learners.json, learners/<id>/, data/bank/, logs/
+              /media/jlpt/audio     (media, read-only): listening MP3s and booklet images
+```
+
+- **JLPT portal app.** A local app in `/addons/jlpt_portal`, built on the Pi from a `Dockerfile` that uses a Python 3.13 slim image for aarch64.
+  - It gets no `ports:` entry, `hassio_api: false`, `homeassistant_api: false`, no `host_network`, and no maps beyond `app_config:rw` and `media:ro`.
+  - Only other apps on the internal network can reach it. They include Studio Code Server and Claude Terminal Pro, which is why `who()` verifies the JWT instead of trusting the header.
+  - The portal cannot reach Home Assistant's API, so a portal bug cannot touch heating or lights.
+- **Cloudflared app.** Community app `brenner-tobias/ha-addons`, in `tunnel_token` mode.
+  - Routes are managed in the Zero Trust dashboard, and only `<host>` → `http://local-jlpt-portal:8080` is published.
+  - `external_hostname` stays empty, so Home Assistant itself is not exposed.
+  - Verify the internal hostname in the portal app's info page; local apps are named `local-<slug>`.
+- **Data location.**
+  - `JLPT_HOME=/config` is visible to Alex through Studio Code Server and the SSH app as `/addon_configs/local_jlpt_portal`.
+  - It is included in the app's Home Assistant backups.
+  - Audio stays out of the app's backups; Alex keeps the originals.
+- **OneDrive.** The Pi becomes the master copy of learner data. OneDrive keeps the code and the content work. A nightly copy of the Home Assistant backup to the PC is O1 below.
+- **Resources.** The portal is tiny next to Whisper. `simulate()` with 10 000 draws takes well under a second on a Pi 5. 16 GB leaves ample headroom.
+
+### Fallback
+
+If the app packaging fights us, Alex is willing to replace Home Assistant OS with plain 64-bit Raspberry Pi OS. Home Assistant would then run in Docker, and the portal would run as a systemd service with `cloudflared` as a Debian package. Cost: Home Assistant "Container" has no Supervisor and no apps, so Whisper, Piper, Music Assistant and Studio Code Server would have to become separate containers set up by hand. Use this only if the app route fails a concrete check in the runbook.
+
+### Rollout
+
+Anna's exam is on 2026-12-06. Recommendation:
+- **Yoko goes live on the Pi first.**
+- **Anna stays on the PC portal, local only on `127.0.0.1`,** until the Pi has run one clean week. Anna moves no later than 2026-11-22. If any check fails, she moves after the exam.
+- Learner data is separate per learner, so the two portals never write the same file.
+
+### Developer changes this needs (branch `multi-learner`)
+
+| # | Change |
+|---|---|
+| P1 | `paths.AUDIO` from env `JLPT_AUDIO`, default `HOME/"audio"`, resolved. `/audio/` serves only under it. The Pi keeps audio in `/media/jlpt/audio`, outside `JLPT_HOME`. The traversal fix in `35ee427` must hold against the new root: golden case `/audio/../learners.json` → 404. |
+| P2 | Bind address from env `JLPT_BIND`: `0.0.0.0` inside the container, `127.0.0.1` everywhere else. This replaces H2's "tests only" wording. |
+| P3 | Split dependencies: `requirements-server.txt` with numpy and `PyJWT[crypto]`, pinned. `requirements.txt` keeps the tools (fugashi, unidic-lite, pytest, PyYAML) and includes the server file. The image installs only the server file. |
+| P4 | `deploy/ha-app/`: `config.yaml`, `Dockerfile` and `run.sh` for the local app, as described above. `run.sh` exports `JLPT_HOME=/config`, `JLPT_AUDIO=/media/jlpt/audio`, `JLPT_BIND=0.0.0.0` and the Access settings, which come from app options. |
+| P5 | `GET /healthz` → `ok`, with no identity required and nothing else on that route. |
+| P6 | Logs go to `JLPT_HOME/logs/` (O4). Unhandled errors also go to stdout, so they appear in the app's log tab. |
+| P7 | H11 (persisted open runs) moves up to **must**. Home Assistant restarts apps on updates and backups, which would lose a timed run in progress. |
 
 ## Identity: `who(handler)` under option A
 
@@ -184,7 +249,16 @@ OneDrive is sync, not backup. A corrupted `attempts.jsonl` or a deletion syncs e
 - **Weekly.** Alex copies the latest zip to a USB stick, or turns on encrypted off-site storage. This is decision D6.
 - The audio is not backed up by this job: Alex has the original MP3s.
 
+### O1 on the Pi (replaces the PC job above for learner data)
+
+- Home Assistant → Settings → System → Backups. A daily automatic backup that includes the JLPT portal app; keep 14.
+- Backup location: a network share on Alex's PC, outside OneDrive. The weekly USB copy stays as above.
+- **Check before turning this on:** confirm no backup location points to a cloud Alex has not chosen, such as Home Assistant Cloud or Google Drive. These backups contain learner data.
+- Restore test: unpack one backup on the PC and run `tools/golden_real.py` with `JLPT_HOME` set to the unpacked `/config`.
+
 ### O2. Keeping the PC awake
+
+This no longer applies: the Pi runs all the time. It is kept only for the fallback of running from the PC.
 
 Measure the PC's idle draw with a smart plug before deciding.
 
@@ -198,6 +272,17 @@ Measure the PC's idle draw with a smart plug before deciding.
 - If Alex will not leave the PC on, agree on hours instead, e.g. 06:00–23:00. Schedule a wake at 06:00 and sleep at 23:00. Tell the learners these hours.
 
 ### O3. Updating without breaking Anna before 2026-12-06
+
+On the Pi, `tools/deploy.ps1 <tag>` does the following:
+
+1. Runs the tests on the PC.
+2. Copies `deploy/ha-app/` and the code at the tag to `/addons/jlpt_portal` through the SSH app.
+3. Copies `data/bank/` to `/addon_configs/local_jlpt_portal/data/bank/`.
+4. Runs `ha apps rebuild local_jlpt_portal`; on older releases the command is `ha addons rebuild`.
+5. Polls `/healthz`.
+6. On failure, it redeploys the previous tag.
+
+The PC-only procedure below stays valid for the fallback.
 
 - The PC runs a **separate deploy checkout**, e.g. `C:\portal\app`, on a tag. The service never runs from the OneDrive working copy that sessions edit. Data stays in OneDrive through `JLPT_HOME`.
 - Update procedure: `tools/deploy.ps1 <tag>`.
@@ -220,11 +305,13 @@ Measure the PC's idle draw with a smart plug before deciding.
 
 | # | Decision | Recommendation | Cost |
 |---|---|---|---|
-| D1 | Hosting | Cloudflare Tunnel + Access on the home PC; VPS later only if uptime hurts | Free plan |
+| D1 | Hosting | **Decided 2026-11-08:** Cloudflare Tunnel + Access, with the Raspberry Pi 5 running Home Assistant OS as origin | Free plan, a few watts |
+| D9 | Rollout order | Yoko on the Pi first; Anna after one clean week, by 2026-11-22 at the latest, otherwise after the exam | — |
+| D10 | Home Assistant backup location | A network share on the PC, not a cloud | — |
 | D2 | Domain: buy a new one, or use one Alex already owns (its DNS must move to Cloudflare) | A cheap new domain at Cloudflare Registrar, used only for this | About USD 10–11 a year (.com) |
 | D3 | Learners' login emails: Anna, Yoko, and Alex's admin email | Personal addresses they can read on their phones | — |
 | D4 | Session length | 30 days, so Yoko types a code about once a month | — |
-| D5 | PC availability | Always on while plugged in, or fixed hours | Electricity (measure) |
+| D5 | PC availability | No longer needed: the Pi is always on | — |
 | D6 | Off-site backup target | A USB stick weekly, or encrypted cloud | — |
 | D7 | External uptime check | Yes, free tier | Free |
 | D8 | New Python dependency `PyJWT[crypto]` | Yes | — |
