@@ -12,7 +12,7 @@ def test_mock_runs_in_parts_scores_and_joins_practice(monkeypatch,tmp_path):
     from engine import paths
     from engine.bank import load_bank
     import server
-    monkeypatch.setattr(server,"ITEMS",{})  # finishing a mock reloads the server's item cache
+    monkeypatch.setattr(server,"BANKS",{})
     monkeypatch.setattr(paths,"HOME",tmp_path)
     (paths.BANK/"vocab").mkdir(parents=True)
     (paths.BANK/"vocab"/"practice.json").write_text(json.dumps([_item("p1","vocab","kanji_reading")]),encoding="utf-8")

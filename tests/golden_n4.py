@@ -165,9 +165,8 @@ def health():
 
 def api():
     import server
-    from engine.bank import load_bank
     with portal() as home:
-        server.ITEMS, server.PASSAGES = load_bank()
+        server.BANKS.clear()
         server.RUNS.clear()
         srv = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
         threading.Thread(target=srv.serve_forever, daemon=True).start()
