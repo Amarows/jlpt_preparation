@@ -77,7 +77,9 @@ class Handler(BaseHTTPRequestHandler):
         if u.path=="/" or u.path.startswith("/web/"):
             rel="index.html" if u.path=="/" else unquote(u.path[5:]); path=(paths.REPO/"web"/rel).resolve()
             if paths.REPO/"web" not in path.parents and path!=paths.REPO/"web": return self.send_error(403)
-        elif u.path.startswith("/audio/"): path=paths.under_home(u.path.lstrip("/"))
+        elif u.path.startswith("/audio/"):
+            root=paths.HOME/"audio"; path=(root/unquote(u.path[7:])).resolve()
+            if root not in path.parents: return self.send_error(404)
         else: return self.send_error(404)
         if not path.is_file(): return self.send_error(404)
         raw=path.read_bytes(); status=200; first,last=0,len(raw)-1

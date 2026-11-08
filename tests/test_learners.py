@@ -58,3 +58,24 @@ def test_invalid_learners_json_is_rejected(name):
     with g.two_learners(g.INVALID[name]):
         with pytest.raises(ValueError):
             paths.learners()
+
+
+@pytest.mark.parametrize("path", ["/audio/../confidential/attempts.jsonl", "/audio/%2e%2e/confidential/attempts.jsonl", "/audio/..%2flearners.json"])
+def test_audio_cannot_reach_outside_the_audio_folder(path):
+    import http.client
+    import threading
+    from http.server import ThreadingHTTPServer
+    import server
+    with g.two_learners():
+        srv = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        try:
+            def get(p):
+                c = http.client.HTTPConnection("127.0.0.1", srv.server_port)
+                c.request("GET", p, headers={"Cookie": "learner=yoko"})
+                return c.getresponse().status
+            assert get("/audio/clip.mp3") == 200
+            assert get(path) == 404
+        finally:
+            srv.shutdown()
+            srv.server_close()
