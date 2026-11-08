@@ -9,9 +9,11 @@ expect:
     - id: anna
       name: Anna
       ui: en
+      track: jlpt-n4
     - id: yoko
       name: Yoko
       ui: ja
+      track: de-work
   - request: /api/status
     as: null
     sent: null
@@ -69,6 +71,7 @@ expect:
         date: '2027-03-31'
         mocks: false
         explain: [ja]
+        features: [switch_learner]
         sections:
         - id: words
           name:
@@ -94,11 +97,11 @@ expect:
         words: 44.8285
         phrases: 44.8035
       skills:
-        sec:phrases:
+        sec:words:
           theta: 0.0
           sd: 1.0
           n: 0
-        sec:words:
+        sec:phrases:
           theta: 0.0
           sd: 1.0
           n: 0
@@ -127,6 +130,7 @@ expect:
       - id: dp-phrase-1
         section: phrases
         mondai: phrase_choice
+        stem_lang: ja
         tier_prior: medium
         level: B1
         stem: 原因を伝えたいとき：
@@ -170,6 +174,7 @@ expect:
       - id: dw-meaning-2
         section: words
         mondai: meaning_choice
+        options_lang: ja
         tier_prior: medium
         level: B1
         stem: die Mischung
@@ -196,6 +201,7 @@ expect:
       - id: dw-meaning-1
         section: words
         mondai: meaning_choice
+        options_lang: ja
         tier_prior: easy
         level: A2
         stem: der Ausschuss
@@ -356,6 +362,7 @@ expect:
         explain: null
         item_id: dp-phrase-1
         section: phrases
+        stem_lang: ja
       - stem: Die Dichte der Grünlinge ist zu ( ).
         options: [laut, niedrig, schnell, spät]
         choice: 2
@@ -401,6 +408,7 @@ expect:
         explain: null
         item_id: dw-meaning-2
         section: words
+        options_lang: ja
       - stem: Das Pulver wird vor dem Pressen gut ( ).
         options: [gemischt, gesintert, verpackt, gemessen]
         choice: 1
@@ -431,6 +439,7 @@ expect:
         explain: null
         item_id: dw-meaning-1
         section: words
+        options_lang: ja
   - request: /api/report
     as: yoko
     sent: null
@@ -505,6 +514,7 @@ expect:
         date: '2026-12-06'
         mocks: true
         explain: [en]
+        features: [drill, timed]
         sections:
         - id: vocab
           name:
@@ -539,22 +549,22 @@ expect:
         lk: 72.3006316
         listening: 31.4933571
       skills:
-        sec:reading:
-          theta: 1.20371129
-          sd: 0.571216586
-          n: 23
-        sec:grammar:
-          theta: 0.486713104
-          sd: 0.511802164
-          n: 25
         sec:vocab:
           theta: 1.00479949
           sd: 0.445643421
           n: 35
+        sec:grammar:
+          theta: 0.486713104
+          sd: 0.511802164
+          n: 25
         sec:listening:
           theta: 0.426131287
           sd: 0.438337207
           n: 33
+        sec:reading:
+          theta: 1.20371129
+          sd: 0.571216586
+          n: 23
         grammar:sentence_composition-1:
           theta: 0.218247261
           sd: 0.632455532

@@ -39,5 +39,5 @@ def prior(section: str) -> float:
 def summary() -> dict:
     t = current()
     e = t["exam"]
-    return {"id": t["id"], "title": t["title"], "lang": t["lang"], "date": e["date"], "mocks": bool(e["parts"]), "explain": sorted(t.get("explain", {})),
+    return {"id": t["id"], "title": t["title"], "lang": t["lang"], "date": e["date"], "mocks": bool(e["parts"]), "explain": sorted(t.get("explain", {})), "features": t.get("features", []),
             "sections": [{"id": s["id"], "name": s.get("name", {})} for s in e["sections"]]}

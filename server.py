@@ -52,7 +52,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self): self.route(self.get)
     def get(self):
         u=urlparse(self.path); q=parse_qs(u.query)
-        if u.path=="/api/learners": return self.send_json([{k:r[k] for k in ("id","name","ui")} for r in paths.learners()])
+        if u.path=="/api/learners": return self.send_json([{k:r[k] for k in ("id","name","ui","track")} for r in paths.learners()])
         if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary()})
         if u.path=="/api/status": return self.send_json(simulate())
         if u.path=="/api/report":
@@ -126,7 +126,7 @@ class Handler(BaseHTTPRequestHandler):
             append(paths.RUNS,{"run_id":rid,"start":run["start"],"end":end,"mode":run["mode"],"section":run["section"],"n":len(run["items"]),"correct":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,**({"mock_id":run["mock_id"],"mock":mock} if mock else {})})
             result=[]
             for item in run["items"].values():
-                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item),"item_id":item["id"],"section":item["section"]})
+                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item),"item_id":item["id"],"section":item["section"],**{k:item[k] for k in ("stem_lang","options_lang") if k in item}})
             return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"mock":mock,"items":result})
         if self.path=="/api/explain_feedback":
             # "Still unclear" on an explanation: kept apart from attempts, so it never touches scores.

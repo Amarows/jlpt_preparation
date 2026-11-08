@@ -5,6 +5,7 @@
   "explain": {"en": "data/explain.json"},
   "word_list": "data/vocabulary.csv",
   "daily_target": 100,
+  "features": ["drill", "timed"],
   "exam": {
     "date": "2026-12-06",
     "sections": [
