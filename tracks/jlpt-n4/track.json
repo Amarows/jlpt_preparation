@@ -8,10 +8,10 @@
   "exam": {
     "date": "2026-12-06",
     "sections": [
-      {"id": "vocab", "prior": 0.5, "mondai": {"kanji_reading": 7, "orthography": 5, "contextual": 8, "paraphrase": 4, "usage": 4}},
-      {"id": "grammar", "prior": 0.5, "mondai": {"grammar_form": 13, "sentence_composition": 4, "text_grammar": 4}},
-      {"id": "reading", "prior": 0.5, "mondai": {"short_passage": 3, "mid_passage": 3, "info_retrieval": 2}},
-      {"id": "listening", "prior": 0.4, "mondai": {"task_based": 8, "key_points": 7, "verbal_expression": 5, "quick_response": 8}}
+      {"id": "vocab", "name": {"en": "Vocabulary", "ja": "語彙"}, "prior": 0.5, "mondai": {"kanji_reading": 7, "orthography": 5, "contextual": 8, "paraphrase": 4, "usage": 4}},
+      {"id": "grammar", "name": {"en": "Grammar", "ja": "文法"}, "prior": 0.5, "mondai": {"grammar_form": 13, "sentence_composition": 4, "text_grammar": 4}},
+      {"id": "reading", "name": {"en": "Reading", "ja": "読解"}, "prior": 0.5, "mondai": {"short_passage": 3, "mid_passage": 3, "info_retrieval": 2}},
+      {"id": "listening", "name": {"en": "Listening", "ja": "聴解"}, "prior": 0.4, "mondai": {"task_based": 8, "key_points": 7, "verbal_expression": 5, "quick_response": 8}}
     ],
     "levels": {"N5": -0.5, "N4-core": 0.0, "N4-hard": 0.5},
     "options": {"default": [4], "verbal_expression": [3, 4], "quick_response": [3, 4]},
