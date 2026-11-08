@@ -53,7 +53,7 @@ Placeholders:
 2. **[ALEX]** Settings → System → Backups. Check every location; no cloud may appear that Alex has not chosen. Add the PC network share (D10).
 3. **[CLAUDE]** On the Pi through SSH, create:
    - `/media/jlpt/audio/`
-   - `/addons/jlpt_portal/`
+   - `/local_apps/jlpt_portal/`
 4. **[ALEX]** Copy the audio. Claude gives the command, and Alex runs it because it copies copyrighted files:
 
    ```bash
@@ -133,7 +133,7 @@ Placeholders:
 
 1. **[ALEX]** Stop the JLPT portal app, or revoke the shares. Learners lose access immediately.
 2. **[CLAUDE]** `tools/deploy.ps1 <previous tag>`.
-3. **[ALEX + CLAUDE]** Last resort before the exam: copy `/addon_configs/local_jlpt_portal/learners/anna/` back to the PC, and Anna practises on the PC portal locally.
+3. **[ALEX + CLAUDE]** Last resort before the exam: copy `/app_configs/local_jlpt_portal/learners/anna/` back to the PC, and Anna practises on the PC portal locally.
 
 ## Later: a domain and Cloudflare
 

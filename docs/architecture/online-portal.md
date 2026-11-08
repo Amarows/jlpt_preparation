@@ -87,6 +87,21 @@ Rejected:
 - **B1 (private tailnet).** It is the right answer if Yoko cannot or will not use Cloudflare's email codes, or if Alex refuses the Cloudflare MITM. It keeps the same server changes, except that `who()` would read Tailscale identity headers from `tailscale serve` instead of the JWT.
 - **C (VPS).** It is the fallback for uptime, not the start: it moves confidential data and copyrighted audio off Alex's PC and breaks the OneDrive model.
 
+## Demo on the Pi (2026-11-08)
+
+This was a working demo; nothing is in learner use yet.
+
+- **What ran:** the `multi-learner` app (`deploy/ha-app/`, Tailscale 1.104.5) on the Pi as `local_jlpt_portal`, with the question bank only. There were no attempts and no audio.
+- **Phone access:** Alex's phone opened `https://jlpt.tail313eb6.ts.net` with Tailscale on, and the certificate was valid.
+- **Identity:** the access log recorded every request with `email: alexey.malashonok@gmail.com`. So the identity headers work with `tailscaled` in userspace mode, for Alex's own tailnet user. The same check is still needed for a shared-in user, Yoko.
+- **No other way in:** port 8080 did not answer from the LAN (`homeassistant.local:8080`), nor from the internal app network (`172.30.33.6:8080`, `local-jlpt-portal:8080`).
+- **New folder names:** Home Assistant OS on this Pi uses `/local_apps` (was `/addons`) and `/app_configs` (was `/addon_configs`), as seen from the SSH app.
+- **Line endings:** `git archive` on Windows produced CRLF in `run.sh`. The deploy script must normalise to LF, or archive from a checkout that honours `.gitattributes`.
+- **Speed:** `/api/status` took 1.5 s on the Pi (`simulate`, 10 000 draws). That is acceptable, but worth caching if pages feel slow.
+- **Left on the Pi:**
+  - the app with demo data, and Alex's Tailscale node `jlpt`;
+  - SSH (Terminal & SSH, port 22) with the key `claude-jlpt-deploy` from Alex's PC (`~/.ssh/jlpt_pi_ed25519`).
+
 ## Access path: Tailscale (decided 2026-11-08)
 
 Alex does not want a domain now. Without a domain, Cloudflare Access is not available. The quick tunnel on `*.trycloudflare.com` has a random URL that changes on every restart and has no Access in front, and Tailscale Funnel is public with no authentication. Both are rejected.
@@ -180,7 +195,7 @@ phone / laptop ──HTTPS──► Cloudflare Access (email code) ──► Tun
               /media/jlpt/audio     (media, read-only): listening MP3s and booklet images
 ```
 
-- **JLPT portal app.** A local app in `/addons/jlpt_portal`, built on the Pi from a `Dockerfile` that uses a Python 3.13 slim image for aarch64.
+- **JLPT portal app.** A local app in `/local_apps/jlpt_portal`, built on the Pi from a `Dockerfile` that uses a Python 3.13 slim image for aarch64.
   - It gets no `ports:` entry, `hassio_api: false`, `homeassistant_api: false`, no `host_network`, and no maps beyond `app_config:rw` and `media:ro`.
   - Only other apps on the internal network can reach it. They include Studio Code Server and Claude Terminal Pro, which is why `who()` verifies the JWT instead of trusting the header.
   - The portal cannot reach Home Assistant's API, so a portal bug cannot touch heating or lights.
@@ -189,7 +204,7 @@ phone / laptop ──HTTPS──► Cloudflare Access (email code) ──► Tun
   - `external_hostname` stays empty, so Home Assistant itself is not exposed.
   - Verify the internal hostname in the portal app's info page; local apps are named `local-<slug>`.
 - **Data location.**
-  - `JLPT_HOME=/config` is visible to Alex through Studio Code Server and the SSH app as `/addon_configs/local_jlpt_portal`.
+  - `JLPT_HOME=/config` is visible to Alex through Studio Code Server and the SSH app as `/app_configs/local_jlpt_portal`.
   - It is included in the app's Home Assistant backups.
   - Audio stays out of the app's backups; Alex keeps the originals.
 - **OneDrive.** The Pi becomes the master copy of learner data. OneDrive keeps the code and the content work. A nightly copy of the Home Assistant backup to the PC is O1 below.
@@ -347,8 +362,8 @@ Measure the PC's idle draw with a smart plug before deciding.
 On the Pi, `tools/deploy.ps1 <tag>` does the following:
 
 1. Runs the tests on the PC.
-2. Copies `deploy/ha-app/` and the code at the tag to `/addons/jlpt_portal` through the SSH app.
-3. Copies `data/bank/` to `/addon_configs/local_jlpt_portal/data/bank/`.
+2. Copies `deploy/ha-app/` and the code at the tag to `/local_apps/jlpt_portal` through the SSH app.
+3. Copies `data/bank/` to `/app_configs/local_jlpt_portal/data/bank/`.
 4. Runs `ha apps rebuild local_jlpt_portal`; on older releases the command is `ha addons rebuild`.
 5. Polls `/healthz`.
 6. On failure, it redeploys the previous tag.
