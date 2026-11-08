@@ -1,6 +1,11 @@
 # ADR: Putting the study portal online
 
-Status: accepted 2026-11-08. Alex chose the Raspberry Pi 5 as origin; see "Origin: Raspberry Pi 5 with Home Assistant OS". Other open decisions are listed at the end of this file.
+Status: accepted 2026-11-08.
+
+- **Origin:** the Raspberry Pi 5 running Home Assistant OS.
+- **Access path:** **Tailscale node sharing, with no domain and no public endpoint.** See "Access path: Tailscale (decided)".
+- **Superseded:** the Cloudflare Tunnel + Access design is not used for now. It stays below as the path for the day Alex buys a domain.
+- **Open decisions:** listed at the end of this file.
 Setup steps: [runbook.md](runbook.md).
 
 ## Context
@@ -82,7 +87,73 @@ Rejected:
 - **B1 (private tailnet).** It is the right answer if Yoko cannot or will not use Cloudflare's email codes, or if Alex refuses the Cloudflare MITM. It keeps the same server changes, except that `who()` would read Tailscale identity headers from `tailscale serve` instead of the JWT.
 - **C (VPS).** It is the fallback for uptime, not the start: it moves confidential data and copyrighted audio off Alex's PC and breaks the OneDrive model.
 
+## Access path: Tailscale (decided 2026-11-08)
+
+Alex does not want a domain now. Without a domain, Cloudflare Access is not available. The quick tunnel on `*.trycloudflare.com` has a random URL that changes on every restart and has no Access in front, and Tailscale Funnel is public with no authentication. Both are rejected.
+
+No static IP is needed. Tailscale connects outbound only. Swiss forum reports say Yallo uses CGNAT, which would block port forwarding anyway; this is unconfirmed by Yallo.
+
+### Shape
+
+```
+learner's phone / laptop (Tailscale app, signed in with Google/Apple/Microsoft)
+   ──WireGuard──► node "jlpt" (tailscaled inside the portal app, userspace networking)
+   ──tailscale serve, HTTPS with a *.ts.net certificate──► http://127.0.0.1:8080 inside the same container
+   ──► server.py
+```
+
+- **The `jlpt` node.** The portal app runs its own `tailscaled` in userspace mode, with state in the app's `/data/tailscale`.
+  - It joins Alex's tailnet as an **untagged** node owned by Alex. Its key expiry is disabled in the admin console.
+  - `tailscale serve --bg 8080` publishes `https://jlpt.<tailnet>.ts.net`.
+- **Isolation.**
+  - Only `jlpt` is shared with learners. Home Assistant and Alex's other devices are not.
+  - Shared devices are quarantined: they accept connections but cannot start any towards the learners' devices.
+  - The HA Tailscale app is **not** used. It would need a host port, which would expose the portal to the LAN.
+- **Learners.**
+  - Each learner installs the Tailscale app, signs in with a Google, Apple or Microsoft account, and accepts Alex's share link once.
+  - After that, the Tailscale app must be on while they practise. iOS allows one VPN at a time.
+  - A work phone's management software may block the Tailscale app.
+- **Cost.** Tailscale Personal is free (6 users), and sharing is on all plans.
+
+### Identity under Tailscale
+
+The Cloudflare JWT section below stays valid for the domain path. Under Tailscale, `who()` reads the identity that Serve adds.
+
+1. `server.py` binds `127.0.0.1` inside the container. The only process that can reach it is `tailscale serve` in the same container.
+2. Serve sets `Tailscale-User-Login` (the login email) and `Tailscale-User-Name` for tailnet users and for shared-in users. It removes any copies that arrive in the incoming request.
+3. Serve sets no identity header for traffic from tagged devices or Funnel, so `who()` returns `None` for those.
+4. `who()` reads `Tailscale-User-Login`, lowercases it and looks it up in `learners.json` → `emails`. Unknown or missing → 403.
+5. **No new Python dependency.** PyJWT is dropped (D8 is withdrawn).
+6. The header is trusted only because of rule 1. `JLPT_AUTH=tailscale` refuses to start unless `JLPT_BIND` is `127.0.0.1`.
+7. The learners' **login emails are those of their Google, Apple or Microsoft accounts**, which may differ from the email they normally use. A hidden Apple relay address is possible, so read the login from the Tailscale admin console after they accept the share.
+
+Golden cases for `who()` under `JLPT_AUTH=tailscale`:
+
+| Input | Expected `who()` |
+|---|---|
+| `Tailscale-User-Login` of a known learner | `{"email": "anna@…", "learner_id": "anna", "admin": false}` |
+| The admin's login | `{"email": "alex@…", "learner_id": null, "admin": true}` |
+| Unknown login | `None` |
+| Header missing | `None` |
+
+The Developer must confirm on the Pi (runbook check) that a shared-in user's request reaches the backend with `Tailscale-User-Login` set, while `tailscaled` runs in userspace mode. Tailscale's docs say these headers are set for shared-in users, but they don't say anything about userspace mode specifically.
+
+### Changes against the Cloudflare plan
+
+| Item | Change |
+|---|---|
+| H3 | `who()` gets two backends, `tailscale` and `access`, selected by `JLPT_AUTH`. `local` remains for development. |
+| H5 | Cache headers stay: no edge cache exists, but they cost nothing. |
+| H7 | `JLPT_ORIGIN=https://jlpt.<tailnet>.ts.net`. |
+| P2 | The bind address stays `127.0.0.1` everywhere, including in the container. |
+| P3 | `requirements-server.txt` = numpy only. |
+| P4 | The `Dockerfile` adds the official static `tailscale` and `tailscaled` binaries for arm64, at a pinned version. `run.sh` does five things: (1) starts `tailscaled --tun=userspace-networking --statedir=/data/tailscale`; (2) runs `tailscale up --authkey=$(option) --hostname=jlpt`, only if not yet logged in; (3) runs `tailscale serve --bg 8080`; (4) starts `server.py`; (5) never prints the auth key. The app gets a password-type option `ts_authkey`. |
+| P5 | `/healthz` stays, for a local check through `tailscale serve status` and the app watchdog. There is no external uptime check (D7 is dropped). |
+| — | The Cloudflared app is not installed. |
+
 ## Origin: Raspberry Pi 5 with Home Assistant OS (decided 2026-11-08)
+
+The shape below was written for Cloudflare. **Under Tailscale, the Cloudflared app is not installed and the portal app runs its own `tailscaled`** (previous section). The rest holds: the local app, `/config` as `JLPT_HOME`, read-only audio under `/media`, no Home Assistant API, and the rollout order.
 
 Alex rejected two other first steps:
 - **Sharing the portal through OneDrive.** Yoko would get files, not a portal: Python on a computer, nothing on her phone. It would also need a second copy of the code without Anna's folders.
@@ -305,13 +376,11 @@ The PC-only procedure below stays valid for the fallback.
 
 | # | Decision | Recommendation | Cost |
 |---|---|---|---|
-| D1 | Hosting | **Decided 2026-11-08:** Cloudflare Tunnel + Access, with the Raspberry Pi 5 running Home Assistant OS as origin | Free plan, a few watts |
+| D1 | Hosting | **Decided 2026-11-08:** the Raspberry Pi 5 running Home Assistant OS, reached through Tailscale node sharing | Free |
+| D2 | Domain | **Decided 2026-11-08:** no domain for now. Cloudflare comes back only when one is bought | — |
+| D11 | Is Yoko's phone personal, or a managed work phone that may block VPN apps? | Ask Yoko before setup | — |
 | D9 | Rollout order | Yoko on the Pi first; Anna after one clean week, by 2026-11-22 at the latest, otherwise after the exam | — |
 | D10 | Home Assistant backup location | A network share on the PC, not a cloud | — |
-| D2 | Domain: buy a new one, or use one Alex already owns (its DNS must move to Cloudflare) | A cheap new domain at Cloudflare Registrar, used only for this | About USD 10–11 a year (.com) |
-| D3 | Learners' login emails: Anna, Yoko, and Alex's admin email | Personal addresses they can read on their phones | — |
-| D4 | Session length | 30 days, so Yoko types a code about once a month | — |
+| D3 | Learners' login emails | Read them from the Tailscale admin console after each learner accepts the share | — |
 | D5 | PC availability | No longer needed: the Pi is always on | — |
 | D6 | Off-site backup target | A USB stick weekly, or encrypted cloud | — |
-| D7 | External uptime check | Yes, free tier | Free |
-| D8 | New Python dependency `PyJWT[crypto]` | Yes | — |
