@@ -87,4 +87,5 @@ if __name__ == "__main__":
     elif len(sys.argv) in (2, 3) and sys.argv[1] == "--compare":
         sys.exit(compare(sys.argv[2] if len(sys.argv) == 3 else "main"))
     else:
-        raise SystemExit("usage: N4_REAL_HOME=<data> python tools/golden_real.py --compare [ref, default main]")
+        raise SystemExit("usage: N4_REAL_HOME=<data> python tools/golden_real.py --compare [ref, default main]\n"
+                         "       N4_REAL_HOME=<data> [N4_REAL_DATA=<learner data, e.g. backup/pi/<date>/learners/anna>] python tools/golden_real.py --snapshot <out.json>")

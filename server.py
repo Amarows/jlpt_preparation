@@ -206,6 +206,7 @@ START="JLPT portal serving on"
 def serve(port=None):
     access.check_startup(); openruns.prune()
     srv=ThreadingHTTPServer((access.bind(),int(port or os.getenv("JLPT_PORT",8080))),Handler)
-    if sys.stderr: print(f"{START} {access.bind()}:{srv.server_port} as {access.mode()}",file=sys.stderr,flush=True)
+    build=(paths.REPO/"BUILD").read_text(encoding="utf-8").strip() if (paths.REPO/"BUILD").is_file() else "dev"
+    if sys.stderr: print(f"{START} {access.bind()}:{srv.server_port} as {access.mode()} build {build}",file=sys.stderr,flush=True)
     srv.serve_forever()
 if __name__=="__main__": serve()

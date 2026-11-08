@@ -7,7 +7,7 @@ APP = REPO / "deploy" / "ha-app"
 
 def test_the_image_copies_files_that_exist():
     sources = [s for line in (APP / "Dockerfile").read_text(encoding="utf-8").splitlines() if line.startswith("COPY ") for s in line.split()[1:-1]]
-    missing = [s for s in sources if not (APP / s).exists() and not (REPO / s).exists()]
+    missing = [s for s in sources if not (APP / s).exists() and not (REPO / s).exists() and s != "BUILD"]
     assert sources and missing == []
 
 

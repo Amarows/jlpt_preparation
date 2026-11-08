@@ -12,9 +12,14 @@ def git(*args: str) -> bytes:
     return subprocess.run(["git", "-C", str(REPO), *args], capture_output=True, check=True).stdout
 
 
+def resolve(ref: str) -> str:
+    return git("rev-parse", "--verify", f"{ref}^{{commit}}").decode("ascii").strip()
+
+
 def export(dest: Path, ref: str = "HEAD") -> list[str]:
     if dest.exists() and any(dest.iterdir()):
         raise SystemExit(f"{dest} must be empty")
+    ref = resolve(ref)
     names = git("ls-tree", "-r", "--name-only", ref, "--", APP, *CODE).decode("utf-8").splitlines()
     for name in names:
         data = git("cat-file", "blob", f"{ref}:{name}")
@@ -23,6 +28,7 @@ def export(dest: Path, ref: str = "HEAD") -> list[str]:
         target = dest / (name[len(APP) + 1:] if name.startswith(APP + "/") else name)
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(data)
+    (dest / "BUILD").write_bytes(ref.encode("ascii") + b"\n")
     return names
 
 

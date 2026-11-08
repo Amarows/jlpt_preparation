@@ -27,3 +27,4 @@ learners/
 
 # Copies pulled from the Pi and frozen PC snapshots: learner data
 backup/
+/BUILD

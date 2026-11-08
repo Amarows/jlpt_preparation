@@ -10,7 +10,7 @@ RUN echo "${TAILSCALE_SHA256}  /tmp/tailscale.tgz" | sha256sum -c - \
 WORKDIR /app
 COPY requirements-server.txt ./
 RUN pip install --no-cache-dir -r requirements-server.txt
-COPY server.py ./
+COPY server.py BUILD ./
 COPY engine ./engine
 COPY web ./web
 COPY tracks ./tracks

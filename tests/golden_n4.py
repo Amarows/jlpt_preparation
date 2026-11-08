@@ -35,7 +35,8 @@ def _source():
     if not real:
         return {"bank": FIXTURE / "bank", "explain": FIXTURE / "explain.json", "confidential": FIXTURE, "audio": FIXTURE / "audio", "link_audio": False}
     real = Path(real)
-    return {"bank": real / "data" / "bank", "explain": real / "data" / "explain.json", "confidential": real / "confidential", "audio": real / "audio", "link_audio": True}
+    data = Path(os.environ["N4_REAL_DATA"]) if os.environ.get("N4_REAL_DATA") else real / "confidential"
+    return {"bank": real / "data" / "bank", "explain": real / "data" / "explain.json", "confidential": data, "audio": real / "audio", "link_audio": True}
 
 
 def _build(home):

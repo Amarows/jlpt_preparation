@@ -3,6 +3,8 @@ import io
 import json
 import os
 import py_compile
+import re
+import secrets
 import shlex
 import shutil
 import subprocess
@@ -15,7 +17,7 @@ from pathlib import Path, PurePosixPath
 
 REPO = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(REPO / "tools"), str(REPO)]
-from export_app import export
+from export_app import export, resolve
 from server import START
 
 SLUG = "local_jlpt_portal"
@@ -26,26 +28,47 @@ CONTENT = ("data/bank", "data/tracks", "data/explain.json", "data/vocabulary.csv
 PULLED = ("learners.json", "learners", "logs")
 FORBIDDEN = ("learners", "learners.json", "logs")
 KEEP_DAYS = 30
+BACKUP = REPO / "backup" / "pi"
 
 
 def say(*parts):
     print(*parts, flush=True)
 
 
-def tar_of(root: Path, names: list[str]) -> bytes:
+def tar_of(root: Path, names: list[str], extra: dict | None = None) -> bytes:
     buf = io.BytesIO()
     with tarfile.open(fileobj=buf, mode="w") as tar:
         for name in names:
             tar.add(root / name, arcname=name)
+        for name, text in (extra or {}).items():
+            raw = text.encode("utf-8")
+            info = tarfile.TarInfo(name)
+            info.size = len(raw)
+            tar.addfile(info, io.BytesIO(raw))
     return buf.getvalue()
 
 
 def untar(data: bytes, dest: Path) -> list[str]:
     dest.mkdir(parents=True, exist_ok=True)
+    if not data:
+        return []
     with tarfile.open(fileobj=io.BytesIO(data)) as tar:
         names = tar.getnames()
         tar.extractall(dest, filter="data")
     return names
+
+
+def member(data: bytes, name: str) -> str | None:
+    with tarfile.open(fileobj=io.BytesIO(data)) as tar:
+        try:
+            return tar.extractfile(name).read().decode("utf-8")
+        except (KeyError, AttributeError):
+            return None
+
+
+def version_of(config_yaml: str | None) -> str | None:
+    m = re.search(r'^version:\s*"?([^"\n]+?)"?\s*$', config_yaml or "", re.M)
+    return m.group(1) if m else None
 
 
 def content_names(home: Path) -> list[str]:
@@ -84,29 +107,46 @@ class Folder:
 
     def get(self, src, names) -> bytes:
         root = self.local(src)
-        return tar_of(root, [n for n in names if (root / n).exists()])
+        present = [n for n in names if (root / n).exists()]
+        return tar_of(root, present) if present else b""
 
     def sizes(self, src) -> dict:
         root = self.local(src)
         return {f.relative_to(root).as_posix(): f.stat().st_size for f in root.rglob("*") if f.is_file()} if root.is_dir() else {}
 
+    def _state(self) -> dict:
+        f = self.local(PurePosixPath("/fake_ha/state.json"))
+        return json.loads(f.read_text(encoding="utf-8")) if f.is_file() else {"state": "unknown", "version": None, "log": "", "store": None, "auto_start": True}
+
+    def _save(self, state):
+        self.write(PurePosixPath("/fake_ha/state.json"), json.dumps(state))
+
     def ha(self, *args) -> str:
-        app = self.local(APP)
-        state = self.local(PurePosixPath("/fake_ha/state.json"))
-        if args[:2] == ("apps", "rebuild"):
+        app, s = self.local(APP), self._state()
+        if args == ("store", "reload"):
+            s["store"] = version_of(self.read(APP / "config.yaml"))
+        elif args[:2] in (("apps", "rebuild"), ("apps", "update")):
+            if args[1] == "rebuild" and s["store"] != s["version"]:
+                raise SystemExit("remote command failed (1): ha …")
             try:
                 py_compile.compile(str(app / "server.py"), doraise=True)
                 ok = (app / "Dockerfile").is_file()
             except (py_compile.PyCompileError, FileNotFoundError):
                 ok = False
-            self.write(PurePosixPath("/fake_ha/state.json"), json.dumps({"state": "started" if ok else "error", "log": f"{START} 127.0.0.1:8080 as tailscale" if ok else "Traceback: SyntaxError"}))
-            return ""
-        data = json.loads(state.read_text(encoding="utf-8")) if state.is_file() else {"state": "unknown", "log": ""}
-        if args[:2] == ("apps", "info"):
-            return json.dumps({"data": {"state": data["state"]}})
-        if args[:2] == ("apps", "logs"):
-            return data["log"]
-        raise ValueError(args)
+            build = (app / "BUILD").read_text(encoding="utf-8").strip() if (app / "BUILD").is_file() else "dev"
+            s.update(version=s["store"], state=("started" if s["auto_start"] else "stopped") if ok else "error",
+                     log=s["log"] + (f"{START} 127.0.0.1:8080 as tailscale build {build}\n" if ok and s["auto_start"] else "" if ok else "Traceback: SyntaxError\n"), ok=ok, build=build)
+        elif args[:2] == ("apps", "start"):
+            if s.get("ok"):
+                s.update(state="started", log=s["log"] + f"{START} 127.0.0.1:8080 as tailscale build {s['build']}\n")
+        elif args[:2] == ("apps", "info"):
+            return json.dumps({"result": "ok", "data": {"state": s["state"], "version": s["version"]}})
+        elif args[:2] == ("apps", "logs"):
+            return s["log"]
+        else:
+            raise ValueError(args)
+        self._save(s)
+        return ""
 
 
 class Ssh:
@@ -139,7 +179,7 @@ class Ssh:
     def get(self, src, names) -> bytes:
         q = shlex.quote(str(src))
         listed = " ".join(shlex.quote(n) for n in names)
-        return self.sh(f"cd {q} && tar -cf - $(for n in {listed}; do [ -e \"$n\" ] && echo \"$n\"; done)")
+        return self.sh(f"cd {q} && set -- && for n in {listed}; do [ -e \"$n\" ] && set -- \"$@\" \"$n\"; done; [ $# -gt 0 ] && tar -cf - \"$@\" || true")
 
     def sizes(self, src) -> dict:
         q = shlex.quote(str(src))
@@ -158,40 +198,75 @@ class DryRun:
         if name in ("read", "sizes", "get"):
             return getattr(self.target, name)
         if name == "ha":
-            return lambda *args: say("dry-run: ha", *args) or (json.dumps({"data": {"state": "started"}}) if args[1] == "info" else START)
+            return self._ha
         return lambda *args, **kw: say(f"dry-run: {name}", *[a for a in args if not isinstance(a, bytes)], *(f"({len(a)} bytes)" for a in args if isinstance(a, bytes)))
 
+    def _ha(self, *args):
+        if args[:2] in (("apps", "info"), ("apps", "logs")):
+            return self.target.ha(*args)
+        say("dry-run: ha", *args)
+        return ""
 
-def build(tag: str) -> bytes:
+
+def build(sha: str, marker: str) -> bytes:
     with tempfile.TemporaryDirectory() as tmp:
-        export(Path(tmp), tag)
+        export(Path(tmp), sha)
+        (Path(tmp) / "BUILD").write_bytes(marker.encode("ascii") + b"\n")
         return tar_of(Path(tmp), sorted(p.name for p in Path(tmp).iterdir()))
 
 
-def started(target, wait_s: float, poll_s: float) -> bool:
+def info(target) -> dict:
+    try:
+        return json.loads(target.ha("apps", "info", SLUG, "--raw-json") or "{}").get("data", {})
+    except ValueError:
+        return {}
+
+
+def started(target, marker: str, wait_s: float, poll_s: float) -> bool:
     deadline = time.monotonic() + wait_s
+    line = f"build {marker}"
     while True:
-        state = json.loads(target.ha("apps", "info", SLUG, "--raw-json") or "{}").get("data", {}).get("state")
-        if state == "started" and START in target.ha("apps", "logs", SLUG):
+        state = info(target).get("state")
+        if state == "started" and line in target.ha("apps", "logs", SLUG):
             return True
         if state == "error" or time.monotonic() >= deadline:
             return False
         time.sleep(poll_s)
 
 
-def deploy(target, tag: str, source=build, wait_s=180.0, poll_s=3.0, rollback=True) -> bool:
-    previous = (target.read(APP / ".tag") or "").strip() or None
-    say(f"deploy {tag} (previous: {previous or 'none'})")
-    target.replace_dir(source(tag), APP)
-    target.write(APP / ".tag", tag + "\n")
-    target.ha("apps", "rebuild", SLUG)
-    if started(target, wait_s, poll_s):
-        say(f"deployed {tag}: app started")
+def install(target, data: bytes, sha: str, marker: str, wait_s: float, poll_s: float, dry: bool) -> bool:
+    installed = info(target).get("version")
+    target.replace_dir(data, APP)
+    target.write(APP / ".tag", sha + "\n")
+    target.ha("store", "reload")
+    new = version_of(member(data, "config.yaml"))
+    target.ha("apps", "update" if new != installed else "rebuild", SLUG)
+    if dry:
+        say(f"dry-run: would wait for '{START} … build {marker}'")
         return True
-    say(f"deploy {tag} FAILED: the app did not start")
-    if rollback and previous and previous != tag:
+    if info(target).get("state") != "started":
+        target.ha("apps", "start", SLUG)
+    return started(target, marker, wait_s, poll_s)
+
+
+def deploy(target, ref: str, source=build, wait_s=180.0, poll_s=3.0, first=False, pull_into: Path | None = BACKUP, dry=False) -> bool:
+    sha = resolve(ref)
+    previous = (target.read(APP / ".tag") or "").strip() or None
+    if previous is None and not first:
+        say("no .tag on the target: run the first deploy with --first")
+        return False
+    if pull_into is not None:
+        pull(target, pull_into) if not dry else say("dry-run: pull before deploy")
+    say(f"deploy {ref} = {sha} (previous: {previous or 'none'})")
+    marker = f"{sha[:12]}-{secrets.token_hex(4)}"
+    if install(target, source(sha, marker), sha, marker, wait_s, poll_s, dry):
+        say(f"deployed {sha}: app started")
+        return True
+    say(f"deploy {sha} FAILED: the app did not start with build {marker}")
+    if previous and previous != sha:
         say(f"rolling back to {previous}")
-        deploy(target, previous, source, wait_s, poll_s, rollback=False)
+        back = f"{previous[:12]}-{secrets.token_hex(4)}"
+        say("rolled back" if install(target, source(previous, back), previous, back, wait_s, poll_s, dry) else "ROLLBACK FAILED as well")
     return False
 
 
@@ -214,16 +289,23 @@ def push_audio(target, audio: Path) -> list[str]:
 
 def pull(target, into: Path, today: date | None = None) -> Path:
     today = today or date.today()
+    into.mkdir(parents=True, exist_ok=True)
     dest = into / today.isoformat()
-    names = untar(target.get(CONFIG, list(PULLED)), dest)
+    fresh = into / f".incoming-{today.isoformat()}-{secrets.token_hex(4)}"
+    names = untar(target.get(CONFIG, list(PULLED)), fresh)
+    old = into / f".replaced-{today.isoformat()}-{secrets.token_hex(4)}"
+    if dest.exists():
+        dest.rename(old)
+    fresh.rename(dest)
+    shutil.rmtree(old, ignore_errors=True)
     cutoff = today - timedelta(days=KEEP_DAYS)
-    for old in into.iterdir():
+    for folder in into.iterdir():
         try:
-            day = date.fromisoformat(old.name)
+            day = date.fromisoformat(folder.name)
         except ValueError:
             continue
-        if day < cutoff and old.is_dir():
-            shutil.rmtree(old)
+        if day < cutoff and folder.is_dir():
+            shutil.rmtree(folder)
     say(f"pulled {len(names)} entries to {dest}")
     return dest
 
@@ -236,15 +318,19 @@ def main(argv=None) -> int:
     p.add_argument("--target-dir", help="a local folder standing in for the Pi (tests and rehearsals)")
     p.add_argument("--dry-run", action="store_true", help="read from the target but change nothing")
     sub = p.add_subparsers(dest="command", required=True)
-    sub.add_parser("deploy").add_argument("tag")
+    d = sub.add_parser("deploy")
+    d.add_argument("ref")
+    d.add_argument("--first", action="store_true", help="the target has no .tag yet: deploy without a rollback target")
+    d.add_argument("--no-pull", action="store_true", help="skip the pull of learner data before deploying")
+    d.add_argument("--into", default=str(BACKUP))
     sub.add_parser("push-content").add_argument("--home", default=os.environ.get("JLPT_HOME") or str(REPO))
     sub.add_parser("push-audio").add_argument("--audio", default=os.environ.get("JLPT_AUDIO") or str(Path(os.environ.get("JLPT_HOME") or REPO) / "audio"))
-    sub.add_parser("pull").add_argument("--into", default=str(REPO / "backup" / "pi"))
+    sub.add_parser("pull").add_argument("--into", default=str(BACKUP))
     a = p.parse_args(argv)
     target = Folder(Path(a.target_dir)) if a.target_dir else Ssh(a.host, a.user, Path(a.key))
     target = DryRun(target) if a.dry_run else target
     if a.command == "deploy":
-        return 0 if deploy(target, a.tag) else 1
+        return 0 if deploy(target, a.ref, first=a.first, pull_into=None if a.no_pull else Path(a.into), dry=a.dry_run) else 1
     if a.command == "push-content":
         push_content(target, Path(a.home))
     elif a.command == "push-audio":
