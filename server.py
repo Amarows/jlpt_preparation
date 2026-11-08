@@ -44,9 +44,20 @@ def append(path,obj):
 def attempts():
     if not paths.ATTEMPTS.exists(): return []
     return [json.loads(x) for x in paths.ATTEMPTS.read_text(encoding="utf-8").splitlines() if x.strip()]
+REFUSED={}; REFUSED_EVERY_S=3600
+def clock(): return time.monotonic()
+def refused_login(h):
+    if access.mode()!="tailscale" or h.status!=403 or h.ident is not None: return None
+    login=access.login(h.headers.get(access.HEADER))
+    if login is None: return None
+    now=clock()
+    with LOCK:
+        if login in REFUSED and now-REFUSED[login]<REFUSED_EVERY_S: return None
+        REFUSED[login]=now
+    return login
 def log_access(h):
-    ident=h.ident or {}; ts=datetime.now(timezone.utc).isoformat(timespec="seconds")
-    try: append(paths.HOME/"logs"/f"access-{ts[:7]}.jsonl",{"ts":ts,"email":ident.get("email"),"as_learner":ident.get("learner_id"),"method":h.command,"path":urlparse(h.path).path,"status":h.status,"ms":round((time.monotonic()-h.started)*1000)})
+    ident=h.ident or {}; ts=datetime.now(timezone.utc).isoformat(timespec="seconds"); login=refused_login(h)
+    try: append(paths.HOME/"logs"/f"access-{ts[:7]}.jsonl",{"ts":ts,"email":ident.get("email"),"as_learner":ident.get("learner_id"),"method":h.command,"path":urlparse(h.path).path,"status":h.status,"ms":round((time.monotonic()-h.started)*1000),**({"refused_login":login} if login else {})})
     except OSError: pass
 def log_error(eid):
     text=f"{datetime.now(timezone.utc).isoformat(timespec='seconds')} {eid}\n{traceback.format_exc()}"

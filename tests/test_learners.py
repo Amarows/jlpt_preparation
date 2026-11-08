@@ -135,3 +135,23 @@ def test_under_tailscale_every_route_but_healthz_needs_an_identity(monkeypatch):
     assert calls["/"]["body"] == "Not registered for this portal – ask Alex"
     assert known == {"/": 200, "/api/me": 200, "/audio/clip.mp3": 200}
     assert login["status"] == 403
+
+
+def test_refused_logins_are_logged_once_an_hour(monkeypatch):
+    import server
+    from tests.golden_hardening import _call, server as running
+    now = [1000.0]
+    monkeypatch.setenv("JLPT_AUTH", "tailscale")
+    monkeypatch.setattr(server, "clock", lambda: now[0])
+    monkeypatch.setattr(server, "REFUSED", {})
+    rows = [{**g.LEARNERS[0], "emails": ["anna@example.ch"]}, g.LEARNERS[1]]
+    with g.two_learners(rows) as home, running() as port:
+        get = lambda login: _call(port, "GET", "/", None, {"Tailscale-User-Login": login} if login else None)["status"]
+        assert [get("Eve@Example.ch"), get("eve@example.ch"), get("bob@example.ch"), get(None), get("anna@example.ch")] == [403, 403, 403, 403, 200]
+        now[0] += 3599
+        assert get("eve@example.ch") == 403
+        now[0] += 2
+        assert get("eve@example.ch") == 403
+        lines = [json.loads(x) for f in (home / "logs").glob("access-*.jsonl") for x in f.read_text(encoding="utf-8").splitlines()]
+    assert [x.get("refused_login") for x in lines] == ["eve@example.ch", None, "bob@example.ch", None, None, None, "eve@example.ch"]
+    assert all(x["email"] is None for x in lines if x["status"] == 403)
