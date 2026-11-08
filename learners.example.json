@@ -1,6 +1,6 @@
 {
   "learners": [
     {"id": "anna", "name": "Anna", "track": "jlpt-n4", "ui": "en", "explain": "en", "data": "confidential"},
-    {"id": "yoko", "name": "葉子", "track": "de-work", "ui": "en", "explain": "ja", "data": "learners/yoko"}
+    {"id": "yoko", "name": "葉子", "track": "de-work", "ui": "en", "explain": "en", "data": "learners/yoko"}
   ]
 }

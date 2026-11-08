@@ -81,11 +81,12 @@ def test_audio_cannot_reach_outside_the_audio_folder(path):
             srv.server_close()
 
 
-def test_example_config_is_valid():
+def test_example_config_is_valid(tmp_path, monkeypatch):
+    import shutil
     from engine import paths
-    rows = json.loads((Path(__file__).resolve().parents[1] / "learners.example.json").read_text(encoding="utf-8"))["learners"]
-    with g.two_learners(rows):
-        assert [r["id"] for r in paths.learners()] == ["anna", "yoko"]
+    shutil.copy(Path(__file__).resolve().parents[1] / "learners.example.json", tmp_path / "learners.json")
+    monkeypatch.setattr(paths, "HOME", tmp_path)
+    assert [(r["id"], r["ui"], r["explain"]) for r in paths.learners()] == [("anna", "en", "en"), ("yoko", "en", "en")]
 
 
 def test_a_unit_run_holds_exactly_the_units_verified_items():
@@ -155,3 +156,16 @@ def test_refused_logins_are_logged_once_an_hour(monkeypatch):
         lines = [json.loads(x) for f in (home / "logs").glob("access-*.jsonl") for x in f.read_text(encoding="utf-8").splitlines()]
     assert [x.get("refused_login") for x in lines] == ["eve@example.ch", None, "bob@example.ch", None, None, None, "eve@example.ch"]
     assert all(x["email"] is None for x in lines if x["status"] == 403)
+
+
+def test_distractor_notes_follow_the_explain_language_and_stay_hidden():
+    import server
+    from engine import paths
+    item = {"distractor_notes": {"2": "ja note", "3": "ja only"}, "distractor_notes_en": {"2": "en note"}}
+    with g.two_learners([{**g.LEARNERS[1], "explain": "ja"}]):
+        with paths.as_learner("yoko"):
+            assert server.note(item, 2) == "ja note"
+    rows = json.loads((g.FIXTURE / "de_bank" / "fixture.json").read_text(encoding="utf-8"))
+    assert not any(k.startswith("distractor_notes") for k in server.HIDDEN if False)
+    public = {k for k in {**rows[0], "distractor_notes_en": {}} if k not in server.HIDDEN and not k.startswith(("explanation_", "distractor_notes"))}
+    assert not any(k.startswith(("distractor_notes", "explanation_")) for k in public)

@@ -33,6 +33,9 @@ def who(handler):
     row=paths.by_email(email); admin=email in paths.admins()
     if not row and not admin: return None
     return {"email":email,"learner_id":picked if admin and picked else row["id"] if row else None,"admin":admin}
+def note(item,choice):
+    own=item.get(f"distractor_notes_{paths.learner()['explain']}") or {}
+    return own.get(str(choice)) or item.get("distractor_notes",{}).get(str(choice))
 def profile(row): return {k:row[k] for k in ("id","name","track","ui","explain")}
 def mine(rid):
     run=RUNS.get(rid)
@@ -150,7 +153,7 @@ class Handler(BaseHTTPRequestHandler):
             else: data=build_run(mode,section,n,seed=uuid.uuid4().int)
             rid="r-"+uuid.uuid4().hex[:12]; originals=data["items"]
             public=[]
-            for item in originals: public.append({**{k:v for k,v in item.items() if k not in HIDDEN and not k.startswith("explanation_")},"target_ms":target_ms(item)})
+            for item in originals: public.append({**{k:v for k,v in item.items() if k not in HIDDEN and not k.startswith(("explanation_","distractor_notes"))},"target_ms":target_ms(item)})
             try: baseline=json.loads(paths.MODEL_STATE.read_text(encoding="utf-8"))["p_pass"]
             except (OSError, ValueError, KeyError): baseline=simulate(write=False)["p_pass"]
             RUNS[rid]={"start":datetime.now(timezone.utc).isoformat(),"mode":mode,"section":section,"items":{x["id"]:x for x in originals},"answers":{},"time_limit_ms":data["time_limit_ms"],"p_pass_before":baseline,"mock_id":mock_id,"learner":paths.learner()["id"]}
@@ -188,7 +191,7 @@ class Handler(BaseHTTPRequestHandler):
             a={"ts":datetime.now().astimezone().isoformat(),"run_id":data["run_id"],"item_id":item["id"],"choice":choice,"correct":correct,"ms":data.get("ms"),"flag":data.get("flag") or "none","mode":run["mode"],"timed_out":bool(data.get("timed_out"))}
             if run["section"]=="mistakes": a["review"]=True
             append(paths.ATTEMPTS,a); run["answers"][item["id"]]={**a,"item":item}; openruns.save(data["run_id"],run); out={"ok":True}
-            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item)})
+            if run["mode"]=="practice": out.update({"answer":item["answer"],"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":note(item,choice),"script":item.get("script"),"explain":for_item(item)})
             return self.send_json(out)
         if self.path=="/api/finish":
             rid=data.get("run_id"); run=mine(rid)
@@ -204,7 +207,7 @@ class Handler(BaseHTTPRequestHandler):
             openruns.drop(rid)
             result=[]
             for item in run["items"].values():
-                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":item.get("distractor_notes",{}).get(str(choice)),"script":item.get("script"),"explain":for_item(item),"item_id":item["id"],"section":item["section"],**{k:item[k] for k in ("stem_lang","options_lang") if k in item}})
+                a=run["answers"].get(item["id"],{}); choice=a.get("choice"); result.append({"stem":item["stem"],"options":item["options"],"choice":choice,"answer":item["answer"],"correct":a.get("correct",False),"ms":a.get("ms"),"slow":bool(a.get("ms") and a["ms"]>target_ms(item)),"flag":a.get("flag","none"),"explanation_en":item.get("explanation_en"),**explanations(item),"distractor_note":note(item,choice),"script":item.get("script"),"explain":for_item(item),"item_id":item["id"],"section":item["section"],**{k:item[k] for k in ("stem_lang","options_lang") if k in item}})
             return self.send_json({"score":correct,"total_ms":total_ms,"p_pass_before":before,"p_pass_after":after,"mock":mock,"items":result})
         if self.path=="/api/explain_feedback":
             # "Still unclear" on an explanation: kept apart from attempts, so it never touches scores.
