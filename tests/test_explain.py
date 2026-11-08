@@ -32,15 +32,15 @@ def test_check_rejects_missing_furigana_wrong_text_and_made_up_quotes():
     assert any("exact one-line quote" in h for h in hard)
 
 def test_served_only_for_the_item_version_it_was_written_for(monkeypatch,tmp_path):
-    monkeypatch.setattr(paths,"DATA",tmp_path); explain._cache.update(mtime=None,data={})
-    (tmp_path/"explain.json").write_text(json.dumps({"g1":{**GOOD,"for":fingerprint(ITEM)}},ensure_ascii=False),encoding="utf-8")
+    monkeypatch.setattr(paths,"HOME",tmp_path); explain._cache.clear(); (tmp_path/"data").mkdir()
+    (tmp_path/"data"/"explain.json").write_text(json.dumps({"g1":{**GOOD,"for":fingerprint(ITEM)}},ensure_ascii=False),encoding="utf-8")
     assert for_item(ITEM)["sentence"]==GOOD["sentence"]
     changed={**ITEM,"answer":1}
     assert (for_item(changed) or {}).get("sentence") is None
 
 def test_server_sends_explanation_only_after_the_answer(monkeypatch,tmp_path):
-    for name,value in {"HOME":tmp_path,"DATA":tmp_path/"data","BANK":tmp_path/"data"/"bank","CONFIDENTIAL":tmp_path/"confidential","ATTEMPTS":tmp_path/"confidential"/"attempts.jsonl","RUNS":tmp_path/"confidential"/"runs.jsonl","MODEL_STATE":tmp_path/"confidential"/"model_state.json"}.items(): monkeypatch.setattr(paths,name,value)
-    monkeypatch.setenv("JLPT_HOME",str(tmp_path)); explain._cache.update(mtime=None,data={})
+    monkeypatch.setattr(paths,"HOME",tmp_path)
+    monkeypatch.setenv("JLPT_HOME",str(tmp_path)); explain._cache.clear()
     (paths.BANK/"grammar").mkdir(parents=True); (paths.BANK/"grammar"/"t.json").write_text(json.dumps([ITEM],ensure_ascii=False),encoding="utf-8")
     (paths.DATA/"explain.json").write_text(json.dumps({"g1":{**GOOD,"for":fingerprint(ITEM)}},ensure_ascii=False),encoding="utf-8")
     from server import Handler

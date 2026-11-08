@@ -13,7 +13,7 @@ def test_mock_runs_in_parts_scores_and_joins_practice(monkeypatch,tmp_path):
     from engine.bank import load_bank
     import server
     monkeypatch.setattr(server,"ITEMS",{})  # finishing a mock reloads the server's item cache
-    monkeypatch.setattr(paths,"HOME",tmp_path); monkeypatch.setattr(paths,"BANK",tmp_path/"data"/"bank"); monkeypatch.setattr(paths,"CONFIDENTIAL",tmp_path/"confidential"); monkeypatch.setattr(paths,"ATTEMPTS",tmp_path/"confidential"/"attempts.jsonl"); monkeypatch.setattr(paths,"RUNS",tmp_path/"confidential"/"runs.jsonl"); monkeypatch.setattr(paths,"MODEL_STATE",tmp_path/"confidential"/"model_state.json")
+    monkeypatch.setattr(paths,"HOME",tmp_path)
     (paths.BANK/"vocab").mkdir(parents=True)
     (paths.BANK/"vocab"/"practice.json").write_text(json.dumps([_item("p1","vocab","kanji_reading")]),encoding="utf-8")
     m=paths.BANK/"mocks"/"m1"; m.mkdir(parents=True)

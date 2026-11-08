@@ -2,13 +2,10 @@
 import json
 from datetime import datetime, timedelta, timezone
 
-from . import paths
-from .bank import SECTIONS
-from .explain import for_item
+from . import paths, tracks
+from .explain import explanations, for_item
 from .model import _timestamp, current_attempts, open_mistakes, read_attempts
 
-ORDER = ["vocab", "grammar", "reading", "listening"]
-DAILY_TARGET = 100
 
 
 def _runs() -> list[dict]:
@@ -29,6 +26,8 @@ def _option(item: dict, n) -> str | None:
 def build_report(items: dict[str, dict], days: int = 14, mistakes: int = 5, now: datetime | None = None) -> dict:
     """Return P(pass) per run, section accuracy over `days`, and the latest open mistakes."""
     now = now or datetime.now(timezone.utc)
+    order = tracks.sections()
+    daily = tracks.current().get("daily_target", 100)
     progress = []
     runs = _runs()
     last = runs[-1] if runs else None
@@ -40,11 +39,11 @@ def build_report(items: dict[str, dict], days: int = 14, mistakes: int = 5, now:
 
     attempts = current_attempts(read_attempts(), items)
     since = now - timedelta(days=days)
-    counts = {s: [0, 0] for s in ORDER}
+    counts = {s: [0, 0] for s in order}
     for a in attempts:
         item = items.get(a.get("item_id"))
         ts = _timestamp(a.get("ts"))
-        if item and ts and ts >= since and item["section"] in SECTIONS and not a.get("review"):
+        if item and ts and ts >= since and item["section"] in order and not a.get("review"):
             counts[item["section"]][0] += bool(a.get("correct"))
             counts[item["section"]][1] += 1
     # Every answer counts toward the daily target, mistake reviews and mocks included.
@@ -57,14 +56,14 @@ def build_report(items: dict[str, dict], days: int = 14, mistakes: int = 5, now:
         "days": days,
         "last_run": {k: last.get(k) for k in ("mode", "section", "n")} if last else None,
         "open_mistakes": len(wrong),
-        "target": {"daily": DAILY_TARGET, "today": sum(local_day(a) == today for a in all_answers),
+        "target": {"daily": daily, "today": sum(local_day(a) == today for a in all_answers),
                    "week": sum(local_day(a) >= week_start for a in all_answers), "days_into_week": today.weekday() + 1},
         "progress": progress,
         "sections": [{"section": s, "correct": c, "total": t} for s, (c, t) in counts.items()],
         "mistakes": [{
             "ts": _timestamp(a.get("ts")).isoformat(), "section": items[a["item_id"]]["section"], "stem": items[a["item_id"]]["stem"],
             "choice": _option(items[a["item_id"]], a.get("choice")), "answer": _option(items[a["item_id"]], items[a["item_id"]]["answer"]),
-            "timed_out": bool(a.get("timed_out")), "explanation_en": items[a["item_id"]].get("explanation_en"),
+            "timed_out": bool(a.get("timed_out")), "explanation_en": items[a["item_id"]].get("explanation_en"), **explanations(items[a["item_id"]]),
             "explain": for_item(items[a["item_id"]]),
         } for a in wrong[:mistakes]],
     }

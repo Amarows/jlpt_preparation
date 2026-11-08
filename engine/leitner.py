@@ -1,12 +1,12 @@
 """Leitner review state derived from the attempt log."""
 from datetime import datetime, timedelta, timezone
+from . import tracks
 
 INTERVALS = [0, 1, 2, 4, 7, 14]
-GROUPS = {"kanji_reading":(10,20),"orthography":(10,20),"quick_response":(10,20),"contextual":(15,30),"paraphrase":(15,30),"grammar_form":(15,30),"usage":(30,60),"sentence_composition":(30,60),"text_grammar":(30,60),"short_passage":(60,120),"mid_passage":(60,120),"info_retrieval":(60,120),"task_based":(15,25),"key_points":(15,25),"verbal_expression":(15,25)}
 
 def target_ms(item: dict) -> int:
     """Target response time in milliseconds."""
-    easy, medium = GROUPS.get(item.get("mondai", "grammar_form"), (15,30))
+    easy, medium = tracks.exam()["target_s"].get(item.get("mondai", "grammar_form"), (15,30))
     sec = easy if item.get("tier_prior") == "easy" else medium * (2 if item.get("tier_prior") == "hard" else 1)
     return sec * 1000
 

@@ -2,15 +2,8 @@
 import json
 from datetime import date
 
-from . import paths
+from . import paths, tracks
 from .bank import validate_item
-from .simulate import BLUEPRINT
-
-# The real N4 timetable: (part, title, minutes, sections).
-PARTS = [("vocab", "言語知識（文字・語彙）", 25, {"vocab"}),
-         ("grammar_reading", "言語知識（文法）・読解", 55, {"grammar", "reading"}),
-         ("listening", "聴解", 35, {"listening"})]
-ORDER = list(BLUEPRINT)
 
 
 def _meta_path(mock_id: str):
@@ -43,7 +36,8 @@ def load_mock(mock_id: str) -> tuple[list[dict], dict[str, dict]]:
                 validate_item(x)
                 items.append(x)
     # Stable sort keeps the booklet order within each mondai.
-    items.sort(key=lambda x: ORDER.index(x["mondai"]))
+    order = list(tracks.blueprint())
+    items.sort(key=lambda x: order.index(x["mondai"]))
     return items, passages
 
 
@@ -51,23 +45,24 @@ def assemble(mock_id: str) -> dict:
     """Items in exam order plus the timed parts they fall into."""
     items, passages = load_mock(mock_id)
     ordered, parts = [], []
-    for part, title, minutes, sections in PARTS:
-        chunk = [x for x in items if x["section"] in sections]
+    for p in tracks.exam()["parts"]:
+        chunk = [x for x in items if x["section"] in p["sections"]]
         if chunk:
             ordered += chunk
-            parts.append({"part": part, "title": title, "minutes": minutes, "count": len(chunk)})
+            parts.append({"part": p["id"], "title": p["title"], "minutes": p["minutes"], "count": len(chunk)})
     used = {x.get("passage_id") for x in ordered}
     return {"items": ordered, "parts": parts, "passages": {k: v["text"] for k, v in passages.items() if k in used}}
 
 
 def score(items: list[dict], correct: set[str]) -> dict:
-    """Section scores on the JLPT scale (raw share of the section's points) against the N4 pass lines."""
-    lk = [x for x in items if x["section"] != "listening"]
-    ls = [x for x in items if x["section"] == "listening"]
-    lk_score = round(sum(x["id"] in correct for x in lk) / len(lk) * 120) if lk else 0
-    l_score = round(sum(x["id"] in correct for x in ls) / len(ls) * 60) if ls else 0
-    return {"lk": lk_score, "listening": l_score, "total": lk_score + l_score,
-            "passed": lk_score >= 38 and l_score >= 19 and lk_score + l_score >= 90}
+    exam = tracks.exam()
+    out = {}
+    for s in exam["scores"]:
+        xs = [x for x in items if x["section"] in s["sections"]]
+        out[s["id"]] = round(sum(x["id"] in correct for x in xs) / len(xs) * s["max"]) if xs else 0
+    total = sum(out.values())
+    passed = all(out[s["id"]] >= s["min"] for s in exam["scores"]) and (exam.get("total_min") is None or total >= exam["total_min"])
+    return {**out, "total": total, "passed": passed}
 
 
 def mark_taken(mock_id: str, result: dict) -> None:

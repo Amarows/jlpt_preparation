@@ -74,18 +74,15 @@ def portal():
     home.mkdir()
     _build(home)
     counter = iter(range(1, 10 ** 6))
-    pairs = [(paths, "HOME", home), (paths, "DATA", home / "data"), (paths, "BANK", home / "data" / "bank"),
-             (paths, "CONFIDENTIAL", home / "confidential"), (paths, "ATTEMPTS", home / "confidential" / "attempts.jsonl"),
-             (paths, "RUNS", home / "confidential" / "runs.jsonl"), (paths, "MODEL_STATE", home / "confidential" / "model_state.json"),
-             (simulate, "date", FixedDate), (mock, "date", FixedDate), (select, "datetime", FixedDatetime),
+    pairs = [(paths, "HOME", home), (simulate, "date", FixedDate), (mock, "date", FixedDate), (select, "datetime", FixedDatetime),
              (leitner, "datetime", FixedDatetime), (server, "datetime", FixedDatetime),
              (server.uuid, "uuid4", lambda: uuid.UUID(int=next(counter)))]
-    explain._cache.update(mtime=None, data={})
+    explain._cache.clear()
     try:
         with _patched(pairs):
             yield home
     finally:
-        explain._cache.update(mtime=None, data={})
+        explain._cache.clear()
         shutil.rmtree(tmp, ignore_errors=True)
 
 

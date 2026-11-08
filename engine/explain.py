@@ -5,10 +5,10 @@ without losing them and adding one never changes an item or its attempt history.
 fingerprint of the item's stem, options and answer; an entry whose item has changed since is not served.
 """
 import csv, hashlib, json, re
-from . import paths
+from . import paths, tracks
 
 RUBY = re.compile(r"\{([^{}|]+)\|([^{}|]+)\}")
-_cache = {"mtime": None, "data": {}}
+_cache = {}
 _vocab = {}
 
 
@@ -28,27 +28,37 @@ def kana(s: str) -> str:
 
 
 def file():
-    return paths.DATA / "explain.json"
+    files = tracks.current().get("explain", {})
+    rel = files.get(paths.learner()["explain"]) or next(iter(files.values()), None)
+    return paths.HOME / rel if rel else None
 
 
 def load() -> dict[str, dict]:
     f = file()
+    if f is None: return {}
     try: mtime = f.stat().st_mtime
     except OSError: return {}
-    if _cache["mtime"] != mtime:
-        try: _cache.update(mtime=mtime, data=json.loads(f.read_text(encoding="utf-8")))
-        except (OSError, ValueError): return _cache["data"]
-    return _cache["data"]
+    hit = _cache.get(f)
+    if not hit or hit[0] != mtime:
+        try: hit = _cache[f] = (mtime, json.loads(f.read_text(encoding="utf-8")))
+        except (OSError, ValueError): return hit[1] if hit else {}
+    return hit[1]
 
 
 def vocab() -> dict[str, tuple[str, str]]:
-    """N4 word list: kanji or kana spelling → (reading, meaning)."""
-    if not _vocab:
-        with (paths.REPO / "data" / "vocabulary.csv").open(encoding="utf-8") as f:
+    rel = tracks.current().get("word_list")
+    if not rel: return {}
+    if rel not in _vocab:
+        words = _vocab[rel] = {}
+        with (paths.REPO / rel).open(encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 for key in (row["kanji"], row["reading"]):
-                    _vocab.setdefault(key, (row["reading"], row["meaning"]))
-    return _vocab
+                    words.setdefault(key, (row["reading"], row["meaning"]))
+    return _vocab[rel]
+
+
+def explanations(item: dict) -> dict:
+    return {k: v for k, v in item.items() if k.startswith("explanation_")}
 
 
 def for_item(item: dict) -> dict | None:

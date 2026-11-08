@@ -1,0 +1,33 @@
+{
+  "title": "JLPT N4",
+  "lang": "ja",
+  "bank": "data/bank",
+  "explain": {"en": "data/explain.json"},
+  "word_list": "data/vocabulary.csv",
+  "daily_target": 100,
+  "exam": {
+    "date": "2026-12-06",
+    "sections": [
+      {"id": "vocab", "prior": 0.5, "mondai": {"kanji_reading": 7, "orthography": 5, "contextual": 8, "paraphrase": 4, "usage": 4}},
+      {"id": "grammar", "prior": 0.5, "mondai": {"grammar_form": 13, "sentence_composition": 4, "text_grammar": 4}},
+      {"id": "reading", "prior": 0.5, "mondai": {"short_passage": 3, "mid_passage": 3, "info_retrieval": 2}},
+      {"id": "listening", "prior": 0.4, "mondai": {"task_based": 8, "key_points": 7, "verbal_expression": 5, "quick_response": 8}}
+    ],
+    "levels": {"N5": -0.5, "N4-core": 0.0, "N4-hard": 0.5},
+    "options": {"default": [4], "verbal_expression": [3, 4], "quick_response": [3, 4]},
+    "target_s": {"kanji_reading": [10, 20], "orthography": [10, 20], "quick_response": [10, 20], "contextual": [15, 30], "paraphrase": [15, 30], "grammar_form": [15, 30], "usage": [30, 60], "sentence_composition": [30, 60], "text_grammar": [30, 60], "short_passage": [60, 120], "mid_passage": [60, 120], "info_retrieval": [60, 120], "task_based": [15, 25], "key_points": [15, 25], "verbal_expression": [15, 25]},
+    "parts": [
+      {"id": "vocab", "title": "言語知識（文字・語彙）", "minutes": 25, "sections": ["vocab"], "pressure": true},
+      {"id": "grammar_reading", "title": "言語知識（文法）・読解", "minutes": 55, "sections": ["grammar", "reading"], "pressure": true},
+      {"id": "listening", "title": "聴解", "minutes": 35, "sections": ["listening"], "pressure": false}
+    ],
+    "scores": [
+      {"id": "lk", "sections": ["vocab", "grammar", "reading"], "max": 120, "min": 38},
+      {"id": "listening", "sections": ["listening"], "max": 60, "min": 19}
+    ],
+    "total_min": 90,
+    "guess": 0.25,
+    "gap_sd": 0.6,
+    "item_difficulty": [0.3, 1]
+  }
+}

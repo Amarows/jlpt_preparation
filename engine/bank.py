@@ -1,13 +1,9 @@
 """Bank loading and lightweight schema validation."""
 import json
 from pathlib import Path
-from . import paths
+from . import paths, tracks
 
-MONDAI = set("kanji_reading orthography contextual paraphrase usage grammar_form sentence_composition text_grammar short_passage mid_passage info_retrieval task_based key_points verbal_expression quick_response".split())
-SECTIONS = {"vocab", "grammar", "reading", "listening"}
 TIERS = {"easy", "medium", "hard"}
-LEVELS = {"N5", "N4-core", "N4-hard"}
-THREE_OPTIONS = {"verbal_expression", "quick_response"}
 
 def load_bank(root: Path | None = None) -> tuple[dict[str, dict], dict[str, dict]]:
     """Load valid item objects and passages, keyed by id."""
@@ -36,10 +32,10 @@ def load_bank(root: Path | None = None) -> tuple[dict[str, dict], dict[str, dict
 
 def validate_item(x: dict) -> None:
     """Raise ValueError if an item violates the data contract."""
-    required = {"id", "section", "mondai", "tier_prior", "level", "stem", "options", "answer", "tags", "explanation_en", "source", "verified"}
-    if not isinstance(x, dict) or not required <= x.keys(): raise ValueError("missing item fields")
-    if x["section"] not in SECTIONS or x["mondai"] not in MONDAI or x["tier_prior"] not in TIERS or x["level"] not in LEVELS: raise ValueError(f"invalid item dimensions: {x.get('id')}")
-    # Listening 問題3 and 問題4 offer three spoken replies (written placement versions have four); everything else has four options.
+    exam = tracks.exam()
+    required = {"id", "section", "mondai", "tier_prior", "level", "stem", "options", "answer", "tags", "source", "verified"}
+    if not isinstance(x, dict) or not required <= x.keys() or not any(k.startswith("explanation_") for k in x): raise ValueError("missing item fields")
+    if x["section"] not in tracks.sections() or x["mondai"] not in tracks.blueprint() or x["tier_prior"] not in TIERS or x["level"] not in exam["levels"]: raise ValueError(f"invalid item dimensions: {x.get('id')}")
     n = len(x["options"])
-    if n not in ((3, 4) if x["mondai"] in THREE_OPTIONS else (4,)) or len(set(x["options"])) != n or x["answer"] not in range(1, n + 1): raise ValueError(f"invalid options/answer: {x['id']}")
+    if n not in exam["options"].get(x["mondai"], exam["options"]["default"]) or len(set(x["options"])) != n or x["answer"] not in range(1, n + 1): raise ValueError(f"invalid options/answer: {x['id']}")
     if not isinstance(x["tags"], list): raise ValueError(f"invalid tags: {x['id']}")

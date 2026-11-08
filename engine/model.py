@@ -5,7 +5,7 @@ from collections import defaultdict
 from datetime import date, datetime, timezone
 import numpy as np
 
-from . import paths
+from . import paths, tracks
 from .bank import load_bank
 from .leitner import boxes, target_ms
 
@@ -59,12 +59,7 @@ def open_mistakes(attempts: list[dict], items: dict[str, dict]) -> dict[str, dic
 
 
 def _difficulty(item: dict) -> float:
-    value = {"easy": -1.5, "medium": 0.0, "hard": 1.5}.get(item.get("tier_prior"), 0.0)
-    if item.get("level") == "N5":
-        value -= .5
-    elif item.get("level") == "N4-hard":
-        value += .5
-    return value
+    return {"easy": -1.5, "medium": 0.0, "hard": 1.5}.get(item.get("tier_prior"), 0.0) + tracks.exam()["levels"].get(item.get("level"), 0.0)
 
 
 def _posterior(rows: list[tuple[float, float, bool]], prior: float) -> tuple[float, float]:
@@ -116,7 +111,7 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
             weight *= .5
         raw_weights.append(weight)
         item = items.get(a.get("item_id"), a.get("item", {}))
-        section = item.get("section", a.get("section", "vocab"))
+        section = item.get("section", a.get("section", tracks.sections()[0]))
         if newest and timestamp and (newest - timestamp).total_seconds() <= 86400:
             recent_totals[section] += weight
     caps = {section: min(1.0, 40.0 / total) if total else 1.0 for section, total in recent_totals.items()}
@@ -124,8 +119,8 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
     for a, raw_weight in zip(ordered, raw_weights):
         item_id = a.get("item_id", "")
         item = items.get(item_id, a.get("item", {}))
-        section = item.get("section", a.get("section", "vocab"))
-        prior = .4 if section == "listening" else .5
+        section = item.get("section", a.get("section", tracks.sections()[0]))
+        prior = tracks.prior(section)
         base = _difficulty(item)
         # Only the learned offset is capped; the label prior keeps its full range.
         difficulty = base + offsets[item_id]
@@ -152,8 +147,8 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
             speeds[item["mondai"]].append(a["ms"])
 
     sections = {}
-    for section in set(section_rows) | {"vocab", "grammar", "reading", "listening"}:
-        prior = .4 if section == "listening" else .5
+    for section in set(section_rows) | set(tracks.sections()):
+        prior = tracks.prior(section)
         theta, sd = _posterior(section_rows[section], prior)
         sections["sec:" + section] = {"theta": theta, "sd": sd, "n": ns[section]}
     skills = {k: data.copy() for k, data in sections.items()}
@@ -168,4 +163,4 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
 
 
 def get_theta(model: dict, section: str) -> float:
-    return model.get("sections", {}).get("sec:" + section, {}).get("theta", .4 if section == "listening" else .5)
+    return model.get("sections", {}).get("sec:" + section, {}).get("theta", tracks.prior(section))

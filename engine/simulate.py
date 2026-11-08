@@ -1,33 +1,35 @@
-"""Monte Carlo JLPT pass-probability simulation."""
 import json, math, random
 from datetime import date
-from . import paths
+from . import paths, tracks
 from .model import fit, read_attempts, get_theta
 from .bank import load_bank
 from .leitner import target_ms
 
-BLUEPRINT={"kanji_reading":7,"orthography":5,"contextual":8,"paraphrase":4,"usage":4,"grammar_form":13,"sentence_composition":4,"text_grammar":4,"short_passage":3,"mid_passage":3,"info_retrieval":2,"task_based":8,"key_points":7,"verbal_expression":5,"quick_response":8}
-EXAM_GAP_SD=.6
+
 def simulate(attempts=None, seed=13, draws=10000, write=True, current_run_id=None, record_run=False):
-    """Compute pass probability, score estimates, confidence band and trends."""
+    exam=tracks.exam(); blueprint=tracks.blueprint(); names=tracks.sections(); mondai=tracks.section_mondai()
     attempts=read_attempts() if attempts is None else attempts; model=fit(attempts,current_run_id=current_run_id); rng=random.Random(seed)
-    means={s:get_theta(model,s) for s in ("vocab","grammar","reading","listening")}; sds={s:model.get("sections",{}).get("sec:"+s,{}).get("sd",1.0) for s in means}
+    means={s:get_theta(model,s) for s in names}; sds={s:model.get("sections",{}).get("sec:"+s,{}).get("sd",1.0) for s in means}
     items,_=load_bank(); speed=model["speed"]
-    vtime=sum(speed.get(m,{}).get("median_ms",target_ms({"mondai":m,"tier_prior":"medium"}))*n for m,n in BLUEPRINT.items() if m in {"kanji_reading","orthography","contextual","paraphrase","usage"})
-    grtime=sum(speed.get(m,{}).get("median_ms",target_ms({"mondai":m,"tier_prior":"medium"}))*n for m,n in BLUEPRINT.items() if m in {"grammar_form","sentence_composition","text_grammar","short_passage","mid_passage","info_retrieval"})
-    vover=max(0,min(1,(vtime-25*60000)/max(1,vtime))); gover=max(0,min(1,(grtime-55*60000)/max(1,grtime)))
-    outcomes=[]; lks=[]; ls=[]
+    over={}
+    for part in exam["parts"]:
+        if part.get("pressure"):
+            t=sum(speed.get(m,{}).get("median_ms",target_ms({"mondai":m,"tier_prior":"medium"}))*blueprint[m] for s in part["sections"] for m in mondai[s])
+            over.update({s:max(0,min(1,(t-part["minutes"]*60000)/max(1,t))) for s in part["sections"]})
+    gap=exam.get("gap_sd",.6); mu,sd=exam.get("item_difficulty",[.3,1]); guess=exam["guess"]; total_min=exam.get("total_min")
+    sizes={s["id"]:sum(blueprint[m] for x in s["sections"] for m in mondai[x]) for s in exam["scores"]}
+    outcomes=[]; dist={s["id"]:[] for s in exam["scores"]}; totals=[]
     for _ in range(draws):
-        # How much harder the real exam is than our bank is unknown, so each draw takes its own gap per section.
-        theta={s:rng.gauss(means[s],sds[s])-rng.gauss(0,EXAM_GAP_SD) for s in means}; correct={"vocab":0,"grammar":0,"reading":0,"listening":0}
-        groups={"vocab":["kanji_reading","orthography","contextual","paraphrase","usage"],"grammar":["grammar_form","sentence_composition","text_grammar"],"reading":["short_passage","mid_passage","info_retrieval"],"listening":["task_based","key_points","verbal_expression","quick_response"]}
-        for section,mondais in groups.items():
-            for m in mondais:
-                for _j in range(BLUEPRINT[m]):
-                    p=.25 if section=="vocab" and rng.random()<vover or section in ("grammar","reading") and rng.random()<gover else 1/(1+math.exp(-max(-30,min(30,theta[section]-rng.gauss(.3,1)))))
+        theta={s:rng.gauss(means[s],sds[s])-rng.gauss(0,gap) for s in means}; correct={s:0 for s in names}
+        for section in names:
+            for m in mondai[section]:
+                for _j in range(blueprint[m]):
+                    p=guess if section in over and rng.random()<over[section] else 1/(1+math.exp(-max(-30,min(30,theta[section]-rng.gauss(mu,sd)))))
                     correct[section]+=rng.random()<p
-        lk=correct["vocab"]+correct["grammar"]+correct["reading"]; l=correct["listening"]; lk_score=lk/57*120; l_score=l/28*60
-        outcomes.append(lk_score>=38 and l_score>=19 and lk_score+l_score>=90); lks.append(lk_score); ls.append(l_score)
+        scores={s["id"]:sum(correct[x] for x in s["sections"])/sizes[s["id"]]*s["max"] for s in exam["scores"]}; total=sum(scores.values())
+        outcomes.append(all(scores[s["id"]]>=s["min"] for s in exam["scores"]) and (total_min is None or total>=total_min))
+        for k,v in scores.items(): dist[k].append(v)
+        totals.append(total)
     p=sum(outcomes)/draws
     batches=[sum(outcomes[i:i+500])/len(outcomes[i:i+500]) for i in range(0,draws,500)]
     prior={}
@@ -45,7 +47,10 @@ def simulate(attempts=None, seed=13, draws=10000, write=True, current_run_id=Non
     for i,box in mastered.items():
         if box>=3:
             sec=items.get(i,{}).get("section","unknown"); by[sec]=by.get(sec,0)+1
-    state={"updated":date.today().isoformat(),"p_pass":p,"p_pass_ema":ema,"band80":[sorted(batches)[int(.1*len(batches))],sorted(batches)[min(len(batches)-1,int(.9*len(batches)))]],"trend":trend,"p_lk_section":sum(x>=38 for x in lks)/draws,"p_listening_section":sum(x>=19 for x in ls)/draws,"p_total":sum(x+y>=90 for x,y in zip(lks,ls))/draws,"exp_score":{"lk":sum(lks)/draws,"listening":sum(ls)/draws},"skills":model["skills"],"speed":model["speed"],"mastered":{"count":sum(v>=3 for v in mastered.values()),"by_section":by},"days_left":(date(2026,12,6)-date.today()).days,"history":past,"ema_history":ema_history}
+    state={"updated":date.today().isoformat(),"p_pass":p,"p_pass_ema":ema,"band80":[sorted(batches)[int(.1*len(batches))],sorted(batches)[min(len(batches)-1,int(.9*len(batches)))]],"trend":trend}
+    state.update({f"p_{s['id']}_section":sum(x>=s["min"] for x in dist[s["id"]])/draws for s in exam["scores"]})
+    if total_min is not None: state["p_total"]=sum(x>=total_min for x in totals)/draws
+    state.update({"exp_score":{k:sum(v)/draws for k,v in dist.items()},"skills":model["skills"],"speed":model["speed"],"mastered":{"count":sum(v>=3 for v in mastered.values()),"by_section":by},"days_left":(date.fromisoformat(exam["date"])-date.today()).days,"history":past,"ema_history":ema_history})
     if write:
         paths.CONFIDENTIAL.mkdir(parents=True,exist_ok=True); paths.MODEL_STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2),encoding="utf-8")
     return state

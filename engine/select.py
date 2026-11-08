@@ -2,21 +2,20 @@
 import json, random
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
-from . import paths
+from . import paths, tracks
 from .bank import load_bank
 from .model import fit, read_attempts, get_theta, current_attempts, open_mistakes, _timestamp
 from .leitner import target_ms, due as is_due
-from .simulate import BLUEPRINT
 
 REST_DAYS = 3
 
 def blend(xs, n=None):
     """Reorder items so question types follow the exam blueprint: always take the type furthest below its share."""
-    pools = defaultdict(list)
+    pools = defaultdict(list); bp = tracks.blueprint()
     for x in xs: pools[x["mondai"]].append(x)
     counts = Counter(); out = []
     while any(pools.values()) and (n is None or len(out) < n):
-        m = min((m for m in pools if pools[m]), key=lambda m: counts[m] / BLUEPRINT.get(m, 1))
+        m = min((m for m in pools if pools[m]), key=lambda m: counts[m] / bp.get(m, 1))
         out.append(pools[m].pop(0)); counts[m] += 1
     return out
 

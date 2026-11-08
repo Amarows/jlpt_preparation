@@ -6,7 +6,7 @@ from server import Handler,RUNS
 def test_server_run_answer_finish(monkeypatch,tmp_path):
     from engine import paths
     monkeypatch.setenv("JLPT_HOME",str(tmp_path))
-    monkeypatch.setattr(paths,"HOME",tmp_path); monkeypatch.setattr(paths,"BANK",tmp_path/"data"/"bank"); monkeypatch.setattr(paths,"CONFIDENTIAL",tmp_path/"confidential"); monkeypatch.setattr(paths,"ATTEMPTS",tmp_path/"confidential"/"attempts.jsonl"); monkeypatch.setattr(paths,"RUNS",tmp_path/"confidential"/"runs.jsonl"); monkeypatch.setattr(paths,"MODEL_STATE",tmp_path/"confidential"/"model_state.json")
+    monkeypatch.setattr(paths,"HOME",tmp_path)
     folder=paths.BANK/"vocab"; folder.mkdir(parents=True)
     items=[]
     for n in range(3): items.append({"id":f"a{n}","section":"vocab","mondai":"kanji_reading","tier_prior":"easy","level":"N4-core","stem":f"【猫{n}】","options":["ねこ","いぬ","とり","うま"],"answer":1,"tags":[f"word:猫{n}"],"explanation_en":"cat","distractor_notes":{},"script":"M：ねこ","source":{"kind":"generated","ref":"test"},"verified":True})
@@ -36,7 +36,7 @@ def test_server_run_answer_finish(monkeypatch,tmp_path):
 def test_report_lists_open_mistakes_latest_first(monkeypatch,tmp_path):
     from engine import paths
     from engine.report import build_report
-    monkeypatch.setattr(paths,"ATTEMPTS",tmp_path/"attempts.jsonl"); monkeypatch.setattr(paths,"RUNS",tmp_path/"runs.jsonl")
+    monkeypatch.setattr(paths,"HOME",tmp_path); paths.CONFIDENTIAL.mkdir()
     item=lambda i:{"id":i,"section":"grammar","stem":i,"options":["a","b","c","d"],"answer":2}
     items={i:item(i) for i in ("g1","g2","g3")}; items["g3"]["revised"]="2026-10-24"
     rows=[("g1",21,1),("g2",22,3),("g1",23,2),("g3",23,1),("g2",24,None)]
