@@ -1,0 +1,84 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Help</title><link rel="stylesheet" href="/web/style.css"></head><body><header><a href="/">← Portal</a><h1>Help</h1></header><main class="faq">
+
+<section class="panel" data-track="de-work">
+<h2>What this portal does</h2>
+<p>You answer short multiple-choice questions on workplace German topics. After every answer you see whether it was right, with an explanation in Japanese. The portal keeps your answers and estimates how likely you are to pass your target exam.</p>
+
+<h2>The percentage in the top-right corner</h2>
+<ul>
+<li>It is <strong>P(pass)</strong>: the estimated chance that you would pass all four modules of the <span data-fill="exam">Goethe-Zertifikat B2</span> – Lesen, Hören, Schreiben and Sprechen. Each module is scored 0–100 and needs at least 60. Each module is passed on its own; there is no total.</li>
+<li>The portal estimates your level in each module from your answers, then simulates the exam 10,000 times. P(pass) is the share of those simulated exams in which all four modules reach 60.</li>
+<li><strong>Why it starts very low.</strong> You are around A2/B1 now, and B2 questions are harder. Schreiben and Sprechen have no practice questions yet, so their estimate stays at a cautious starting value, a little below B1 and with wide uncertainty. All four modules must pass, so the combined chance is small.</li>
+<li><strong>What moves it.</strong> Correct answers to questions from the exam modules (Lesen and Hören first, Schreiben and Sprechen later) once they are added. Your topic practice (words and phrases) trains the language you need, but it is not an exam module and does not change P(pass).</li>
+<li><strong>80% band.</strong> The 10,000 simulated exams run in 20 batches of 500. The band is the range that 8 of 10 batch results fall into. It shows how precise the simulation is, not how certain your level is.</li>
+<li><strong>Arrow.</strong> After each finished run a smoothed P(pass) is updated. The arrow compares it with its value three runs earlier: ↑ more than 1 point higher, ↓ more than 1 point lower, → otherwise.</li>
+<li><strong>Days left</strong> counts down to <span data-fill="date">the exam date</span>. This date is a placeholder until the exam date is chosen.</li>
+</ul>
+
+<h2>Your topics</h2>
+<ul>
+<li>Each topic is a unit of words and phrases. Its state:
+<ul>
+<li><strong>Not started</strong>: no answers yet.</li>
+<li><strong>Learning</strong>: some answers, but not every question answered correctly yet.</li>
+<li><strong>Practised</strong>: every question answered correctly at least once.</li>
+<li><strong>Done</strong>: every question answered correctly on two different days, and your latest answer to each is correct.</li>
+</ul></li>
+<li><strong>Known</strong> counts the questions whose latest answer was correct.</li>
+<li><strong>Continue</strong> opens the first topic you are learning, or else the first one not started. A topic run asks every question of the topic once, in random order.</li>
+</ul>
+
+<h2>How a run works</h2>
+<ul>
+<li>Your runs are <strong>Practice</strong> runs. A correct answer turns green and the next question follows. After a wrong answer you see the correct one and the explanation, and the run waits for <em>Next</em>.</li>
+<li>The thin bar shows the time spent on the question and is full at the expected time. Time is not limited; the result screen marks slow answers.</li>
+<li>At the end you see your score, P(pass) before and after, and every question with your answer, wrong ones first.</li>
+<li>Drill and Timed runs exist only on the JLPT track.</li>
+</ul>
+
+<h2>My mistakes</h2>
+<p><em>Review my mistakes</em> appears when your latest answer to at least one question was wrong. It asks those questions again; a question leaves the list once you answer it correctly.</p>
+
+<h2>Unclear and Guess</h2>
+<ul>
+<li><strong>Guess</strong> (key G): the answer counts half as much when your level is estimated.</li>
+<li><strong>Unclear</strong> (key ?): saved with your answer. A question marked Unclear twice is flagged for Alex to check. It does not change your score.</li>
+</ul>
+
+<h2>Daily target</h2>
+<p>The Today panel counts your answers against <strong>20 a day</strong>. Every answer counts, mistake reviews included. <em>This week</em> compares with 20 for each weekday so far, at most five; Saturday and Sunday are catch-up days.</p>
+</section>
+
+<section class="panel" data-track="jlpt-n4">
+<h2>What this portal does</h2>
+<p>Practice questions for the JLPT N4, with an estimate of how likely you are to pass.</p>
+
+<h2>The percentage in the top-right corner</h2>
+<ul>
+<li><strong>P(pass)</strong> is the estimated chance of passing the <span data-fill="exam">JLPT N4</span>. To pass you need at least 38/120 in language knowledge and reading, at least 19/60 in listening, and at least 90/180 in total.</li>
+<li>The portal estimates your level in each section from your answers and simulates the test 10,000 times. If your answer speed would not finish a timed part, the questions you would not reach count as guesses.</li>
+<li><strong>80% band</strong>: the range that 8 of 10 batches of 500 simulated tests fall into. <strong>Arrow</strong>: a smoothed P(pass) compared with three runs earlier; ↑ or ↓ when it moved by more than 1 point.</li>
+<li><strong>Days left</strong> counts down to <span data-fill="date">the test date</span>.</li>
+</ul>
+
+<h2>Modes</h2>
+<ul>
+<li><strong>Drill</strong>: questions without feedback; you see the results at the end.</li>
+<li><strong>Timed</strong>: like Drill, with one clock for the run (the expected time per question plus the length of listening clips). Questions left when time runs out count as unanswered.</li>
+<li><strong>Practice</strong>: after each answer you see the correct one and the explanation.</li>
+<li><strong>My mistakes</strong>: questions whose latest answer was wrong; a question leaves once answered correctly.</li>
+</ul>
+
+<h2>Mock exams</h2>
+<p>A full N4 test in three timed parts (25, 55 and 35 minutes). Each mock opens on a set date. Answers are shown only at the end, with your scores against the pass lines. Your mistakes go to My mistakes, and the mock's questions then join normal practice.</p>
+
+<h2>Unclear and Guess</h2>
+<p><strong>Guess</strong> makes the answer count half as much. <strong>Unclear</strong> brings the question back in later runs instead of resting it, and a question marked Unclear twice is flagged for Alex to check.</p>
+
+<h2>Daily target</h2>
+<p><strong>100 questions a day</strong>; every answer counts. Saturday and Sunday are catch-up days.</p>
+</section>
+
+</main><script>
+fetch('/api/me').then(r=>r.ok?r.json():null).catch(()=>null).then(me=>{if(!me)return;const t=me.track;document.querySelectorAll('[data-track]').forEach(s=>s.hidden=s.dataset.track!==t.id);const mine=document.querySelector(`[data-track="${t.id}"]`);if(!mine)return;const date=new Date(t.date+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});mine.querySelectorAll('[data-fill="date"]').forEach(e=>e.textContent=date);if(t.exam_title)mine.querySelectorAll('[data-fill="exam"]').forEach(e=>e.textContent=t.exam_title)});
+</script></body></html>

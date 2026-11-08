@@ -55,7 +55,7 @@ expect:
     headers:
       Content-Type: text/html
     body:
-      bytes: 2698
+      bytes: 2770
   - request: GET /audio/clip.mp3
     sent: {}
     as: yoko

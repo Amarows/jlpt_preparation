@@ -218,3 +218,11 @@ body[data-track]:not([data-track="jlpt-n4"]) .unit-now { font-weight: 600; }
   body[data-track]:not([data-track="jlpt-n4"]) header h1 { font-size: 1.15rem; }
   body[data-track]:not([data-track="jlpt-n4"]) #badge { order: 3; width: 100%; max-width: none; text-align: left; }
 }
+.faq-link { margin-left: auto; margin-right: var(--space-md); color: var(--accent); font-size: 0.9rem; }
+.faq-link[hidden] { display: none; }
+.faq-link + .chip-wrap { margin-left: 0; }
+main.faq { max-width: var(--run-width); display: grid; gap: var(--space-md); line-height: 1.6; }
+main.faq h2 { font-size: 1.1rem; margin: var(--space-lg) 0 var(--space-xs); }
+main.faq h2:first-child { margin-top: 0; }
+main.faq ul { padding-left: 1.2rem; margin: 0; }
+main.faq li { margin: var(--space-xs) 0; }
