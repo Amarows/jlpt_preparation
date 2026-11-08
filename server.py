@@ -120,7 +120,7 @@ class Handler(BaseHTTPRequestHandler):
         if u.path=="/api/learners":
             rows=paths.learners() if access.mode()=="local" or self.ident["admin"] else [r for r in paths.learners() if r["id"]==self.ident["learner_id"]]
             return self.send_json([{k:r[k] for k in ("id","name","ui","track")} for r in rows])
-        if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary()})
+        if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary(),**({"admin":True} if self.ident and self.ident["admin"] else {})})
         if u.path=="/api/status": return self.send_json(cached_status())
         if u.path=="/api/report":
             from engine.report import build_report

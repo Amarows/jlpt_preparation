@@ -4,7 +4,7 @@
   "bank": "data/tracks/de-work/bank",
   "explain": {"ja": "data/tracks/de-work/explain.json"},
   "daily_target": 20,
-  "features": ["switch_learner"],
+  "features": [],
   "units": true,
   "training": [
     {"id": "words", "name": {"en": "Words", "ja": "単語"}, "prior": 0.0, "mondai": ["meaning_choice", "cloze"]},

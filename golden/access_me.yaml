@@ -1,0 +1,36 @@
+call: tests.golden_access:me
+expect:
+  tailscale:anna_herself:
+    status: 200
+    learner: anna
+    track: jlpt-n4
+    admin: <absent>
+  tailscale:admin_viewing_anna:
+    status: 200
+    learner: anna
+    track: jlpt-n4
+    admin: true
+  tailscale:admin_viewing_yoko:
+    status: 200
+    learner: yoko
+    track: de-work
+    admin: true
+  tailscale:admin_not_chosen:
+    status: 401
+    body:
+      error: login required
+  tailscale:yoko_herself:
+    status: 200
+    learner: yoko
+    track: de-work
+    admin: <absent>
+  local:cookie_anna:
+    status: 200
+    learner: anna
+    track: jlpt-n4
+    admin: <absent>
+  local:cookie_yoko:
+    status: 200
+    learner: yoko
+    track: de-work
+    admin: <absent>

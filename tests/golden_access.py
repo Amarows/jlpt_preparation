@@ -30,3 +30,22 @@ def who():
                     h = {**headers, **({"Cookie": f"learner={cookie}"} if cookie else {})}
                     out[f"{auth or 'local'}:{name}"] = server.who(type("H", (), {"headers": h})())
     return out
+
+
+def me():
+    from tests.golden_hardening import _call, server
+    out = {}
+    with two_learners(ROWS) as home:
+        data = json.loads((home / "learners.json").read_text(encoding="utf-8"))
+        (home / "learners.json").write_text(json.dumps({**data, "admins": ["alex@example.ch"]}), encoding="utf-8")
+        for auth, cases in (("tailscale", {"anna_herself": ("anna@example.ch", None), "admin_viewing_anna": ("alex@example.ch", "anna"),
+                                           "admin_viewing_yoko": ("alex@example.ch", "yoko"), "admin_not_chosen": ("alex@example.ch", None),
+                                           "yoko_herself": ("yoko@example.ch", None)}),
+                            (None, {"cookie_anna": (None, "anna"), "cookie_yoko": (None, "yoko")})):
+            with env(JLPT_AUTH=auth), server() as port:
+                for name, (login, cookie) in cases.items():
+                    r = _call(port, "GET", "/api/me", None, {"Tailscale-User-Login": login} if login else None, cookie)
+                    body = r["body"]
+                    out[f"{auth or 'local'}:{name}"] = {"status": r["status"], **({"learner": body["learner"]["id"], "track": body["track"]["id"],
+                                                        "admin": body.get("admin", "<absent>")} if r["status"] == 200 else {"body": body})}
+    return out
