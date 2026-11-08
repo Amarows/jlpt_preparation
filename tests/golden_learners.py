@@ -30,10 +30,21 @@ INVALID = {
 
 @contextmanager
 def two_learners(rows=LEARNERS):
+    from engine import tracks
     with portal() as home:
         (home / "learners.json").write_text(json.dumps({"learners": rows}), encoding="utf-8")
         shutil.copytree(FIXTURE / "de_bank", home / "data" / "tracks" / "de-work" / "bank")
-        yield home
+        root = home.parent / "tracks"
+        shutil.copytree(tracks.ROOT / "jlpt-n4", root / "jlpt-n4")
+        shutil.copytree(FIXTURE / "tracks" / "de-work", root / "de-work")
+        saved = tracks.ROOT
+        tracks.ROOT = root
+        tracks.load.cache_clear()
+        try:
+            yield home
+        finally:
+            tracks.ROOT = saved
+            tracks.load.cache_clear()
 
 
 @contextmanager

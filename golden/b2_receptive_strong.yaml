@@ -1,0 +1,32 @@
+call: tests.golden_b2:b2
+args: [receptive_strong]
+expect:
+  p_pass: 0.026
+  modules:
+    lesen: 0.8134
+    hoeren: 0.5773
+    schreiben: 0.2485
+    sprechen: 0.24
+  exp_score:
+    lesen: 71.2553333
+    hoeren: 60.6433333
+    schreiben: 35.175
+    sprechen: 34.437
+  sections:
+    sec:schreiben:
+      theta: -0.5
+      sd: 1.5
+      n: 0
+    sec:lesen:
+      theta: 1.66987611
+      sd: 0.402862883
+      n: 30
+    sec:sprechen:
+      theta: -0.5
+      sd: 1.5
+      n: 0
+    sec:hoeren:
+      theta: 1.04561845
+      sd: 0.355148268
+      n: 30
+  days_left: 387

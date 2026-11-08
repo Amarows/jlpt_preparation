@@ -1,0 +1,36 @@
+call: tests.golden_b2:b2
+args: [training_only]
+expect:
+  p_pass: 0.0027
+  modules:
+    lesen: 0.2365
+    hoeren: 0.2346
+    schreiben: 0.2485
+    sprechen: 0.24
+  exp_score:
+    lesen: 41.3616667
+    hoeren: 41.504
+    schreiben: 35.175
+    sprechen: 34.437
+  sections:
+    sec:schreiben:
+      theta: -0.5
+      sd: 1.5
+      n: 0
+    sec:lesen:
+      theta: 0.0
+      sd: 1.0
+      n: 0
+    sec:sprechen:
+      theta: -0.5
+      sd: 1.5
+      n: 0
+    sec:words:
+      theta: 2.52521751
+      sd: 0.545182904
+      n: 40
+    sec:hoeren:
+      theta: 0.0
+      sd: 1.0
+      n: 0
+  days_left: 387

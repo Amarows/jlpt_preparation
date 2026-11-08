@@ -1,0 +1,28 @@
+{
+  "title": "Deutsch für die Arbeit",
+  "lang": "de",
+  "bank": "data/tracks/de-work/bank",
+  "explain": {"ja": "data/tracks/de-work/explain.json"},
+  "daily_target": 20,
+  "features": ["switch_learner"],
+  "units": true,
+  "exam": {
+    "date": "2027-03-31",
+    "sections": [
+      {"id": "words", "name": {"en": "Words", "ja": "単語"}, "prior": 0.0, "mondai": {"meaning_choice": 10, "cloze": 10}},
+      {"id": "phrases", "name": {"en": "Phrases", "ja": "フレーズ"}, "prior": 0.0, "mondai": {"phrase_choice": 10, "reply_choice": 10}}
+    ],
+    "levels": {"A2": -0.5, "B1": 0.0, "B2": 0.5},
+    "options": {"default": [4], "richtig_falsch": [2]},
+    "target_s": {"meaning_choice": [10, 20], "cloze": [15, 30], "phrase_choice": [15, 30], "reply_choice": [15, 30]},
+    "parts": [],
+    "scores": [
+      {"id": "words", "sections": ["words"], "max": 100, "min": 70},
+      {"id": "phrases", "sections": ["phrases"], "max": 100, "min": 70}
+    ],
+    "total_min": null,
+    "guess": 0.25,
+    "gap_sd": 0.6,
+    "item_difficulty": [0.3, 1]
+  }
+}

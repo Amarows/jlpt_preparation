@@ -6,23 +6,32 @@
   "daily_target": 20,
   "features": ["switch_learner"],
   "units": true,
+  "training": [
+    {"id": "words", "name": {"en": "Words", "ja": "単語"}, "prior": 0.0, "mondai": ["meaning_choice", "cloze"]},
+    {"id": "phrases", "name": {"en": "Phrases", "ja": "フレーズ"}, "prior": 0.0, "mondai": ["phrase_choice", "reply_choice"]}
+  ],
   "exam": {
-    "date": "2027-03-31",
+    "title": "Goethe-Zertifikat B2",
+    "date": "2027-11-30",
     "sections": [
-      {"id": "words", "name": {"en": "Words", "ja": "単語"}, "prior": 0.0, "mondai": {"meaning_choice": 10, "cloze": 10}},
-      {"id": "phrases", "name": {"en": "Phrases", "ja": "フレーズ"}, "prior": 0.0, "mondai": {"phrase_choice": 10, "reply_choice": 10}}
+      {"id": "lesen", "name": {"en": "Reading", "ja": "読解", "de": "Lesen"}, "prior": 0.0, "prior_sd": 1.0, "mondai": {"lesen": 30}},
+      {"id": "hoeren", "name": {"en": "Listening", "ja": "聴解", "de": "Hören"}, "prior": 0.0, "prior_sd": 1.0, "mondai": {"hoeren": 30}},
+      {"id": "schreiben", "name": {"en": "Writing", "ja": "作文", "de": "Schreiben"}, "prior": -0.5, "prior_sd": 1.5, "mondai": {"schreiben": 10}},
+      {"id": "sprechen", "name": {"en": "Speaking", "ja": "会話", "de": "Sprechen"}, "prior": -0.5, "prior_sd": 1.5, "mondai": {"sprechen": 10}}
     ],
     "levels": {"A2": -0.5, "B1": 0.0, "B2": 0.5},
     "options": {"default": [4], "richtig_falsch": [2]},
-    "target_s": {"meaning_choice": [10, 20], "cloze": [15, 30], "phrase_choice": [15, 30], "reply_choice": [15, 30]},
+    "target_s": {"lesen": [100, 130], "hoeren": [20, 40], "meaning_choice": [10, 20], "cloze": [15, 30], "phrase_choice": [15, 30], "reply_choice": [15, 30]},
     "parts": [],
     "scores": [
-      {"id": "words", "sections": ["words"], "max": 100, "min": 70},
-      {"id": "phrases", "sections": ["phrases"], "max": 100, "min": 70}
+      {"id": "lesen", "sections": ["lesen"], "max": 100, "min": 60},
+      {"id": "hoeren", "sections": ["hoeren"], "max": 100, "min": 60},
+      {"id": "schreiben", "sections": ["schreiben"], "max": 100, "min": 60},
+      {"id": "sprechen", "sections": ["sprechen"], "max": 100, "min": 60}
     ],
     "total_min": null,
     "guess": 0.25,
     "gap_sd": 0.6,
-    "item_difficulty": [0.3, 1]
+    "item_difficulty": [0.5, 1]
   }
 }

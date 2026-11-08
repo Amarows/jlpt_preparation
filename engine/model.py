@@ -62,13 +62,13 @@ def _difficulty(item: dict) -> float:
     return {"easy": -1.5, "medium": 0.0, "hard": 1.5}.get(item.get("tier_prior"), 0.0) + tracks.exam()["levels"].get(item.get("level"), 0.0)
 
 
-def _posterior(rows: list[tuple[float, float, bool]], prior: float) -> tuple[float, float]:
+def _posterior(rows: list[tuple[float, float, bool]], prior: float, prior_sd: float = 1.0) -> tuple[float, float]:
     """Return logistic posterior MAP and Laplace standard deviation."""
     difficulties = np.asarray([row[0] for row in rows], dtype=float)
     weights = np.asarray([row[1] for row in rows], dtype=float)
     outcomes = np.asarray([row[2] for row in rows], dtype=float)
     theta = prior
-    prior_precision = 1.0  # prior variance is 1
+    prior_precision = 1.0 / prior_sd ** 2
     for _ in range(20):
         probabilities = 1 / (1 + np.exp(-np.clip(theta - difficulties, -30, 30)))
         grad = -(theta - prior) * prior_precision + np.sum(weights * (outcomes - probabilities))
@@ -149,7 +149,7 @@ def fit(attempts: list[dict], items: dict | None = None, current_run_id: str | N
     sections = {}
     for section in set(section_rows) | set(tracks.sections()):
         prior = tracks.prior(section)
-        theta, sd = _posterior(section_rows[section], prior)
+        theta, sd = _posterior(section_rows[section], prior, tracks.prior_sd(section))
         sections["sec:" + section] = {"theta": theta, "sd": sd, "n": ns[section]}
     skills = {k: data.copy() for k, data in sections.items()}
     skills.update({k: {"theta": v, "sd": 1 / math.sqrt(1 + nt[k] / 4), "n": nt[k]} for k, v in tag.items()})

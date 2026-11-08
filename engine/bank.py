@@ -35,7 +35,7 @@ def validate_item(x: dict) -> None:
     exam = tracks.exam()
     required = {"id", "section", "mondai", "tier_prior", "level", "stem", "options", "answer", "tags", "source", "verified"}
     if not isinstance(x, dict) or not required <= x.keys() or not any(k.startswith("explanation_") for k in x): raise ValueError("missing item fields")
-    if x["section"] not in tracks.sections() or x["mondai"] not in tracks.blueprint() or x["tier_prior"] not in TIERS or x["level"] not in exam["levels"]: raise ValueError(f"invalid item dimensions: {x.get('id')}")
+    if x["section"] not in tracks.item_sections() or x["mondai"] not in tracks.item_mondai() or x["tier_prior"] not in TIERS or x["level"] not in exam["levels"]: raise ValueError(f"invalid item dimensions: {x.get('id')}")
     n = len(x["options"])
     if n not in exam["options"].get(x["mondai"], exam["options"]["default"]) or len(set(x["options"])) != n or x["answer"] not in range(1, n + 1): raise ValueError(f"invalid options/answer: {x['id']}")
     if not isinstance(x["tags"], list): raise ValueError(f"invalid tags: {x['id']}")
