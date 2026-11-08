@@ -12,6 +12,7 @@ import sys
 import tarfile
 import tempfile
 import time
+import urllib.request
 from datetime import date, timedelta
 from pathlib import Path, PurePosixPath
 
@@ -29,6 +30,8 @@ PULLED = ("learners.json", "learners", "logs")
 FORBIDDEN = ("learners", "learners.json", "logs")
 KEEP_DAYS = 30
 BACKUP = REPO / "backup" / "pi"
+GUARDED = ("tools/pi.py", "tools/export_app.py", "server.py", "deploy")
+BUILD_LINE = "build {build}"
 
 
 def say(*parts):
@@ -133,12 +136,12 @@ class Folder:
                 ok = (app / "Dockerfile").is_file()
             except (py_compile.PyCompileError, FileNotFoundError):
                 ok = False
-            build = (app / "BUILD").read_text(encoding="utf-8").strip() if (app / "BUILD").is_file() else "dev"
+            build = f" build {(app / 'BUILD').read_text(encoding='utf-8').strip()}" if (app / "BUILD").is_file() else ""
             s.update(version=s["store"], state=("started" if s["auto_start"] else "stopped") if ok else "error",
-                     log=s["log"] + (f"{START} 127.0.0.1:8080 as tailscale build {build}\n" if ok and s["auto_start"] else "" if ok else "Traceback: SyntaxError\n"), ok=ok, build=build)
+                     log=s["log"] + (f"{START} 127.0.0.1:8080 as tailscale{build}\n" if ok and s["auto_start"] else "" if ok else "Traceback: SyntaxError\n"), ok=ok, build=build)
         elif args[:2] == ("apps", "start"):
             if s.get("ok"):
-                s.update(state="started", log=s["log"] + f"{START} 127.0.0.1:8080 as tailscale build {s['build']}\n")
+                s.update(state="started", log=s["log"] + f"{START} 127.0.0.1:8080 as tailscale{s['build']}\n")
         elif args[:2] == ("apps", "info"):
             return json.dumps({"result": "ok", "data": {"state": s["state"], "version": s["version"]}})
         elif args[:2] == ("apps", "logs"):
@@ -149,10 +152,24 @@ class Folder:
         return ""
 
 
+    def health(self) -> bool | None:
+        return self._state().get("state") == "started" and bool(self._state().get("ok"))
+
+
 class Ssh:
-    def __init__(self, host: str, user: str, key: Path, runner=subprocess.run):
+    def __init__(self, host: str, user: str, key: Path, runner=subprocess.run, health_url: str | None = None):
         self.base = ["ssh", "-i", str(key), "-o", "IdentitiesOnly=yes", "-o", "BatchMode=yes", f"{user}@{host}"]
         self.runner = runner
+        self.health_url = health_url
+
+    def health(self) -> bool | None:
+        if not self.health_url:
+            return None
+        try:
+            with urllib.request.urlopen(self.health_url, timeout=5) as r:
+                return r.status == 200 and r.read().strip() == b"ok"
+        except OSError:
+            return False
 
     def sh(self, script: str, data: bytes | None = None) -> bytes:
         done = self.runner(self.base + [script], input=data, capture_output=True)
@@ -195,7 +212,7 @@ class DryRun:
         self.target = target
 
     def __getattr__(self, name):
-        if name in ("read", "sizes", "get"):
+        if name in ("read", "sizes", "get", "health"):
             return getattr(self.target, name)
         if name == "ha":
             return self._ha
@@ -222,19 +239,43 @@ def info(target) -> dict:
         return {}
 
 
-def started(target, marker: str, wait_s: float, poll_s: float) -> bool:
+def git_show(sha: str, path: str) -> str:
+    return subprocess.run(["git", "-C", str(REPO), "show", f"{sha}:{path}"], capture_output=True, check=True).stdout.decode("utf-8")
+
+
+def modern(sha: str) -> bool:
+    try:
+        return BUILD_LINE in git_show(sha, "server.py")
+    except subprocess.CalledProcessError:
+        return False
+
+
+def dirty(repo: Path = REPO) -> list[str]:
+    out = subprocess.run(["git", "-C", str(repo), "status", "--porcelain", "--", *GUARDED], capture_output=True, check=True).stdout.decode("utf-8")
+    return [line[3:] for line in out.splitlines() if line.strip()]
+
+
+def started(target, marker: str | None, wait_s: float, poll_s: float) -> bool:
     deadline = time.monotonic() + wait_s
-    line = f"build {marker}"
+    if marker is None:
+        say("this commit prints no build line: accepting state started plus /healthz")
     while True:
         state = info(target).get("state")
-        if state == "started" and line in target.ha("apps", "logs", SLUG):
+        if state == "started" and marker is not None and f"build {marker}" in target.ha("apps", "logs", SLUG):
             return True
+        if state == "started" and marker is None:
+            healthy = target.health()
+            if healthy is None:
+                say("WARNING: /healthz not checked (no --health-url); accepting state started alone")
+                return True
+            if healthy:
+                return True
         if state == "error" or time.monotonic() >= deadline:
             return False
         time.sleep(poll_s)
 
 
-def install(target, data: bytes, sha: str, marker: str, wait_s: float, poll_s: float, dry: bool) -> bool:
+def install(target, data: bytes, sha: str, marker: str | None, wait_s: float, poll_s: float, dry: bool) -> bool:
     installed = info(target).get("version")
     target.replace_dir(data, APP)
     target.write(APP / ".tag", sha + "\n")
@@ -242,31 +283,36 @@ def install(target, data: bytes, sha: str, marker: str, wait_s: float, poll_s: f
     new = version_of(member(data, "config.yaml"))
     target.ha("apps", "update" if new != installed else "rebuild", SLUG)
     if dry:
-        say(f"dry-run: would wait for '{START} … build {marker}'")
+        say(f"dry-run: would wait for '{START} … build {marker}'" if marker else "dry-run: would wait for state started and /healthz")
         return True
     if info(target).get("state") != "started":
         target.ha("apps", "start", SLUG)
     return started(target, marker, wait_s, poll_s)
 
 
-def deploy(target, ref: str, source=build, wait_s=180.0, poll_s=3.0, first=False, pull_into: Path | None = BACKUP, dry=False) -> bool:
+def deploy(target, ref: str, source=build, wait_s=180.0, poll_s=3.0, first=False, pull_into: Path | None = BACKUP, dry=False,
+           allow_old=False, is_modern=modern) -> bool:
     sha = resolve(ref)
     previous = (target.read(APP / ".tag") or "").strip() or None
     if previous is None and not first:
         say("no .tag on the target: run the first deploy with --first")
         return False
+    if not is_modern(sha) and not allow_old:
+        say(f"{sha} predates the build line in the server's start log: refusing (use --allow-old to deploy it with the weaker check)")
+        return False
     if pull_into is not None:
         pull(target, pull_into) if not dry else say("dry-run: pull before deploy")
     say(f"deploy {ref} = {sha} (previous: {previous or 'none'})")
     marker = f"{sha[:12]}-{secrets.token_hex(4)}"
-    if install(target, source(sha, marker), sha, marker, wait_s, poll_s, dry):
+    if install(target, source(sha, marker), sha, marker if is_modern(sha) else None, wait_s, poll_s, dry):
         say(f"deployed {sha}: app started")
         return True
     say(f"deploy {sha} FAILED: the app did not start with build {marker}")
     if previous and previous != sha:
         say(f"rolling back to {previous}")
         back = f"{previous[:12]}-{secrets.token_hex(4)}"
-        say("rolled back" if install(target, source(previous, back), previous, back, wait_s, poll_s, dry) else "ROLLBACK FAILED as well")
+        ok = install(target, source(previous, back), previous, back if is_modern(previous) else None, wait_s, poll_s, dry)
+        say("rolled back" if ok else "ROLLBACK FAILED as well")
     return False
 
 
@@ -317,20 +363,26 @@ def main(argv=None) -> int:
     p.add_argument("--key", default=str(Path.home() / ".ssh" / "jlpt_pi_ed25519"))
     p.add_argument("--target-dir", help="a local folder standing in for the Pi (tests and rehearsals)")
     p.add_argument("--dry-run", action="store_true", help="read from the target but change nothing")
+    p.add_argument("--health-url", default=os.environ.get("JLPT_HEALTH_URL"), help="e.g. https://jlpt.<tailnet>.ts.net/healthz, for commits without the build line")
     sub = p.add_subparsers(dest="command", required=True)
     d = sub.add_parser("deploy")
     d.add_argument("ref")
     d.add_argument("--first", action="store_true", help="the target has no .tag yet: deploy without a rollback target")
     d.add_argument("--no-pull", action="store_true", help="skip the pull of learner data before deploying")
     d.add_argument("--into", default=str(BACKUP))
+    d.add_argument("--allow-old", action="store_true", help="deploy a commit whose server prints no build line (checked by state and /healthz only)")
     sub.add_parser("push-content").add_argument("--home", default=os.environ.get("JLPT_HOME") or str(REPO))
     sub.add_parser("push-audio").add_argument("--audio", default=os.environ.get("JLPT_AUDIO") or str(Path(os.environ.get("JLPT_HOME") or REPO) / "audio"))
     sub.add_parser("pull").add_argument("--into", default=str(BACKUP))
     a = p.parse_args(argv)
-    target = Folder(Path(a.target_dir)) if a.target_dir else Ssh(a.host, a.user, Path(a.key))
+    changed = dirty()
+    if changed:
+        say(f"refusing to run: uncommitted changes in {', '.join(changed)}; the checker and the deployed code must come from commits")
+        return 2
+    target = Folder(Path(a.target_dir)) if a.target_dir else Ssh(a.host, a.user, Path(a.key), health_url=a.health_url)
     target = DryRun(target) if a.dry_run else target
     if a.command == "deploy":
-        return 0 if deploy(target, a.ref, first=a.first, pull_into=None if a.no_pull else Path(a.into), dry=a.dry_run) else 1
+        return 0 if deploy(target, a.ref, first=a.first, pull_into=None if a.no_pull else Path(a.into), dry=a.dry_run, allow_old=a.allow_old) else 1
     if a.command == "push-content":
         push_content(target, Path(a.home))
     elif a.command == "push-audio":

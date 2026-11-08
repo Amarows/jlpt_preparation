@@ -34,8 +34,9 @@ def pi_dir(tmp_path):
     return tmp_path / "pi"
 
 
-def app(server_source: str, marker: str, version: str = "0.2.0") -> bytes:
-    files = {"server.py": server_source, "Dockerfile": "FROM python:3.13-slim\n", "BUILD": marker + "\n", "config.yaml": f'name: x\nversion: "{version}"\nslug: jlpt_portal\n'}
+def app(server_source: str, marker: str | None, version: str = "0.2.0") -> bytes:
+    files = {"server.py": server_source, "Dockerfile": "FROM python:3.13-slim\n", "config.yaml": f'name: x\nversion: "{version}"\nslug: jlpt_portal\n'}
+    files.update({"BUILD": marker + "\n"} if marker else {})
     with io.BytesIO() as buf:
         with tarfile.open(fileobj=buf, mode="w") as tar:
             for name, text in files.items():
@@ -47,15 +48,20 @@ def app(server_source: str, marker: str, version: str = "0.2.0") -> bytes:
 
 
 V1, V2, BROKEN = (pi.resolve(r) for r in ("HEAD~2", "HEAD~1", "HEAD"))
+OLD = pi.resolve("0867b65")
+
+
+def is_modern(sha):
+    return sha != OLD
 
 
 def source(versions=None):
-    code = {V1: "print('v1')\n", V2: "print('v2')\n", BROKEN: "def broken(:\n"}
-    return lambda sha, marker: app(code[sha], marker, (versions or {}).get(sha, "0.2.0"))
+    code = {V1: "print('v1')\n", V2: "print('v2')\n", BROKEN: "def broken(:\n", OLD: "print('old')\n"}
+    return lambda sha, marker: app(code[sha], marker if is_modern(sha) else None, (versions or {}).get(sha, "0.2.0"))
 
 
 def fast(**kw):
-    return {"wait_s": 0, "poll_s": 0, "pull_into": None, **kw}
+    return {"wait_s": 0, "poll_s": 0, "pull_into": None, "is_modern": is_modern, **kw}
 
 
 def test_push_content_never_touches_learner_data(tmp_path, pi_dir):
@@ -241,7 +247,8 @@ def test_ssh_uses_the_key_by_path_and_scoped_commands(tmp_path):
     assert script == "mkdir -p /app_configs/local_jlpt_portal && rm -rf /app_configs/local_jlpt_portal/data/bank && tar -xf - -C /app_configs/local_jlpt_portal"
 
 
-def test_cli_against_a_target_folder(tmp_path, pi_dir, capsys):
+def test_cli_against_a_target_folder(tmp_path, pi_dir, capsys, monkeypatch):
+    monkeypatch.setattr(pi, "dirty", lambda repo=pi.REPO: [])
     audio = write(tmp_path / "audio", {"a.mp3": "a"})
     assert pi.main(["--target-dir", str(pi_dir), "push-audio", "--audio", str(audio)]) == 0
     assert pi.main(["--target-dir", str(pi_dir), "push-audio", "--audio", str(audio)]) == 0
@@ -272,3 +279,50 @@ def test_deploy_over_ssh_reloads_the_store_updates_on_a_new_version_and_starts(t
                   "ha apps info local_jlpt_portal --raw-json", "ha apps start local_jlpt_portal",
                   "ha apps info local_jlpt_portal --raw-json", "ha apps logs local_jlpt_portal"]
     assert any(s.startswith(f"mkdir -p /local_apps/jlpt_portal && cat > /local_apps/jlpt_portal/.tag") for s in scripts)
+
+
+def test_the_build_line_is_detected_from_the_commit_itself():
+    assert not pi.modern("0867b65")
+    assert pi.modern("42a02ff")
+
+
+def test_rollback_to_a_commit_without_the_build_line_passes(pi_dir):
+    target = pi.Folder(pi_dir)
+    assert pi.deploy(target, OLD, source(), **fast(first=True, allow_old=True))
+    assert pi.START in target.ha("apps", "logs", pi.SLUG) and "build" not in target.ha("apps", "logs", pi.SLUG)
+    assert not pi.deploy(target, BROKEN, source(), **fast())
+    assert target.read(pi.APP / ".tag").strip() == OLD
+    assert (pi_dir / "local_apps" / "jlpt_portal" / "server.py").read_text(encoding="utf-8") == "print('old')\n"
+
+
+def test_an_old_build_still_needs_healthz(pi_dir, monkeypatch):
+    target = pi.Folder(pi_dir)
+    monkeypatch.setattr(pi.Folder, "health", lambda self: False)
+    assert not pi.deploy(target, OLD, source(), **fast(first=True, allow_old=True))
+
+
+def test_a_forward_deploy_of_an_old_commit_is_refused(pi_dir):
+    target = pi.Folder(pi_dir)
+    assert pi.deploy(target, V1, source(), **fast(first=True))
+    before = tree(pi_dir)
+    assert not pi.deploy(target, OLD, source(), **fast())
+    assert tree(pi_dir) == before
+
+
+def test_a_dirty_tree_is_refused(tmp_path, pi_dir, monkeypatch, capsys):
+    repo = tmp_path / "repo"
+    write(repo, {"tools/pi.py": "x\n", "server.py": "y\n", "deploy/ha-app/run.sh": "z\n", "notes.txt": "n\n"})
+    git = lambda *a: subprocess.run(["git", "-C", str(repo), *a], check=True, capture_output=True)
+    git("init", "-q")
+    git("add", "-A")
+    git("-c", "user.name=t", "-c", "user.email=t@example.ch", "commit", "-q", "-m", "init")
+    assert pi.dirty(repo) == []
+    (repo / "notes.txt").write_text("changed", encoding="utf-8")
+    assert pi.dirty(repo) == []
+    (repo / "deploy" / "ha-app" / "run.sh").write_text("changed", encoding="utf-8")
+    (repo / "tools" / "pi.py").write_text("changed", encoding="utf-8")
+    assert sorted(pi.dirty(repo)) == ["deploy/ha-app/run.sh", "tools/pi.py"]
+    monkeypatch.setattr(pi, "dirty", lambda repo=pi.REPO: ["tools/pi.py"])
+    before = tree(pi_dir)
+    assert pi.main(["--target-dir", str(pi_dir), "pull", "--into", str(tmp_path / "b")]) == 2
+    assert "refusing to run" in capsys.readouterr().out and tree(pi_dir) == before and not (tmp_path / "b").exists()
