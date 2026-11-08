@@ -6,6 +6,7 @@ from . import paths, tracks
 from .bank import load_bank
 from .model import fit, read_attempts, get_theta, current_attempts, open_mistakes, _timestamp
 from .leitner import target_ms, due as is_due
+from .units import unit_of
 
 REST_DAYS = 3
 
@@ -30,6 +31,10 @@ def build_run(mode="practice", section="mixed", n=20, seed=1):
         wrong=open_mistakes(attempts,items)
         pool=[items[i] for i in wrong if items[i].get("verified") and (items[i]["section"]!="listening" or has_audio(items[i]))]
         selected=list(pool); random.Random(seed).shuffle(selected); selected=selected[:n]
+        return _assemble(mode,selected,pool,n,items,passages)
+    if section.startswith("unit:"):
+        pool=[x for x in items.values() if x.get("verified") and unit_of(x)==section[5:]]
+        selected=list(pool); random.Random(seed).shuffle(selected)
         return _assemble(mode,selected,pool,n,items,passages)
     model=fit(attempts,items)
     pool=[x for x in items.values() if x.get("verified") and (section=="mixed" or x["section"]==section) and (section!="mixed" or x.get("section")!="listening" or has_audio(x))]

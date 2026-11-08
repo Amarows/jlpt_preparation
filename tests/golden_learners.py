@@ -116,3 +116,29 @@ def api():
         files = {str(f.relative_to(home)).replace("\\", "/"): len(f.read_text(encoding="utf-8").splitlines())
                  for d in ("confidential", "learners") if (home / d).exists() for f in sorted((home / d).rglob("*.json*"))}
         return {"calls": log, "files": files}
+
+
+UNIT_ITEMS = {
+    "none": [True, True], "learning": [True, True], "practised": [True, True], "done": [True, True],
+    "relapse": [True, True], "same_day": [True, True], "revised": [True], "unverified_only": [False],
+}
+UNIT_ANSWERS = [
+    ("learning-0", 1, True), ("learning-1", 1, False),
+    ("practised-0", 1, False), ("practised-0", 2, True), ("practised-1", 2, True),
+    ("done-0", 1, True), ("done-1", 1, True), ("done-0", 3, True), ("done-1", 4, False), ("done-1", 5, True),
+    ("relapse-0", 1, True), ("relapse-1", 1, True), ("relapse-0", 2, True), ("relapse-1", 2, True), ("relapse-1", 3, False),
+    ("same_day-0", 1, True), ("same_day-0", 1, True), ("same_day-1", 1, True),
+    ("revised-0", 1, True), ("revised-0", 2, True),
+    ("unverified_only-0", 1, True), ("gone", 1, True),
+]
+
+
+def units():
+    from engine import units as engine
+    ref = "tests/golden_learners_fixture/units/B.json#x"
+    items = {f"{u}-{k}": {"id": f"{u}-{k}", "verified": v, "source": {"batch": f"de-work/unit-{u}", **({"ref": ref} if u == "done" else {})},
+                          **({"revised": "2026-11-03T00:00:00+00:00"} if u == "revised" else {})}
+             for u, flags in UNIT_ITEMS.items() for k, v in enumerate(flags)}
+    items["no-batch"] = {"id": "no-batch", "verified": True, "source": {"kind": "generated"}}
+    attempts = [{"ts": f"2026-11-0{day}T12:00:00+00:00", "item_id": i, "correct": ok} for i, day, ok in UNIT_ANSWERS]
+    return {"units": engine.units(items, attempts), "states": list(engine.STATES)}

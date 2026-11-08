@@ -10,6 +10,7 @@ from engine.explain import explanations, for_item
 from engine.leitner import target_ms
 from engine.mock import assemble, mark_taken, mocks, score
 from engine.simulate import simulate
+from engine.units import units
 
 LOCK=threading.Lock(); RUNS={}; BANKS={}
 OPEN={"/api/learners","/api/login","/api/logout"}
@@ -59,6 +60,7 @@ class Handler(BaseHTTPRequestHandler):
             from engine.report import build_report
             return self.send_json(build_report(bank()[0]))
         if u.path=="/api/mocks": return self.send_json(mocks())
+        if u.path=="/api/units": return self.send_json(units(bank()[0],attempts()))
         if u.path=="/api/run":
             from engine.select import build_run
             mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0]))); mock_id=None

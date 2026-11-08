@@ -1,0 +1,41 @@
+call: tests.golden_learners:units
+expect:
+  units:
+  - id: de-work/unit-done
+    title:
+      de: Ein Produktionsproblem melden
+      ja: 生産上の問題を報告する
+    items: 2
+    known: 2
+    state: done
+  - id: de-work/unit-learning
+    title: {}
+    items: 2
+    known: 1
+    state: learning
+  - id: de-work/unit-none
+    title: {}
+    items: 2
+    known: 0
+    state: not_started
+  - id: de-work/unit-practised
+    title: {}
+    items: 2
+    known: 2
+    state: practised
+  - id: de-work/unit-relapse
+    title: {}
+    items: 2
+    known: 1
+    state: practised
+  - id: de-work/unit-revised
+    title: {}
+    items: 1
+    known: 0
+    state: not_started
+  - id: de-work/unit-same_day
+    title: {}
+    items: 2
+    known: 2
+    state: practised
+  states: [not_started, learning, practised, done]

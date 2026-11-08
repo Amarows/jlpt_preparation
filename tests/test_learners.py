@@ -86,3 +86,28 @@ def test_example_config_is_valid():
     rows = json.loads((Path(__file__).resolve().parents[1] / "learners.example.json").read_text(encoding="utf-8"))["learners"]
     with g.two_learners(rows):
         assert [r["id"] for r in paths.learners()] == ["anna", "yoko"]
+
+
+def test_a_unit_run_holds_exactly_the_units_verified_items():
+    import threading
+    import urllib.request
+    from http.server import ThreadingHTTPServer
+    import server
+    from engine import paths
+    from engine.select import build_run
+    with g.two_learners() as home:
+        rows = json.loads((g.FIXTURE / "de_bank" / "fixture.json").read_text(encoding="utf-8"))
+        unit = [{**x, "id": "u-" + x["id"], "source": {"batch": "de-work/unit-B-v1"}, "verified": k != 0} for k, x in enumerate(rows[:4])]
+        (home / "data" / "tracks" / "de-work" / "bank" / "unit.json").write_text(json.dumps(unit), encoding="utf-8")
+        with paths.as_learner("yoko"):
+            run = build_run("practice", "unit:de-work/unit-B-v1", 10, seed=3)
+        assert sorted(x["id"] for x in run["items"]) == ["u-dw-cloze-1", "u-dw-cloze-2", "u-dw-meaning-2"]
+        server.BANKS.clear()
+        srv = ThreadingHTTPServer(("127.0.0.1", 0), server.Handler)
+        threading.Thread(target=srv.serve_forever, daemon=True).start()
+        try:
+            req = urllib.request.Request(f"http://127.0.0.1:{srv.server_port}/api/units", headers={"Cookie": "learner=yoko"})
+            assert json.loads(urllib.request.urlopen(req).read()) == [{"id": "de-work/unit-B-v1", "title": {}, "items": 3, "known": 0, "state": "not_started"}]
+        finally:
+            srv.shutdown()
+            srv.server_close()
