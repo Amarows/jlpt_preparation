@@ -79,3 +79,10 @@ def test_audio_cannot_reach_outside_the_audio_folder(path):
         finally:
             srv.shutdown()
             srv.server_close()
+
+
+def test_example_config_is_valid():
+    from engine import paths
+    rows = json.loads((Path(__file__).resolve().parents[1] / "learners.example.json").read_text(encoding="utf-8"))["learners"]
+    with g.two_learners(rows):
+        assert [r["id"] for r in paths.learners()] == ["anna", "yoko"]

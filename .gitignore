@@ -20,3 +20,7 @@ tmp*/
 
 # IDE per-user state
 .idea/workspace.xml
+
+# Learners: who studies here and their personal data
+learners.json
+learners/
