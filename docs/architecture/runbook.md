@@ -94,9 +94,14 @@ Placeholders:
    1. Install **Tailscale** from the App Store or Play Store.
    2. Sign in with your Google, Apple or Microsoft account.
    3. Open the invite link and accept it.
-   4. Open `https://jlpt.<tailnet>` and add it to your home screen.
-   5. Tailscale has to be switched on while you practise.
-2. **[ALEX]** After she accepts, read her **login name** under Machines → `jlpt` → Sharing. It may be an Apple relay address.
+   4. **Android only:** Settings → Network & internet → **Private DNS** → **Automatic** or **Off**. On Samsung the path is Connections → More connection settings → Private DNS.
+      - A fixed Private DNS hostname bypasses Tailscale's DNS. The browser then shows `NS_ERROR_OFFLINE` or "site can't be reached", and Android warns "Private DNS server cannot be accessed". This happened with Anna's phone on 2026-11-08.
+      - If the setting is greyed out, the employer manages it: stop and tell Alex.
+   5. On a phone with a work profile, use a browser **without** the briefcase badge. Work-profile apps do not go through Tailscale, which runs in the personal profile.
+   6. In the Tailscale app, **Use Tailscale DNS** must be on.
+   7. Open `https://jlpt.<tailnet>`. "Not registered for this portal" is expected until step 3. After that, add the page to your home screen.
+   8. Tailscale has to be switched on while you practise. On Android: Settings → VPN → Tailscale → **Always-on VPN**.
+2. **[ALEX]** Read her **login email** at the top of the Tailscale app on her phone. It may be an Apple relay address. The portal does not log the login of a refused visitor, so it cannot be taken from the access log.
 3. **[CLAUDE]** Add that login to Yoko's `emails` in `learners.json` on the Pi.
 4. **[CHECK]** Yoko opens the portal and sees her own track. The access log shows her login.
 
