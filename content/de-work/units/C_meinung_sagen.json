@@ -2,6 +2,7 @@
   "unit": "C",
   "title_de": "In der Sitzung die Meinung sagen",
   "title_ja": "会議で意見を言う",
+  "title_en": "Giving your opinion in a meeting",
   "status": "approved",
   "approved_by": "Alex",
   "approved_on": "2026-11-08",
@@ -15,10 +16,12 @@
     "blind_check": "Planned: Codex CLI gpt-6-luna; both gpt-6-luna and gpt-5.6-terra were out of quota until 2026-11-18. Stand-in: a fresh Claude Sonnet subagent that read only a blind file (id, mondai, stem, options; no key, no explanations), chose an answer per item and flagged items with more than one acceptable option, no correct option, unnatural German or a wrong Japanese option. Result for units B+C: 33/33 answers matched the key; 1 item flagged (dw-c-pc-ansicht: distractor 'Ich habe die Ansicht, dass …' judged acceptable German). Fix: replaced by 'Ich bin mir nicht sicher, ob wir die Mischzeit verlängern sollten.' Defect rate 1/33 = 3 %. The fixed item was not re-solved.",
     "approval": "Alex approved the entry list and the house style on 2026-11-08 (relayed by the PO). Item wording itself was not reviewed by Alex or Yoko.",
     "open": [
+      "Alex: approve the -en meaning_choice items, and set the Japanese-option ones to verified: false.",
       "Re-run the blind solve with Codex after 2026-11-18.",
       "Check CEFR levels against the Goethe B1 Wortliste once obtained.",
       "Yoko's review: words she already knows, words her plant actually uses."
-    ]
+    ],
+    "english": "2026-11-08, Alex's decision: portal in English. explanation_en and distractor_notes_en were added to this unit's items, translated by Claude Opus 5.5 and checked pair by pair by a Claude Sonnet subagent (one fix, in dw-b-pc-aufgefallen, to both languages). Stem, options and answer are unchanged. 2 English-option meaning_choice items (-en) were added as verified: false; Sonnet's blind solve matched 2/2 with no flags. Alex decides whether to approve them and to retire the Japanese-option versions."
   },
   "entries": [
     {
@@ -29,7 +32,8 @@
       "ja": "私の意見では～",
       "en": "In my opinion …",
       "cefr": "B1",
-      "note_ja": "後ろの動詞はすぐ2番目に来る（Meiner Meinung nach liegt …）。"
+      "note_ja": "後ろの動詞はすぐ2番目に来る（Meiner Meinung nach liegt …）。",
+      "note_en": "The verb comes right after it, in second position (Meiner Meinung nach liegt …)."
     },
     {
       "id": "ansicht",

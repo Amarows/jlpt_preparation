@@ -51,7 +51,23 @@ How Yoko's German work content is made. The general method is described here. Wh
 - After approval, that unit's items are set to `verified: true` and the portal serves them.
 - Units B and C were approved by Alex on 2026-11-08, relayed by the PO.
 
+## 8. English (Alex's decision, 2026-11-08)
+- Why: Alex wants Yoko's portal fully in English, including explanations, because Yoko reads English. Japanese is kept as a second language.
+- From now on, every new de-work item carries `explanation_en` and `explanation_ja`, plus `distractor_notes` (Japanese) and `distractor_notes_en`. The format was the PO's choice (option a) and is documented in `docs/SCHEMA.md`.
+- How it was translated: Claude Opus 5.5 translated all 33 `explanation_ja` and all 99 Japanese distractor notes by hand, keeping the content and the German forms unchanged.
+- How it was checked:
+  - A fresh Claude Sonnet subagent compared all 131 JA/EN pairs (33 explanations and 98 unique notes) for meaning and for correct German.
+  - It found 1 problem: the Japanese explanation of `dw-b-pc-aufgefallen` called *mir* the subject. Both versions now say that the dass clause is the subject and the person who noticed is in the dative (*mir*).
+  - A field diff against a copy of the bank taken before the change shows that only `explanation_en`, `explanation_ja` (that one item), `distractor_notes_en` and `options_lang` changed. Stem, options, answer and `verified` are identical.
+- `options_lang: "ja"` was added to the 9 `meaning_choice` items whose options are Japanese.
+- English-option versions: 9 new items `dw-<unit>-mc-<entry>-en`, in batches `de-work/unit-B-en-v1` and `de-work/unit-C-en-v1`, `verified: false`.
+  - Same stem and same distractor concepts as the Japanese version, with the options translated to English and the answer moved to a different position.
+  - The explanations and notes are reused from the Japanese item.
+  - Blind check by Sonnet: 9/9 answers matched the key, no flags (defect rate 0 %).
+- Unit and topic files: English titles (`title_en`) and the one missing English note (`note_en`) were added. Every entry already had `en`.
+
 ## Open
+- Alex decides: approve the 9 English `meaning_choice` items, and set the 9 Japanese-option ones to `verified: false` so that Yoko is not drilled on the same word twice.
 - Run the blind solve again with Codex after 2026-11-18, for units B and C.
 - Check the CEFR levels against the Goethe B1 Wortliste.
 - Yoko's review of the topics and the entry lists.

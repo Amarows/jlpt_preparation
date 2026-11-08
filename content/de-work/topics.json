@@ -14,6 +14,7 @@
       "id": "A",
       "title_de": "Den Mischprozess erklären",
       "title_ja": "混合プロセスを説明する",
+      "title_en": "Explaining the mixing process",
       "situation": "Yoko explains to a new colleague, an operator or an auditor how a powder mix is made: which powders, which lubricant, how long it is mixed, what is checked on each batch.",
       "why": "This is her core responsibility; she has to explain the method and process in German every week.",
       "core_words": [
@@ -33,6 +34,7 @@
       "id": "B",
       "title_de": "Ein Produktionsproblem melden",
       "title_ja": "生産上の問題を報告する",
+      "title_en": "Reporting a production problem",
       "situation": "Something is wrong in production (density out of tolerance, cracks after sintering, more scrap); Yoko reports it to the shift leader or in the morning meeting and asks to look into it.",
       "why": "Discussing the causes of production errors is one of her named goals; a clear report in German decides how fast a problem is fixed.",
       "core_words": [
@@ -51,6 +53,7 @@
       "id": "C",
       "title_de": "In der Sitzung die Meinung sagen",
       "title_ja": "会議で意見を言う",
+      "title_en": "Giving your opinion in a meeting",
       "situation": "In a meeting Yoko gives her opinion, agrees, disagrees politely, raises concerns and asks a colleague for theirs.",
       "why": "She has to give her opinion and defend her methodology; polite but clear disagreement is hard in a second language.",
       "core_words": [
@@ -69,6 +72,7 @@
       "id": "D",
       "title_de": "Eine QS-Verbesserung vorschlagen",
       "title_ja": "品質保証の改善を提案する",
+      "title_en": "Proposing a QA improvement",
       "situation": "Yoko proposes a change to the quality process: more samples per batch, a new test in the inspection plan, a corrective action after a deviation.",
       "why": "Improving the QA process is part of her job; proposals need the right nouns and the polite conditional (wir könnten, es wäre sinnvoll).",
       "core_words": [
@@ -86,6 +90,7 @@
       "id": "E",
       "title_de": "Schweizerdeutsch bei der Arbeit verstehen",
       "title_ja": "職場のスイスドイツ語を聞き取る",
+      "title_en": "Understanding Swiss German at work",
       "situation": "Colleagues speak dialect at the coffee break, on the shop floor and in short phone calls; Yoko recognises the frequent words and answers in Standard German.",
       "why": "Listening is her third goal and Winterthur colleagues speak Züritüütsch; she does not need to speak it, only to understand it.",
       "core_words": [
@@ -105,6 +110,7 @@
       "id": "F",
       "title_de": "Pressen und Sintern beschreiben",
       "title_ja": "プレスと焼結を説明する",
+      "title_en": "Describing pressing and sintering",
       "situation": "Yoko talks with the press and furnace teams about what happens to her mix after mixing: compaction, green part, sintering atmosphere, shrinkage.",
       "why": "Many production errors she must discuss start or show up in pressing and sintering, so she needs the words of the next process steps.",
       "core_words": [
@@ -122,6 +128,7 @@
       "id": "G",
       "title_de": "Arbeitsalltag: Übergabe, Termine, kurze E-Mails",
       "title_ja": "日常業務：引き継ぎ・予定・短いメール",
+      "title_en": "Everyday work: handover, appointments, short e-mails",
       "situation": "Shift handover, moving an appointment, a short e-mail to the lab or the supplier, asking for a test result.",
       "why": "Everyday work German she uses daily; it makes the specialist units usable in real conversations.",
       "core_words": [
