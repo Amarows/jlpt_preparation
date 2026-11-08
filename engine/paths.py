@@ -44,6 +44,24 @@ def validate(rows: list[dict]) -> None:
     data = [under_home(r["data"]) for r in rows]
     if len(set(ids)) != len(ids) or len(set(data)) != len(data):
         raise ValueError("learners.json: ids and data folders must be unique")
+    emails = [e for r in rows for e in _emails(r.get("emails", []), r["id"])]
+    if len(set(emails)) != len(emails):
+        raise ValueError("learners.json: an email belongs to more than one learner")
+
+
+def _emails(values, owner: str) -> list[str]:
+    if not isinstance(values, list) or not all(isinstance(e, str) and "@" in e for e in values):
+        raise ValueError(f"learners.json: emails must be a list of addresses: {owner}")
+    return [e.strip().lower() for e in values]
+
+
+def admins() -> set[str]:
+    f = HOME / "learners.json"
+    return set(_emails(json.loads(f.read_text(encoding="utf-8")).get("admins", []), "admins")) if f.exists() else set()
+
+
+def by_email(email: str) -> dict | None:
+    return next((r for r in learners() if email in _emails(r.get("emails", []), r["id"])), None)
 
 
 def find(learner_id) -> dict | None:
@@ -72,6 +90,8 @@ def __getattr__(name):
     if name == "BANK":
         from . import tracks
         return HOME / tracks.current()["bank"]
+    if name == "AUDIO":
+        return Path(os.environ["JLPT_AUDIO"]).expanduser().resolve() if os.environ.get("JLPT_AUDIO") else (HOME / "audio").resolve()
     if name == "CONFIDENTIAL":
         return HOME / learner()["data"]
     if name in FILES:
@@ -84,3 +104,12 @@ def under_home(path: str | Path) -> Path:
     if p != HOME and HOME not in p.parents:
         raise ValueError("path escapes JLPT_HOME")
     return p
+
+
+def audio_file(rel: str) -> Path | None:
+    rel = str(rel).replace("\\", "/")
+    if not rel.startswith("audio/"):
+        return None
+    root = __getattr__("AUDIO")
+    p = (root / rel[6:]).resolve()
+    return p if root in p.parents else None

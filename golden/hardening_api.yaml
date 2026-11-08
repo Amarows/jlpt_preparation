@@ -1,0 +1,348 @@
+call: tests.golden_hardening:api
+expect:
+  calls:
+  - request: GET /healthz
+    sent: {}
+    as: null
+    status: 200
+    headers:
+      Content-Type: text/plain; charset=utf-8
+    body: ok
+  - request: GET /api/me
+    sent: {}
+    as: null
+    status: 401
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: login required
+  - request: GET /api/me
+    sent: {}
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      learner:
+        id: yoko
+        name: Yoko
+        track: de-work
+        ui: ja
+        explain: ja
+      track:
+        id: de-work
+        title: Deutsch für die Arbeit
+        lang: de
+        date: '2027-03-31'
+        mocks: false
+        explain: [ja]
+        features: [switch_learner]
+        sections:
+        - id: words
+          name:
+            en: Words
+            ja: 単語
+        - id: phrases
+          name:
+            en: Phrases
+            ja: フレーズ
+  - request: GET /web/index.html
+    sent: {}
+    as: null
+    status: 200
+    headers:
+      Content-Type: text/html
+    body:
+      bytes: 2698
+  - request: GET /audio/clip.mp3
+    sent: {}
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+    body:
+      bytes: 2048
+  - request: GET /audio/../learners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/%2e%2e/learners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/..%2flearners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/..%5clearners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/../confidential/attempts.jsonl
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/%2e%2e/%2e%2e/server.py
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=0-9
+    as: yoko
+    status: 206
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+      Content-Range: bytes 0-9/2048
+    body:
+      bytes: 10
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=-5
+    as: yoko
+    status: 206
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+      Content-Range: bytes 2043-2047/2048
+    body:
+      bytes: 5
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=5-
+    as: yoko
+    status: 206
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+      Content-Range: bytes 5-2047/2048
+    body:
+      bytes: 2043
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=abc
+    as: yoko
+    status: 416
+    headers:
+      Cache-Control: private, no-store
+      Content-Range: bytes */2048
+    body:
+      bytes: 0
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=99999999-
+    as: yoko
+    status: 416
+    headers:
+      Cache-Control: private, no-store
+      Content-Range: bytes */2048
+    body:
+      bytes: 0
+  - request: GET /audio/clip.mp3
+    sent:
+      Range: bytes=9-2
+    as: yoko
+    status: 416
+    headers:
+      Cache-Control: private, no-store
+      Content-Range: bytes */2048
+    body:
+      bytes: 0
+  - request: GET /api/run?mode=practice&section=mixed&n=abc
+    sent: {}
+    as: yoko
+    status: 400
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: invalid n
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+    as: null
+    status: 400
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: invalid length
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+      Content-Length: x
+    as: null
+    status: 400
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: invalid length
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+      Content-Length: '70000'
+    as: null
+    status: 413
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: body too large
+  - request: POST /api/logout
+    sent:
+      Content-Type: text/plain
+      Content-Length: '2'
+    as: null
+    status: 403
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: forbidden
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+      Content-Length: '2'
+      Origin: https://evil.example
+    as: null
+    status: 403
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: forbidden
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+      Content-Length: '2'
+      Origin: http://127.0.0.1:<port>
+    as: null
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+      Set-Cookie: learner=; Path=/; Max-Age=0; SameSite=Lax; HttpOnly
+    body:
+      ok: true
+  - request: POST /api/logout
+    sent:
+      Content-Type: application/json
+      Content-Length: '5'
+    as: null
+    status: 400
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: invalid JSON
+  - request: POST /api/answer
+    sent:
+      Content-Type: application/json
+      Content-Length: '78'
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      ok: true
+      answer: 1
+      explanation_en: null
+      explanation_ja: プレスの前に粉末をよく混ぜる（mischen）ので gemischt です。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: POST /api/answer
+    sent:
+      Content-Type: application/json
+      Content-Length: '78'
+    as: anna
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: unknown run/item
+  - request: POST /api/finish
+    sent:
+      Content-Type: application/json
+      Content-Length: '28'
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      score: 1
+      answered:
+      - 1
+      - null
+  - request: GET /api/me
+    sent: {}
+    as: yoko
+    status: 500
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: application/json; charset=utf-8
+    body:
+      error: server error
+      id: <random>
+  open_runs:
+    after_start: [r-000000000000.json]
+    after_finish: []
+  access_log:
+    lines: 31
+    fields: [as_learner, email, method, ms, path, status, ts]
+    sample:
+      email: null
+      as_learner: yoko
+      method: GET
+      path: /api/me
+      status: 200
+  errors_log:
+    tracebacks: 1
+    mentions_json: true

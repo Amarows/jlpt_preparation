@@ -1,0 +1,17 @@
+call: tests.golden_hardening:startup
+expect:
+  default:
+    starts: true
+    bind: 127.0.0.1
+  local_lan:
+    starts: false
+    message: JLPT_AUTH=local only binds a loopback address, not '0.0.0.0'
+  local_localhost:
+    starts: true
+    bind: localhost
+  access_without_settings:
+    starts: false
+    message: JLPT_AUTH=access needs JLPT_ACCESS_TEAM and JLPT_ACCESS_AUD
+  unknown_mode:
+    starts: false
+    message: JLPT_AUTH must be local or access, not 'open'

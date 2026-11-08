@@ -1,0 +1,48 @@
+call: tests.golden_hardening:audio_root
+expect:
+  calls:
+  - request: GET /audio/elsewhere.mp3
+    sent: {}
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+    body:
+      bytes: 11
+  - request: GET /audio/clip.mp3
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/../learners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/../../home/learners.json
+    sent: {}
+    as: yoko
+    status: 404
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: text/html;charset=utf-8
+    body:
+      bytes: 330
+  - request: GET /audio/%2e%2e/audio/elsewhere.mp3
+    sent: {}
+    as: yoko
+    status: 200
+    headers:
+      Cache-Control: private, no-store
+      Content-Type: audio/mpeg
+    body:
+      bytes: 11

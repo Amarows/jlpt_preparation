@@ -21,7 +21,8 @@ def blend(xs, n=None):
     return out
 
 def has_audio(x):
-    return bool(x.get("audio")) and paths.under_home(x["audio"]["file"]).is_file()
+    f=paths.audio_file(x["audio"]["file"]) if x.get("audio") else None
+    return bool(f) and f.is_file()
 
 def build_run(mode="practice", section="mixed", n=20, seed=1):
     """Choose a no-duplicate run with adaptive bucket proportions."""

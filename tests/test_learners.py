@@ -49,7 +49,7 @@ def test_a_single_learner_needs_no_login():
     import server
     with g.two_learners(g.LEARNERS[1:]):
         handler = type("H", (), {"headers": {}})()
-        assert server.learner_id(handler) == "yoko"
+        assert server.who(handler) == {"email": None, "learner_id": "yoko", "admin": False}
 
 
 @pytest.mark.parametrize("name", sorted(g.INVALID))
@@ -113,3 +113,22 @@ def test_a_unit_run_holds_exactly_the_units_verified_items():
         finally:
             srv.shutdown()
             srv.server_close()
+
+
+def test_an_email_belongs_to_one_learner():
+    from engine import paths
+    rows = [{**g.LEARNERS[0], "emails": ["a@example.ch"]}, {**g.LEARNERS[1], "emails": ["A@example.ch"]}]
+    with g.two_learners(rows):
+        with pytest.raises(ValueError, match="more than one learner"):
+            paths.learners()
+
+
+def test_under_access_every_route_but_healthz_needs_an_identity(monkeypatch):
+    from tests.golden_hardening import _call, server
+    monkeypatch.setenv("JLPT_AUTH", "access")
+    monkeypatch.setenv("JLPT_ACCESS_TEAM", "home")
+    monkeypatch.setenv("JLPT_ACCESS_AUD", "aud")
+    with g.two_learners(), server() as port:
+        calls = {p: _call(port, "GET", p, None, {"Cf-Access-Jwt-Assertion": "not-a-jwt"} if p == "/api/status" else None, "anna") for p in ("/healthz", "/", "/web/app.js", "/api/me", "/api/status", "/audio/clip.mp3")}
+    assert {p: c["status"] for p, c in calls.items()} == {"/healthz": 200, "/": 403, "/web/app.js": 403, "/api/me": 403, "/api/status": 403, "/audio/clip.mp3": 403}
+    assert calls["/"]["body"] == "Not registered for this portal – ask Alex"
