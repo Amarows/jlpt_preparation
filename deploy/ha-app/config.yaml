@@ -1,0 +1,26 @@
+name: JLPT portal
+version: "0.1.0"
+slug: jlpt_portal
+description: Study portal for the learners in learners.json, reached only through Cloudflare Tunnel and Access.
+arch:
+  - aarch64
+init: false
+startup: application
+boot: auto
+hassio_api: false
+homeassistant_api: false
+host_network: false
+map:
+  - type: addon_config
+    read_only: false
+    path: /config
+  - type: media
+    read_only: true
+options:
+  access_team: ""
+  access_aud: ""
+  origin: ""
+schema:
+  access_team: str
+  access_aud: str
+  origin: str
