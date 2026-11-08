@@ -60,7 +60,7 @@ class Handler(BaseHTTPRequestHandler):
             from engine.report import build_report
             return self.send_json(build_report(bank()[0]))
         if u.path=="/api/mocks": return self.send_json(mocks())
-        if u.path=="/api/units": return self.send_json(units(bank()[0],attempts()))
+        if u.path=="/api/units": return self.send_json(units(bank()[0],attempts()) if tracks.current().get("units") else [])
         if u.path=="/api/run":
             from engine.select import build_run
             mode=q.get("mode",["practice"])[0]; section=q.get("section",["mixed"])[0]; n=max(1,min(100,int(q.get("n",[20])[0]))); mock_id=None

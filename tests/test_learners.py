@@ -108,6 +108,8 @@ def test_a_unit_run_holds_exactly_the_units_verified_items():
         try:
             req = urllib.request.Request(f"http://127.0.0.1:{srv.server_port}/api/units", headers={"Cookie": "learner=yoko"})
             assert json.loads(urllib.request.urlopen(req).read()) == [{"id": "de-work/unit-B-v1", "title": {}, "items": 3, "known": 0, "state": "not_started"}]
+            req = urllib.request.Request(f"http://127.0.0.1:{srv.server_port}/api/units", headers={"Cookie": "learner=anna"})
+            assert json.loads(urllib.request.urlopen(req).read()) == []
         finally:
             srv.shutdown()
             srv.server_close()
