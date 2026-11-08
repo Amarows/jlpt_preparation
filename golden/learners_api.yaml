@@ -1,0 +1,937 @@
+call: tests.golden_learners:api
+expect:
+  calls:
+  - request: /api/learners
+    as: null
+    sent: null
+    status: 200
+    body:
+    - id: anna
+      name: Anna
+      ui: en
+    - id: yoko
+      name: Yoko
+      ui: ja
+  - request: /api/status
+    as: null
+    sent: null
+    status: 401
+    body:
+      error: login required
+  - request: /api/me
+    as: null
+    sent: null
+    status: 401
+    body:
+      error: login required
+  - request: /api/me
+    as: nobody
+    sent: null
+    status: 401
+    body:
+      error: login required
+  - request: /api/login
+    as: null
+    sent:
+      learner: nobody
+    status: 404
+    body:
+      error: unknown learner
+  - request: /api/login
+    as: null
+    sent:
+      learner: yoko
+    status: 200
+    body:
+      ok: true
+      learner:
+        id: yoko
+        name: Yoko
+        track: de-work
+        ui: ja
+        explain: ja
+    cookie: learner=yoko; Path=/; Max-Age=31536000; SameSite=Lax; HttpOnly
+  - request: /api/me
+    as: yoko
+    sent: null
+    status: 200
+    body:
+      learner:
+        id: yoko
+        name: Yoko
+        track: de-work
+        ui: ja
+        explain: ja
+      track:
+        id: de-work
+        title: Deutsch für die Arbeit
+        lang: de
+        date: '2027-03-31'
+        mocks: false
+        explain: [ja]
+        sections:
+        - id: words
+          name:
+            en: Words
+            ja: 単語
+        - id: phrases
+          name:
+            en: Phrases
+            ja: フレーズ
+  - request: /api/status
+    as: yoko
+    sent: null
+    status: 200
+    body:
+      updated: '2026-11-08'
+      p_pass: 0.0331
+      p_pass_ema: 0.0331
+      band80: [0.028, 0.042]
+      trend: flat
+      p_words_section: 0.1842
+      p_phrases_section: 0.1768
+      exp_score:
+        words: 44.8285
+        phrases: 44.8035
+      skills:
+        sec:phrases:
+          theta: 0.0
+          sd: 1.0
+          n: 0
+        sec:words:
+          theta: 0.0
+          sd: 1.0
+          n: 0
+      speed: {}
+      mastered:
+        count: 0
+        by_section: {}
+      days_left: 143
+      history: []
+      ema_history: []
+  - request: /api/mocks
+    as: yoko
+    sent: null
+    status: 200
+    body: []
+  - request: /api/run?mode=practice&section=mixed&n=6
+    as: yoko
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000200000
+      mode: practice
+      time_limit_ms: null
+      parts: null
+      items:
+      - id: dp-phrase-1
+        section: phrases
+        mondai: phrase_choice
+        tier_prior: medium
+        level: B1
+        stem: 原因を伝えたいとき：
+        options:
+        - Der Fehler liegt an der Feuchtigkeit des Pulvers.
+        - Ich habe heute frei.
+        - Wo ist die Kantine?
+        - Das Wetter ist schön.
+        tags: ['phrase:liegt an']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 30000
+      - id: dw-cloze-2
+        section: words
+        mondai: cloze
+        tier_prior: hard
+        level: B2
+        stem: Die Dichte der Grünlinge ist zu ( ).
+        options: [laut, niedrig, schnell, spät]
+        tags: ['word:Dichte']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 60000
+      - id: dp-reply-1
+        section: phrases
+        mondai: reply_choice
+        tier_prior: easy
+        level: A2
+        stem: Warum ist die Charge 42 gesperrt?
+        options: [Um acht Uhr., 'Ja, gerne.', Weil die Härte nicht stimmt., In Halle 3.]
+        tags: ['phrase:weil']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 15000
+      - id: dw-meaning-2
+        section: words
+        mondai: meaning_choice
+        tier_prior: medium
+        level: B1
+        stem: die Mischung
+        options: [圧縮, 混合物, 焼結, 検査]
+        tags: ['word:Mischung']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 20000
+      - id: dw-cloze-1
+        section: words
+        mondai: cloze
+        tier_prior: medium
+        level: B1
+        stem: Das Pulver wird vor dem Pressen gut ( ).
+        options: [gemischt, gesintert, verpackt, gemessen]
+        tags: ['word:mischen']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 30000
+      - id: dw-meaning-1
+        section: words
+        mondai: meaning_choice
+        tier_prior: easy
+        level: A2
+        stem: der Ausschuss
+        options: [不良品, 在庫, 納期, 原料]
+        tags: ['word:Ausschuss']
+        source:
+          kind: generated
+          ref: fixture
+        verified: true
+        target_ms: 10000
+      passages: {}
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dp-phrase-1
+      choice: 1
+      ms: 4000
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 1
+      explanation_en: null
+      explanation_ja: 「〜が原因だ」は liegt an + 3格 で言います。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dw-cloze-2
+      choice: 2
+      ms: 4500
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: null
+      explanation_ja: 密度（Dichte）は高い・低い（hoch / niedrig）で表します。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dp-reply-1
+      choice: 1
+      ms: 5000
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 3
+      explanation_en: null
+      explanation_ja: Warum（なぜ）には Weil（〜だから）で答えます。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dw-meaning-2
+      choice: 2
+      ms: 5500
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: null
+      explanation_ja: mischen（混ぜる）から来た名詞で、混合物という意味です。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dw-cloze-1
+      choice: 1
+      ms: 6000
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 1
+      explanation_en: null
+      explanation_ja: プレスの前に粉末をよく混ぜる（mischen）ので gemischt です。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: yoko
+    sent:
+      run_id: r-000000200000
+      item_id: dw-meaning-1
+      choice: 2
+      ms: 6500
+      flag: none
+    status: 200
+    body:
+      ok: true
+      answer: 1
+      explanation_en: null
+      explanation_ja: Ausschuss は規格外で使えない製品、つまり不良品です。
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    as: anna
+    sent:
+      run_id: r-000000200000
+      item_id: dw-meaning-1
+      choice: 1
+    status: 404
+    body:
+      error: unknown run/item
+  - request: /api/finish
+    as: anna
+    sent:
+      run_id: r-000000200000
+    status: 404
+    body:
+      error: unknown run
+  - request: /api/finish
+    as: yoko
+    sent:
+      run_id: r-000000200000
+    status: 200
+    body:
+      score: 4
+      total_ms: 31500
+      p_pass_before: 0.0331
+      p_pass_after: 0.0339
+      mock: null
+      items:
+      - stem: 原因を伝えたいとき：
+        options:
+        - Der Fehler liegt an der Feuchtigkeit des Pulvers.
+        - Ich habe heute frei.
+        - Wo ist die Kantine?
+        - Das Wetter ist schön.
+        choice: 1
+        answer: 1
+        correct: true
+        ms: 4000
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: 「〜が原因だ」は liegt an + 3格 で言います。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dp-phrase-1
+        section: phrases
+      - stem: Die Dichte der Grünlinge ist zu ( ).
+        options: [laut, niedrig, schnell, spät]
+        choice: 2
+        answer: 2
+        correct: true
+        ms: 4500
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: 密度（Dichte）は高い・低い（hoch / niedrig）で表します。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dw-cloze-2
+        section: words
+      - stem: Warum ist die Charge 42 gesperrt?
+        options: [Um acht Uhr., 'Ja, gerne.', Weil die Härte nicht stimmt., In Halle 3.]
+        choice: 1
+        answer: 3
+        correct: false
+        ms: 5000
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: Warum（なぜ）には Weil（〜だから）で答えます。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dp-reply-1
+        section: phrases
+      - stem: die Mischung
+        options: [圧縮, 混合物, 焼結, 検査]
+        choice: 2
+        answer: 2
+        correct: true
+        ms: 5500
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: mischen（混ぜる）から来た名詞で、混合物という意味です。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dw-meaning-2
+        section: words
+      - stem: Das Pulver wird vor dem Pressen gut ( ).
+        options: [gemischt, gesintert, verpackt, gemessen]
+        choice: 1
+        answer: 1
+        correct: true
+        ms: 6000
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: プレスの前に粉末をよく混ぜる（mischen）ので gemischt です。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dw-cloze-1
+        section: words
+      - stem: der Ausschuss
+        options: [不良品, 在庫, 納期, 原料]
+        choice: 2
+        answer: 1
+        correct: false
+        ms: 6500
+        slow: false
+        flag: none
+        explanation_en: null
+        explanation_ja: Ausschuss は規格外で使えない製品、つまり不良品です。
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: dw-meaning-1
+        section: words
+  - request: /api/report
+    as: yoko
+    sent: null
+    status: 200
+    body:
+      days: 14
+      last_run:
+        mode: practice
+        section: mixed
+        n: 6
+      open_mistakes: 2
+      target:
+        daily: 20
+        today: 6
+        week: 6
+        days_into_week: 7
+      progress:
+      - ts: '2026-11-08T12:00:00+00:00'
+        p_pass: 0.0339
+        section: mixed
+        correct: 4
+        n: 6
+      sections:
+      - section: words
+        correct: 3
+        total: 4
+      - section: phrases
+        correct: 1
+        total: 2
+      mistakes:
+      - ts: '2026-11-08T12:00:00+00:00'
+        section: words
+        stem: der Ausschuss
+        choice: 在庫
+        answer: 不良品
+        timed_out: false
+        explanation_en: null
+        explanation_ja: Ausschuss は規格外で使えない製品、つまり不良品です。
+        explain: null
+      - ts: '2026-11-08T12:00:00+00:00'
+        section: phrases
+        stem: Warum ist die Charge 42 gesperrt?
+        choice: Um acht Uhr.
+        answer: Weil die Härte nicht stimmt.
+        timed_out: false
+        explanation_en: null
+        explanation_ja: Warum（なぜ）には Weil（〜だから）で答えます。
+        explain: null
+  - request: /api/explain_feedback
+    as: yoko
+    sent:
+      item_id: dw-cloze-1
+      choice: 2
+    status: 200
+    body:
+      ok: true
+  - request: /api/me
+    as: anna
+    sent: null
+    status: 200
+    body:
+      learner:
+        id: anna
+        name: Anna
+        track: jlpt-n4
+        ui: en
+        explain: en
+      track:
+        id: jlpt-n4
+        title: JLPT N4
+        lang: ja
+        date: '2026-12-06'
+        mocks: true
+        explain: [en]
+        sections:
+        - id: vocab
+          name:
+            en: Vocabulary
+            ja: 語彙
+        - id: grammar
+          name:
+            en: Grammar
+            ja: 文法
+        - id: reading
+          name:
+            en: Reading
+            ja: 読解
+        - id: listening
+          name:
+            en: Listening
+            ja: 聴解
+  - request: /api/status
+    as: anna
+    sent: null
+    status: 200
+    body:
+      updated: '2026-11-08'
+      p_pass: 0.7564
+      p_pass_ema: 0.58
+      band80: [0.74, 0.776]
+      trend: flat
+      p_lk_section: 0.9937
+      p_listening_section: 0.8955
+      p_total: 0.7974
+      exp_score:
+        lk: 72.3006316
+        listening: 31.4933571
+      skills:
+        sec:reading:
+          theta: 1.20371129
+          sd: 0.571216586
+          n: 23
+        sec:grammar:
+          theta: 0.486713104
+          sd: 0.511802164
+          n: 25
+        sec:vocab:
+          theta: 1.00479949
+          sd: 0.445643421
+          n: 35
+        sec:listening:
+          theta: 0.426131287
+          sd: 0.438337207
+          n: 33
+        grammar:sentence_composition-1:
+          theta: 0.218247261
+          sd: 0.632455532
+          n: 6
+        skill:key_points-1:
+          theta: 0.065444086
+          sd: 0.666666667
+          n: 5
+        skill:short_passage-1:
+          theta: 0.255439646
+          sd: 0.707106781
+          n: 4
+        skill:task_based-1:
+          theta: -0.479515353
+          sd: 0.707106781
+          n: 4
+        word:川:
+          theta: -0.0170789791
+          sd: 0.707106781
+          n: 4
+        grammar:grammar_form-0:
+          theta: -0.839791355
+          sd: 0.603022689
+          n: 7
+        skill:verbal_expression-2:
+          theta: 0.520504751
+          sd: 0.666666667
+          n: 5
+        grammar:sentence_composition-2:
+          theta: 0.563715095
+          sd: 0.755928946
+          n: 3
+        skill:key_points-2:
+          theta: 0.108551679
+          sd: 0.666666667
+          n: 5
+        word:本:
+          theta: 0.813337371
+          sd: 0.707106781
+          n: 4
+        grammar:text_grammar-1:
+          theta: 0.123574706
+          sd: 0.707106781
+          n: 4
+        skill:quick_response-1:
+          theta: -0.0741154891
+          sd: 0.816496581
+          n: 2
+        word:車:
+          theta: -0.824493062
+          sd: 0.816496581
+          n: 2
+        skill:info_retrieval-0:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:電話:
+          theta: 0.134470711
+          sd: 0.894427191
+          n: 1
+        skill:info_retrieval-1:
+          theta: 0.25
+          sd: 0.894427191
+          n: 1
+        word:雨:
+          theta: -0.612605835
+          sd: 0.632455532
+          n: 6
+        skill:quick_response-2:
+          theta: 0.645326859
+          sd: 0.816496581
+          n: 2
+        skill:short_passage-0:
+          theta: -0.35920968
+          sd: 0.632455532
+          n: 6
+        word:店:
+          theta: 0.146011044
+          sd: 0.666666667
+          n: 5
+        grammar:sentence_composition-0:
+          theta: -0.348540493
+          sd: 0.816496581
+          n: 2
+        word:山:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:駅:
+          theta: 0.03792909
+          sd: 0.894427191
+          n: 1
+        word:天気:
+          theta: 0.463772915
+          sd: 0.755928946
+          n: 3
+        skill:short_passage-2:
+          theta: 0.720708081
+          sd: 0.816496581
+          n: 2
+        grammar:text_grammar-2:
+          theta: 0.171935218
+          sd: 0.816496581
+          n: 2
+        word:会議:
+          theta: -0.296579537
+          sd: 0.755928946
+          n: 3
+        word:犬:
+          theta: 0.743565249
+          sd: 0.755928946
+          n: 3
+        skill:verbal_expression-0:
+          theta: -0.392494018
+          sd: 0.707106781
+          n: 4
+        grammar:grammar_form-1:
+          theta: -0.311229666
+          sd: 0.894427191
+          n: 1
+        skill:mid_passage-0:
+          theta: -0.615864586
+          sd: 0.707106781
+          n: 4
+        skill:task_based-2:
+          theta: -0.225443964
+          sd: 0.816496581
+          n: 2
+        skill:task_based-0:
+          theta: 0.0415863482
+          sd: 0.894427191
+          n: 1
+        skill:quick_response-0:
+          theta: -0.401091944
+          sd: 0.894427191
+          n: 1
+        skill:info_retrieval-2:
+          theta: 0.294135443
+          sd: 0.816496581
+          n: 2
+        skill:mid_passage-1:
+          theta: 0.308773938
+          sd: 0.755928946
+          n: 3
+        skill:key_points-0:
+          theta: -0.0995248478
+          sd: 0.816496581
+          n: 2
+        word:仕事:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:水:
+          theta: -0.134470711
+          sd: 0.894427191
+          n: 1
+      speed:
+        sentence_composition:
+          median_ms: 43802
+          target_ms: 60000
+        key_points:
+          median_ms: 63958
+          target_ms: 25000
+        short_passage:
+          median_ms: 56591
+          target_ms: 120000
+        task_based:
+          median_ms: 68643
+          target_ms: 25000
+        kanji_reading:
+          median_ms: 35825
+          target_ms: 20000
+        grammar_form:
+          median_ms: 41431
+          target_ms: 30000
+        verbal_expression:
+          median_ms: 63143
+          target_ms: 25000
+        usage:
+          median_ms: 44321
+          target_ms: 60000
+        text_grammar:
+          median_ms: 47144
+          target_ms: 60000
+        quick_response:
+          median_ms: 67644
+          target_ms: 20000
+        contextual:
+          median_ms: 60915
+          target_ms: 30000
+        info_retrieval:
+          median_ms: 68839
+          target_ms: 120000
+        orthography:
+          median_ms: 32668
+          target_ms: 20000
+        paraphrase:
+          median_ms: 66874
+          target_ms: 30000
+        mid_passage:
+          median_ms: 26671
+          target_ms: 120000
+      mastered:
+        count: 4
+        by_section:
+          grammar: 1
+          vocab: 1
+          reading: 2
+      days_left: 28
+      history: [0.5, 0.55, 0.6]
+      ema_history: [0.52, 0.55, 0.58]
+  - request: /api/run?mode=drill&section=vocab&n=3
+    as: anna
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000400000
+      mode: drill
+      time_limit_ms: null
+      parts: null
+      items:
+      - id: vo-orthography-0
+        section: vocab
+        mondai: orthography
+        tier_prior: hard
+        level: N4-core
+        stem: 水の 問題 vo-orthography-0【水】
+        options: [やま, みず, かわ, みせ]
+        tags: ['word:水', 'topic:1']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 40000
+      - id: vo-kanji_reading-0
+        section: vocab
+        mondai: kanji_reading
+        tier_prior: medium
+        level: N5
+        stem: 犬の 問題 vo-kanji_reading-0【犬】
+        options: [えき, いぬ, あめ, ほん]
+        tags: ['word:犬', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      - id: vo-paraphrase-0
+        section: vocab
+        mondai: paraphrase
+        tier_prior: medium
+        level: N4-core
+        stem: 料理の 問題 vo-paraphrase-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        tags: ['word:料理', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 30000
+      passages: {}
+  - request: /api/answer
+    as: anna
+    sent:
+      run_id: r-000000400000
+      item_id: vo-orthography-0
+      choice: 1
+      ms: 4000
+      flag: none
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    as: anna
+    sent:
+      run_id: r-000000400000
+      item_id: vo-kanji_reading-0
+      choice: 2
+      ms: 4500
+      flag: none
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    as: anna
+    sent:
+      run_id: r-000000400000
+      item_id: vo-paraphrase-0
+      choice: 1
+      ms: 5000
+      flag: none
+    status: 200
+    body:
+      ok: true
+  - request: /api/finish
+    as: yoko
+    sent:
+      run_id: r-000000400000
+    status: 404
+    body:
+      error: unknown run
+  - request: /api/finish
+    as: anna
+    sent:
+      run_id: r-000000400000
+    status: 200
+    body:
+      score: 1
+      total_ms: 13500
+      p_pass_before: 0.7564
+      p_pass_after: 0.721
+      mock: null
+      items:
+      - stem: 水の 問題 vo-orthography-0【水】
+        options: [やま, みず, かわ, みせ]
+        choice: 1
+        answer: 2
+        correct: false
+        ms: 4000
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-orthography-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-orthography-0
+        section: vocab
+      - stem: 犬の 問題 vo-kanji_reading-0【犬】
+        options: [えき, いぬ, あめ, ほん]
+        choice: 2
+        answer: 2
+        correct: true
+        ms: 4500
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-kanji_reading-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-kanji_reading-0
+        section: vocab
+      - stem: 料理の 問題 vo-paraphrase-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        choice: 1
+        answer: 2
+        correct: false
+        ms: 5000
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-paraphrase-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-paraphrase-0
+        section: vocab
+  - request: /api/logout
+    as: null
+    sent: {}
+    status: 200
+    body:
+      ok: true
+    cookie: learner=; Path=/; Max-Age=0; SameSite=Lax; HttpOnly
+  files:
+    confidential/attempts.jsonl: 149
+    confidential/focus.json: 1
+    confidential/model_state.json: 322
+    confidential/runs.jsonl: 17
+    learners/yoko/attempts.jsonl: 6
+    learners/yoko/explain_feedback.jsonl: 1
+    learners/yoko/model_state.json: 82
+    learners/yoko/runs.jsonl: 1

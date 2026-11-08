@@ -1,0 +1,26 @@
+call: tests.golden_learners:validation
+expect:
+  valid:
+  - ui: en
+    explain: en
+    data: confidential
+    name: Anna
+    id: anna
+    track: jlpt-n4
+  - ui: ja
+    explain: ja
+    data: learners/yoko
+    name: Yoko
+    id: yoko
+    track: de-work
+  empty: 'ValueError: learners.json: learners must be a non-empty list, each with id and track'
+  no_track: 'ValueError: learners.json: learners must be a non-empty list, each with id and track'
+  duplicate_id: 'ValueError: learners.json: ids and data folders must be unique'
+  id_with_slash: 'ValueError: learners.json: id must match [a-z0-9][a-z0-9_-]{0,31}: ''../anna'''
+  id_uppercase: 'ValueError: learners.json: id must match [a-z0-9][a-z0-9_-]{0,31}: ''Anna'''
+  unknown_track: 'ValueError: learners.json: unknown track ''jlpt-n1'': anna'
+  track_traversal: 'ValueError: learners.json: track must match [a-z0-9][a-z0-9_-]{0,31}: ''../jlpt-n4'''
+  ui_unknown: 'ValueError: learners.json: ui must be one of [''en'', ''ja'']: anna'
+  explain_missing: 'ValueError: learners.json: track de-work has no ''en'' explanations: yoko'
+  shared_data: 'ValueError: learners.json: ids and data folders must be unique'
+  data_escapes_home: 'ValueError: path escapes JLPT_HOME'

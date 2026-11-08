@@ -26,7 +26,7 @@ def learner_id(handler):
     rows=paths.learners(); chosen=who(handler)
     if any(r["id"]==chosen for r in rows): return chosen
     return rows[0]["id"] if len(rows)==1 else None
-def public(row): return {k:row[k] for k in ("id","name","track","ui","explain")}
+def profile(row): return {k:row[k] for k in ("id","name","track","ui","explain")}
 def mine(rid):
     run=RUNS.get(rid)
     return run if run and run["learner"]==paths.learner()["id"] else None
@@ -53,7 +53,7 @@ class Handler(BaseHTTPRequestHandler):
     def get(self):
         u=urlparse(self.path); q=parse_qs(u.query)
         if u.path=="/api/learners": return self.send_json([{k:r[k] for k in ("id","name","ui")} for r in paths.learners()])
-        if u.path=="/api/me": return self.send_json({"learner":public(paths.learner()),"track":tracks.summary()})
+        if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary()})
         if u.path=="/api/status": return self.send_json(simulate())
         if u.path=="/api/report":
             from engine.report import build_report
@@ -99,7 +99,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path=="/api/login":
             row=paths.find(data.get("learner"))
             if not row: return self.send_json({"error":"unknown learner"},404)
-            return self.send_json({"ok":True,"learner":public(row)},cookie=COOKIE.format(row["id"],31536000))
+            return self.send_json({"ok":True,"learner":profile(row)},cookie=COOKIE.format(row["id"],31536000))
         if self.path=="/api/logout": return self.send_json({"ok":True},cookie=COOKIE.format("",0))
         if self.path=="/api/answer":
             run=mine(data.get("run_id")); item=run and run["items"].get(data.get("item_id"))
