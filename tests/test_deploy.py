@@ -34,3 +34,20 @@ def test_the_portal_binds_loopback_behind_tailscale_serve():
     start = (APP / "start.py").read_text(encoding="utf-8")
     assert '"JLPT_AUTH": "tailscale"' in start and '"JLPT_BIND": "127.0.0.1"' in start
     assert "serve --bg 8080" in (APP / "run.sh").read_text(encoding="utf-8")
+
+
+def test_no_deploy_file_has_crlf():
+    crlf = [str(f.relative_to(REPO)) for f in APP.rglob("*") if f.is_file() and b"\r" in f.read_bytes()]
+    assert crlf == []
+
+
+def test_the_export_is_lf_and_complete(tmp_path):
+    import sys
+    sys.path.insert(0, str(REPO / "tools"))
+    from export_app import export
+    export(tmp_path)
+    crlf = [str(f.relative_to(tmp_path)) for f in tmp_path.rglob("*") if f.is_file() and f.suffix != ".mp3" and b"\r" in f.read_bytes()]
+    assert crlf == []
+    assert (tmp_path / "run.sh").read_bytes().startswith(b"#!/bin/sh\n")
+    sources = [s for line in (tmp_path / "Dockerfile").read_text(encoding="utf-8").splitlines() if line.startswith("COPY ") for s in line.split()[1:-1]]
+    assert [s for s in sources if not (tmp_path / s).exists()] == []
