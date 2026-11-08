@@ -120,9 +120,10 @@ def audio_root():
 def startup():
     from engine import access
     out = {}
-    for name, values in {"default": {}, "local_lan": {"JLPT_BIND": "0.0.0.0"}, "local_localhost": {"JLPT_BIND": "localhost"},
-                         "access_without_settings": {"JLPT_AUTH": "access"}, "unknown_mode": {"JLPT_AUTH": "open"}}.items():
-        with env(**{"JLPT_AUTH": None, "JLPT_BIND": None, "JLPT_ACCESS_TEAM": None, "JLPT_ACCESS_AUD": None, **values}):
+    for name, values in {"default": {}, "local_lan": {"JLPT_BIND": "0.0.0.0"}, "tailscale": {"JLPT_AUTH": "tailscale"},
+                         "tailscale_lan": {"JLPT_AUTH": "tailscale", "JLPT_BIND": "0.0.0.0"}, "tailscale_localhost_name": {"JLPT_AUTH": "tailscale", "JLPT_BIND": "localhost"},
+                         "cloudflare_access_gone": {"JLPT_AUTH": "access"}, "unknown_mode": {"JLPT_AUTH": "open"}}.items():
+        with env(**{"JLPT_AUTH": None, "JLPT_BIND": None, **values}):
             try:
                 access.check_startup()
                 out[name] = {"starts": True, "bind": access.bind()}

@@ -20,4 +20,17 @@ def test_every_app_option_reaches_the_server():
     config = (APP / "config.yaml").read_text(encoding="utf-8")
     options = re.findall(r"^  (\w+): \"\"$", config, re.M)
     start = (APP / "start.py").read_text(encoding="utf-8")
-    assert options and all(f'options.get("{o}")' in start for o in options)
+    run = (APP / "run.sh").read_text(encoding="utf-8")
+    assert options and all(f'options.get("{o}")' in start or f"options.py {o}" in run for o in options)
+
+
+def test_the_auth_key_never_reaches_the_server_or_the_log():
+    run = (APP / "run.sh").read_text(encoding="utf-8")
+    assert "ts_authkey" not in (APP / "start.py").read_text(encoding="utf-8")
+    assert "--auth-key=file:" in run and "set -x" not in run and "cat /tmp/ts_authkey" not in run
+
+
+def test_the_portal_binds_loopback_behind_tailscale_serve():
+    start = (APP / "start.py").read_text(encoding="utf-8")
+    assert '"JLPT_AUTH": "tailscale"' in start and '"JLPT_BIND": "127.0.0.1"' in start
+    assert "serve --bg 8080" in (APP / "run.sh").read_text(encoding="utf-8")

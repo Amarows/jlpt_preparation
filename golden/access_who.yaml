@@ -1,0 +1,70 @@
+call: tests.golden_access:who
+expect:
+  tailscale:learner:
+    email: anna@example.ch
+    learner_id: anna
+    admin: false
+  tailscale:learner_upper_case:
+    email: anna@example.ch
+    learner_id: anna
+    admin: false
+  tailscale:learner_rfc2047:
+    email: yoko@example.ch
+    learner_id: yoko
+    admin: false
+  tailscale:admin:
+    email: alex@example.ch
+    learner_id: null
+    admin: true
+  tailscale:admin_chose_yoko:
+    email: alex@example.ch
+    learner_id: yoko
+    admin: true
+  tailscale:learner_cookie_ignored:
+    email: anna@example.ch
+    learner_id: anna
+    admin: false
+  tailscale:unknown: null
+  tailscale:not_an_email: null
+  tailscale:missing: null
+  tailscale:missing_with_cookie: null
+  local:learner:
+    email: null
+    learner_id: null
+    admin: false
+  local:learner_upper_case:
+    email: null
+    learner_id: null
+    admin: false
+  local:learner_rfc2047:
+    email: null
+    learner_id: null
+    admin: false
+  local:admin:
+    email: null
+    learner_id: null
+    admin: false
+  local:admin_chose_yoko:
+    email: null
+    learner_id: yoko
+    admin: false
+  local:learner_cookie_ignored:
+    email: null
+    learner_id: yoko
+    admin: false
+  local:unknown:
+    email: null
+    learner_id: null
+    admin: false
+  local:not_an_email:
+    email: null
+    learner_id: null
+    admin: false
+  local:missing:
+    email: null
+    learner_id: null
+    admin: false
+  local:missing_with_cookie:
+    email: null
+    learner_id: anna
+    admin: false

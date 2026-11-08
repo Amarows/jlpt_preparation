@@ -1,7 +1,7 @@
 name: JLPT portal
-version: "0.1.0"
+version: "0.2.0"
 slug: jlpt_portal
-description: Study portal for the learners in learners.json, reached only through Cloudflare Tunnel and Access.
+description: Study portal for the learners in learners.json, reached only through Tailscale node sharing.
 arch:
   - aarch64
 init: false
@@ -17,10 +17,8 @@ map:
   - type: media
     read_only: true
 options:
-  access_team: ""
-  access_aud: ""
+  ts_authkey: ""
   origin: ""
 schema:
-  access_team: str
-  access_aud: str
+  ts_authkey: password
   origin: str

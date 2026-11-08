@@ -123,12 +123,15 @@ def test_an_email_belongs_to_one_learner():
             paths.learners()
 
 
-def test_under_access_every_route_but_healthz_needs_an_identity(monkeypatch):
+def test_under_tailscale_every_route_but_healthz_needs_an_identity(monkeypatch):
     from tests.golden_hardening import _call, server
-    monkeypatch.setenv("JLPT_AUTH", "access")
-    monkeypatch.setenv("JLPT_ACCESS_TEAM", "home")
-    monkeypatch.setenv("JLPT_ACCESS_AUD", "aud")
-    with g.two_learners(), server() as port:
-        calls = {p: _call(port, "GET", p, None, {"Cf-Access-Jwt-Assertion": "not-a-jwt"} if p == "/api/status" else None, "anna") for p in ("/healthz", "/", "/web/app.js", "/api/me", "/api/status", "/audio/clip.mp3")}
-    assert {p: c["status"] for p, c in calls.items()} == {"/healthz": 200, "/": 403, "/web/app.js": 403, "/api/me": 403, "/api/status": 403, "/audio/clip.mp3": 403}
+    monkeypatch.setenv("JLPT_AUTH", "tailscale")
+    rows = [{**g.LEARNERS[0], "emails": ["anna@example.ch"]}, g.LEARNERS[1]]
+    with g.two_learners(rows), server() as port:
+        calls = {p: _call(port, "GET", p, None, None, "anna") for p in ("/healthz", "/", "/web/app.js", "/api/me", "/audio/clip.mp3")}
+        known = {p: _call(port, "GET", p, None, {"Tailscale-User-Login": "anna@example.ch"}, None)["status"] for p in ("/", "/api/me", "/audio/clip.mp3")}
+        login = _call(port, "POST", "/api/login", b'{"learner": "yoko"}', {"Tailscale-User-Login": "anna@example.ch", "Content-Type": "application/json", "Content-Length": "19"})
+    assert {p: c["status"] for p, c in calls.items()} == {"/healthz": 200, "/": 403, "/web/app.js": 403, "/api/me": 403, "/audio/clip.mp3": 403}
     assert calls["/"]["body"] == "Not registered for this portal – ask Alex"
+    assert known == {"/": 200, "/api/me": 200, "/audio/clip.mp3": 200}
+    assert login["status"] == 403

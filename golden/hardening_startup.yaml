@@ -4,14 +4,22 @@ expect:
     starts: true
     bind: 127.0.0.1
   local_lan:
-    starts: false
-    message: JLPT_AUTH=local only binds a loopback address, not '0.0.0.0'
-  local_localhost:
     starts: true
-    bind: localhost
-  access_without_settings:
+    bind: 0.0.0.0
+  tailscale:
+    starts: true
+    bind: 127.0.0.1
+  tailscale_lan:
     starts: false
-    message: JLPT_AUTH=access needs JLPT_ACCESS_TEAM and JLPT_ACCESS_AUD
+    message: 'JLPT_AUTH=tailscale trusts Tailscale-User-Login only behind tailscale serve: JLPT_BIND must
+      be 127.0.0.1, not ''0.0.0.0'''
+  tailscale_localhost_name:
+    starts: false
+    message: 'JLPT_AUTH=tailscale trusts Tailscale-User-Login only behind tailscale serve: JLPT_BIND must
+      be 127.0.0.1, not ''localhost'''
+  cloudflare_access_gone:
+    starts: false
+    message: JLPT_AUTH must be one of local, tailscale, not 'access'
   unknown_mode:
     starts: false
-    message: JLPT_AUTH must be local or access, not 'open'
+    message: JLPT_AUTH must be one of local, tailscale, not 'open'

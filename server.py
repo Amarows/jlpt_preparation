@@ -17,7 +17,7 @@ OPEN={"/api/learners","/api/login","/api/logout"}
 HIDDEN={"answer","distractor_notes","script"}
 MAX_BODY=65536
 DENIED="Not registered for this portal – ask Alex"
-def cookie(value,age): return f"learner={value}; Path=/; Max-Age={age}; SameSite=Lax; HttpOnly"+("; Secure" if access.mode()=="access" else "")
+def cookie(value,age): return f"learner={value}; Path=/; Max-Age={age}; SameSite=Lax; HttpOnly"+("; Secure" if access.mode()!="local" else "")
 def bank():
     if paths.BANK not in BANKS: BANKS[paths.BANK]=load_bank()
     return BANKS[paths.BANK]
@@ -27,8 +27,8 @@ def chosen(handler):
     return jar["learner"].value if "learner" in jar else None
 def who(handler):
     rows=paths.learners(); pick=chosen(handler); picked=pick if any(r["id"]==pick for r in rows) else None
-    if access.mode()!="access": return {"email":None,"learner_id":picked or (rows[0]["id"] if len(rows)==1 else None),"admin":False}
-    email=access.email(handler.headers.get("Cf-Access-Jwt-Assertion"),access.team(),access.aud())
+    if access.mode()=="local": return {"email":None,"learner_id":picked or (rows[0]["id"] if len(rows)==1 else None),"admin":False}
+    email=access.login(handler.headers.get(access.HEADER))
     if email is None: return None
     row=paths.by_email(email); admin=email in paths.admins()
     if not row and not admin: return None
@@ -95,7 +95,7 @@ class Handler(BaseHTTPRequestHandler):
                 except OSError: pass
         finally: log_access(self)
     def route(self,fn):
-        path=urlparse(self.path).path; gated=access.mode()=="access"; private=path.startswith(("/api/","/audio/"))
+        path=urlparse(self.path).path; gated=access.mode()!="local"; private=path.startswith(("/api/","/audio/"))
         if gated or private: self.ident=who(self)
         if gated and self.ident is None: return self.deny(path)
         if path in OPEN or not private: return fn()
@@ -118,7 +118,7 @@ class Handler(BaseHTTPRequestHandler):
     def get(self):
         u=urlparse(self.path); q=parse_qs(u.query)
         if u.path=="/api/learners":
-            rows=paths.learners() if access.mode()!="access" or self.ident["admin"] else [r for r in paths.learners() if r["id"]==self.ident["learner_id"]]
+            rows=paths.learners() if access.mode()=="local" or self.ident["admin"] else [r for r in paths.learners() if r["id"]==self.ident["learner_id"]]
             return self.send_json([{k:r[k] for k in ("id","name","ui","track")} for r in rows])
         if u.path=="/api/me": return self.send_json({"learner":profile(paths.learner()),"track":tracks.summary()})
         if u.path=="/api/status": return self.send_json(simulate())
@@ -164,7 +164,7 @@ class Handler(BaseHTTPRequestHandler):
         with path.open("rb") as f: f.seek(first); self.wfile.write(f.read(max(0,last-first+1)))
     def post(self,data):
         if self.path=="/api/login":
-            if access.mode()=="access" and not self.ident["admin"]: return self.send_json({"error":"forbidden"},403)
+            if access.mode()!="local" and not self.ident["admin"]: return self.send_json({"error":"forbidden"},403)
             row=paths.find(data.get("learner"))
             if not row: return self.send_json({"error":"unknown learner"},404)
             return self.send_json({"ok":True,"learner":profile(row)},cookie=cookie(row["id"],31536000))

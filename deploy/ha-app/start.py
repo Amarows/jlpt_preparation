@@ -7,11 +7,9 @@ options = json.loads(open("/data/options.json", encoding="utf-8").read())
 os.environ.update({
     "JLPT_HOME": "/config",
     "JLPT_AUDIO": "/media/jlpt/audio",
-    "JLPT_BIND": "0.0.0.0",
+    "JLPT_BIND": "127.0.0.1",
     "JLPT_PORT": "8080",
-    "JLPT_AUTH": "access",
-    "JLPT_ACCESS_TEAM": str(options.get("access_team") or ""),
-    "JLPT_ACCESS_AUD": str(options.get("access_aud") or ""),
+    "JLPT_AUTH": "tailscale",
     "JLPT_ORIGIN": str(options.get("origin") or ""),
 })
 os.chdir("/app")
