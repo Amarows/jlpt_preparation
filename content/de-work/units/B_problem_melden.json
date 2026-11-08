@@ -2,37 +2,112 @@
   "unit": "B",
   "title_de": "Ein Produktionsproblem melden",
   "title_ja": "生産上の問題を報告する",
-  "status": "draft",
-  "approved_by": null,
-  "approved_on": null,
+  "status": "approved",
+  "approved_by": "Alex",
+  "approved_on": "2026-11-08",
+  "approval_note": "Word list and house style approved by Alex, relayed by the PO session on 2026-11-08; items of this unit set verified: true the same day.",
   "orthography": "Swiss Standard German (ss for ß)",
+  "method": {
+    "entries": "Situation from the PO brief (report a production problem). The 5 brief words (Abweichung, Schwankung, Ausschuss, Ursache, Riss) were kept; added auftreten and Toleranz (needed to say what happened and against what limit) and 2 reporting phrases (Mir ist aufgefallen, dass …; Wir sollten der Sache nachgehen). Example sentences written by Claude from typical powder-metallurgy situations (batch density, flowability, cracks after sintering, scrap on gears); no company documents used. 9 entries, inside Alex's 5–10.",
+    "cefr": "Assigned by Claude's judgement from the Goethe/telc B1 scope (in B1 scope: B1 or lower; specialist or beyond B1: B2). Not yet checked against the official Goethe B1 Wortliste.",
+    "house_style": "Swiss Standard German: ss never ß; Swiss workplace words (Sitzung); du with colleagues, Sie with the boss. Approved by Alex 2026-11-08.",
+    "items": "Claude Opus 5.5 (claude-opus-5-5) wrote every item by hand from the approved entry, as a compact spec in a scratch Python script that only adds ids, source fields and the answer position; the script is not kept, the bank files are the record. Per word entry: 1 meaning_choice (German word in a short work sentence, marked 【 】, 4 Japanese meanings) and 1 cloze (work sentence with (　　), 4 German options in the same grammatical form). Per phrase entry: 1 phrase_choice (German situation, 4 German utterances) and, where a natural colleague line exists, 1 reply_choice (colleague's line + intention, 4 replies). Distractor rules: exactly one acceptable answer; distractors are real words or phrases from the same work setting; no distractor that is a second meaning of the target (e.g. no 委員会 for Ausschuss); grammar distractors only for frequent learner errors (verb position after Meiner Meinung nach, verb-final in dass/weil, wenn vs ob, sein vs haben); answer positions spread over 1–4. explanation_ja: 1–2 sentences in Japanese with the meaning, the key collocation or rule, German forms in Latin script; distractor_notes in Japanese give each wrong option's meaning or the error.",
+    "blind_check": "Planned: Codex CLI gpt-6-luna; both gpt-6-luna and gpt-5.6-terra were out of quota until 2026-11-18. Stand-in: a fresh Claude Sonnet subagent that read only a blind file (id, mondai, stem, options; no key, no explanations), chose an answer per item and flagged items with more than one acceptable option, no correct option, unnatural German or a wrong Japanese option. Result for units B+C: 33/33 answers matched the key; 1 item flagged (dw-c-pc-ansicht: distractor 'Ich habe die Ansicht, dass …' judged acceptable German). Fix: replaced by 'Ich bin mir nicht sicher, ob wir die Mischzeit verlängern sollten.' Defect rate 1/33 = 3 %. The fixed item was not re-solved.",
+    "approval": "Alex approved the entry list and the house style on 2026-11-08 (relayed by the PO). Item wording itself was not reviewed by Alex or Yoko.",
+    "open": [
+      "Re-run the blind solve with Codex after 2026-11-18.",
+      "Check CEFR levels against the Goethe B1 Wortliste once obtained.",
+      "Yoko's review: words she already knows, words her plant actually uses."
+    ]
+  },
   "entries": [
-    {"id": "abweichung", "type": "word", "de": "die Abweichung", "plural": "die Abweichungen",
-     "example_de": "Bei der Charge 2417 haben wir eine Abweichung bei der Dichte festgestellt.",
-     "ja": "（規格・基準からの）ずれ、逸脱", "en": "deviation", "cefr": "B2"},
-    {"id": "schwankung", "type": "word", "de": "die Schwankung", "plural": "die Schwankungen",
-     "example_de": "Die Fliessfähigkeit des Pulvers zeigt seit Montag starke Schwankungen.",
-     "ja": "変動、ばらつき", "en": "fluctuation, variation", "cefr": "B2"},
-    {"id": "ausschuss", "type": "word", "de": "der Ausschuss", "plural": "– (in this sense no plural; 'die Ausschüsse' means committees)",
-     "example_de": "Bei den Zahnrädern hatten wir letzte Woche drei Prozent Ausschuss.",
-     "ja": "不良品、スクラップ", "en": "scrap, rejects", "cefr": "B2"},
-    {"id": "ursache", "type": "word", "de": "die Ursache", "plural": "die Ursachen",
-     "example_de": "Wir kennen die Ursache für die Risse noch nicht.",
-     "ja": "原因", "en": "cause", "cefr": "B1"},
-    {"id": "riss", "type": "word", "de": "der Riss", "plural": "die Risse",
-     "example_de": "Nach dem Sintern hatten einige Teile feine Risse.",
-     "ja": "ひび、亀裂", "en": "crack", "cefr": "B2"},
-    {"id": "auftreten", "type": "word", "de": "auftreten", "forms": "tritt auf – trat auf – ist aufgetreten",
-     "example_de": "Der Fehler ist nur in der Nachtschicht aufgetreten.",
-     "ja": "（問題・不具合が）発生する、起こる", "en": "to occur", "cefr": "B2"},
-    {"id": "toleranz", "type": "word", "de": "die Toleranz", "plural": "die Toleranzen",
-     "example_de": "Die Dichte liegt ausserhalb der Toleranz.",
-     "ja": "許容差、公差", "en": "tolerance", "cefr": "B2"},
-    {"id": "aufgefallen", "type": "phrase", "de": "Mir ist aufgefallen, dass …",
-     "example_de": "Mir ist aufgefallen, dass die Presskraft seit gestern höher ist.",
-     "ja": "～に気づいたのですが", "en": "I noticed that …", "cefr": "B1"},
-    {"id": "nachgehen", "type": "phrase", "de": "Wir sollten der Sache nachgehen.",
-     "example_de": "Die Ausschussquote ist gestiegen – wir sollten der Sache nachgehen.",
-     "ja": "この件を詳しく調べるべきです", "en": "We should look into this.", "cefr": "B2"}
+    {
+      "id": "abweichung",
+      "type": "word",
+      "de": "die Abweichung",
+      "plural": "die Abweichungen",
+      "example_de": "Bei der Charge 2417 haben wir eine Abweichung bei der Dichte festgestellt.",
+      "ja": "（規格・基準からの）ずれ、逸脱",
+      "en": "deviation",
+      "cefr": "B2"
+    },
+    {
+      "id": "schwankung",
+      "type": "word",
+      "de": "die Schwankung",
+      "plural": "die Schwankungen",
+      "example_de": "Die Fliessfähigkeit des Pulvers zeigt seit Montag starke Schwankungen.",
+      "ja": "変動、ばらつき",
+      "en": "fluctuation, variation",
+      "cefr": "B2"
+    },
+    {
+      "id": "ausschuss",
+      "type": "word",
+      "de": "der Ausschuss",
+      "plural": "– (in this sense no plural; 'die Ausschüsse' means committees)",
+      "example_de": "Bei den Zahnrädern hatten wir letzte Woche drei Prozent Ausschuss.",
+      "ja": "不良品、スクラップ",
+      "en": "scrap, rejects",
+      "cefr": "B2"
+    },
+    {
+      "id": "ursache",
+      "type": "word",
+      "de": "die Ursache",
+      "plural": "die Ursachen",
+      "example_de": "Wir kennen die Ursache für die Risse noch nicht.",
+      "ja": "原因",
+      "en": "cause",
+      "cefr": "B1"
+    },
+    {
+      "id": "riss",
+      "type": "word",
+      "de": "der Riss",
+      "plural": "die Risse",
+      "example_de": "Nach dem Sintern hatten einige Teile feine Risse.",
+      "ja": "ひび、亀裂",
+      "en": "crack",
+      "cefr": "B2"
+    },
+    {
+      "id": "auftreten",
+      "type": "word",
+      "de": "auftreten",
+      "forms": "tritt auf – trat auf – ist aufgetreten",
+      "example_de": "Der Fehler ist nur in der Nachtschicht aufgetreten.",
+      "ja": "（問題・不具合が）発生する、起こる",
+      "en": "to occur",
+      "cefr": "B2"
+    },
+    {
+      "id": "toleranz",
+      "type": "word",
+      "de": "die Toleranz",
+      "plural": "die Toleranzen",
+      "example_de": "Die Dichte liegt ausserhalb der Toleranz.",
+      "ja": "許容差、公差",
+      "en": "tolerance",
+      "cefr": "B2"
+    },
+    {
+      "id": "aufgefallen",
+      "type": "phrase",
+      "de": "Mir ist aufgefallen, dass …",
+      "example_de": "Mir ist aufgefallen, dass die Presskraft seit gestern höher ist.",
+      "ja": "～に気づいたのですが",
+      "en": "I noticed that …",
+      "cefr": "B1"
+    },
+    {
+      "id": "nachgehen",
+      "type": "phrase",
+      "de": "Wir sollten der Sache nachgehen.",
+      "example_de": "Die Ausschussquote ist gestiegen – wir sollten der Sache nachgehen.",
+      "ja": "この件を詳しく調べるべきです",
+      "en": "We should look into this.",
+      "cefr": "B2"
+    }
   ]
 }

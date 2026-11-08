@@ -2,38 +2,108 @@
   "unit": "C",
   "title_de": "In der Sitzung die Meinung sagen",
   "title_ja": "会議で意見を言う",
-  "status": "draft",
-  "approved_by": null,
-  "approved_on": null,
+  "status": "approved",
+  "approved_by": "Alex",
+  "approved_on": "2026-11-08",
+  "approval_note": "Word list and house style approved by Alex, relayed by the PO session on 2026-11-08; items of this unit set verified: true the same day.",
   "orthography": "Swiss Standard German (ss for ß); colleagues use du, the boss may be Sie",
+  "method": {
+    "entries": "Situation from the PO brief (give an opinion in a meeting). Chosen to cover the moves of a discussion: give an opinion (Meiner Meinung nach, Ich bin der Ansicht), agree (Das sehe ich auch so, einverstanden), disagree (Da bin ich anderer Meinung), doubt or concern (Ich bin mir nicht sicher, ob; Ich habe Bedenken), propose (der Vorschlag) and ask (Was meinst du dazu?). Example sentences reuse unit B's process topics. No company documents used. 9 entries.",
+    "cefr": "Assigned by Claude's judgement from the Goethe/telc B1 scope (in B1 scope: B1 or lower; specialist or beyond B1: B2). Not yet checked against the official Goethe B1 Wortliste.",
+    "house_style": "Swiss Standard German: ss never ß; Swiss workplace words (Sitzung); du with colleagues, Sie with the boss. Approved by Alex 2026-11-08.",
+    "items": "Claude Opus 5.5 (claude-opus-5-5) wrote every item by hand from the approved entry, as a compact spec in a scratch Python script that only adds ids, source fields and the answer position; the script is not kept, the bank files are the record. Per word entry: 1 meaning_choice (German word in a short work sentence, marked 【 】, 4 Japanese meanings) and 1 cloze (work sentence with (　　), 4 German options in the same grammatical form). Per phrase entry: 1 phrase_choice (German situation, 4 German utterances) and, where a natural colleague line exists, 1 reply_choice (colleague's line + intention, 4 replies). Distractor rules: exactly one acceptable answer; distractors are real words or phrases from the same work setting; no distractor that is a second meaning of the target (e.g. no 委員会 for Ausschuss); grammar distractors only for frequent learner errors (verb position after Meiner Meinung nach, verb-final in dass/weil, wenn vs ob, sein vs haben); answer positions spread over 1–4. explanation_ja: 1–2 sentences in Japanese with the meaning, the key collocation or rule, German forms in Latin script; distractor_notes in Japanese give each wrong option's meaning or the error.",
+    "blind_check": "Planned: Codex CLI gpt-6-luna; both gpt-6-luna and gpt-5.6-terra were out of quota until 2026-11-18. Stand-in: a fresh Claude Sonnet subagent that read only a blind file (id, mondai, stem, options; no key, no explanations), chose an answer per item and flagged items with more than one acceptable option, no correct option, unnatural German or a wrong Japanese option. Result for units B+C: 33/33 answers matched the key; 1 item flagged (dw-c-pc-ansicht: distractor 'Ich habe die Ansicht, dass …' judged acceptable German). Fix: replaced by 'Ich bin mir nicht sicher, ob wir die Mischzeit verlängern sollten.' Defect rate 1/33 = 3 %. The fixed item was not re-solved.",
+    "approval": "Alex approved the entry list and the house style on 2026-11-08 (relayed by the PO). Item wording itself was not reviewed by Alex or Yoko.",
+    "open": [
+      "Re-run the blind solve with Codex after 2026-11-18.",
+      "Check CEFR levels against the Goethe B1 Wortliste once obtained.",
+      "Yoko's review: words she already knows, words her plant actually uses."
+    ]
+  },
   "entries": [
-    {"id": "meinung-nach", "type": "phrase", "de": "Meiner Meinung nach …",
-     "example_de": "Meiner Meinung nach liegt die Ursache beim neuen Schmiermittel.",
-     "ja": "私の意見では～", "en": "In my opinion …", "cefr": "B1",
-     "note_ja": "後ろの動詞はすぐ2番目に来る（Meiner Meinung nach liegt …）。"},
-    {"id": "ansicht", "type": "phrase", "de": "Ich bin der Ansicht, dass …",
-     "example_de": "Ich bin der Ansicht, dass wir die Mischzeit verlängern sollten.",
-     "ja": "～という考えです", "en": "I am of the view that …", "cefr": "B1"},
-    {"id": "sehe-auch-so", "type": "phrase", "de": "Das sehe ich auch so.",
-     "example_de": "«Wir brauchen mehr Stichproben.» – «Das sehe ich auch so.»",
-     "ja": "私もそう思います", "en": "I see it the same way.", "cefr": "B1"},
-    {"id": "anderer-meinung", "type": "phrase", "de": "Da bin ich anderer Meinung.",
-     "example_de": "Da bin ich anderer Meinung: Bei hoher Feuchtigkeit fliesst das Pulver schlechter.",
-     "ja": "その点については意見が違います", "en": "I see that differently. / I disagree there.", "cefr": "B1"},
-    {"id": "bedenken", "type": "phrase", "de": "Ich habe Bedenken, weil …", "note_de": "die Bedenken (Pl.)",
-     "example_de": "Ich habe Bedenken, weil der neue Lieferant noch keine Prüfzeugnisse geschickt hat.",
-     "ja": "～なので懸念があります", "en": "I have concerns because …", "cefr": "B2"},
-    {"id": "vorschlag", "type": "word", "de": "der Vorschlag", "plural": "die Vorschläge",
-     "example_de": "Ich habe einen Vorschlag: Wir testen die neue Mischung zuerst mit einer kleinen Charge.",
-     "ja": "提案", "en": "proposal, suggestion", "cefr": "B1"},
-    {"id": "einverstanden", "type": "word", "de": "einverstanden sein (mit + Dat.)",
-     "example_de": "Mit dem neuen Prüfplan bin ich einverstanden.",
-     "ja": "同意している、賛成だ", "en": "to agree (with)", "cefr": "A2"},
-    {"id": "nicht-sicher-ob", "type": "phrase", "de": "Ich bin mir nicht sicher, ob …",
-     "example_de": "Ich bin mir nicht sicher, ob die Ofentemperatur wirklich die Ursache ist.",
-     "ja": "～かどうか確信がありません", "en": "I'm not sure whether …", "cefr": "B1"},
-    {"id": "was-meinst-du", "type": "phrase", "de": "Was meinst du dazu? / Was meinen Sie dazu?",
-     "example_de": "Die Werte schwanken wieder. Was meinst du dazu, Reto?",
-     "ja": "これについてどう思いますか", "en": "What do you think about this?", "cefr": "A2"}
+    {
+      "id": "meinung-nach",
+      "type": "phrase",
+      "de": "Meiner Meinung nach …",
+      "example_de": "Meiner Meinung nach liegt die Ursache beim neuen Schmiermittel.",
+      "ja": "私の意見では～",
+      "en": "In my opinion …",
+      "cefr": "B1",
+      "note_ja": "後ろの動詞はすぐ2番目に来る（Meiner Meinung nach liegt …）。"
+    },
+    {
+      "id": "ansicht",
+      "type": "phrase",
+      "de": "Ich bin der Ansicht, dass …",
+      "example_de": "Ich bin der Ansicht, dass wir die Mischzeit verlängern sollten.",
+      "ja": "～という考えです",
+      "en": "I am of the view that …",
+      "cefr": "B1"
+    },
+    {
+      "id": "sehe-auch-so",
+      "type": "phrase",
+      "de": "Das sehe ich auch so.",
+      "example_de": "«Wir brauchen mehr Stichproben.» – «Das sehe ich auch so.»",
+      "ja": "私もそう思います",
+      "en": "I see it the same way.",
+      "cefr": "B1"
+    },
+    {
+      "id": "anderer-meinung",
+      "type": "phrase",
+      "de": "Da bin ich anderer Meinung.",
+      "example_de": "Da bin ich anderer Meinung: Bei hoher Feuchtigkeit fliesst das Pulver schlechter.",
+      "ja": "その点については意見が違います",
+      "en": "I see that differently. / I disagree there.",
+      "cefr": "B1"
+    },
+    {
+      "id": "bedenken",
+      "type": "phrase",
+      "de": "Ich habe Bedenken, weil …",
+      "note_de": "die Bedenken (Pl.)",
+      "example_de": "Ich habe Bedenken, weil der neue Lieferant noch keine Prüfzeugnisse geschickt hat.",
+      "ja": "～なので懸念があります",
+      "en": "I have concerns because …",
+      "cefr": "B2"
+    },
+    {
+      "id": "vorschlag",
+      "type": "word",
+      "de": "der Vorschlag",
+      "plural": "die Vorschläge",
+      "example_de": "Ich habe einen Vorschlag: Wir testen die neue Mischung zuerst mit einer kleinen Charge.",
+      "ja": "提案",
+      "en": "proposal, suggestion",
+      "cefr": "B1"
+    },
+    {
+      "id": "einverstanden",
+      "type": "word",
+      "de": "einverstanden sein (mit + Dat.)",
+      "example_de": "Mit dem neuen Prüfplan bin ich einverstanden.",
+      "ja": "同意している、賛成だ",
+      "en": "to agree (with)",
+      "cefr": "A2"
+    },
+    {
+      "id": "nicht-sicher-ob",
+      "type": "phrase",
+      "de": "Ich bin mir nicht sicher, ob …",
+      "example_de": "Ich bin mir nicht sicher, ob die Ofentemperatur wirklich die Ursache ist.",
+      "ja": "～かどうか確信がありません",
+      "en": "I'm not sure whether …",
+      "cefr": "B1"
+    },
+    {
+      "id": "was-meinst-du",
+      "type": "phrase",
+      "de": "Was meinst du dazu? / Was meinen Sie dazu?",
+      "example_de": "Die Werte schwanken wieder. Was meinst du dazu, Reto?",
+      "ja": "これについてどう思いますか",
+      "en": "What do you think about this?",
+      "cefr": "A2"
+    }
   ]
 }

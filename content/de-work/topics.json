@@ -2,6 +2,13 @@
   "track": "de-work",
   "learner": "yoko",
   "orthography": "Swiss Standard German: ss instead of ß (Massnahme, ausserhalb, gross); Swiss workplace words where they differ (Sitzung, Znüni)",
+  "method": {
+    "topics": "Claude Opus 5.5 drafted units from Yoko's profile in the PO brief (powder-mix methodology in Winterthur; goals: work vocabulary, correct Standard German, Swiss German listening). The 5 units required by the brief (A–E) came first; F (pressing/sintering) and G (everyday work) were added because her error discussions cross into those steps and the specialist units need everyday language around them. Ranking: B and C first (named goals, used weekly; C is reusable in every meeting), then A, D, E, F, G. No external sources or company documents used. Not yet reviewed by Yoko.",
+    "open": [
+      "Yoko to confirm or reorder the candidate units.",
+      "Exam benchmark (e.g. Goethe B1) not chosen yet; exam task types will be a separate item set, work topics stay practice content."
+    ]
+  },
   "units": [
     {
       "id": "A",
@@ -9,7 +16,17 @@
       "title_ja": "混合プロセスを説明する",
       "situation": "Yoko explains to a new colleague, an operator or an auditor how a powder mix is made: which powders, which lubricant, how long it is mixed, what is checked on each batch.",
       "why": "This is her core responsibility; she has to explain the method and process in German every week.",
-      "core_words": ["das Pulver", "die Mischung", "die Charge", "das Schmiermittel", "die Fliessfähigkeit", "die Dichte", "die Mischzeit", "abwiegen", "zugeben"],
+      "core_words": [
+        "das Pulver",
+        "die Mischung",
+        "die Charge",
+        "das Schmiermittel",
+        "die Fliessfähigkeit",
+        "die Dichte",
+        "die Mischzeit",
+        "abwiegen",
+        "zugeben"
+      ],
       "status": "candidate"
     },
     {
@@ -18,8 +35,16 @@
       "title_ja": "生産上の問題を報告する",
       "situation": "Something is wrong in production (density out of tolerance, cracks after sintering, more scrap); Yoko reports it to the shift leader or in the morning meeting and asks to look into it.",
       "why": "Discussing the causes of production errors is one of her named goals; a clear report in German decides how fast a problem is fixed.",
-      "core_words": ["die Abweichung", "die Schwankung", "der Ausschuss", "die Ursache", "der Riss", "auftreten", "die Toleranz"],
-      "status": "drafted",
+      "core_words": [
+        "die Abweichung",
+        "die Schwankung",
+        "der Ausschuss",
+        "die Ursache",
+        "der Riss",
+        "auftreten",
+        "die Toleranz"
+      ],
+      "status": "approved",
       "file": "content/de-work/units/B_problem_melden.json"
     },
     {
@@ -28,8 +53,16 @@
       "title_ja": "会議で意見を言う",
       "situation": "In a meeting Yoko gives her opinion, agrees, disagrees politely, raises concerns and asks a colleague for theirs.",
       "why": "She has to give her opinion and defend her methodology; polite but clear disagreement is hard in a second language.",
-      "core_words": ["Meiner Meinung nach …", "Ich bin der Ansicht, dass …", "Das sehe ich auch so.", "Da bin ich anderer Meinung.", "Ich habe Bedenken, weil …", "der Vorschlag", "einverstanden sein"],
-      "status": "drafted",
+      "core_words": [
+        "Meiner Meinung nach …",
+        "Ich bin der Ansicht, dass …",
+        "Das sehe ich auch so.",
+        "Da bin ich anderer Meinung.",
+        "Ich habe Bedenken, weil …",
+        "der Vorschlag",
+        "einverstanden sein"
+      ],
+      "status": "approved",
       "file": "content/de-work/units/C_meinung_sagen.json"
     },
     {
@@ -38,7 +71,15 @@
       "title_ja": "品質保証の改善を提案する",
       "situation": "Yoko proposes a change to the quality process: more samples per batch, a new test in the inspection plan, a corrective action after a deviation.",
       "why": "Improving the QA process is part of her job; proposals need the right nouns and the polite conditional (wir könnten, es wäre sinnvoll).",
-      "core_words": ["die Massnahme", "die Stichprobe", "der Prüfplan", "die Prüfung", "einführen", "die Korrekturmassnahme", "sinnvoll"],
+      "core_words": [
+        "die Massnahme",
+        "die Stichprobe",
+        "der Prüfplan",
+        "die Prüfung",
+        "einführen",
+        "die Korrekturmassnahme",
+        "sinnvoll"
+      ],
       "status": "candidate"
     },
     {
@@ -47,7 +88,16 @@
       "title_ja": "職場のスイスドイツ語を聞き取る",
       "situation": "Colleagues speak dialect at the coffee break, on the shop floor and in short phone calls; Yoko recognises the frequent words and answers in Standard German.",
       "why": "Listening is her third goal and Winterthur colleagues speak Züritüütsch; she does not need to speak it, only to understand it.",
-      "core_words": ["Grüezi / Hoi", "Znüni", "Merci vielmal", "luege", "öppis", "gäll?", "parkieren", "Feierabig"],
+      "core_words": [
+        "Grüezi / Hoi",
+        "Znüni",
+        "Merci vielmal",
+        "luege",
+        "öppis",
+        "gäll?",
+        "parkieren",
+        "Feierabig"
+      ],
       "status": "candidate",
       "needs": "audio from Swiss sources (see materials list); items will be listening items"
     },
@@ -57,7 +107,15 @@
       "title_ja": "プレスと焼結を説明する",
       "situation": "Yoko talks with the press and furnace teams about what happens to her mix after mixing: compaction, green part, sintering atmosphere, shrinkage.",
       "why": "Many production errors she must discuss start or show up in pressing and sintering, so she needs the words of the next process steps.",
-      "core_words": ["pressen", "der Grünling", "die Presskraft", "sintern", "der Sinterofen", "die Schwindung", "die Schutzgasatmosphäre"],
+      "core_words": [
+        "pressen",
+        "der Grünling",
+        "die Presskraft",
+        "sintern",
+        "der Sinterofen",
+        "die Schwindung",
+        "die Schutzgasatmosphäre"
+      ],
       "status": "candidate"
     },
     {
@@ -66,7 +124,15 @@
       "title_ja": "日常業務：引き継ぎ・予定・短いメール",
       "situation": "Shift handover, moving an appointment, a short e-mail to the lab or the supplier, asking for a test result.",
       "why": "Everyday work German she uses daily; it makes the specialist units usable in real conversations.",
-      "core_words": ["die Übergabe", "verschieben", "Bescheid geben", "der Lieferant", "das Prüfzeugnis", "dringend", "Freundliche Grüsse"],
+      "core_words": [
+        "die Übergabe",
+        "verschieben",
+        "Bescheid geben",
+        "der Lieferant",
+        "das Prüfzeugnis",
+        "dringend",
+        "Freundliche Grüsse"
+      ],
       "status": "candidate"
     }
   ]
