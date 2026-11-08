@@ -1,0 +1,15 @@
+call: tests.golden_n4:run
+args: [timed, vocab, 8, 3]
+expect:
+  mode: timed
+  time_limit_ms: 230000
+  items:
+  - vo-paraphrase-1
+  - vo-orthography-1
+  - vo-contextual-0
+  - vo-usage-3
+  - m1-vo-kanji_reading
+  - vo-kanji_reading-0
+  - vo-orthography-0
+  - vo-paraphrase-3
+  passages: {}

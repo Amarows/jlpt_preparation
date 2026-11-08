@@ -1,0 +1,65 @@
+call: tests.golden_n4:mocks
+expect:
+  listing:
+  - id: m1
+    title: Mock m1
+    opens: '2026-10-01'
+    seen_before_mock: 0
+    taken: '2026-10-02'
+    result:
+      lk: 60
+      listening: 30
+      total: 90
+      passed: true
+    open: true
+  - id: m2
+    title: Mock m2
+    opens: '2026-11-01'
+    seen_before_mock: 0
+    open: true
+  - id: m3
+    title: Mock m3
+    opens: '2027-01-01'
+    seen_before_mock: 0
+    open: false
+  open:
+    id: m2
+    items:
+    - m2-vo-kanji_reading
+    - m2-vo-orthography
+    - m2-gr-grammar_form
+    - m2-gr-sentence_composition
+    - m2-re-short_passage
+    - m2-re-mid_passage
+    - m2-li-task_based
+    - m2-li-key_points
+    parts:
+    - part: vocab
+      title: 言語知識（文字・語彙）
+      minutes: 25
+      count: 2
+    - part: grammar_reading
+      title: 言語知識（文法）・読解
+      minutes: 55
+      count: 4
+    - part: listening
+      title: 聴解
+      minutes: 35
+      count: 2
+    passages:
+      m2-p: m2 の 文章
+  score_all:
+    lk: 120
+    listening: 60
+    total: 180
+    passed: true
+  score_half:
+    lk: 60
+    listening: 30
+    total: 90
+    passed: true
+  score_none:
+    lk: 0
+    listening: 0
+    total: 0
+    passed: false

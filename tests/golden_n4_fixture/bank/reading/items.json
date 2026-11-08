@@ -1,0 +1,386 @@
+[
+ {
+  "id": "re-short_passage-0",
+  "section": "reading",
+  "mondai": "short_passage",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "犬の 問題 re-short_passage-0【犬】",
+  "options": [
+   "えき",
+   "いぬ",
+   "あめ",
+   "ほん"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:short_passage-0",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for re-short_passage-0",
+  "distractor_notes": {
+   "3": "note re-short_passage-0"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-short_passage-0"
+ },
+ {
+  "id": "re-short_passage-1",
+  "section": "reading",
+  "mondai": "short_passage",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "駅の 問題 re-short_passage-1【駅】",
+  "options": [
+   "ほん",
+   "あめ",
+   "えき",
+   "みず"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:short_passage-1",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for re-short_passage-1",
+  "distractor_notes": {
+   "4": "note re-short_passage-1"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-short_passage-0"
+ },
+ {
+  "id": "re-short_passage-2",
+  "section": "reading",
+  "mondai": "short_passage",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "雨の 問題 re-short_passage-2【雨】",
+  "options": [
+   "やま",
+   "ほん",
+   "みず",
+   "あめ"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:short_passage-2",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for re-short_passage-2",
+  "distractor_notes": {
+   "1": "note re-short_passage-2"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-short_passage-1"
+ },
+ {
+  "id": "re-short_passage-3",
+  "section": "reading",
+  "mondai": "short_passage",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "本の 問題 re-short_passage-3【本】",
+  "options": [
+   "ほん",
+   "みず",
+   "やま",
+   "かわ"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:short_passage-0",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for re-short_passage-3",
+  "distractor_notes": {
+   "2": "note re-short_passage-3"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-short_passage-1"
+ },
+ {
+  "id": "re-mid_passage-0",
+  "section": "reading",
+  "mondai": "mid_passage",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "水の 問題 re-mid_passage-0【水】",
+  "options": [
+   "やま",
+   "みず",
+   "かわ",
+   "みせ"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:mid_passage-1",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for re-mid_passage-0",
+  "distractor_notes": {
+   "3": "note re-mid_passage-0"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-mid_passage-0"
+ },
+ {
+  "id": "re-mid_passage-1",
+  "section": "reading",
+  "mondai": "mid_passage",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "山の 問題 re-mid_passage-1【山】",
+  "options": [
+   "みせ",
+   "かわ",
+   "やま",
+   "くるま"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:mid_passage-2",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for re-mid_passage-1",
+  "distractor_notes": {
+   "4": "note re-mid_passage-1"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-mid_passage-0"
+ },
+ {
+  "id": "re-mid_passage-2",
+  "section": "reading",
+  "mondai": "mid_passage",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "川の 問題 re-mid_passage-2【川】",
+  "options": [
+   "でんわ",
+   "みせ",
+   "くるま",
+   "かわ"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:mid_passage-0",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for re-mid_passage-2",
+  "distractor_notes": {
+   "1": "note re-mid_passage-2"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-mid_passage-1"
+ },
+ {
+  "id": "re-mid_passage-3",
+  "section": "reading",
+  "mondai": "mid_passage",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "店の 問題 re-mid_passage-3【店】",
+  "options": [
+   "みせ",
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:mid_passage-1",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for re-mid_passage-3",
+  "distractor_notes": {
+   "2": "note re-mid_passage-3"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-mid_passage-1"
+ },
+ {
+  "id": "re-info_retrieval-0",
+  "section": "reading",
+  "mondai": "info_retrieval",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "車の 問題 re-info_retrieval-0【車】",
+  "options": [
+   "でんわ",
+   "くるま",
+   "りょこう",
+   "かいぎ"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:info_retrieval-2",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for re-info_retrieval-0",
+  "distractor_notes": {
+   "3": "note re-info_retrieval-0"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-info_retrieval-0"
+ },
+ {
+  "id": "re-info_retrieval-1",
+  "section": "reading",
+  "mondai": "info_retrieval",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "電話の 問題 re-info_retrieval-1【電話】",
+  "options": [
+   "かいぎ",
+   "りょこう",
+   "でんわ",
+   "りょうり"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:info_retrieval-0",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for re-info_retrieval-1",
+  "distractor_notes": {
+   "4": "note re-info_retrieval-1"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-info_retrieval-0"
+ },
+ {
+  "id": "re-info_retrieval-2",
+  "section": "reading",
+  "mondai": "info_retrieval",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "旅行の 問題 re-info_retrieval-2【旅行】",
+  "options": [
+   "てんき",
+   "かいぎ",
+   "りょうり",
+   "りょこう"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:info_retrieval-1",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for re-info_retrieval-2",
+  "distractor_notes": {
+   "1": "note re-info_retrieval-2"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-info_retrieval-1"
+ },
+ {
+  "id": "re-info_retrieval-3",
+  "section": "reading",
+  "mondai": "info_retrieval",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "会議の 問題 re-info_retrieval-3【会議】",
+  "options": [
+   "かいぎ",
+   "りょうり",
+   "てんき",
+   "しごと"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:info_retrieval-2",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for re-info_retrieval-3",
+  "distractor_notes": {
+   "2": "note re-info_retrieval-3"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "p-info_retrieval-1"
+ }
+]

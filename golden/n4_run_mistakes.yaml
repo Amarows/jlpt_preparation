@@ -1,0 +1,19 @@
+call: tests.golden_n4:run
+args: [practice, mistakes, 10, 4]
+expect:
+  mode: practice
+  time_limit_ms: null
+  items:
+  - m1-vo-orthography
+  - li-verbal_expression-0
+  - m1-vo-kanji_reading
+  - li-key_points-1
+  - li-task_based-2
+  - gr-sentence_composition-2
+  - gr-grammar_form-1
+  - m1-gr-grammar_form
+  - re-info_retrieval-3
+  - re-short_passage-3
+  passages:
+    p-info_retrieval-1: p-info_retrieval-1 の 文章。会議は 三時に 始まります。
+    p-short_passage-1: p-short_passage-1 の 文章。会議は 三時に 始まります。

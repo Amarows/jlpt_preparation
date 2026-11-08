@@ -1,0 +1,155 @@
+call: tests.golden_n4:report
+expect:
+  days: 14
+  last_run:
+    mode: practice
+    section: mixed
+    n: 9
+  open_mistakes: 23
+  target:
+    daily: 100
+    today: 0
+    week: 54
+    days_into_week: 7
+  progress:
+  - ts: '2026-10-26T07:06:47+00:00'
+    p_pass: 0.51
+    section: mixed
+    correct: 6
+    n: 9
+  - ts: '2026-10-27T06:13:36+00:00'
+    p_pass: 0.52
+    section: mixed
+    correct: 5
+    n: 9
+  - ts: '2026-10-28T05:19:14+00:00'
+    p_pass: 0.53
+    section: mixed
+    correct: 5
+    n: 9
+  - ts: '2026-10-29T04:24:09+00:00'
+    p_pass: 0.54
+    section: mixed
+    correct: 4
+    n: 9
+  - ts: '2026-10-29T15:28:53+00:00'
+    p_pass: 0.55
+    section: mistakes
+    correct: 7
+    n: 9
+  - ts: '2026-10-30T10:35:10+00:00'
+    p_pass: 0.56
+    section: mixed
+    correct: 8
+    n: 9
+  - ts: '2026-10-31T09:39:59+00:00'
+    p_pass: 0.57
+    section: mixed
+    correct: 7
+    n: 9
+  - ts: '2026-10-31T14:45:59+00:00'
+    p_pass: 0.58
+    section: mixed
+    correct: 4
+    n: 9
+  - ts: '2026-11-01T01:52:36+00:00'
+    p_pass: 0.59
+    section: mixed
+    correct: 5
+    n: 9
+  - ts: '2026-11-01T12:58:36+00:00'
+    p_pass: 0.6
+    section: mistakes
+    correct: 7
+    n: 9
+  - ts: '2026-11-02T12:04:55+00:00'
+    p_pass: 0.61
+    section: mixed
+    correct: 4
+    n: 9
+  - ts: '2026-11-02T23:10:23+00:00'
+    p_pass: 0.62
+    section: mixed
+    correct: 6
+    n: 9
+  - ts: '2026-11-03T22:14:11+00:00'
+    p_pass: 0.63
+    section: mixed
+    correct: 5
+    n: 9
+  - ts: '2026-11-04T21:20:23+00:00'
+    p_pass: 0.64
+    section: mixed
+    correct: 6
+    n: 9
+  - ts: '2026-11-05T16:26:52+00:00'
+    p_pass: 0.65
+    section: mistakes
+    correct: 6
+    n: 9
+  - ts: '2026-11-05T21:34:23+00:00'
+    p_pass: 0.66
+    section: mixed
+    correct: 4
+    n: 9
+  sections:
+  - section: vocab
+    correct: 22
+    total: 35
+  - section: grammar
+    correct: 14
+    total: 25
+  - section: reading
+    correct: 17
+    total: 23
+  - section: listening
+    correct: 16
+    total: 33
+  mistakes:
+  - ts: '2026-11-05T21:33:23+00:00'
+    section: vocab
+    stem: 店の 問題 m1-vo-orthography【店】
+    choice: くるま
+    answer: みせ
+    timed_out: false
+    explanation_en: explanation for m1-vo-orthography
+    explain: null
+  - ts: '2026-11-05T21:30:11+00:00'
+    section: listening
+    stem: 駅の 問題 li-key_points-1【駅】
+    choice: みず
+    answer: えき
+    timed_out: false
+    explanation_en: explanation for li-key_points-1
+    explain: null
+  - ts: '2026-11-05T21:29:04+00:00'
+    section: reading
+    stem: 会議の 問題 re-info_retrieval-3【会議】
+    choice: りょうり
+    answer: かいぎ
+    timed_out: false
+    explanation_en: explanation for re-info_retrieval-3
+    explain:
+      fallback: true
+      options:
+      - ruby: かいぎ
+        en: meeting; conference; session; assembly
+      - null
+      - null
+      - null
+  - ts: '2026-11-05T21:27:56+00:00'
+    section: listening
+    stem: 仕事の 問題 li-task_based-2【仕事】
+    choice: えき
+    answer: しごと
+    timed_out: false
+    explanation_en: explanation for li-task_based-2
+    explain: null
+  - ts: '2026-11-05T21:26:55+00:00'
+    section: vocab
+    stem: 天気の 問題 vo-paraphrase-1【天気】
+    choice: いぬ
+    answer: てんき
+    timed_out: false
+    explanation_en: explanation for vo-paraphrase-1
+    explain: null

@@ -1,0 +1,13 @@
+{
+ "id": "m1",
+ "title": "Mock m1",
+ "opens": "2026-10-01",
+ "seen_before_mock": 0,
+ "taken": "2026-10-02",
+ "result": {
+  "lk": 60,
+  "listening": 30,
+  "total": 90,
+  "passed": true
+ }
+}

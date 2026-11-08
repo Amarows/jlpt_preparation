@@ -1,0 +1,40 @@
+call: tests.golden_n4:run
+args: [timed, mixed, 30, 11]
+expect:
+  mode: timed
+  time_limit_ms: 1504000
+  items:
+  - li-task_based-2
+  - vo-usage-1
+  - li-key_points-1
+  - vo-paraphrase-3
+  - li-verbal_expression-0
+  - m1-vo-kanji_reading
+  - li-quick_response-2
+  - gr-sentence_composition-0
+  - gr-text_grammar-1
+  - gr-grammar_form-3
+  - vo-orthography-2
+  - li-quick_response-1
+  - vo-contextual-0
+  - gr-grammar_form-1
+  - m1-li-task_based
+  - li-quick_response-0
+  - li-key_points-0
+  - vo-kanji_reading-3
+  - gr-grammar_form-0
+  - li-verbal_expression-2
+  - vo-orthography-0
+  - m1-gr-grammar_form
+  - li-task_based-0
+  - vo-usage-3
+  - re-mid_passage-2
+  - re-mid_passage-3
+  - re-short_passage-2
+  - re-short_passage-3
+  - re-info_retrieval-2
+  - re-info_retrieval-3
+  passages:
+    p-mid_passage-1: p-mid_passage-1 の 文章。会議は 三時に 始まります。
+    p-short_passage-1: p-short_passage-1 の 文章。会議は 三時に 始まります。
+    p-info_retrieval-1: p-info_retrieval-1 の 文章。会議は 三時に 始まります。

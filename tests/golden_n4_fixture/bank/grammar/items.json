@@ -1,0 +1,375 @@
+[
+ {
+  "id": "gr-grammar_form-0",
+  "section": "grammar",
+  "mondai": "grammar_form",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "水の 問題 gr-grammar_form-0【水】",
+  "options": [
+   "やま",
+   "みず",
+   "かわ",
+   "みせ"
+  ],
+  "answer": 2,
+  "tags": [
+   "grammar:grammar_form-0",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for gr-grammar_form-0",
+  "distractor_notes": {
+   "3": "note gr-grammar_form-0"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "revised": "2026-11-01"
+ },
+ {
+  "id": "gr-grammar_form-1",
+  "section": "grammar",
+  "mondai": "grammar_form",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "山の 問題 gr-grammar_form-1【山】",
+  "options": [
+   "みせ",
+   "かわ",
+   "やま",
+   "くるま"
+  ],
+  "answer": 3,
+  "tags": [
+   "grammar:grammar_form-1",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for gr-grammar_form-1",
+  "distractor_notes": {
+   "4": "note gr-grammar_form-1"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-grammar_form-2",
+  "section": "grammar",
+  "mondai": "grammar_form",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "川の 問題 gr-grammar_form-2【川】",
+  "options": [
+   "でんわ",
+   "みせ",
+   "くるま",
+   "かわ"
+  ],
+  "answer": 4,
+  "tags": [
+   "grammar:grammar_form-2",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for gr-grammar_form-2",
+  "distractor_notes": {
+   "1": "note gr-grammar_form-2"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-grammar_form-3",
+  "section": "grammar",
+  "mondai": "grammar_form",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "店の 問題 gr-grammar_form-3【店】",
+  "options": [
+   "みせ",
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "grammar:grammar_form-0",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for gr-grammar_form-3",
+  "distractor_notes": {
+   "2": "note gr-grammar_form-3"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-sentence_composition-0",
+  "section": "grammar",
+  "mondai": "sentence_composition",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "車の 問題 gr-sentence_composition-0【車】",
+  "options": [
+   "でんわ",
+   "くるま",
+   "りょこう",
+   "かいぎ"
+  ],
+  "answer": 2,
+  "tags": [
+   "grammar:sentence_composition-1",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for gr-sentence_composition-0",
+  "distractor_notes": {
+   "3": "note gr-sentence_composition-0"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-sentence_composition-1",
+  "section": "grammar",
+  "mondai": "sentence_composition",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "電話の 問題 gr-sentence_composition-1【電話】",
+  "options": [
+   "かいぎ",
+   "りょこう",
+   "でんわ",
+   "りょうり"
+  ],
+  "answer": 3,
+  "tags": [
+   "grammar:sentence_composition-2",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for gr-sentence_composition-1",
+  "distractor_notes": {
+   "4": "note gr-sentence_composition-1"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-sentence_composition-2",
+  "section": "grammar",
+  "mondai": "sentence_composition",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "旅行の 問題 gr-sentence_composition-2【旅行】",
+  "options": [
+   "てんき",
+   "かいぎ",
+   "りょうり",
+   "りょこう"
+  ],
+  "answer": 4,
+  "tags": [
+   "grammar:sentence_composition-0",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for gr-sentence_composition-2",
+  "distractor_notes": {
+   "1": "note gr-sentence_composition-2"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-sentence_composition-3",
+  "section": "grammar",
+  "mondai": "sentence_composition",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "会議の 問題 gr-sentence_composition-3【会議】",
+  "options": [
+   "かいぎ",
+   "りょうり",
+   "てんき",
+   "しごと"
+  ],
+  "answer": 1,
+  "tags": [
+   "grammar:sentence_composition-1",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for gr-sentence_composition-3",
+  "distractor_notes": {
+   "2": "note gr-sentence_composition-3"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-text_grammar-0",
+  "section": "grammar",
+  "mondai": "text_grammar",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "料理の 問題 gr-text_grammar-0【料理】",
+  "options": [
+   "てんき",
+   "りょうり",
+   "しごと",
+   "ねこ"
+  ],
+  "answer": 2,
+  "tags": [
+   "grammar:text_grammar-2",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for gr-text_grammar-0",
+  "distractor_notes": {
+   "3": "note gr-text_grammar-0"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-text_grammar-1",
+  "section": "grammar",
+  "mondai": "text_grammar",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "天気の 問題 gr-text_grammar-1【天気】",
+  "options": [
+   "ねこ",
+   "しごと",
+   "てんき",
+   "いぬ"
+  ],
+  "answer": 3,
+  "tags": [
+   "grammar:text_grammar-0",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for gr-text_grammar-1",
+  "distractor_notes": {
+   "4": "note gr-text_grammar-1"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-text_grammar-2",
+  "section": "grammar",
+  "mondai": "text_grammar",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "仕事の 問題 gr-text_grammar-2【仕事】",
+  "options": [
+   "えき",
+   "ねこ",
+   "いぬ",
+   "しごと"
+  ],
+  "answer": 4,
+  "tags": [
+   "grammar:text_grammar-1",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for gr-text_grammar-2",
+  "distractor_notes": {
+   "1": "note gr-text_grammar-2"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "gr-text_grammar-3",
+  "section": "grammar",
+  "mondai": "text_grammar",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "猫の 問題 gr-text_grammar-3【猫】",
+  "options": [
+   "ねこ",
+   "いぬ",
+   "えき",
+   "あめ"
+  ],
+  "answer": 1,
+  "tags": [
+   "grammar:text_grammar-2",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for gr-text_grammar-3",
+  "distractor_notes": {
+   "2": "note gr-text_grammar-3"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ }
+]

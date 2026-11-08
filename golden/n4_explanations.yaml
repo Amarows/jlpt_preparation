@@ -1,0 +1,221 @@
+call: tests.golden_n4:explanations
+expect:
+  gr-grammar_form-0: null
+  gr-grammar_form-1: null
+  gr-grammar_form-2:
+    sentence: '{猫|ねこ}の 文'
+    translation_en: a sentence about a cat
+    options:
+    - ruby: でんわ
+      en: meaning でんわ
+    - ruby: みせ
+      en: meaning みせ
+    - ruby: くるま
+      en: meaning くるま
+    - ruby: かわ
+      en: meaning かわ
+    words:
+    - w: 猫
+      r: ねこ
+      en: cat
+    steps: [step one]
+    for: c31608a2d479
+    checked: '2026-11-01'
+    batch: golden
+  gr-grammar_form-3: null
+  gr-sentence_composition-0:
+    fallback: true
+    options:
+    - null
+    - null
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+  gr-sentence_composition-1:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  gr-sentence_composition-2:
+    fallback: true
+    options:
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+  gr-sentence_composition-3:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  gr-text_grammar-0: null
+  gr-text_grammar-1: null
+  gr-text_grammar-2: null
+  gr-text_grammar-3: null
+  li-key_points-0: null
+  li-key_points-1: null
+  li-key_points-2: null
+  li-key_points-3: null
+  li-quick_response-0: null
+  li-quick_response-1:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  li-quick_response-2:
+    fallback: true
+    options:
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+  li-quick_response-3:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  li-task_based-0: null
+  li-task_based-1: null
+  li-task_based-2: null
+  li-task_based-3: null
+  li-verbal_expression-0: null
+  li-verbal_expression-1: null
+  li-verbal_expression-2: null
+  li-verbal_expression-3: null
+  m1-gr-grammar_form:
+    fallback: true
+    options:
+    - null
+    - null
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+  m1-gr-sentence_composition:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  m1-li-key_points: null
+  m1-li-task_based: null
+  m1-re-mid_passage:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  m1-re-short_passage:
+    fallback: true
+    options:
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+  m1-vo-kanji_reading: null
+  m1-vo-orthography: null
+  re-info_retrieval-0:
+    fallback: true
+    options:
+    - null
+    - null
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+  re-info_retrieval-1:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  re-info_retrieval-2:
+    fallback: true
+    options:
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+  re-info_retrieval-3:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  re-mid_passage-0: null
+  re-mid_passage-1: null
+  re-mid_passage-2: null
+  re-mid_passage-3: null
+  re-short_passage-0: null
+  re-short_passage-1: null
+  re-short_passage-2: null
+  re-short_passage-3: null
+  vo-contextual-0:
+    fallback: true
+    options:
+    - null
+    - null
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+  vo-contextual-1:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  vo-contextual-2:
+    fallback: true
+    options:
+    - null
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+  vo-contextual-3:
+    fallback: true
+    options:
+    - ruby: かいぎ
+      en: meeting; conference; session; assembly
+    - null
+    - null
+    - null
+  vo-kanji_reading-0: null
+  vo-kanji_reading-1: null
+  vo-kanji_reading-2: null
+  vo-kanji_reading-3: null
+  vo-orthography-0: null
+  vo-orthography-1: null
+  vo-orthography-2: null
+  vo-orthography-3: null
+  vo-paraphrase-0: null
+  vo-paraphrase-1: null
+  vo-paraphrase-2: null
+  vo-paraphrase-3: null
+  vo-usage-0: null
+  vo-usage-1: null
+  vo-usage-2: null
+  vo-usage-3: null

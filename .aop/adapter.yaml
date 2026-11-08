@@ -1,0 +1,36 @@
+name: jlpt_preparation
+base: main
+python: .venv/Scripts/python.exe
+pythonpath: ['.']
+sources: ['**/*.py', '**/*.sql']
+exempt: []
+checks:
+  tests: python -m pytest -q -p no:cacheprovider tests
+golden: golden
+precision: 9
+visuals: []
+gate:
+  confidential: ['**/confidential/', 'audio/', 'materials/', 'data/bank/', 'learners/', 'learners.json']
+  data_allow: [data/vocabulary.csv]
+  data_ext:
+  - .csv
+  - .tsv
+  - .xlsx
+  - .xls
+  - .xlsm
+  - .parquet
+  - .feather
+  - .pkl
+  - .pickle
+  - .db
+  - .sqlite
+  - .duckdb
+  - .docx
+  - .doc
+  - .pptx
+  - .pdf
+  - .zip
+  - .msg
+  - .eml
+  secrets_allow: []
+  max_file_mb: 5

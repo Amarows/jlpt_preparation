@@ -1,0 +1,43 @@
+{
+ "gr-grammar_form-2": {
+  "sentence": "{猫|ねこ}の 文",
+  "translation_en": "a sentence about a cat",
+  "options": [
+   {
+    "ruby": "でんわ",
+    "en": "meaning でんわ"
+   },
+   {
+    "ruby": "みせ",
+    "en": "meaning みせ"
+   },
+   {
+    "ruby": "くるま",
+    "en": "meaning くるま"
+   },
+   {
+    "ruby": "かわ",
+    "en": "meaning かわ"
+   }
+  ],
+  "words": [
+   {
+    "w": "猫",
+    "r": "ねこ",
+    "en": "cat"
+   }
+  ],
+  "steps": [
+   "step one"
+  ],
+  "for": "c31608a2d479",
+  "checked": "2026-11-01",
+  "batch": "golden"
+ },
+ "gr-grammar_form-3": {
+  "sentence": "stale",
+  "translation_en": "stale",
+  "options": [],
+  "for": "000000000000"
+ }
+}

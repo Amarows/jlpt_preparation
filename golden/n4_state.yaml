@@ -1,0 +1,722 @@
+call: tests.golden_n4:state
+expect:
+  read_only:
+    updated: '2026-11-08'
+    p_pass: 0.7564
+    p_pass_ema: 0.58
+    band80: [0.74, 0.776]
+    trend: flat
+    p_lk_section: 0.9937
+    p_listening_section: 0.8955
+    p_total: 0.7974
+    exp_score:
+      lk: 72.3006316
+      listening: 31.4933571
+    skills:
+      sec:listening:
+        theta: 0.426131287
+        sd: 0.438337207
+        n: 33
+      sec:reading:
+        theta: 1.20371129
+        sd: 0.571216586
+        n: 23
+      sec:vocab:
+        theta: 1.00479949
+        sd: 0.445643421
+        n: 35
+      sec:grammar:
+        theta: 0.486713104
+        sd: 0.511802164
+        n: 25
+      grammar:sentence_composition-1:
+        theta: 0.218247261
+        sd: 0.632455532
+        n: 6
+      skill:key_points-1:
+        theta: 0.065444086
+        sd: 0.666666667
+        n: 5
+      skill:short_passage-1:
+        theta: 0.255439646
+        sd: 0.707106781
+        n: 4
+      skill:task_based-1:
+        theta: -0.479515353
+        sd: 0.707106781
+        n: 4
+      word:川:
+        theta: -0.0170789791
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-0:
+        theta: -0.839791355
+        sd: 0.603022689
+        n: 7
+      skill:verbal_expression-2:
+        theta: 0.520504751
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-2:
+        theta: 0.563715095
+        sd: 0.755928946
+        n: 3
+      skill:key_points-2:
+        theta: 0.108551679
+        sd: 0.666666667
+        n: 5
+      word:本:
+        theta: 0.813337371
+        sd: 0.707106781
+        n: 4
+      grammar:text_grammar-1:
+        theta: 0.123574706
+        sd: 0.707106781
+        n: 4
+      skill:quick_response-1:
+        theta: -0.0741154891
+        sd: 0.816496581
+        n: 2
+      word:車:
+        theta: -0.824493062
+        sd: 0.816496581
+        n: 2
+      skill:info_retrieval-0:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:電話:
+        theta: 0.134470711
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-1:
+        theta: 0.25
+        sd: 0.894427191
+        n: 1
+      word:雨:
+        theta: -0.612605835
+        sd: 0.632455532
+        n: 6
+      skill:quick_response-2:
+        theta: 0.645326859
+        sd: 0.816496581
+        n: 2
+      skill:short_passage-0:
+        theta: -0.35920968
+        sd: 0.632455532
+        n: 6
+      word:店:
+        theta: 0.146011044
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-0:
+        theta: -0.348540493
+        sd: 0.816496581
+        n: 2
+      word:山:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:駅:
+        theta: 0.03792909
+        sd: 0.894427191
+        n: 1
+      word:天気:
+        theta: 0.463772915
+        sd: 0.755928946
+        n: 3
+      skill:short_passage-2:
+        theta: 0.720708081
+        sd: 0.816496581
+        n: 2
+      grammar:text_grammar-2:
+        theta: 0.171935218
+        sd: 0.816496581
+        n: 2
+      word:会議:
+        theta: -0.296579537
+        sd: 0.755928946
+        n: 3
+      word:犬:
+        theta: 0.743565249
+        sd: 0.755928946
+        n: 3
+      skill:verbal_expression-0:
+        theta: -0.392494018
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-1:
+        theta: -0.311229666
+        sd: 0.894427191
+        n: 1
+      skill:mid_passage-0:
+        theta: -0.615864586
+        sd: 0.707106781
+        n: 4
+      skill:task_based-2:
+        theta: -0.225443964
+        sd: 0.816496581
+        n: 2
+      skill:task_based-0:
+        theta: 0.0415863482
+        sd: 0.894427191
+        n: 1
+      skill:quick_response-0:
+        theta: -0.401091944
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-2:
+        theta: 0.294135443
+        sd: 0.816496581
+        n: 2
+      skill:mid_passage-1:
+        theta: 0.308773938
+        sd: 0.755928946
+        n: 3
+      skill:key_points-0:
+        theta: -0.0995248478
+        sd: 0.816496581
+        n: 2
+      word:仕事:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:水:
+        theta: -0.134470711
+        sd: 0.894427191
+        n: 1
+    speed:
+      sentence_composition:
+        median_ms: 43802
+        target_ms: 60000
+      key_points:
+        median_ms: 63958
+        target_ms: 25000
+      short_passage:
+        median_ms: 56591
+        target_ms: 120000
+      task_based:
+        median_ms: 68643
+        target_ms: 25000
+      kanji_reading:
+        median_ms: 35825
+        target_ms: 20000
+      grammar_form:
+        median_ms: 41431
+        target_ms: 30000
+      verbal_expression:
+        median_ms: 63143
+        target_ms: 25000
+      usage:
+        median_ms: 44321
+        target_ms: 60000
+      text_grammar:
+        median_ms: 47144
+        target_ms: 60000
+      quick_response:
+        median_ms: 67644
+        target_ms: 20000
+      contextual:
+        median_ms: 60915
+        target_ms: 30000
+      info_retrieval:
+        median_ms: 68839
+        target_ms: 120000
+      orthography:
+        median_ms: 32668
+        target_ms: 20000
+      paraphrase:
+        median_ms: 66874
+        target_ms: 30000
+      mid_passage:
+        median_ms: 26671
+        target_ms: 120000
+    mastered:
+      count: 4
+      by_section:
+        grammar: 1
+        vocab: 1
+        reading: 2
+    days_left: 28
+    history: [0.5, 0.55, 0.6]
+    ema_history: [0.52, 0.55, 0.58]
+  after_run:
+    updated: '2026-11-08'
+    p_pass: 0.7564
+    p_pass_ema: 0.63292
+    band80: [0.74, 0.776]
+    trend: up
+    p_lk_section: 0.9937
+    p_listening_section: 0.8955
+    p_total: 0.7974
+    exp_score:
+      lk: 72.3006316
+      listening: 31.4933571
+    skills:
+      sec:listening:
+        theta: 0.426131287
+        sd: 0.438337207
+        n: 33
+      sec:reading:
+        theta: 1.20371129
+        sd: 0.571216586
+        n: 23
+      sec:vocab:
+        theta: 1.00479949
+        sd: 0.445643421
+        n: 35
+      sec:grammar:
+        theta: 0.486713104
+        sd: 0.511802164
+        n: 25
+      grammar:sentence_composition-1:
+        theta: 0.218247261
+        sd: 0.632455532
+        n: 6
+      skill:key_points-1:
+        theta: 0.065444086
+        sd: 0.666666667
+        n: 5
+      skill:short_passage-1:
+        theta: 0.255439646
+        sd: 0.707106781
+        n: 4
+      skill:task_based-1:
+        theta: -0.479515353
+        sd: 0.707106781
+        n: 4
+      word:川:
+        theta: -0.0170789791
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-0:
+        theta: -0.839791355
+        sd: 0.603022689
+        n: 7
+      skill:verbal_expression-2:
+        theta: 0.520504751
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-2:
+        theta: 0.563715095
+        sd: 0.755928946
+        n: 3
+      skill:key_points-2:
+        theta: 0.108551679
+        sd: 0.666666667
+        n: 5
+      word:本:
+        theta: 0.813337371
+        sd: 0.707106781
+        n: 4
+      grammar:text_grammar-1:
+        theta: 0.123574706
+        sd: 0.707106781
+        n: 4
+      skill:quick_response-1:
+        theta: -0.0741154891
+        sd: 0.816496581
+        n: 2
+      word:車:
+        theta: -0.824493062
+        sd: 0.816496581
+        n: 2
+      skill:info_retrieval-0:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:電話:
+        theta: 0.134470711
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-1:
+        theta: 0.25
+        sd: 0.894427191
+        n: 1
+      word:雨:
+        theta: -0.612605835
+        sd: 0.632455532
+        n: 6
+      skill:quick_response-2:
+        theta: 0.645326859
+        sd: 0.816496581
+        n: 2
+      skill:short_passage-0:
+        theta: -0.35920968
+        sd: 0.632455532
+        n: 6
+      word:店:
+        theta: 0.146011044
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-0:
+        theta: -0.348540493
+        sd: 0.816496581
+        n: 2
+      word:山:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:駅:
+        theta: 0.03792909
+        sd: 0.894427191
+        n: 1
+      word:天気:
+        theta: 0.463772915
+        sd: 0.755928946
+        n: 3
+      skill:short_passage-2:
+        theta: 0.720708081
+        sd: 0.816496581
+        n: 2
+      grammar:text_grammar-2:
+        theta: 0.171935218
+        sd: 0.816496581
+        n: 2
+      word:会議:
+        theta: -0.296579537
+        sd: 0.755928946
+        n: 3
+      word:犬:
+        theta: 0.743565249
+        sd: 0.755928946
+        n: 3
+      skill:verbal_expression-0:
+        theta: -0.392494018
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-1:
+        theta: -0.311229666
+        sd: 0.894427191
+        n: 1
+      skill:mid_passage-0:
+        theta: -0.615864586
+        sd: 0.707106781
+        n: 4
+      skill:task_based-2:
+        theta: -0.225443964
+        sd: 0.816496581
+        n: 2
+      skill:task_based-0:
+        theta: 0.0415863482
+        sd: 0.894427191
+        n: 1
+      skill:quick_response-0:
+        theta: -0.401091944
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-2:
+        theta: 0.294135443
+        sd: 0.816496581
+        n: 2
+      skill:mid_passage-1:
+        theta: 0.308773938
+        sd: 0.755928946
+        n: 3
+      skill:key_points-0:
+        theta: -0.0995248478
+        sd: 0.816496581
+        n: 2
+      word:仕事:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:水:
+        theta: -0.134470711
+        sd: 0.894427191
+        n: 1
+    speed:
+      sentence_composition:
+        median_ms: 43802
+        target_ms: 60000
+      key_points:
+        median_ms: 63958
+        target_ms: 25000
+      short_passage:
+        median_ms: 56591
+        target_ms: 120000
+      task_based:
+        median_ms: 68643
+        target_ms: 25000
+      kanji_reading:
+        median_ms: 35825
+        target_ms: 20000
+      grammar_form:
+        median_ms: 41431
+        target_ms: 30000
+      verbal_expression:
+        median_ms: 63143
+        target_ms: 25000
+      usage:
+        median_ms: 44321
+        target_ms: 60000
+      text_grammar:
+        median_ms: 47144
+        target_ms: 60000
+      quick_response:
+        median_ms: 67644
+        target_ms: 20000
+      contextual:
+        median_ms: 60915
+        target_ms: 30000
+      info_retrieval:
+        median_ms: 68839
+        target_ms: 120000
+      orthography:
+        median_ms: 32668
+        target_ms: 20000
+      paraphrase:
+        median_ms: 66874
+        target_ms: 30000
+      mid_passage:
+        median_ms: 26671
+        target_ms: 120000
+    mastered:
+      count: 4
+      by_section:
+        grammar: 1
+        vocab: 1
+        reading: 2
+    days_left: 28
+    history: [0.5, 0.55, 0.6, 0.7564]
+    ema_history: [0.52, 0.55, 0.58, 0.63292]
+  written:
+    updated: '2026-11-08'
+    p_pass: 0.7564
+    p_pass_ema: 0.63292
+    band80: [0.74, 0.776]
+    trend: up
+    p_lk_section: 0.9937
+    p_listening_section: 0.8955
+    p_total: 0.7974
+    exp_score:
+      lk: 72.3006316
+      listening: 31.4933571
+    skills:
+      sec:listening:
+        theta: 0.426131287
+        sd: 0.438337207
+        n: 33
+      sec:reading:
+        theta: 1.20371129
+        sd: 0.571216586
+        n: 23
+      sec:vocab:
+        theta: 1.00479949
+        sd: 0.445643421
+        n: 35
+      sec:grammar:
+        theta: 0.486713104
+        sd: 0.511802164
+        n: 25
+      grammar:sentence_composition-1:
+        theta: 0.218247261
+        sd: 0.632455532
+        n: 6
+      skill:key_points-1:
+        theta: 0.065444086
+        sd: 0.666666667
+        n: 5
+      skill:short_passage-1:
+        theta: 0.255439646
+        sd: 0.707106781
+        n: 4
+      skill:task_based-1:
+        theta: -0.479515353
+        sd: 0.707106781
+        n: 4
+      word:川:
+        theta: -0.0170789791
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-0:
+        theta: -0.839791355
+        sd: 0.603022689
+        n: 7
+      skill:verbal_expression-2:
+        theta: 0.520504751
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-2:
+        theta: 0.563715095
+        sd: 0.755928946
+        n: 3
+      skill:key_points-2:
+        theta: 0.108551679
+        sd: 0.666666667
+        n: 5
+      word:本:
+        theta: 0.813337371
+        sd: 0.707106781
+        n: 4
+      grammar:text_grammar-1:
+        theta: 0.123574706
+        sd: 0.707106781
+        n: 4
+      skill:quick_response-1:
+        theta: -0.0741154891
+        sd: 0.816496581
+        n: 2
+      word:車:
+        theta: -0.824493062
+        sd: 0.816496581
+        n: 2
+      skill:info_retrieval-0:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:電話:
+        theta: 0.134470711
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-1:
+        theta: 0.25
+        sd: 0.894427191
+        n: 1
+      word:雨:
+        theta: -0.612605835
+        sd: 0.632455532
+        n: 6
+      skill:quick_response-2:
+        theta: 0.645326859
+        sd: 0.816496581
+        n: 2
+      skill:short_passage-0:
+        theta: -0.35920968
+        sd: 0.632455532
+        n: 6
+      word:店:
+        theta: 0.146011044
+        sd: 0.666666667
+        n: 5
+      grammar:sentence_composition-0:
+        theta: -0.348540493
+        sd: 0.816496581
+        n: 2
+      word:山:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:駅:
+        theta: 0.03792909
+        sd: 0.894427191
+        n: 1
+      word:天気:
+        theta: 0.463772915
+        sd: 0.755928946
+        n: 3
+      skill:short_passage-2:
+        theta: 0.720708081
+        sd: 0.816496581
+        n: 2
+      grammar:text_grammar-2:
+        theta: 0.171935218
+        sd: 0.816496581
+        n: 2
+      word:会議:
+        theta: -0.296579537
+        sd: 0.755928946
+        n: 3
+      word:犬:
+        theta: 0.743565249
+        sd: 0.755928946
+        n: 3
+      skill:verbal_expression-0:
+        theta: -0.392494018
+        sd: 0.707106781
+        n: 4
+      grammar:grammar_form-1:
+        theta: -0.311229666
+        sd: 0.894427191
+        n: 1
+      skill:mid_passage-0:
+        theta: -0.615864586
+        sd: 0.707106781
+        n: 4
+      skill:task_based-2:
+        theta: -0.225443964
+        sd: 0.816496581
+        n: 2
+      skill:task_based-0:
+        theta: 0.0415863482
+        sd: 0.894427191
+        n: 1
+      skill:quick_response-0:
+        theta: -0.401091944
+        sd: 0.894427191
+        n: 1
+      skill:info_retrieval-2:
+        theta: 0.294135443
+        sd: 0.816496581
+        n: 2
+      skill:mid_passage-1:
+        theta: 0.308773938
+        sd: 0.755928946
+        n: 3
+      skill:key_points-0:
+        theta: -0.0995248478
+        sd: 0.816496581
+        n: 2
+      word:仕事:
+        theta: 0.0912127619
+        sd: 0.894427191
+        n: 1
+      word:水:
+        theta: -0.134470711
+        sd: 0.894427191
+        n: 1
+    speed:
+      sentence_composition:
+        median_ms: 43802
+        target_ms: 60000
+      key_points:
+        median_ms: 63958
+        target_ms: 25000
+      short_passage:
+        median_ms: 56591
+        target_ms: 120000
+      task_based:
+        median_ms: 68643
+        target_ms: 25000
+      kanji_reading:
+        median_ms: 35825
+        target_ms: 20000
+      grammar_form:
+        median_ms: 41431
+        target_ms: 30000
+      verbal_expression:
+        median_ms: 63143
+        target_ms: 25000
+      usage:
+        median_ms: 44321
+        target_ms: 60000
+      text_grammar:
+        median_ms: 47144
+        target_ms: 60000
+      quick_response:
+        median_ms: 67644
+        target_ms: 20000
+      contextual:
+        median_ms: 60915
+        target_ms: 30000
+      info_retrieval:
+        median_ms: 68839
+        target_ms: 120000
+      orthography:
+        median_ms: 32668
+        target_ms: 20000
+      paraphrase:
+        median_ms: 66874
+        target_ms: 30000
+      mid_passage:
+        median_ms: 26671
+        target_ms: 120000
+    mastered:
+      count: 4
+      by_section:
+        grammar: 1
+        vocab: 1
+        reading: 2
+    days_left: 28
+    history: [0.5, 0.55, 0.6, 0.7564]
+    ema_history: [0.52, 0.55, 0.58, 0.63292]

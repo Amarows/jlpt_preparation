@@ -1,0 +1,266 @@
+[
+ {
+  "id": "m1-li-task_based",
+  "section": "listening",
+  "mondai": "task_based",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "料理の 問題 m1-li-task_based【料理】",
+  "options": [
+   "てんき",
+   "りょうり",
+   "しごと",
+   "ねこ"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:task_based-1",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for m1-li-task_based",
+  "distractor_notes": {
+   "3": "note m1-li-task_based"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 4.0,
+   "duration": 4.0
+  },
+  "script": "M：mock"
+ },
+ {
+  "id": "m1-li-key_points",
+  "section": "listening",
+  "mondai": "key_points",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "天気の 問題 m1-li-key_points【天気】",
+  "options": [
+   "ねこ",
+   "しごと",
+   "てんき",
+   "いぬ"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:key_points-2",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for m1-li-key_points",
+  "distractor_notes": {
+   "4": "note m1-li-key_points"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 4.0,
+   "duration": 4.0
+  },
+  "script": "M：mock"
+ },
+ {
+  "id": "m1-gr-sentence_composition",
+  "section": "grammar",
+  "mondai": "sentence_composition",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "電話の 問題 m1-gr-sentence_composition【電話】",
+  "options": [
+   "かいぎ",
+   "りょこう",
+   "でんわ",
+   "りょうり"
+  ],
+  "answer": 3,
+  "tags": [
+   "grammar:sentence_composition-1",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for m1-gr-sentence_composition",
+  "distractor_notes": {
+   "4": "note m1-gr-sentence_composition"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "m1-vo-kanji_reading",
+  "section": "vocab",
+  "mondai": "kanji_reading",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "川の 問題 m1-vo-kanji_reading【川】",
+  "options": [
+   "でんわ",
+   "みせ",
+   "くるま",
+   "かわ"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:川",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for m1-vo-kanji_reading",
+  "distractor_notes": {
+   "1": "note m1-vo-kanji_reading"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "m1-re-mid_passage",
+  "section": "reading",
+  "mondai": "mid_passage",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "会議の 問題 m1-re-mid_passage【会議】",
+  "options": [
+   "かいぎ",
+   "りょうり",
+   "てんき",
+   "しごと"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:mid_passage-0",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for m1-re-mid_passage",
+  "distractor_notes": {
+   "2": "note m1-re-mid_passage"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "m1-p"
+ },
+ {
+  "id": "m1-re-short_passage",
+  "section": "reading",
+  "mondai": "short_passage",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "旅行の 問題 m1-re-short_passage【旅行】",
+  "options": [
+   "てんき",
+   "かいぎ",
+   "りょうり",
+   "りょこう"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:short_passage-2",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for m1-re-short_passage",
+  "distractor_notes": {
+   "1": "note m1-re-short_passage"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "reading/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "passage_id": "m1-p"
+ },
+ {
+  "id": "m1-gr-grammar_form",
+  "section": "grammar",
+  "mondai": "grammar_form",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "車の 問題 m1-gr-grammar_form【車】",
+  "options": [
+   "でんわ",
+   "くるま",
+   "りょこう",
+   "かいぎ"
+  ],
+  "answer": 2,
+  "tags": [
+   "grammar:grammar_form-0",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for m1-gr-grammar_form",
+  "distractor_notes": {
+   "3": "note m1-gr-grammar_form"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "grammar/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "m1-vo-orthography",
+  "section": "vocab",
+  "mondai": "orthography",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "店の 問題 m1-vo-orthography【店】",
+  "options": [
+   "みせ",
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:店",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for m1-vo-orthography",
+  "distractor_notes": {
+   "2": "note m1-vo-orthography"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ }
+]

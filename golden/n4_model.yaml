@@ -1,0 +1,352 @@
+call: tests.golden_n4:model
+expect:
+  skills:
+    sec:listening:
+      theta: 0.426131287
+      sd: 0.438337207
+      n: 33
+    sec:reading:
+      theta: 1.20371129
+      sd: 0.571216586
+      n: 23
+    sec:vocab:
+      theta: 1.00479949
+      sd: 0.445643421
+      n: 35
+    sec:grammar:
+      theta: 0.486713104
+      sd: 0.511802164
+      n: 25
+    grammar:sentence_composition-1:
+      theta: 0.218247261
+      sd: 0.632455532
+      n: 6
+    skill:key_points-1:
+      theta: 0.065444086
+      sd: 0.666666667
+      n: 5
+    skill:short_passage-1:
+      theta: 0.255439646
+      sd: 0.707106781
+      n: 4
+    skill:task_based-1:
+      theta: -0.479515353
+      sd: 0.707106781
+      n: 4
+    word:川:
+      theta: -0.0170789791
+      sd: 0.707106781
+      n: 4
+    grammar:grammar_form-0:
+      theta: -0.839791355
+      sd: 0.603022689
+      n: 7
+    skill:verbal_expression-2:
+      theta: 0.520504751
+      sd: 0.666666667
+      n: 5
+    grammar:sentence_composition-2:
+      theta: 0.563715095
+      sd: 0.755928946
+      n: 3
+    skill:key_points-2:
+      theta: 0.108551679
+      sd: 0.666666667
+      n: 5
+    word:本:
+      theta: 0.813337371
+      sd: 0.707106781
+      n: 4
+    grammar:text_grammar-1:
+      theta: 0.123574706
+      sd: 0.707106781
+      n: 4
+    skill:quick_response-1:
+      theta: -0.0741154891
+      sd: 0.816496581
+      n: 2
+    word:車:
+      theta: -0.824493062
+      sd: 0.816496581
+      n: 2
+    skill:info_retrieval-0:
+      theta: 0.0912127619
+      sd: 0.894427191
+      n: 1
+    word:電話:
+      theta: 0.134470711
+      sd: 0.894427191
+      n: 1
+    skill:info_retrieval-1:
+      theta: 0.25
+      sd: 0.894427191
+      n: 1
+    word:雨:
+      theta: -0.612605835
+      sd: 0.632455532
+      n: 6
+    skill:quick_response-2:
+      theta: 0.645326859
+      sd: 0.816496581
+      n: 2
+    skill:short_passage-0:
+      theta: -0.35920968
+      sd: 0.632455532
+      n: 6
+    word:店:
+      theta: 0.146011044
+      sd: 0.666666667
+      n: 5
+    grammar:sentence_composition-0:
+      theta: -0.348540493
+      sd: 0.816496581
+      n: 2
+    word:山:
+      theta: 0.0912127619
+      sd: 0.894427191
+      n: 1
+    word:駅:
+      theta: 0.03792909
+      sd: 0.894427191
+      n: 1
+    word:天気:
+      theta: 0.463772915
+      sd: 0.755928946
+      n: 3
+    skill:short_passage-2:
+      theta: 0.720708081
+      sd: 0.816496581
+      n: 2
+    grammar:text_grammar-2:
+      theta: 0.171935218
+      sd: 0.816496581
+      n: 2
+    word:会議:
+      theta: -0.296579537
+      sd: 0.755928946
+      n: 3
+    word:犬:
+      theta: 0.743565249
+      sd: 0.755928946
+      n: 3
+    skill:verbal_expression-0:
+      theta: -0.392494018
+      sd: 0.707106781
+      n: 4
+    grammar:grammar_form-1:
+      theta: -0.311229666
+      sd: 0.894427191
+      n: 1
+    skill:mid_passage-0:
+      theta: -0.615864586
+      sd: 0.707106781
+      n: 4
+    skill:task_based-2:
+      theta: -0.225443964
+      sd: 0.816496581
+      n: 2
+    skill:task_based-0:
+      theta: 0.0415863482
+      sd: 0.894427191
+      n: 1
+    skill:quick_response-0:
+      theta: -0.401091944
+      sd: 0.894427191
+      n: 1
+    skill:info_retrieval-2:
+      theta: 0.294135443
+      sd: 0.816496581
+      n: 2
+    skill:mid_passage-1:
+      theta: 0.308773938
+      sd: 0.755928946
+      n: 3
+    skill:key_points-0:
+      theta: -0.0995248478
+      sd: 0.816496581
+      n: 2
+    word:仕事:
+      theta: 0.0912127619
+      sd: 0.894427191
+      n: 1
+    word:水:
+      theta: -0.134470711
+      sd: 0.894427191
+      n: 1
+  sections:
+    sec:listening:
+      theta: 0.426131287
+      sd: 0.438337207
+      n: 33
+    sec:reading:
+      theta: 1.20371129
+      sd: 0.571216586
+      n: 23
+    sec:vocab:
+      theta: 1.00479949
+      sd: 0.445643421
+      n: 35
+    sec:grammar:
+      theta: 0.486713104
+      sd: 0.511802164
+      n: 25
+  item_b:
+    gr-sentence_composition-3: -0.540341213
+    li-key_points-3: 0.48813558
+    re-short_passage-1: 0.404097429
+    li-task_based-1: -0.251255112
+    m1-vo-kanji_reading: 0.0505896802
+    m1-li-task_based: -0.54903424
+    gr-grammar_form-3: -0.964431307
+    li-verbal_expression-0: 1.76082044
+    gr-sentence_composition-1: 1.80541502
+    m1-li-key_points: 0.850446429
+    vo-usage-3: 0.70144981
+    m1-gr-sentence_composition: 0.498524887
+    gr-text_grammar-2: -0.024602185
+    li-verbal_expression-3: 1.06741898
+    li-quick_response-1: 0.0387209463
+    vo-contextual-0: -1.73090675
+    re-info_retrieval-1: -1.02736383
+    gr-sentence_composition-0: 0.421707783
+    vo-contextual-1: -0.540341213
+    re-info_retrieval-2: 0.425
+    vo-usage-2: -0.380846812
+    li-quick_response-2: 1.29019013
+    re-short_passage-0: -1.05912471
+    m1-vo-orthography: 1.46100935
+    gr-sentence_composition-2: -1.87224968
+    li-key_points-1: 1.57464353
+    vo-kanji_reading-2: -1.42008698
+    vo-orthography-3: 1.96282304
+    vo-orthography-1: -1.02736383
+    re-short_passage-3: -1.74222772
+    vo-usage-1: -2.01137873
+    vo-paraphrase-1: 1.3647857
+    re-short_passage-2: 1.87736383
+    gr-text_grammar-0: 0.9066311
+    vo-contextual-3: -1.42344714
+    vo-usage-0: 1.77113151
+    li-key_points-0: -0.0344648174
+    li-verbal_expression-1: -1.81368438
+    gr-text_grammar-3: 1.550146
+    gr-grammar_form-1: 0.0933688997
+    gr-grammar_form-0: -1.39318501
+    vo-kanji_reading-0: -0.529463812
+    m1-gr-grammar_form: -0.790596425
+    m1-re-mid_passage: -1.87660365
+    li-task_based-2: 1.07584467
+    li-task_based-0: -2.0124759
+    li-quick_response-3: -0.879672417
+    re-mid_passage-2: -1.38444381
+    re-info_retrieval-3: 1.91863847
+    re-mid_passage-0: -0.607648911
+    li-key_points-2: -0.976203813
+    vo-paraphrase-2: -1.02736383
+    vo-orthography-0: 1.54034121
+    m1-re-short_passage: 1.8877085
+  speed:
+    sentence_composition:
+      median_ms: 43802
+      target_ms: 60000
+    key_points:
+      median_ms: 63958
+      target_ms: 25000
+    short_passage:
+      median_ms: 56591
+      target_ms: 120000
+    task_based:
+      median_ms: 68643
+      target_ms: 25000
+    kanji_reading:
+      median_ms: 35825
+      target_ms: 20000
+    grammar_form:
+      median_ms: 41431
+      target_ms: 30000
+    verbal_expression:
+      median_ms: 63143
+      target_ms: 25000
+    usage:
+      median_ms: 44321
+      target_ms: 60000
+    text_grammar:
+      median_ms: 47144
+      target_ms: 60000
+    quick_response:
+      median_ms: 67644
+      target_ms: 20000
+    contextual:
+      median_ms: 60915
+      target_ms: 30000
+    info_retrieval:
+      median_ms: 68839
+      target_ms: 120000
+    orthography:
+      median_ms: 32668
+      target_ms: 20000
+    paraphrase:
+      median_ms: 66874
+      target_ms: 30000
+    mid_passage:
+      median_ms: 26671
+      target_ms: 120000
+  boxes:
+    gr-sentence_composition-3: 0
+    li-key_points-3: 0
+    re-short_passage-1: 2
+    li-task_based-1: 0
+    m1-vo-kanji_reading: 0
+    m1-li-task_based: 0
+    gr-grammar_form-3: 0
+    li-verbal_expression-0: 0
+    gr-sentence_composition-1: 4
+    m1-li-key_points: 1
+    vo-usage-3: 3
+    m1-gr-sentence_composition: 1
+    gr-text_grammar-2: 1
+    li-verbal_expression-3: 0
+    li-quick_response-1: 0
+    vo-contextual-0: 0
+    re-info_retrieval-1: 0
+    gr-sentence_composition-0: 2
+    vo-contextual-1: 0
+    re-info_retrieval-2: 0
+    vo-usage-2: 1
+    li-quick_response-2: 0
+    re-short_passage-0: 1
+    m1-vo-orthography: 0
+    gr-sentence_composition-2: 0
+    li-key_points-1: 0
+    vo-kanji_reading-2: 1
+    vo-orthography-3: 1
+    vo-orthography-1: 0
+    li-key_points-2: 0
+    re-short_passage-3: 0
+    m1-re-short_passage: 3
+    li-quick_response-0: 0
+    vo-orthography-2: 0
+    vo-usage-1: 0
+    vo-paraphrase-1: 0
+    re-short_passage-2: 1
+    gr-text_grammar-0: 2
+    vo-contextual-3: 0
+    vo-usage-0: 2
+    li-key_points-0: 1
+    li-verbal_expression-1: 0
+    gr-text_grammar-3: 0
+    gr-grammar_form-1: 0
+    gr-grammar_form-0: 0
+    vo-kanji_reading-0: 1
+    m1-gr-grammar_form: 0
+    m1-re-mid_passage: 0
+    li-task_based-2: 0
+    li-task_based-0: 0
+    li-quick_response-3: 0
+    re-mid_passage-2: 1
+    re-info_retrieval-3: 0
+    re-mid_passage-0: 3
+    vo-paraphrase-2: 0
+    vo-orthography-0: 0
+    li-task_based-3: 0
+    vo-contextual-2: 1

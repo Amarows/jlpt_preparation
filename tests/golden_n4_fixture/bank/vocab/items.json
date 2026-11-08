@@ -1,0 +1,622 @@
+[
+ {
+  "id": "vo-kanji_reading-0",
+  "section": "vocab",
+  "mondai": "kanji_reading",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "犬の 問題 vo-kanji_reading-0【犬】",
+  "options": [
+   "えき",
+   "いぬ",
+   "あめ",
+   "ほん"
+  ],
+  "answer": 2,
+  "tags": [
+   "word:犬",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for vo-kanji_reading-0",
+  "distractor_notes": {
+   "3": "note vo-kanji_reading-0"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-kanji_reading-1",
+  "section": "vocab",
+  "mondai": "kanji_reading",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "駅の 問題 vo-kanji_reading-1【駅】",
+  "options": [
+   "ほん",
+   "あめ",
+   "えき",
+   "みず"
+  ],
+  "answer": 3,
+  "tags": [
+   "word:駅",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for vo-kanji_reading-1",
+  "distractor_notes": {
+   "4": "note vo-kanji_reading-1"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": false
+ },
+ {
+  "id": "vo-kanji_reading-2",
+  "section": "vocab",
+  "mondai": "kanji_reading",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "雨の 問題 vo-kanji_reading-2【雨】",
+  "options": [
+   "やま",
+   "ほん",
+   "みず",
+   "あめ"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:雨",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for vo-kanji_reading-2",
+  "distractor_notes": {
+   "1": "note vo-kanji_reading-2"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-kanji_reading-3",
+  "section": "vocab",
+  "mondai": "kanji_reading",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "本の 問題 vo-kanji_reading-3【本】",
+  "options": [
+   "ほん",
+   "みず",
+   "やま",
+   "かわ"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:本",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for vo-kanji_reading-3",
+  "distractor_notes": {
+   "2": "note vo-kanji_reading-3"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-orthography-0",
+  "section": "vocab",
+  "mondai": "orthography",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "水の 問題 vo-orthography-0【水】",
+  "options": [
+   "やま",
+   "みず",
+   "かわ",
+   "みせ"
+  ],
+  "answer": 2,
+  "tags": [
+   "word:水",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for vo-orthography-0",
+  "distractor_notes": {
+   "3": "note vo-orthography-0"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-orthography-1",
+  "section": "vocab",
+  "mondai": "orthography",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "山の 問題 vo-orthography-1【山】",
+  "options": [
+   "みせ",
+   "かわ",
+   "やま",
+   "くるま"
+  ],
+  "answer": 3,
+  "tags": [
+   "word:山",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for vo-orthography-1",
+  "distractor_notes": {
+   "4": "note vo-orthography-1"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-orthography-2",
+  "section": "vocab",
+  "mondai": "orthography",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "川の 問題 vo-orthography-2【川】",
+  "options": [
+   "でんわ",
+   "みせ",
+   "くるま",
+   "かわ"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:川",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for vo-orthography-2",
+  "distractor_notes": {
+   "1": "note vo-orthography-2"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-orthography-3",
+  "section": "vocab",
+  "mondai": "orthography",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "店の 問題 vo-orthography-3【店】",
+  "options": [
+   "みせ",
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:店",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for vo-orthography-3",
+  "distractor_notes": {
+   "2": "note vo-orthography-3"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-contextual-0",
+  "section": "vocab",
+  "mondai": "contextual",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "車の 問題 vo-contextual-0【車】",
+  "options": [
+   "でんわ",
+   "くるま",
+   "りょこう",
+   "かいぎ"
+  ],
+  "answer": 2,
+  "tags": [
+   "word:車",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for vo-contextual-0",
+  "distractor_notes": {
+   "3": "note vo-contextual-0"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-contextual-1",
+  "section": "vocab",
+  "mondai": "contextual",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "電話の 問題 vo-contextual-1【電話】",
+  "options": [
+   "かいぎ",
+   "りょこう",
+   "でんわ",
+   "りょうり"
+  ],
+  "answer": 3,
+  "tags": [
+   "word:電話",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for vo-contextual-1",
+  "distractor_notes": {
+   "4": "note vo-contextual-1"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-contextual-2",
+  "section": "vocab",
+  "mondai": "contextual",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "旅行の 問題 vo-contextual-2【旅行】",
+  "options": [
+   "てんき",
+   "かいぎ",
+   "りょうり",
+   "りょこう"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:旅行",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for vo-contextual-2",
+  "distractor_notes": {
+   "1": "note vo-contextual-2"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-contextual-3",
+  "section": "vocab",
+  "mondai": "contextual",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "会議の 問題 vo-contextual-3【会議】",
+  "options": [
+   "かいぎ",
+   "りょうり",
+   "てんき",
+   "しごと"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:会議",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for vo-contextual-3",
+  "distractor_notes": {
+   "2": "note vo-contextual-3"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-paraphrase-0",
+  "section": "vocab",
+  "mondai": "paraphrase",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "料理の 問題 vo-paraphrase-0【料理】",
+  "options": [
+   "てんき",
+   "りょうり",
+   "しごと",
+   "ねこ"
+  ],
+  "answer": 2,
+  "tags": [
+   "word:料理",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for vo-paraphrase-0",
+  "distractor_notes": {
+   "3": "note vo-paraphrase-0"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-paraphrase-1",
+  "section": "vocab",
+  "mondai": "paraphrase",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "天気の 問題 vo-paraphrase-1【天気】",
+  "options": [
+   "ねこ",
+   "しごと",
+   "てんき",
+   "いぬ"
+  ],
+  "answer": 3,
+  "tags": [
+   "word:天気",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for vo-paraphrase-1",
+  "distractor_notes": {
+   "4": "note vo-paraphrase-1"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-paraphrase-2",
+  "section": "vocab",
+  "mondai": "paraphrase",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "仕事の 問題 vo-paraphrase-2【仕事】",
+  "options": [
+   "えき",
+   "ねこ",
+   "いぬ",
+   "しごと"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:仕事",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for vo-paraphrase-2",
+  "distractor_notes": {
+   "1": "note vo-paraphrase-2"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-paraphrase-3",
+  "section": "vocab",
+  "mondai": "paraphrase",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "猫の 問題 vo-paraphrase-3【猫】",
+  "options": [
+   "ねこ",
+   "いぬ",
+   "えき",
+   "あめ"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:猫",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for vo-paraphrase-3",
+  "distractor_notes": {
+   "2": "note vo-paraphrase-3"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-usage-0",
+  "section": "vocab",
+  "mondai": "usage",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "犬の 問題 vo-usage-0【犬】",
+  "options": [
+   "えき",
+   "いぬ",
+   "あめ",
+   "ほん"
+  ],
+  "answer": 2,
+  "tags": [
+   "word:犬",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for vo-usage-0",
+  "distractor_notes": {
+   "3": "note vo-usage-0"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-usage-1",
+  "section": "vocab",
+  "mondai": "usage",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "駅の 問題 vo-usage-1【駅】",
+  "options": [
+   "ほん",
+   "あめ",
+   "えき",
+   "みず"
+  ],
+  "answer": 3,
+  "tags": [
+   "word:駅",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for vo-usage-1",
+  "distractor_notes": {
+   "4": "note vo-usage-1"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-usage-2",
+  "section": "vocab",
+  "mondai": "usage",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "雨の 問題 vo-usage-2【雨】",
+  "options": [
+   "やま",
+   "ほん",
+   "みず",
+   "あめ"
+  ],
+  "answer": 4,
+  "tags": [
+   "word:雨",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for vo-usage-2",
+  "distractor_notes": {
+   "1": "note vo-usage-2"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ },
+ {
+  "id": "vo-usage-3",
+  "section": "vocab",
+  "mondai": "usage",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "本の 問題 vo-usage-3【本】",
+  "options": [
+   "ほん",
+   "みず",
+   "やま",
+   "かわ"
+  ],
+  "answer": 1,
+  "tags": [
+   "word:本",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for vo-usage-3",
+  "distractor_notes": {
+   "2": "note vo-usage-3"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "vocab/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true
+ }
+]

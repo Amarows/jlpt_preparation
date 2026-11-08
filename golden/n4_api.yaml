@@ -1,0 +1,3943 @@
+call: tests.golden_n4:api
+expect:
+  calls:
+  - request: /api/status
+    sent: null
+    status: 200
+    body:
+      updated: '2026-11-08'
+      p_pass: 0.7564
+      p_pass_ema: 0.58
+      band80: [0.74, 0.776]
+      trend: flat
+      p_lk_section: 0.9937
+      p_listening_section: 0.8955
+      p_total: 0.7974
+      exp_score:
+        lk: 72.3006316
+        listening: 31.4933571
+      skills:
+        sec:listening:
+          theta: 0.426131287
+          sd: 0.438337207
+          n: 33
+        sec:reading:
+          theta: 1.20371129
+          sd: 0.571216586
+          n: 23
+        sec:vocab:
+          theta: 1.00479949
+          sd: 0.445643421
+          n: 35
+        sec:grammar:
+          theta: 0.486713104
+          sd: 0.511802164
+          n: 25
+        grammar:sentence_composition-1:
+          theta: 0.218247261
+          sd: 0.632455532
+          n: 6
+        skill:key_points-1:
+          theta: 0.065444086
+          sd: 0.666666667
+          n: 5
+        skill:short_passage-1:
+          theta: 0.255439646
+          sd: 0.707106781
+          n: 4
+        skill:task_based-1:
+          theta: -0.479515353
+          sd: 0.707106781
+          n: 4
+        word:川:
+          theta: -0.0170789791
+          sd: 0.707106781
+          n: 4
+        grammar:grammar_form-0:
+          theta: -0.839791355
+          sd: 0.603022689
+          n: 7
+        skill:verbal_expression-2:
+          theta: 0.520504751
+          sd: 0.666666667
+          n: 5
+        grammar:sentence_composition-2:
+          theta: 0.563715095
+          sd: 0.755928946
+          n: 3
+        skill:key_points-2:
+          theta: 0.108551679
+          sd: 0.666666667
+          n: 5
+        word:本:
+          theta: 0.813337371
+          sd: 0.707106781
+          n: 4
+        grammar:text_grammar-1:
+          theta: 0.123574706
+          sd: 0.707106781
+          n: 4
+        skill:quick_response-1:
+          theta: -0.0741154891
+          sd: 0.816496581
+          n: 2
+        word:車:
+          theta: -0.824493062
+          sd: 0.816496581
+          n: 2
+        skill:info_retrieval-0:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:電話:
+          theta: 0.134470711
+          sd: 0.894427191
+          n: 1
+        skill:info_retrieval-1:
+          theta: 0.25
+          sd: 0.894427191
+          n: 1
+        word:雨:
+          theta: -0.612605835
+          sd: 0.632455532
+          n: 6
+        skill:quick_response-2:
+          theta: 0.645326859
+          sd: 0.816496581
+          n: 2
+        skill:short_passage-0:
+          theta: -0.35920968
+          sd: 0.632455532
+          n: 6
+        word:店:
+          theta: 0.146011044
+          sd: 0.666666667
+          n: 5
+        grammar:sentence_composition-0:
+          theta: -0.348540493
+          sd: 0.816496581
+          n: 2
+        word:山:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:駅:
+          theta: 0.03792909
+          sd: 0.894427191
+          n: 1
+        word:天気:
+          theta: 0.463772915
+          sd: 0.755928946
+          n: 3
+        skill:short_passage-2:
+          theta: 0.720708081
+          sd: 0.816496581
+          n: 2
+        grammar:text_grammar-2:
+          theta: 0.171935218
+          sd: 0.816496581
+          n: 2
+        word:会議:
+          theta: -0.296579537
+          sd: 0.755928946
+          n: 3
+        word:犬:
+          theta: 0.743565249
+          sd: 0.755928946
+          n: 3
+        skill:verbal_expression-0:
+          theta: -0.392494018
+          sd: 0.707106781
+          n: 4
+        grammar:grammar_form-1:
+          theta: -0.311229666
+          sd: 0.894427191
+          n: 1
+        skill:mid_passage-0:
+          theta: -0.615864586
+          sd: 0.707106781
+          n: 4
+        skill:task_based-2:
+          theta: -0.225443964
+          sd: 0.816496581
+          n: 2
+        skill:task_based-0:
+          theta: 0.0415863482
+          sd: 0.894427191
+          n: 1
+        skill:quick_response-0:
+          theta: -0.401091944
+          sd: 0.894427191
+          n: 1
+        skill:info_retrieval-2:
+          theta: 0.294135443
+          sd: 0.816496581
+          n: 2
+        skill:mid_passage-1:
+          theta: 0.308773938
+          sd: 0.755928946
+          n: 3
+        skill:key_points-0:
+          theta: -0.0995248478
+          sd: 0.816496581
+          n: 2
+        word:仕事:
+          theta: 0.0912127619
+          sd: 0.894427191
+          n: 1
+        word:水:
+          theta: -0.134470711
+          sd: 0.894427191
+          n: 1
+      speed:
+        sentence_composition:
+          median_ms: 43802
+          target_ms: 60000
+        key_points:
+          median_ms: 63958
+          target_ms: 25000
+        short_passage:
+          median_ms: 56591
+          target_ms: 120000
+        task_based:
+          median_ms: 68643
+          target_ms: 25000
+        kanji_reading:
+          median_ms: 35825
+          target_ms: 20000
+        grammar_form:
+          median_ms: 41431
+          target_ms: 30000
+        verbal_expression:
+          median_ms: 63143
+          target_ms: 25000
+        usage:
+          median_ms: 44321
+          target_ms: 60000
+        text_grammar:
+          median_ms: 47144
+          target_ms: 60000
+        quick_response:
+          median_ms: 67644
+          target_ms: 20000
+        contextual:
+          median_ms: 60915
+          target_ms: 30000
+        info_retrieval:
+          median_ms: 68839
+          target_ms: 120000
+        orthography:
+          median_ms: 32668
+          target_ms: 20000
+        paraphrase:
+          median_ms: 66874
+          target_ms: 30000
+        mid_passage:
+          median_ms: 26671
+          target_ms: 120000
+      mastered:
+        count: 4
+        by_section:
+          grammar: 1
+          vocab: 1
+          reading: 2
+      days_left: 28
+      history: [0.5, 0.55, 0.6]
+      ema_history: [0.52, 0.55, 0.58]
+  - request: /api/mocks
+    sent: null
+    status: 200
+    body:
+    - id: m1
+      title: Mock m1
+      opens: '2026-10-01'
+      seen_before_mock: 0
+      taken: '2026-10-02'
+      result:
+        lk: 60
+        listening: 30
+        total: 90
+        passed: true
+      open: true
+    - id: m2
+      title: Mock m2
+      opens: '2026-11-01'
+      seen_before_mock: 0
+      open: true
+    - id: m3
+      title: Mock m3
+      opens: '2027-01-01'
+      seen_before_mock: 0
+      open: false
+  - request: /api/report
+    sent: null
+    status: 200
+    body:
+      days: 14
+      last_run:
+        mode: practice
+        section: mixed
+        n: 9
+      open_mistakes: 23
+      target:
+        daily: 100
+        today: 0
+        week: 54
+        days_into_week: 7
+      progress:
+      - ts: '2026-10-26T07:06:47+00:00'
+        p_pass: 0.51
+        section: mixed
+        correct: 6
+        n: 9
+      - ts: '2026-10-27T06:13:36+00:00'
+        p_pass: 0.52
+        section: mixed
+        correct: 5
+        n: 9
+      - ts: '2026-10-28T05:19:14+00:00'
+        p_pass: 0.53
+        section: mixed
+        correct: 5
+        n: 9
+      - ts: '2026-10-29T04:24:09+00:00'
+        p_pass: 0.54
+        section: mixed
+        correct: 4
+        n: 9
+      - ts: '2026-10-29T15:28:53+00:00'
+        p_pass: 0.55
+        section: mistakes
+        correct: 7
+        n: 9
+      - ts: '2026-10-30T10:35:10+00:00'
+        p_pass: 0.56
+        section: mixed
+        correct: 8
+        n: 9
+      - ts: '2026-10-31T09:39:59+00:00'
+        p_pass: 0.57
+        section: mixed
+        correct: 7
+        n: 9
+      - ts: '2026-10-31T14:45:59+00:00'
+        p_pass: 0.58
+        section: mixed
+        correct: 4
+        n: 9
+      - ts: '2026-11-01T01:52:36+00:00'
+        p_pass: 0.59
+        section: mixed
+        correct: 5
+        n: 9
+      - ts: '2026-11-01T12:58:36+00:00'
+        p_pass: 0.6
+        section: mistakes
+        correct: 7
+        n: 9
+      - ts: '2026-11-02T12:04:55+00:00'
+        p_pass: 0.61
+        section: mixed
+        correct: 4
+        n: 9
+      - ts: '2026-11-02T23:10:23+00:00'
+        p_pass: 0.62
+        section: mixed
+        correct: 6
+        n: 9
+      - ts: '2026-11-03T22:14:11+00:00'
+        p_pass: 0.63
+        section: mixed
+        correct: 5
+        n: 9
+      - ts: '2026-11-04T21:20:23+00:00'
+        p_pass: 0.64
+        section: mixed
+        correct: 6
+        n: 9
+      - ts: '2026-11-05T16:26:52+00:00'
+        p_pass: 0.65
+        section: mistakes
+        correct: 6
+        n: 9
+      - ts: '2026-11-05T21:34:23+00:00'
+        p_pass: 0.66
+        section: mixed
+        correct: 4
+        n: 9
+      sections:
+      - section: vocab
+        correct: 22
+        total: 35
+      - section: grammar
+        correct: 14
+        total: 25
+      - section: reading
+        correct: 17
+        total: 23
+      - section: listening
+        correct: 16
+        total: 33
+      mistakes:
+      - ts: '2026-11-05T21:33:23+00:00'
+        section: vocab
+        stem: 店の 問題 m1-vo-orthography【店】
+        choice: くるま
+        answer: みせ
+        timed_out: false
+        explanation_en: explanation for m1-vo-orthography
+        explain: null
+      - ts: '2026-11-05T21:30:11+00:00'
+        section: listening
+        stem: 駅の 問題 li-key_points-1【駅】
+        choice: みず
+        answer: えき
+        timed_out: false
+        explanation_en: explanation for li-key_points-1
+        explain: null
+      - ts: '2026-11-05T21:29:04+00:00'
+        section: reading
+        stem: 会議の 問題 re-info_retrieval-3【会議】
+        choice: りょうり
+        answer: かいぎ
+        timed_out: false
+        explanation_en: explanation for re-info_retrieval-3
+        explain:
+          fallback: true
+          options:
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+          - null
+          - null
+      - ts: '2026-11-05T21:27:56+00:00'
+        section: listening
+        stem: 仕事の 問題 li-task_based-2【仕事】
+        choice: えき
+        answer: しごと
+        timed_out: false
+        explanation_en: explanation for li-task_based-2
+        explain: null
+      - ts: '2026-11-05T21:26:55+00:00'
+        section: vocab
+        stem: 天気の 問題 vo-paraphrase-1【天気】
+        choice: いぬ
+        answer: てんき
+        timed_out: false
+        explanation_en: explanation for vo-paraphrase-1
+        explain: null
+  - request: /api/run?mode=practice&section=mixed&n=12
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000000000
+      mode: practice
+      time_limit_ms: null
+      parts: null
+      items:
+      - id: gr-grammar_form-2
+        section: grammar
+        mondai: grammar_form
+        tier_prior: hard
+        level: N4-core
+        stem: 川の 問題 gr-grammar_form-2【川】
+        options: [でんわ, みせ, くるま, かわ]
+        tags: ['grammar:grammar_form-2', 'topic:3']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: grammar/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 60000
+      - id: vo-contextual-0
+        section: vocab
+        mondai: contextual
+        tier_prior: easy
+        level: N5
+        stem: 車の 問題 vo-contextual-0【車】
+        options: [でんわ, くるま, りょこう, かいぎ]
+        tags: ['word:車', 'topic:1']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 15000
+      - id: li-task_based-0
+        section: listening
+        mondai: task_based
+        tier_prior: easy
+        level: N5
+        stem: 料理の 問題 li-task_based-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        tags: ['skill:task_based-0', 'topic:1']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: listening/b1
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 0.0
+          end: 5.0
+          duration: 5.0
+        hide_options: true
+        target_ms: 15000
+      - id: li-quick_response-2
+        section: listening
+        mondai: quick_response
+        tier_prior: hard
+        level: N4-core
+        stem: 旅行の 問題 li-quick_response-2【旅行】
+        options: [りょうり, かいぎ, りょこう]
+        tags: ['skill:quick_response-2', 'topic:3']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: listening/b1
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 2.0
+          end: 7.0
+          duration: 5.0
+        hide_options: true
+        target_ms: 40000
+      - id: li-quick_response-0
+        section: listening
+        mondai: quick_response
+        tier_prior: easy
+        level: N4-core
+        stem: 車の 問題 li-quick_response-0【車】
+        options: [くるま, でんわ, りょこう]
+        tags: ['skill:quick_response-0', 'topic:1']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: listening/b1
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 0.0
+          end: 5.0
+          duration: 5.0
+        hide_options: true
+        target_ms: 10000
+      - id: gr-text_grammar-2
+        section: grammar
+        mondai: text_grammar
+        tier_prior: medium
+        level: N4-core
+        stem: 仕事の 問題 gr-text_grammar-2【仕事】
+        options: [えき, ねこ, いぬ, しごと]
+        tags: ['grammar:text_grammar-1', 'topic:3']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: grammar/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 60000
+      - id: li-verbal_expression-2
+        section: listening
+        mondai: verbal_expression
+        tier_prior: medium
+        level: N5
+        stem: 川の 問題 li-verbal_expression-2【川】
+        options: [みせ, かわ, くるま]
+        tags: ['skill:verbal_expression-1', 'topic:3']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: listening/b1
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 2.0
+          end: 7.0
+          duration: 5.0
+        hide_options: false
+        target_ms: 25000
+      - id: m1-gr-sentence_composition
+        section: grammar
+        mondai: sentence_composition
+        tier_prior: medium
+        level: N4-hard
+        stem: 電話の 問題 m1-gr-sentence_composition【電話】
+        options: [かいぎ, りょこう, でんわ, りょうり]
+        tags: ['grammar:sentence_composition-1', 'topic:2']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: grammar/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 60000
+      - id: li-key_points-1
+        section: listening
+        mondai: key_points
+        tier_prior: hard
+        level: N4-core
+        stem: 駅の 問題 li-key_points-1【駅】
+        options: [ほん, あめ, えき, みず]
+        tags: ['skill:key_points-2', 'topic:2']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: listening/b0
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 1.0
+          end: 6.0
+          duration: 5.0
+        hide_options: false
+        target_ms: 50000
+      - id: gr-grammar_form-0
+        section: grammar
+        mondai: grammar_form
+        tier_prior: easy
+        level: N4-core
+        stem: 水の 問題 gr-grammar_form-0【水】
+        options: [やま, みず, かわ, みせ]
+        tags: ['grammar:grammar_form-0', 'topic:1']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: grammar/b1
+          created: '2026-10-20'
+        verified: true
+        revised: '2026-11-01'
+        target_ms: 15000
+      - id: re-mid_passage-0
+        section: reading
+        mondai: mid_passage
+        tier_prior: medium
+        level: N5
+        stem: 水の 問題 re-mid_passage-0【水】
+        options: [やま, みず, かわ, みせ]
+        tags: ['skill:mid_passage-1', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: reading/b1
+          created: '2026-10-20'
+        verified: true
+        passage_id: p-mid_passage-0
+        target_ms: 120000
+      - id: re-mid_passage-1
+        section: reading
+        mondai: mid_passage
+        tier_prior: hard
+        level: N5
+        stem: 山の 問題 re-mid_passage-1【山】
+        options: [みせ, かわ, やま, くるま]
+        tags: ['skill:mid_passage-2', 'topic:2']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: reading/b0
+          created: '2026-10-20'
+        verified: true
+        passage_id: p-mid_passage-0
+        target_ms: 240000
+      passages:
+        p-mid_passage-0: p-mid_passage-0 の 文章。会議は 三時に 始まります。
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: gr-grammar_form-2
+      choice: 1
+      ms: 3000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 4
+      explanation_en: explanation for gr-grammar_form-2
+      distractor_note: note gr-grammar_form-2
+      script: null
+      explain:
+        sentence: '{猫|ねこ}の 文'
+        translation_en: a sentence about a cat
+        options:
+        - ruby: でんわ
+          en: meaning でんわ
+        - ruby: みせ
+          en: meaning みせ
+        - ruby: くるま
+          en: meaning くるま
+        - ruby: かわ
+          en: meaning かわ
+        words:
+        - w: 猫
+          r: ねこ
+          en: cat
+        steps: [step one]
+        for: c31608a2d479
+        checked: '2026-11-01'
+        batch: golden
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-contextual-0
+      choice: 2
+      ms: 4000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: explanation for vo-contextual-0
+      distractor_note: null
+      script: null
+      explain:
+        fallback: true
+        options:
+        - null
+        - null
+        - null
+        - ruby: かいぎ
+          en: meeting; conference; session; assembly
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: li-task_based-0
+      choice: 3
+      ms: 5000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: explanation for li-task_based-0
+      distractor_note: note li-task_based-0
+      script: M：li-task_based-0 の スクリプト
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: li-quick_response-2
+      choice: 1
+      ms: 6000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 3
+      explanation_en: explanation for li-quick_response-2
+      distractor_note: note li-quick_response-2
+      script: M：li-quick_response-2 の スクリプト
+      explain:
+        fallback: true
+        options:
+        - null
+        - ruby: かいぎ
+          en: meeting; conference; session; assembly
+        - null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: li-quick_response-0
+      choice: 2
+      ms: 7000
+      flag: guess
+      timed_out: true
+    status: 200
+    body:
+      ok: true
+      answer: 1
+      explanation_en: explanation for li-quick_response-0
+      distractor_note: note li-quick_response-0
+      script: M：li-quick_response-0 の スクリプト
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: gr-text_grammar-2
+      choice: 2
+      ms: 8000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 4
+      explanation_en: explanation for gr-text_grammar-2
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: li-verbal_expression-2
+      choice: 1
+      ms: 9000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: explanation for li-verbal_expression-2
+      distractor_note: null
+      script: M：li-verbal_expression-2 の スクリプト
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m1-gr-sentence_composition
+      choice: 4
+      ms: 10000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 3
+      explanation_en: explanation for m1-gr-sentence_composition
+      distractor_note: note m1-gr-sentence_composition
+      script: null
+      explain:
+        fallback: true
+        options:
+        - ruby: かいぎ
+          en: meeting; conference; session; assembly
+        - null
+        - null
+        - null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: li-key_points-1
+      choice: 1
+      ms: 11000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 3
+      explanation_en: explanation for li-key_points-1
+      distractor_note: null
+      script: M：li-key_points-1 の スクリプト
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: gr-grammar_form-0
+      choice: 2
+      ms: 12000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: explanation for gr-grammar_form-0
+      distractor_note: null
+      script: null
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: re-mid_passage-0
+      choice: 3
+      ms: 13000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 2
+      explanation_en: explanation for re-mid_passage-0
+      distractor_note: note re-mid_passage-0
+      script: null
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: re-mid_passage-1
+      choice: 4
+      ms: 14000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+      answer: 3
+      explanation_en: explanation for re-mid_passage-1
+      distractor_note: note re-mid_passage-1
+      script: null
+      explain: null
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: gr-grammar_form-2
+      choice: 2
+      ms: 1
+    status: 200
+    body:
+      ok: true
+  - request: /api/finish
+    sent:
+      run_id: r-000000000000
+    status: 200
+    body:
+      score: 2
+      total_ms: 102000
+      p_pass_before: 0.7564
+      p_pass_after: 0.5943
+      mock: null
+      items:
+      - stem: 川の 問題 gr-grammar_form-2【川】
+        options: [でんわ, みせ, くるま, かわ]
+        choice: 1
+        answer: 4
+        correct: false
+        ms: 3000
+        slow: false
+        flag: none
+        explanation_en: explanation for gr-grammar_form-2
+        distractor_note: note gr-grammar_form-2
+        script: null
+        explain:
+          sentence: '{猫|ねこ}の 文'
+          translation_en: a sentence about a cat
+          options:
+          - ruby: でんわ
+            en: meaning でんわ
+          - ruby: みせ
+            en: meaning みせ
+          - ruby: くるま
+            en: meaning くるま
+          - ruby: かわ
+            en: meaning かわ
+          words:
+          - w: 猫
+            r: ねこ
+            en: cat
+          steps: [step one]
+          for: c31608a2d479
+          checked: '2026-11-01'
+          batch: golden
+        item_id: gr-grammar_form-2
+        section: grammar
+      - stem: 車の 問題 vo-contextual-0【車】
+        options: [でんわ, くるま, りょこう, かいぎ]
+        choice: 2
+        answer: 2
+        correct: true
+        ms: 4000
+        slow: false
+        flag: guess
+        explanation_en: explanation for vo-contextual-0
+        distractor_note: null
+        script: null
+        explain:
+          fallback: true
+          options:
+          - null
+          - null
+          - null
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+        item_id: vo-contextual-0
+        section: vocab
+      - stem: 料理の 問題 li-task_based-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        choice: 3
+        answer: 2
+        correct: false
+        ms: 5000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for li-task_based-0
+        distractor_note: note li-task_based-0
+        script: M：li-task_based-0 の スクリプト
+        explain: null
+        item_id: li-task_based-0
+        section: listening
+      - stem: 旅行の 問題 li-quick_response-2【旅行】
+        options: [りょうり, かいぎ, りょこう]
+        choice: 1
+        answer: 3
+        correct: false
+        ms: 6000
+        slow: false
+        flag: none
+        explanation_en: explanation for li-quick_response-2
+        distractor_note: note li-quick_response-2
+        script: M：li-quick_response-2 の スクリプト
+        explain:
+          fallback: true
+          options:
+          - null
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+        item_id: li-quick_response-2
+        section: listening
+      - stem: 車の 問題 li-quick_response-0【車】
+        options: [くるま, でんわ, りょこう]
+        choice: 2
+        answer: 1
+        correct: false
+        ms: 7000
+        slow: false
+        flag: guess
+        explanation_en: explanation for li-quick_response-0
+        distractor_note: note li-quick_response-0
+        script: M：li-quick_response-0 の スクリプト
+        explain: null
+        item_id: li-quick_response-0
+        section: listening
+      - stem: 仕事の 問題 gr-text_grammar-2【仕事】
+        options: [えき, ねこ, いぬ, しごと]
+        choice: 2
+        answer: 4
+        correct: false
+        ms: 8000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for gr-text_grammar-2
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: gr-text_grammar-2
+        section: grammar
+      - stem: 川の 問題 li-verbal_expression-2【川】
+        options: [みせ, かわ, くるま]
+        choice: 1
+        answer: 2
+        correct: false
+        ms: 9000
+        slow: false
+        flag: none
+        explanation_en: explanation for li-verbal_expression-2
+        distractor_note: null
+        script: M：li-verbal_expression-2 の スクリプト
+        explain: null
+        item_id: li-verbal_expression-2
+        section: listening
+      - stem: 電話の 問題 m1-gr-sentence_composition【電話】
+        options: [かいぎ, りょこう, でんわ, りょうり]
+        choice: 4
+        answer: 3
+        correct: false
+        ms: 10000
+        slow: false
+        flag: guess
+        explanation_en: explanation for m1-gr-sentence_composition
+        distractor_note: note m1-gr-sentence_composition
+        script: null
+        explain:
+          fallback: true
+          options:
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+          - null
+          - null
+        item_id: m1-gr-sentence_composition
+        section: grammar
+      - stem: 駅の 問題 li-key_points-1【駅】
+        options: [ほん, あめ, えき, みず]
+        choice: 1
+        answer: 3
+        correct: false
+        ms: 11000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for li-key_points-1
+        distractor_note: null
+        script: M：li-key_points-1 の スクリプト
+        explain: null
+        item_id: li-key_points-1
+        section: listening
+      - stem: 水の 問題 gr-grammar_form-0【水】
+        options: [やま, みず, かわ, みせ]
+        choice: 2
+        answer: 2
+        correct: true
+        ms: 12000
+        slow: false
+        flag: none
+        explanation_en: explanation for gr-grammar_form-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: gr-grammar_form-0
+        section: grammar
+      - stem: 水の 問題 re-mid_passage-0【水】
+        options: [やま, みず, かわ, みせ]
+        choice: 3
+        answer: 2
+        correct: false
+        ms: 13000
+        slow: false
+        flag: guess
+        explanation_en: explanation for re-mid_passage-0
+        distractor_note: note re-mid_passage-0
+        script: null
+        explain: null
+        item_id: re-mid_passage-0
+        section: reading
+      - stem: 山の 問題 re-mid_passage-1【山】
+        options: [みせ, かわ, やま, くるま]
+        choice: 4
+        answer: 3
+        correct: false
+        ms: 14000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for re-mid_passage-1
+        distractor_note: note re-mid_passage-1
+        script: null
+        explain: null
+        item_id: re-mid_passage-1
+        section: reading
+  - request: /api/run?mode=timed&section=vocab&n=5
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000000000
+      mode: timed
+      time_limit_ms: 150000
+      parts: null
+      items:
+      - id: vo-orthography-2
+        section: vocab
+        mondai: orthography
+        tier_prior: medium
+        level: N4-hard
+        stem: 川の 問題 vo-orthography-2【川】
+        options: [でんわ, みせ, くるま, かわ]
+        tags: ['word:川', 'topic:3']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      - id: vo-usage-1
+        section: vocab
+        mondai: usage
+        tier_prior: easy
+        level: N5
+        stem: 駅の 問題 vo-usage-1【駅】
+        options: [ほん, あめ, えき, みず]
+        tags: ['word:駅', 'topic:2']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: vocab/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 30000
+      - id: vo-paraphrase-0
+        section: vocab
+        mondai: paraphrase
+        tier_prior: medium
+        level: N4-core
+        stem: 料理の 問題 vo-paraphrase-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        tags: ['word:料理', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 30000
+      - id: vo-kanji_reading-0
+        section: vocab
+        mondai: kanji_reading
+        tier_prior: medium
+        level: N5
+        stem: 犬の 問題 vo-kanji_reading-0【犬】
+        options: [えき, いぬ, あめ, ほん]
+        tags: ['word:犬', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      - id: vo-kanji_reading-3
+        section: vocab
+        mondai: kanji_reading
+        tier_prior: medium
+        level: N4-core
+        stem: 本の 問題 vo-kanji_reading-3【本】
+        options: [ほん, みず, やま, かわ]
+        tags: ['word:本', 'topic:0']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      passages: {}
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-orthography-2
+      choice: 1
+      ms: 3000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-usage-1
+      choice: 2
+      ms: 4000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-paraphrase-0
+      choice: 3
+      ms: 5000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-kanji_reading-0
+      choice: 4
+      ms: 6000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-kanji_reading-3
+      choice: 1
+      ms: 7000
+      flag: guess
+      timed_out: true
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-orthography-2
+      choice: 2
+      ms: 1
+    status: 200
+    body:
+      ok: true
+  - request: /api/finish
+    sent:
+      run_id: r-000000000000
+    status: 200
+    body:
+      score: 0
+      total_ms: 25000
+      p_pass_before: 0.5943
+      p_pass_after: 0.4887
+      mock: null
+      items:
+      - stem: 川の 問題 vo-orthography-2【川】
+        options: [でんわ, みせ, くるま, かわ]
+        choice: 1
+        answer: 4
+        correct: false
+        ms: 3000
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-orthography-2
+        distractor_note: note vo-orthography-2
+        script: null
+        explain: null
+        item_id: vo-orthography-2
+        section: vocab
+      - stem: 駅の 問題 vo-usage-1【駅】
+        options: [ほん, あめ, えき, みず]
+        choice: 2
+        answer: 3
+        correct: false
+        ms: 4000
+        slow: false
+        flag: guess
+        explanation_en: explanation for vo-usage-1
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-usage-1
+        section: vocab
+      - stem: 料理の 問題 vo-paraphrase-0【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        choice: 3
+        answer: 2
+        correct: false
+        ms: 5000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for vo-paraphrase-0
+        distractor_note: note vo-paraphrase-0
+        script: null
+        explain: null
+        item_id: vo-paraphrase-0
+        section: vocab
+      - stem: 犬の 問題 vo-kanji_reading-0【犬】
+        options: [えき, いぬ, あめ, ほん]
+        choice: 4
+        answer: 2
+        correct: false
+        ms: 6000
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-kanji_reading-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-kanji_reading-0
+        section: vocab
+      - stem: 本の 問題 vo-kanji_reading-3【本】
+        options: [ほん, みず, やま, かわ]
+        choice: 1
+        answer: 1
+        correct: false
+        ms: 7000
+        slow: false
+        flag: guess
+        explanation_en: explanation for vo-kanji_reading-3
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-kanji_reading-3
+        section: vocab
+  - request: /api/run?mode=drill&section=mistakes&n=6
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000000000
+      mode: drill
+      time_limit_ms: null
+      parts: null
+      items:
+      - id: m1-vo-kanji_reading
+        section: vocab
+        mondai: kanji_reading
+        tier_prior: medium
+        level: N4-core
+        stem: 川の 問題 m1-vo-kanji_reading【川】
+        options: [でんわ, みせ, くるま, かわ]
+        tags: ['word:川', 'topic:3']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      - id: m1-vo-orthography
+        section: vocab
+        mondai: orthography
+        tier_prior: hard
+        level: N4-core
+        stem: 店の 問題 m1-vo-orthography【店】
+        options: [みせ, くるま, でんわ, りょこう]
+        tags: ['word:店', 'topic:0']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: vocab/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 40000
+      - id: gr-text_grammar-3
+        section: grammar
+        mondai: text_grammar
+        tier_prior: hard
+        level: N4-core
+        stem: 猫の 問題 gr-text_grammar-3【猫】
+        options: [ねこ, いぬ, えき, あめ]
+        tags: ['grammar:text_grammar-2', 'topic:0']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: grammar/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 120000
+      - id: vo-orthography-0
+        section: vocab
+        mondai: orthography
+        tier_prior: hard
+        level: N4-core
+        stem: 水の 問題 vo-orthography-0【水】
+        options: [やま, みず, かわ, みせ]
+        tags: ['word:水', 'topic:1']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 40000
+      - id: re-mid_passage-0
+        section: reading
+        mondai: mid_passage
+        tier_prior: medium
+        level: N5
+        stem: 水の 問題 re-mid_passage-0【水】
+        options: [やま, みず, かわ, みせ]
+        tags: ['skill:mid_passage-1', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: reading/b1
+          created: '2026-10-20'
+        verified: true
+        passage_id: p-mid_passage-0
+        target_ms: 120000
+      - id: re-mid_passage-1
+        section: reading
+        mondai: mid_passage
+        tier_prior: hard
+        level: N5
+        stem: 山の 問題 re-mid_passage-1【山】
+        options: [みせ, かわ, やま, くるま]
+        tags: ['skill:mid_passage-2', 'topic:2']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: reading/b0
+          created: '2026-10-20'
+        verified: true
+        passage_id: p-mid_passage-0
+        target_ms: 240000
+      passages:
+        p-mid_passage-0: p-mid_passage-0 の 文章。会議は 三時に 始まります。
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m1-vo-kanji_reading
+      choice: 1
+      ms: 3000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m1-vo-orthography
+      choice: 2
+      ms: 4000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: gr-text_grammar-3
+      choice: 3
+      ms: 5000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: vo-orthography-0
+      choice: 4
+      ms: 6000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: re-mid_passage-0
+      choice: 1
+      ms: 7000
+      flag: guess
+      timed_out: true
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: re-mid_passage-1
+      choice: 2
+      ms: 8000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m1-vo-kanji_reading
+      choice: 2
+      ms: 1
+    status: 200
+    body:
+      ok: true
+  - request: /api/finish
+    sent:
+      run_id: r-000000000000
+    status: 200
+    body:
+      score: 0
+      total_ms: 33000
+      p_pass_before: 0.4887
+      p_pass_after: 0.4887
+      mock: null
+      items:
+      - stem: 川の 問題 m1-vo-kanji_reading【川】
+        options: [でんわ, みせ, くるま, かわ]
+        choice: 1
+        answer: 4
+        correct: false
+        ms: 3000
+        slow: false
+        flag: none
+        explanation_en: explanation for m1-vo-kanji_reading
+        distractor_note: note m1-vo-kanji_reading
+        script: null
+        explain: null
+        item_id: m1-vo-kanji_reading
+        section: vocab
+      - stem: 店の 問題 m1-vo-orthography【店】
+        options: [みせ, くるま, でんわ, りょこう]
+        choice: 2
+        answer: 1
+        correct: false
+        ms: 4000
+        slow: false
+        flag: guess
+        explanation_en: explanation for m1-vo-orthography
+        distractor_note: note m1-vo-orthography
+        script: null
+        explain: null
+        item_id: m1-vo-orthography
+        section: vocab
+      - stem: 猫の 問題 gr-text_grammar-3【猫】
+        options: [ねこ, いぬ, えき, あめ]
+        choice: 3
+        answer: 1
+        correct: false
+        ms: 5000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for gr-text_grammar-3
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: gr-text_grammar-3
+        section: grammar
+      - stem: 水の 問題 vo-orthography-0【水】
+        options: [やま, みず, かわ, みせ]
+        choice: 4
+        answer: 2
+        correct: false
+        ms: 6000
+        slow: false
+        flag: none
+        explanation_en: explanation for vo-orthography-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: vo-orthography-0
+        section: vocab
+      - stem: 水の 問題 re-mid_passage-0【水】
+        options: [やま, みず, かわ, みせ]
+        choice: 1
+        answer: 2
+        correct: false
+        ms: 7000
+        slow: false
+        flag: guess
+        explanation_en: explanation for re-mid_passage-0
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: re-mid_passage-0
+        section: reading
+      - stem: 山の 問題 re-mid_passage-1【山】
+        options: [みせ, かわ, やま, くるま]
+        choice: 2
+        answer: 3
+        correct: false
+        ms: 8000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for re-mid_passage-1
+        distractor_note: null
+        script: null
+        explain: null
+        item_id: re-mid_passage-1
+        section: reading
+  - request: /api/run?mode=mock&mock=m2
+    sent: null
+    status: 200
+    body:
+      run_id: r-000000000000
+      mode: mock
+      time_limit_ms: null
+      parts:
+      - part: vocab
+        title: 言語知識（文字・語彙）
+        minutes: 25
+        count: 2
+      - part: grammar_reading
+        title: 言語知識（文法）・読解
+        minutes: 55
+        count: 4
+      - part: listening
+        title: 聴解
+        minutes: 35
+        count: 2
+      items:
+      - id: m2-vo-kanji_reading
+        section: vocab
+        mondai: kanji_reading
+        tier_prior: medium
+        level: N4-core
+        stem: 川の 問題 m2-vo-kanji_reading【川】
+        options: [でんわ, みせ, くるま, かわ]
+        tags: ['word:川', 'topic:3']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: vocab/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 20000
+      - id: m2-vo-orthography
+        section: vocab
+        mondai: orthography
+        tier_prior: hard
+        level: N4-core
+        stem: 店の 問題 m2-vo-orthography【店】
+        options: [みせ, くるま, でんわ, りょこう]
+        tags: ['word:店', 'topic:0']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: vocab/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 40000
+      - id: m2-gr-grammar_form
+        section: grammar
+        mondai: grammar_form
+        tier_prior: easy
+        level: N4-hard
+        stem: 車の 問題 m2-gr-grammar_form【車】
+        options: [でんわ, くるま, りょこう, かいぎ]
+        tags: ['grammar:grammar_form-0', 'topic:1']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: grammar/b1
+          created: '2026-10-20'
+        verified: true
+        target_ms: 15000
+      - id: m2-gr-sentence_composition
+        section: grammar
+        mondai: sentence_composition
+        tier_prior: medium
+        level: N4-hard
+        stem: 電話の 問題 m2-gr-sentence_composition【電話】
+        options: [かいぎ, りょこう, でんわ, りょうり]
+        tags: ['grammar:sentence_composition-1', 'topic:2']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: grammar/b0
+          created: '2026-10-20'
+        verified: true
+        target_ms: 60000
+      - id: m2-re-short_passage
+        section: reading
+        mondai: short_passage
+        tier_prior: hard
+        level: N4-hard
+        stem: 旅行の 問題 m2-re-short_passage【旅行】
+        options: [てんき, かいぎ, りょうり, りょこう]
+        tags: ['skill:short_passage-2', 'topic:3']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: reading/b1
+          created: '2026-10-20'
+        verified: true
+        passage_id: m2-p
+        target_ms: 240000
+      - id: m2-re-mid_passage
+        section: reading
+        mondai: mid_passage
+        tier_prior: easy
+        level: N5
+        stem: 会議の 問題 m2-re-mid_passage【会議】
+        options: [かいぎ, りょうり, てんき, しごと]
+        tags: ['skill:mid_passage-0', 'topic:0']
+        source:
+          kind: generated
+          ref: golden fixture
+          author: golden
+          batch: reading/b0
+          created: '2026-10-20'
+        verified: true
+        passage_id: m2-p
+        target_ms: 60000
+      - id: m2-li-task_based
+        section: listening
+        mondai: task_based
+        tier_prior: medium
+        level: N5
+        stem: 料理の 問題 m2-li-task_based【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        tags: ['skill:task_based-1', 'topic:1']
+        source:
+          kind: book
+          ref: golden fixture
+          author: golden
+          batch: listening/b1
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 0.0
+          end: 4.0
+          duration: 4.0
+        target_ms: 25000
+      - id: m2-li-key_points
+        section: listening
+        mondai: key_points
+        tier_prior: hard
+        level: N5
+        stem: 天気の 問題 m2-li-key_points【天気】
+        options: [ねこ, しごと, てんき, いぬ]
+        tags: ['skill:key_points-2', 'topic:2']
+        source:
+          kind: official
+          ref: golden fixture
+          author: golden
+          batch: listening/b0
+          created: '2026-10-20'
+        verified: true
+        audio:
+          file: audio/clip.mp3
+          start: 0.0
+          end: 4.0
+          duration: 4.0
+        target_ms: 50000
+      passages:
+        m2-p: m2 の 文章
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-vo-kanji_reading
+      choice: 1
+      ms: 3000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-vo-orthography
+      choice: 2
+      ms: 4000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-gr-grammar_form
+      choice: 3
+      ms: 5000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-gr-sentence_composition
+      choice: 4
+      ms: 6000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-re-short_passage
+      choice: 1
+      ms: 7000
+      flag: guess
+      timed_out: true
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-re-mid_passage
+      choice: 2
+      ms: 8000
+      flag: unclear
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-li-task_based
+      choice: 3
+      ms: 9000
+      flag: none
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-li-key_points
+      choice: 4
+      ms: 10000
+      flag: guess
+      timed_out: false
+    status: 200
+    body:
+      ok: true
+  - request: /api/answer
+    sent:
+      run_id: r-000000000000
+      item_id: m2-vo-kanji_reading
+      choice: 2
+      ms: 1
+    status: 200
+    body:
+      ok: true
+  - request: /api/finish
+    sent:
+      run_id: r-000000000000
+    status: 200
+    body:
+      score: 0
+      total_ms: 52000
+      p_pass_before: 0.4887
+      p_pass_after: 0.3685
+      mock:
+        lk: 0
+        listening: 0
+        total: 0
+        passed: false
+      items:
+      - stem: 川の 問題 m2-vo-kanji_reading【川】
+        options: [でんわ, みせ, くるま, かわ]
+        choice: 1
+        answer: 4
+        correct: false
+        ms: 3000
+        slow: false
+        flag: none
+        explanation_en: explanation for m2-vo-kanji_reading
+        distractor_note: note m2-vo-kanji_reading
+        script: null
+        explain: null
+        item_id: m2-vo-kanji_reading
+        section: vocab
+      - stem: 店の 問題 m2-vo-orthography【店】
+        options: [みせ, くるま, でんわ, りょこう]
+        choice: 2
+        answer: 1
+        correct: false
+        ms: 4000
+        slow: false
+        flag: guess
+        explanation_en: explanation for m2-vo-orthography
+        distractor_note: note m2-vo-orthography
+        script: null
+        explain: null
+        item_id: m2-vo-orthography
+        section: vocab
+      - stem: 車の 問題 m2-gr-grammar_form【車】
+        options: [でんわ, くるま, りょこう, かいぎ]
+        choice: 3
+        answer: 2
+        correct: false
+        ms: 5000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for m2-gr-grammar_form
+        distractor_note: note m2-gr-grammar_form
+        script: null
+        explain:
+          fallback: true
+          options:
+          - null
+          - null
+          - null
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+        item_id: m2-gr-grammar_form
+        section: grammar
+      - stem: 電話の 問題 m2-gr-sentence_composition【電話】
+        options: [かいぎ, りょこう, でんわ, りょうり]
+        choice: 4
+        answer: 3
+        correct: false
+        ms: 6000
+        slow: false
+        flag: none
+        explanation_en: explanation for m2-gr-sentence_composition
+        distractor_note: note m2-gr-sentence_composition
+        script: null
+        explain:
+          fallback: true
+          options:
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+          - null
+          - null
+        item_id: m2-gr-sentence_composition
+        section: grammar
+      - stem: 旅行の 問題 m2-re-short_passage【旅行】
+        options: [てんき, かいぎ, りょうり, りょこう]
+        choice: 1
+        answer: 4
+        correct: false
+        ms: 7000
+        slow: false
+        flag: guess
+        explanation_en: explanation for m2-re-short_passage
+        distractor_note: note m2-re-short_passage
+        script: null
+        explain:
+          fallback: true
+          options:
+          - null
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+          - null
+        item_id: m2-re-short_passage
+        section: reading
+      - stem: 会議の 問題 m2-re-mid_passage【会議】
+        options: [かいぎ, りょうり, てんき, しごと]
+        choice: 2
+        answer: 1
+        correct: false
+        ms: 8000
+        slow: false
+        flag: unclear
+        explanation_en: explanation for m2-re-mid_passage
+        distractor_note: note m2-re-mid_passage
+        script: null
+        explain:
+          fallback: true
+          options:
+          - ruby: かいぎ
+            en: meeting; conference; session; assembly
+          - null
+          - null
+          - null
+        item_id: m2-re-mid_passage
+        section: reading
+      - stem: 料理の 問題 m2-li-task_based【料理】
+        options: [てんき, りょうり, しごと, ねこ]
+        choice: 3
+        answer: 2
+        correct: false
+        ms: 9000
+        slow: false
+        flag: none
+        explanation_en: explanation for m2-li-task_based
+        distractor_note: note m2-li-task_based
+        script: M：mock
+        explain: null
+        item_id: m2-li-task_based
+        section: listening
+      - stem: 天気の 問題 m2-li-key_points【天気】
+        options: [ねこ, しごと, てんき, いぬ]
+        choice: 4
+        answer: 3
+        correct: false
+        ms: 10000
+        slow: false
+        flag: guess
+        explanation_en: explanation for m2-li-key_points
+        distractor_note: note m2-li-key_points
+        script: M：mock
+        explain: null
+        item_id: m2-li-key_points
+        section: listening
+  - request: /api/run?mode=mock&mock=m3
+    sent: null
+    status: 403
+    body:
+      error: This mock is not open yet.
+  - request: /api/answer
+    sent:
+      run_id: r-unknown
+      item_id: x
+    status: 404
+    body:
+      error: unknown run/item
+  - request: /api/finish
+    sent:
+      run_id: r-unknown
+    status: 404
+    body:
+      error: unknown run
+  - request: /api/explain_feedback
+    sent:
+      item_id: 7
+    status: 400
+    body:
+      error: item_id required
+  - request: /api/explain_feedback
+    sent:
+      item_id: gr-grammar_form-0
+      run_id: r-x
+      choice: 2
+    status: 200
+    body:
+      ok: true
+  - request: /api/nothing
+    sent: {}
+    status: 404
+  - request: /web/../server.py
+    sent: null
+    status: 403
+  - request: /nothing
+    sent: null
+    status: 404
+  files:
+    attempts.jsonl:
+    - ts: '2026-10-26T08:00:55+01:00'
+      run_id: r-fixture00
+      item_id: gr-sentence_composition-3
+      choice: 1
+      correct: true
+      ms: 14003
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:01:08+01:00'
+      run_id: r-fixture00
+      item_id: li-key_points-3
+      choice: 2
+      correct: false
+      ms: 63958
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:02:12+01:00'
+      run_id: r-fixture00
+      item_id: re-short_passage-1
+      choice: 3
+      correct: true
+      ms: 79684
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:02:21+01:00'
+      run_id: r-fixture00
+      item_id: li-task_based-1
+      choice: 4
+      correct: false
+      ms: 64433
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:02:34+01:00'
+      run_id: r-fixture00
+      item_id: m1-vo-kanji_reading
+      choice: 4
+      correct: true
+      ms: 80771
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:03:37+01:00'
+      run_id: r-fixture00
+      item_id: m1-li-task_based
+      choice: 2
+      correct: true
+      ms: 70369
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:04:10+01:00'
+      run_id: r-fixture00
+      item_id: gr-grammar_form-3
+      choice: 2
+      correct: false
+      ms: 59045
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:04:50+01:00'
+      run_id: r-fixture00
+      item_id: li-verbal_expression-0
+      choice: 3
+      correct: true
+      ms: 7326
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-26T08:05:47+01:00'
+      run_id: r-fixture00
+      item_id: gr-sentence_composition-1
+      choice: 3
+      correct: true
+      ms: 10407
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-27T07:06:24+01:00'
+      run_id: r-fixture01
+      item_id: m1-li-key_points
+      choice: 4
+      correct: false
+      ms: 75517
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:07:07+01:00'
+      run_id: r-fixture01
+      item_id: vo-usage-3
+      choice: 1
+      correct: true
+      ms: 44321
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:08:06+01:00'
+      run_id: r-fixture01
+      item_id: m1-gr-sentence_composition
+      choice: 4
+      correct: false
+      ms: 42584
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:08:14+01:00'
+      run_id: r-fixture01
+      item_id: gr-text_grammar-2
+      choice: 4
+      correct: true
+      ms: 89936
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:09:13+01:00'
+      run_id: r-fixture01
+      item_id: li-verbal_expression-3
+      choice: 1
+      correct: true
+      ms: 68162
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:10:19+01:00'
+      run_id: r-fixture01
+      item_id: li-quick_response-1
+      choice: 3
+      correct: true
+      ms: 67644
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:10:59+01:00'
+      run_id: r-fixture01
+      item_id: vo-contextual-0
+      choice: 3
+      correct: false
+      ms: 60915
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:12:00+01:00'
+      run_id: r-fixture01
+      item_id: re-info_retrieval-1
+      choice: 3
+      correct: true
+      ms: 63985
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-27T07:12:36+01:00'
+      run_id: r-fixture01
+      item_id: li-task_based-1
+      choice: 4
+      correct: false
+      ms: 71524
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-28T06:12:50+01:00'
+      run_id: r-fixture02
+      item_id: gr-sentence_composition-0
+      choice: 2
+      correct: true
+      ms: 57911
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:13:26+01:00'
+      run_id: r-fixture02
+      item_id: li-verbal_expression-3
+      choice: null
+      correct: false
+      ms: 63143
+      flag: none
+      mode: timed
+      timed_out: true
+    - ts: '2026-10-28T06:14:13+01:00'
+      run_id: r-fixture02
+      item_id: m1-gr-sentence_composition
+      choice: 4
+      correct: false
+      ms: 85405
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:15:09+01:00'
+      run_id: r-fixture02
+      item_id: vo-contextual-1
+      choice: 3
+      correct: true
+      ms: 39197
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:15:26+01:00'
+      run_id: r-fixture02
+      item_id: re-info_retrieval-2
+      choice: 4
+      correct: true
+      ms: 80423
+      flag: unclear
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:16:18+01:00'
+      run_id: r-fixture02
+      item_id: vo-usage-2
+      choice: 1
+      correct: false
+      ms: 33219
+      flag: unclear
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:17:03+01:00'
+      run_id: r-fixture02
+      item_id: li-quick_response-2
+      choice: 3
+      correct: true
+      ms: 82398
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:17:16+01:00'
+      run_id: r-fixture02
+      item_id: re-short_passage-0
+      choice: 2
+      correct: true
+      ms: 24987
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T06:18:14+01:00'
+      run_id: r-fixture02
+      item_id: m1-vo-orthography
+      choice: 2
+      correct: false
+      ms: 70545
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-28T10:00:00+01:00'
+      run_id: r-fixture-old
+      item_id: gr-grammar_form-0
+      choice: 2
+      correct: false
+      ms: 5000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-28T10:01:00+01:00'
+      run_id: r-fixture-old
+      item_id: removed-item
+      choice: 1
+      correct: true
+      ms: 5000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:18:25+01:00'
+      run_id: r-fixture03
+      item_id: gr-grammar_form-0
+      choice: 3
+      correct: false
+      ms: 7380
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:19:05+01:00'
+      run_id: r-fixture03
+      item_id: gr-sentence_composition-2
+      choice: 4
+      correct: true
+      ms: 43802
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:19:33+01:00'
+      run_id: r-fixture03
+      item_id: li-key_points-1
+      choice: 4
+      correct: false
+      ms: 65155
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:19:50+01:00'
+      run_id: r-fixture03
+      item_id: vo-kanji_reading-2
+      choice: 4
+      correct: true
+      ms: 31130
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:20:37+01:00'
+      run_id: r-fixture03
+      item_id: m1-gr-sentence_composition
+      choice: 3
+      correct: true
+      ms: 82409
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:21:28+01:00'
+      run_id: r-fixture03
+      item_id: vo-orthography-3
+      choice: 2
+      correct: false
+      ms: 8476
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:22:17+01:00'
+      run_id: r-fixture03
+      item_id: gr-sentence_composition-1
+      choice: null
+      correct: false
+      ms: 75403
+      flag: none
+      mode: practice
+      timed_out: true
+    - ts: '2026-10-29T05:22:53+01:00'
+      run_id: r-fixture03
+      item_id: li-quick_response-1
+      choice: 4
+      correct: false
+      ms: 67417
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T05:23:09+01:00'
+      run_id: r-fixture03
+      item_id: vo-orthography-1
+      choice: 3
+      correct: true
+      ms: 32668
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-29T16:23:36+01:00'
+      run_id: r-fixture04
+      item_id: gr-sentence_composition-0
+      choice: 2
+      correct: true
+      ms: 26897
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:24:13+01:00'
+      run_id: r-fixture04
+      item_id: li-key_points-2
+      choice: 4
+      correct: true
+      ms: 58491
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:24:50+01:00'
+      run_id: r-fixture04
+      item_id: re-short_passage-3
+      choice: 1
+      correct: true
+      ms: 72070
+      flag: unclear
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:25:26+01:00'
+      run_id: r-fixture04
+      item_id: li-verbal_expression-3
+      choice: 1
+      correct: true
+      ms: 72773
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:26:26+01:00'
+      run_id: r-fixture04
+      item_id: m1-re-short_passage
+      choice: 4
+      correct: true
+      ms: 32092
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:26:34+01:00'
+      run_id: r-fixture04
+      item_id: gr-sentence_composition-3
+      choice: 2
+      correct: false
+      ms: 88630
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:27:08+01:00'
+      run_id: r-fixture04
+      item_id: li-quick_response-0
+      choice: 1
+      correct: true
+      ms: 27914
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:27:38+01:00'
+      run_id: r-fixture04
+      item_id: vo-orthography-2
+      choice: 1
+      correct: false
+      ms: 79016
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-29T16:27:53+01:00'
+      run_id: r-fixture04
+      item_id: gr-sentence_composition-1
+      choice: 3
+      correct: true
+      ms: 40762
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-10-30T11:28:44+01:00'
+      run_id: r-fixture05
+      item_id: re-short_passage-3
+      choice: 1
+      correct: true
+      ms: 50694
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:29:33+01:00'
+      run_id: r-fixture05
+      item_id: vo-usage-1
+      choice: 3
+      correct: true
+      ms: 70404
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:29:58+01:00'
+      run_id: r-fixture05
+      item_id: vo-paraphrase-1
+      choice: 3
+      correct: true
+      ms: 12377
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:31:05+01:00'
+      run_id: r-fixture05
+      item_id: re-short_passage-2
+      choice: 4
+      correct: true
+      ms: 38191
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:31:17+01:00'
+      run_id: r-fixture05
+      item_id: vo-orthography-3
+      choice: 1
+      correct: true
+      ms: 37691
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:32:26+01:00'
+      run_id: r-fixture05
+      item_id: m1-gr-sentence_composition
+      choice: 3
+      correct: true
+      ms: 16641
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:32:35+01:00'
+      run_id: r-fixture05
+      item_id: gr-text_grammar-0
+      choice: 2
+      correct: true
+      ms: 16303
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:33:03+01:00'
+      run_id: r-fixture05
+      item_id: vo-contextual-3
+      choice: 2
+      correct: false
+      ms: 89815
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-30T11:34:10+01:00'
+      run_id: r-fixture05
+      item_id: m1-vo-kanji_reading
+      choice: 4
+      correct: true
+      ms: 83663
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-10-31T10:34:21+01:00'
+      run_id: r-fixture06
+      item_id: li-verbal_expression-3
+      choice: 2
+      correct: false
+      ms: 7101
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:35:13+01:00'
+      run_id: r-fixture06
+      item_id: vo-usage-0
+      choice: 2
+      correct: true
+      ms: 20032
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:36:10+01:00'
+      run_id: r-fixture06
+      item_id: li-key_points-0
+      choice: 2
+      correct: true
+      ms: 80756
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:36:52+01:00'
+      run_id: r-fixture06
+      item_id: re-short_passage-1
+      choice: 4
+      correct: false
+      ms: 11359
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:37:10+01:00'
+      run_id: r-fixture06
+      item_id: gr-sentence_composition-1
+      choice: 3
+      correct: true
+      ms: 19503
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:37:26+01:00'
+      run_id: r-fixture06
+      item_id: vo-usage-3
+      choice: 1
+      correct: true
+      ms: 82243
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:37:35+01:00'
+      run_id: r-fixture06
+      item_id: m1-li-key_points
+      choice: 3
+      correct: true
+      ms: 20554
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:38:09+01:00'
+      run_id: r-fixture06
+      item_id: li-verbal_expression-1
+      choice: 3
+      correct: true
+      ms: 35366
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T10:38:59+01:00'
+      run_id: r-fixture06
+      item_id: gr-grammar_form-3
+      choice: 1
+      correct: true
+      ms: 20411
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-10-31T15:39:33+01:00'
+      run_id: r-fixture07
+      item_id: li-key_points-3
+      choice: 1
+      correct: true
+      ms: 45254
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:40:41+01:00'
+      run_id: r-fixture07
+      item_id: re-short_passage-1
+      choice: 3
+      correct: true
+      ms: 15723
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:41:24+01:00'
+      run_id: r-fixture07
+      item_id: vo-usage-3
+      choice: 1
+      correct: true
+      ms: 71377
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:41:53+01:00'
+      run_id: r-fixture07
+      item_id: gr-text_grammar-2
+      choice: 4
+      correct: true
+      ms: 45615
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:42:43+01:00'
+      run_id: r-fixture07
+      item_id: vo-kanji_reading-2
+      choice: 1
+      correct: false
+      ms: 35825
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:42:54+01:00'
+      run_id: r-fixture07
+      item_id: m1-vo-kanji_reading
+      choice: 1
+      correct: false
+      ms: 23771
+      flag: guess
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:43:47+01:00'
+      run_id: r-fixture07
+      item_id: vo-usage-2
+      choice: 1
+      correct: false
+      ms: 34475
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:44:16+01:00'
+      run_id: r-fixture07
+      item_id: re-short_passage-3
+      choice: 2
+      correct: false
+      ms: 64197
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-10-31T15:44:59+01:00'
+      run_id: r-fixture07
+      item_id: gr-text_grammar-3
+      choice: 2
+      correct: false
+      ms: 80097
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-01T02:46:08+01:00'
+      run_id: r-fixture08
+      item_id: gr-grammar_form-1
+      choice: 4
+      correct: false
+      ms: 8916
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:46:21+01:00'
+      run_id: r-fixture08
+      item_id: li-verbal_expression-1
+      choice: 3
+      correct: true
+      ms: 75660
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:46:37+01:00'
+      run_id: r-fixture08
+      item_id: gr-grammar_form-0
+      choice: 3
+      correct: false
+      ms: 6405
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:47:39+01:00'
+      run_id: r-fixture08
+      item_id: m1-vo-kanji_reading
+      choice: 1
+      correct: false
+      ms: 79055
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:48:48+01:00'
+      run_id: r-fixture08
+      item_id: li-quick_response-2
+      choice: 3
+      correct: true
+      ms: 74645
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:49:57+01:00'
+      run_id: r-fixture08
+      item_id: vo-kanji_reading-0
+      choice: 2
+      correct: true
+      ms: 15211
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:50:51+01:00'
+      run_id: r-fixture08
+      item_id: m1-li-key_points
+      choice: 3
+      correct: true
+      ms: 75760
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:51:18+01:00'
+      run_id: r-fixture08
+      item_id: gr-grammar_form-3
+      choice: 1
+      correct: true
+      ms: 81689
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T02:51:36+01:00'
+      run_id: r-fixture08
+      item_id: m1-gr-grammar_form
+      choice: 3
+      correct: false
+      ms: 41431
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-01T13:52:41+01:00'
+      run_id: r-fixture09
+      item_id: li-key_points-2
+      choice: 1
+      correct: false
+      ms: 74434
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:53:35+01:00'
+      run_id: r-fixture09
+      item_id: gr-sentence_composition-1
+      choice: 3
+      correct: true
+      ms: 27543
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:54:17+01:00'
+      run_id: r-fixture09
+      item_id: vo-kanji_reading-2
+      choice: 4
+      correct: true
+      ms: 7724
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:54:57+01:00'
+      run_id: r-fixture09
+      item_id: m1-gr-sentence_composition
+      choice: 3
+      correct: true
+      ms: 88332
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:55:58+01:00'
+      run_id: r-fixture09
+      item_id: m1-li-key_points
+      choice: 3
+      correct: true
+      ms: 52234
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:56:19+01:00'
+      run_id: r-fixture09
+      item_id: gr-text_grammar-0
+      choice: 2
+      correct: true
+      ms: 82577
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:56:35+01:00'
+      run_id: r-fixture09
+      item_id: gr-grammar_form-3
+      choice: 1
+      correct: true
+      ms: 46767
+      flag: unclear
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:56:49+01:00'
+      run_id: r-fixture09
+      item_id: li-verbal_expression-0
+      choice: 1
+      correct: false
+      ms: 53964
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-01T13:57:36+01:00'
+      run_id: r-fixture09
+      item_id: m1-vo-orthography
+      choice: 1
+      correct: true
+      ms: 19407
+      flag: none
+      mode: practice
+      timed_out: false
+      review: true
+    - ts: '2026-11-02T12:58:06+01:00'
+      run_id: r-fixture10
+      item_id: m1-re-mid_passage
+      choice: 1
+      correct: true
+      ms: 15516
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T12:59:03+01:00'
+      run_id: r-fixture10
+      item_id: vo-usage-0
+      choice: 2
+      correct: true
+      ms: 33628
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T12:59:31+01:00'
+      run_id: r-fixture10
+      item_id: re-short_passage-0
+      choice: 2
+      correct: true
+      ms: 77606
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T12:59:59+01:00'
+      run_id: r-fixture10
+      item_id: li-task_based-2
+      choice: 1
+      correct: false
+      ms: 68643
+      flag: guess
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T13:00:27+01:00'
+      run_id: r-fixture10
+      item_id: li-task_based-0
+      choice: 2
+      correct: true
+      ms: 64687
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T13:01:30+01:00'
+      run_id: r-fixture10
+      item_id: li-verbal_expression-1
+      choice: 4
+      correct: false
+      ms: 49888
+      flag: guess
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T13:02:31+01:00'
+      run_id: r-fixture10
+      item_id: gr-text_grammar-2
+      choice: 1
+      correct: false
+      ms: 24234
+      flag: unclear
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T13:03:26+01:00'
+      run_id: r-fixture10
+      item_id: li-quick_response-3
+      choice: 2
+      correct: false
+      ms: 60530
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-02T13:03:55+01:00'
+      run_id: r-fixture10
+      item_id: re-mid_passage-2
+      choice: 1
+      correct: false
+      ms: 62254
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-03T00:04:39+01:00'
+      run_id: r-fixture11
+      item_id: re-short_passage-3
+      choice: 1
+      correct: true
+      ms: 56591
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:04:48+01:00'
+      run_id: r-fixture11
+      item_id: gr-text_grammar-2
+      choice: 4
+      correct: true
+      ms: 47144
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:05:17+01:00'
+      run_id: r-fixture11
+      item_id: re-info_retrieval-3
+      choice: 1
+      correct: true
+      ms: 68839
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:05:52+01:00'
+      run_id: r-fixture11
+      item_id: vo-usage-3
+      choice: 1
+      correct: true
+      ms: 47312
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:06:59+01:00'
+      run_id: r-fixture11
+      item_id: re-mid_passage-0
+      choice: 2
+      correct: true
+      ms: 26671
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:07:24+01:00'
+      run_id: r-fixture11
+      item_id: li-key_points-2
+      choice: 1
+      correct: false
+      ms: 47779
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:08:25+01:00'
+      run_id: r-fixture11
+      item_id: vo-contextual-0
+      choice: 3
+      correct: false
+      ms: 67296
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:08:33+01:00'
+      run_id: r-fixture11
+      item_id: vo-usage-2
+      choice: 4
+      correct: true
+      ms: 32818
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T00:09:23+01:00'
+      run_id: r-fixture11
+      item_id: m1-re-mid_passage
+      choice: 2
+      correct: false
+      ms: 6331
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-03T23:09:31+01:00'
+      run_id: r-fixture12
+      item_id: m1-gr-grammar_form
+      choice: 3
+      correct: false
+      ms: 32757
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:09:52+01:00'
+      run_id: r-fixture12
+      item_id: re-mid_passage-0
+      choice: 2
+      correct: true
+      ms: 26384
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:10:05+01:00'
+      run_id: r-fixture12
+      item_id: li-key_points-0
+      choice: 3
+      correct: false
+      ms: 81209
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:10:19+01:00'
+      run_id: r-fixture12
+      item_id: vo-contextual-3
+      choice: 1
+      correct: true
+      ms: 58989
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:10:38+01:00'
+      run_id: r-fixture12
+      item_id: m1-vo-orthography
+      choice: 1
+      correct: true
+      ms: 71295
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:11:46+01:00'
+      run_id: r-fixture12
+      item_id: li-task_based-1
+      choice: 4
+      correct: false
+      ms: 48730
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:12:16+01:00'
+      run_id: r-fixture12
+      item_id: vo-paraphrase-1
+      choice: 3
+      correct: true
+      ms: 66874
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:12:55+01:00'
+      run_id: r-fixture12
+      item_id: re-short_passage-3
+      choice: 2
+      correct: false
+      ms: 8812
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-03T23:13:11+01:00'
+      run_id: r-fixture12
+      item_id: li-key_points-2
+      choice: 4
+      correct: true
+      ms: 51996
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-04T22:13:45+01:00'
+      run_id: r-fixture13
+      item_id: gr-sentence_composition-2
+      choice: 1
+      correct: false
+      ms: 88601
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:14:55+01:00'
+      run_id: r-fixture13
+      item_id: li-key_points-0
+      choice: 2
+      correct: true
+      ms: 15890
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:15:34+01:00'
+      run_id: r-fixture13
+      item_id: re-mid_passage-0
+      choice: 2
+      correct: true
+      ms: 48513
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:15:53+01:00'
+      run_id: r-fixture13
+      item_id: li-verbal_expression-0
+      choice: 3
+      correct: true
+      ms: 77668
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:16:49+01:00'
+      run_id: r-fixture13
+      item_id: gr-grammar_form-0
+      choice: 2
+      correct: true
+      ms: 73205
+      flag: guess
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:17:37+01:00'
+      run_id: r-fixture13
+      item_id: vo-paraphrase-2
+      choice: 4
+      correct: true
+      ms: 83869
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:17:46+01:00'
+      run_id: r-fixture13
+      item_id: re-mid_passage-2
+      choice: 4
+      correct: true
+      ms: 31481
+      flag: guess
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:18:26+01:00'
+      run_id: r-fixture13
+      item_id: vo-orthography-0
+      choice: 3
+      correct: false
+      ms: 31692
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-04T22:19:23+01:00'
+      run_id: r-fixture13
+      item_id: li-verbal_expression-1
+      choice: 4
+      correct: false
+      ms: 77254
+      flag: none
+      mode: drill
+      timed_out: false
+    - ts: '2026-11-05T17:20:22+01:00'
+      run_id: r-fixture14
+      item_id: li-key_points-3
+      choice: null
+      correct: false
+      ms: 8525
+      flag: none
+      mode: timed
+      timed_out: true
+      review: true
+    - ts: '2026-11-05T17:21:20+01:00'
+      run_id: r-fixture14
+      item_id: gr-sentence_composition-1
+      choice: 3
+      correct: true
+      ms: 27460
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:21:45+01:00'
+      run_id: r-fixture14
+      item_id: gr-grammar_form-0
+      choice: 3
+      correct: false
+      ms: 20775
+      flag: unclear
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:22:03+01:00'
+      run_id: r-fixture14
+      item_id: m1-re-short_passage
+      choice: 4
+      correct: true
+      ms: 11031
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:22:54+01:00'
+      run_id: r-fixture14
+      item_id: li-task_based-3
+      choice: 1
+      correct: true
+      ms: 88046
+      flag: unclear
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:24:00+01:00'
+      run_id: r-fixture14
+      item_id: vo-contextual-2
+      choice: 4
+      correct: true
+      ms: 7802
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:24:22+01:00'
+      run_id: r-fixture14
+      item_id: vo-contextual-1
+      choice: 3
+      correct: true
+      ms: 75138
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:24:59+01:00'
+      run_id: r-fixture14
+      item_id: li-verbal_expression-0
+      choice: 1
+      correct: false
+      ms: 46533
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T17:25:52+01:00'
+      run_id: r-fixture14
+      item_id: li-verbal_expression-1
+      choice: 3
+      correct: true
+      ms: 65713
+      flag: none
+      mode: timed
+      timed_out: false
+      review: true
+    - ts: '2026-11-05T22:26:55+01:00'
+      run_id: r-fixture15
+      item_id: vo-paraphrase-1
+      choice: 4
+      correct: false
+      ms: 60771
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:27:56+01:00'
+      run_id: r-fixture15
+      item_id: li-task_based-2
+      choice: 1
+      correct: false
+      ms: 68822
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:28:27+01:00'
+      run_id: r-fixture15
+      item_id: re-short_passage-1
+      choice: 3
+      correct: true
+      ms: 59308
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:29:04+01:00'
+      run_id: r-fixture15
+      item_id: re-info_retrieval-3
+      choice: 2
+      correct: false
+      ms: 44462
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:30:11+01:00'
+      run_id: r-fixture15
+      item_id: li-key_points-1
+      choice: 4
+      correct: false
+      ms: 16027
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:31:06+01:00'
+      run_id: r-fixture15
+      item_id: vo-kanji_reading-2
+      choice: 4
+      correct: true
+      ms: 14330
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:31:59+01:00'
+      run_id: r-fixture15
+      item_id: vo-contextual-3
+      choice: 1
+      correct: true
+      ms: 24718
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:32:18+01:00'
+      run_id: r-fixture15
+      item_id: m1-re-short_passage
+      choice: 4
+      correct: true
+      ms: 60831
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-05T22:33:23+01:00'
+      run_id: r-fixture15
+      item_id: m1-vo-orthography
+      choice: 2
+      correct: false
+      ms: 7997
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: gr-grammar_form-2
+      choice: 1
+      correct: false
+      ms: 3000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-contextual-0
+      choice: 2
+      correct: true
+      ms: 4000
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: li-task_based-0
+      choice: 3
+      correct: false
+      ms: 5000
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: li-quick_response-2
+      choice: 1
+      correct: false
+      ms: 6000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: li-quick_response-0
+      choice: 2
+      correct: false
+      ms: 7000
+      flag: guess
+      mode: practice
+      timed_out: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: gr-text_grammar-2
+      choice: 2
+      correct: false
+      ms: 8000
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: li-verbal_expression-2
+      choice: 1
+      correct: false
+      ms: 9000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m1-gr-sentence_composition
+      choice: 4
+      correct: false
+      ms: 10000
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: li-key_points-1
+      choice: 1
+      correct: false
+      ms: 11000
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: gr-grammar_form-0
+      choice: 2
+      correct: true
+      ms: 12000
+      flag: none
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: re-mid_passage-0
+      choice: 3
+      correct: false
+      ms: 13000
+      flag: guess
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: re-mid_passage-1
+      choice: 4
+      correct: false
+      ms: 14000
+      flag: unclear
+      mode: practice
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-orthography-2
+      choice: 1
+      correct: false
+      ms: 3000
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-usage-1
+      choice: 2
+      correct: false
+      ms: 4000
+      flag: guess
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-paraphrase-0
+      choice: 3
+      correct: false
+      ms: 5000
+      flag: unclear
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-kanji_reading-0
+      choice: 4
+      correct: false
+      ms: 6000
+      flag: none
+      mode: timed
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-kanji_reading-3
+      choice: 1
+      correct: false
+      ms: 7000
+      flag: guess
+      mode: timed
+      timed_out: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m1-vo-kanji_reading
+      choice: 1
+      correct: false
+      ms: 3000
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m1-vo-orthography
+      choice: 2
+      correct: false
+      ms: 4000
+      flag: guess
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: gr-text_grammar-3
+      choice: 3
+      correct: false
+      ms: 5000
+      flag: unclear
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: vo-orthography-0
+      choice: 4
+      correct: false
+      ms: 6000
+      flag: none
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: re-mid_passage-0
+      choice: 1
+      correct: false
+      ms: 7000
+      flag: guess
+      mode: drill
+      timed_out: true
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: re-mid_passage-1
+      choice: 2
+      correct: false
+      ms: 8000
+      flag: unclear
+      mode: drill
+      timed_out: false
+      review: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-vo-kanji_reading
+      choice: 1
+      correct: false
+      ms: 3000
+      flag: none
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-vo-orthography
+      choice: 2
+      correct: false
+      ms: 4000
+      flag: guess
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-gr-grammar_form
+      choice: 3
+      correct: false
+      ms: 5000
+      flag: unclear
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-gr-sentence_composition
+      choice: 4
+      correct: false
+      ms: 6000
+      flag: none
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-re-short_passage
+      choice: 1
+      correct: false
+      ms: 7000
+      flag: guess
+      mode: mock
+      timed_out: true
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-re-mid_passage
+      choice: 2
+      correct: false
+      ms: 8000
+      flag: unclear
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-li-task_based
+      choice: 3
+      correct: false
+      ms: 9000
+      flag: none
+      mode: mock
+      timed_out: false
+    - ts: '2026-11-08T13:00:00+01:00'
+      run_id: r-000000000000
+      item_id: m2-li-key_points
+      choice: 4
+      correct: false
+      ms: 10000
+      flag: guess
+      mode: mock
+      timed_out: false
+    runs.jsonl:
+    - run_id: r-fixture00
+      start: '2026-10-26T07:05:47+00:00'
+      end: '2026-10-26T07:06:47+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 6
+      total_ms: 300000
+      p_pass_before: 0.5
+      p_pass_after: 0.51
+    - run_id: r-fixture01
+      start: '2026-10-27T06:12:36+00:00'
+      end: '2026-10-27T06:13:36+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 5
+      total_ms: 300000
+      p_pass_before: 0.51
+      p_pass_after: 0.52
+    - run_id: r-fixture02
+      start: '2026-10-28T05:18:14+00:00'
+      end: '2026-10-28T05:19:14+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 5
+      total_ms: 300000
+      p_pass_before: 0.52
+      p_pass_after: 0.53
+    - run_id: r-fixture03
+      start: '2026-10-29T04:23:09+00:00'
+      end: '2026-10-29T04:24:09+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 4
+      total_ms: 300000
+      p_pass_before: 0.53
+      p_pass_after: 0.54
+    - run_id: r-fixture04
+      start: '2026-10-29T15:27:53+00:00'
+      end: '2026-10-29T15:28:53+00:00'
+      mode: practice
+      section: mistakes
+      n: 9
+      correct: 7
+      total_ms: 300000
+      p_pass_before: 0.54
+      p_pass_after: 0.55
+    - run_id: r-fixture05
+      start: '2026-10-30T10:34:10+00:00'
+      end: '2026-10-30T10:35:10+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 8
+      total_ms: 300000
+      p_pass_before: 0.55
+      p_pass_after: 0.56
+    - run_id: r-fixture06
+      start: '2026-10-31T09:38:59+00:00'
+      end: '2026-10-31T09:39:59+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 7
+      total_ms: 300000
+      p_pass_before: 0.56
+      p_pass_after: 0.57
+    - run_id: r-fixture07
+      start: '2026-10-31T14:44:59+00:00'
+      end: '2026-10-31T14:45:59+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 4
+      total_ms: 300000
+      p_pass_before: 0.57
+      p_pass_after: 0.58
+    - run_id: r-fixture08
+      start: '2026-11-01T01:51:36+00:00'
+      end: '2026-11-01T01:52:36+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 5
+      total_ms: 300000
+      p_pass_before: 0.58
+      p_pass_after: 0.59
+    - run_id: r-fixture09
+      start: '2026-11-01T12:57:36+00:00'
+      end: '2026-11-01T12:58:36+00:00'
+      mode: practice
+      section: mistakes
+      n: 9
+      correct: 7
+      total_ms: 300000
+      p_pass_before: 0.59
+      p_pass_after: 0.6
+    - run_id: r-fixture10
+      start: '2026-11-02T12:03:55+00:00'
+      end: '2026-11-02T12:04:55+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 4
+      total_ms: 300000
+      p_pass_before: 0.6
+      p_pass_after: 0.61
+    - run_id: r-fixture11
+      start: '2026-11-02T23:09:23+00:00'
+      end: '2026-11-02T23:10:23+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 6
+      total_ms: 300000
+      p_pass_before: 0.61
+      p_pass_after: 0.62
+    - run_id: r-fixture12
+      start: '2026-11-03T22:13:11+00:00'
+      end: '2026-11-03T22:14:11+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 5
+      total_ms: 300000
+      p_pass_before: 0.62
+      p_pass_after: 0.63
+    - run_id: r-fixture13
+      start: '2026-11-04T21:19:23+00:00'
+      end: '2026-11-04T21:20:23+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 6
+      total_ms: 300000
+      p_pass_before: 0.63
+      p_pass_after: 0.64
+    - run_id: r-fixture14
+      start: '2026-11-05T16:25:52+00:00'
+      end: '2026-11-05T16:26:52+00:00'
+      mode: practice
+      section: mistakes
+      n: 9
+      correct: 6
+      total_ms: 300000
+      p_pass_before: 0.64
+      p_pass_after: 0.65
+    - run_id: r-fixture15
+      start: '2026-11-05T21:33:23+00:00'
+      end: '2026-11-05T21:34:23+00:00'
+      mode: practice
+      section: mixed
+      n: 9
+      correct: 4
+      total_ms: 300000
+      p_pass_before: 0.65
+      p_pass_after: 0.66
+    - run_id: r-000000000000
+      start: '2026-11-08T12:00:00+00:00'
+      end: '2026-11-08T13:00:00+01:00'
+      mode: practice
+      section: mixed
+      n: 12
+      correct: 2
+      total_ms: 102000
+      p_pass_before: 0.7564
+      p_pass_after: 0.5943
+    - run_id: r-000000000000
+      start: '2026-11-08T12:00:00+00:00'
+      end: '2026-11-08T13:00:00+01:00'
+      mode: timed
+      section: vocab
+      n: 5
+      correct: 0
+      total_ms: 25000
+      p_pass_before: 0.5943
+      p_pass_after: 0.4887
+    - run_id: r-000000000000
+      start: '2026-11-08T12:00:00+00:00'
+      end: '2026-11-08T13:00:00+01:00'
+      mode: drill
+      section: mistakes
+      n: 6
+      correct: 0
+      total_ms: 33000
+      p_pass_before: 0.4887
+      p_pass_after: 0.4887
+    - run_id: r-000000000000
+      start: '2026-11-08T12:00:00+00:00'
+      end: '2026-11-08T13:00:00+01:00'
+      mode: mock
+      section: mock
+      n: 8
+      correct: 0
+      total_ms: 52000
+      p_pass_before: 0.4887
+      p_pass_after: 0.3685
+      mock_id: m2
+      mock:
+        lk: 0
+        listening: 0
+        total: 0
+        passed: false
+    explain_feedback.jsonl:
+    - ts: '2026-11-08T13:00:00+01:00'
+      item_id: gr-grammar_form-0
+      run_id: r-x
+      choice: 2
+  mock:
+    id: m2
+    title: Mock m2
+    opens: '2026-11-01'
+    seen_before_mock: 0
+    taken: '2026-11-08'
+    result:
+      lk: 0
+      listening: 0
+      total: 0
+      passed: false

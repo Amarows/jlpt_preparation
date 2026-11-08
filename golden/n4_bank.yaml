@@ -1,0 +1,84 @@
+call: tests.golden_n4:bank
+expect:
+  items:
+  - gr-grammar_form-0
+  - gr-grammar_form-1
+  - gr-grammar_form-2
+  - gr-grammar_form-3
+  - gr-sentence_composition-0
+  - gr-sentence_composition-1
+  - gr-sentence_composition-2
+  - gr-sentence_composition-3
+  - gr-text_grammar-0
+  - gr-text_grammar-1
+  - gr-text_grammar-2
+  - gr-text_grammar-3
+  - li-key_points-0
+  - li-key_points-1
+  - li-key_points-2
+  - li-key_points-3
+  - li-quick_response-0
+  - li-quick_response-1
+  - li-quick_response-2
+  - li-quick_response-3
+  - li-task_based-0
+  - li-task_based-1
+  - li-task_based-2
+  - li-task_based-3
+  - li-verbal_expression-0
+  - li-verbal_expression-1
+  - li-verbal_expression-2
+  - li-verbal_expression-3
+  - m1-gr-grammar_form
+  - m1-gr-sentence_composition
+  - m1-li-key_points
+  - m1-li-task_based
+  - m1-re-mid_passage
+  - m1-re-short_passage
+  - m1-vo-kanji_reading
+  - m1-vo-orthography
+  - re-info_retrieval-0
+  - re-info_retrieval-1
+  - re-info_retrieval-2
+  - re-info_retrieval-3
+  - re-mid_passage-0
+  - re-mid_passage-1
+  - re-mid_passage-2
+  - re-mid_passage-3
+  - re-short_passage-0
+  - re-short_passage-1
+  - re-short_passage-2
+  - re-short_passage-3
+  - vo-contextual-0
+  - vo-contextual-1
+  - vo-contextual-2
+  - vo-contextual-3
+  - vo-kanji_reading-0
+  - vo-kanji_reading-1
+  - vo-kanji_reading-2
+  - vo-kanji_reading-3
+  - vo-orthography-0
+  - vo-orthography-1
+  - vo-orthography-2
+  - vo-orthography-3
+  - vo-paraphrase-0
+  - vo-paraphrase-1
+  - vo-paraphrase-2
+  - vo-paraphrase-3
+  - vo-usage-0
+  - vo-usage-1
+  - vo-usage-2
+  - vo-usage-3
+  passages:
+  - m1-p
+  - p-info_retrieval-0
+  - p-info_retrieval-1
+  - p-mid_passage-0
+  - p-mid_passage-1
+  - p-short_passage-0
+  - p-short_passage-1
+  invalid:
+    three_options: 'ValueError: invalid options/answer: gr-grammar_form-0'
+    answer_out_of_range: 'ValueError: invalid options/answer: gr-grammar_form-0'
+    unknown_mondai: 'ValueError: invalid item dimensions: gr-grammar_form-0'
+    duplicate_options: 'ValueError: invalid options/answer: gr-grammar_form-0'

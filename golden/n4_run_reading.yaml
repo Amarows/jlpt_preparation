@@ -1,0 +1,16 @@
+call: tests.golden_n4:run
+args: [drill, reading, 6, 2]
+expect:
+  mode: drill
+  time_limit_ms: null
+  items:
+  - re-info_retrieval-2
+  - re-info_retrieval-3
+  - m1-re-mid_passage
+  - m1-re-short_passage
+  - re-short_passage-2
+  - re-short_passage-3
+  passages:
+    p-info_retrieval-1: p-info_retrieval-1 の 文章。会議は 三時に 始まります。
+    m1-p: m1 の 文章
+    p-short_passage-1: p-short_passage-1 の 文章。会議は 三時に 始まります。

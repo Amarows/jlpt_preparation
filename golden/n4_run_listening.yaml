@@ -1,0 +1,17 @@
+call: tests.golden_n4:run
+args: [practice, listening, 10, 5]
+expect:
+  mode: practice
+  time_limit_ms: null
+  items:
+  - li-task_based-2
+  - li-key_points-0
+  - li-quick_response-2
+  - li-quick_response-3
+  - li-verbal_expression-2
+  - li-task_based-3
+  - li-quick_response-1
+  - li-key_points-2
+  - li-verbal_expression-3
+  - li-task_based-1
+  passages: {}

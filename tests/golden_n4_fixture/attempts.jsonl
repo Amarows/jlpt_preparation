@@ -1,0 +1,146 @@
+{"ts": "2026-10-26T08:00:55+01:00", "run_id": "r-fixture00", "item_id": "gr-sentence_composition-3", "choice": 1, "correct": true, "ms": 14003, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:01:08+01:00", "run_id": "r-fixture00", "item_id": "li-key_points-3", "choice": 2, "correct": false, "ms": 63958, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:02:12+01:00", "run_id": "r-fixture00", "item_id": "re-short_passage-1", "choice": 3, "correct": true, "ms": 79684, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:02:21+01:00", "run_id": "r-fixture00", "item_id": "li-task_based-1", "choice": 4, "correct": false, "ms": 64433, "flag": "guess", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:02:34+01:00", "run_id": "r-fixture00", "item_id": "m1-vo-kanji_reading", "choice": 4, "correct": true, "ms": 80771, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:03:37+01:00", "run_id": "r-fixture00", "item_id": "m1-li-task_based", "choice": 2, "correct": true, "ms": 70369, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:04:10+01:00", "run_id": "r-fixture00", "item_id": "gr-grammar_form-3", "choice": 2, "correct": false, "ms": 59045, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:04:50+01:00", "run_id": "r-fixture00", "item_id": "li-verbal_expression-0", "choice": 3, "correct": true, "ms": 7326, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-26T08:05:47+01:00", "run_id": "r-fixture00", "item_id": "gr-sentence_composition-1", "choice": 3, "correct": true, "ms": 10407, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-27T07:06:24+01:00", "run_id": "r-fixture01", "item_id": "m1-li-key_points", "choice": 4, "correct": false, "ms": 75517, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:07:07+01:00", "run_id": "r-fixture01", "item_id": "vo-usage-3", "choice": 1, "correct": true, "ms": 44321, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:08:06+01:00", "run_id": "r-fixture01", "item_id": "m1-gr-sentence_composition", "choice": 4, "correct": false, "ms": 42584, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:08:14+01:00", "run_id": "r-fixture01", "item_id": "gr-text_grammar-2", "choice": 4, "correct": true, "ms": 89936, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:09:13+01:00", "run_id": "r-fixture01", "item_id": "li-verbal_expression-3", "choice": 1, "correct": true, "ms": 68162, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:10:19+01:00", "run_id": "r-fixture01", "item_id": "li-quick_response-1", "choice": 3, "correct": true, "ms": 67644, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:10:59+01:00", "run_id": "r-fixture01", "item_id": "vo-contextual-0", "choice": 3, "correct": false, "ms": 60915, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:12:00+01:00", "run_id": "r-fixture01", "item_id": "re-info_retrieval-1", "choice": 3, "correct": true, "ms": 63985, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-27T07:12:36+01:00", "run_id": "r-fixture01", "item_id": "li-task_based-1", "choice": 4, "correct": false, "ms": 71524, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-28T06:12:50+01:00", "run_id": "r-fixture02", "item_id": "gr-sentence_composition-0", "choice": 2, "correct": true, "ms": 57911, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:13:26+01:00", "run_id": "r-fixture02", "item_id": "li-verbal_expression-3", "choice": null, "correct": false, "ms": 63143, "flag": "none", "mode": "timed", "timed_out": true}
+{"ts": "2026-10-28T06:14:13+01:00", "run_id": "r-fixture02", "item_id": "m1-gr-sentence_composition", "choice": 4, "correct": false, "ms": 85405, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:15:09+01:00", "run_id": "r-fixture02", "item_id": "vo-contextual-1", "choice": 3, "correct": true, "ms": 39197, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:15:26+01:00", "run_id": "r-fixture02", "item_id": "re-info_retrieval-2", "choice": 4, "correct": true, "ms": 80423, "flag": "unclear", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:16:18+01:00", "run_id": "r-fixture02", "item_id": "vo-usage-2", "choice": 1, "correct": false, "ms": 33219, "flag": "unclear", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:17:03+01:00", "run_id": "r-fixture02", "item_id": "li-quick_response-2", "choice": 3, "correct": true, "ms": 82398, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:17:16+01:00", "run_id": "r-fixture02", "item_id": "re-short_passage-0", "choice": 2, "correct": true, "ms": 24987, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T06:18:14+01:00", "run_id": "r-fixture02", "item_id": "m1-vo-orthography", "choice": 2, "correct": false, "ms": 70545, "flag": "guess", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-28T10:00:00+01:00", "run_id": "r-fixture-old", "item_id": "gr-grammar_form-0", "choice": 2, "correct": false, "ms": 5000, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-28T10:01:00+01:00", "run_id": "r-fixture-old", "item_id": "removed-item", "choice": 1, "correct": true, "ms": 5000, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:18:25+01:00", "run_id": "r-fixture03", "item_id": "gr-grammar_form-0", "choice": 3, "correct": false, "ms": 7380, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:19:05+01:00", "run_id": "r-fixture03", "item_id": "gr-sentence_composition-2", "choice": 4, "correct": true, "ms": 43802, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:19:33+01:00", "run_id": "r-fixture03", "item_id": "li-key_points-1", "choice": 4, "correct": false, "ms": 65155, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:19:50+01:00", "run_id": "r-fixture03", "item_id": "vo-kanji_reading-2", "choice": 4, "correct": true, "ms": 31130, "flag": "guess", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:20:37+01:00", "run_id": "r-fixture03", "item_id": "m1-gr-sentence_composition", "choice": 3, "correct": true, "ms": 82409, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:21:28+01:00", "run_id": "r-fixture03", "item_id": "vo-orthography-3", "choice": 2, "correct": false, "ms": 8476, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:22:17+01:00", "run_id": "r-fixture03", "item_id": "gr-sentence_composition-1", "choice": null, "correct": false, "ms": 75403, "flag": "none", "mode": "practice", "timed_out": true}
+{"ts": "2026-10-29T05:22:53+01:00", "run_id": "r-fixture03", "item_id": "li-quick_response-1", "choice": 4, "correct": false, "ms": 67417, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T05:23:09+01:00", "run_id": "r-fixture03", "item_id": "vo-orthography-1", "choice": 3, "correct": true, "ms": 32668, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-29T16:23:36+01:00", "run_id": "r-fixture04", "item_id": "gr-sentence_composition-0", "choice": 2, "correct": true, "ms": 26897, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:24:13+01:00", "run_id": "r-fixture04", "item_id": "li-key_points-2", "choice": 4, "correct": true, "ms": 58491, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:24:50+01:00", "run_id": "r-fixture04", "item_id": "re-short_passage-3", "choice": 1, "correct": true, "ms": 72070, "flag": "unclear", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:25:26+01:00", "run_id": "r-fixture04", "item_id": "li-verbal_expression-3", "choice": 1, "correct": true, "ms": 72773, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:26:26+01:00", "run_id": "r-fixture04", "item_id": "m1-re-short_passage", "choice": 4, "correct": true, "ms": 32092, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:26:34+01:00", "run_id": "r-fixture04", "item_id": "gr-sentence_composition-3", "choice": 2, "correct": false, "ms": 88630, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:27:08+01:00", "run_id": "r-fixture04", "item_id": "li-quick_response-0", "choice": 1, "correct": true, "ms": 27914, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:27:38+01:00", "run_id": "r-fixture04", "item_id": "vo-orthography-2", "choice": 1, "correct": false, "ms": 79016, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-29T16:27:53+01:00", "run_id": "r-fixture04", "item_id": "gr-sentence_composition-1", "choice": 3, "correct": true, "ms": 40762, "flag": "none", "mode": "drill", "timed_out": false, "review": true}
+{"ts": "2026-10-30T11:28:44+01:00", "run_id": "r-fixture05", "item_id": "re-short_passage-3", "choice": 1, "correct": true, "ms": 50694, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:29:33+01:00", "run_id": "r-fixture05", "item_id": "vo-usage-1", "choice": 3, "correct": true, "ms": 70404, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:29:58+01:00", "run_id": "r-fixture05", "item_id": "vo-paraphrase-1", "choice": 3, "correct": true, "ms": 12377, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:31:05+01:00", "run_id": "r-fixture05", "item_id": "re-short_passage-2", "choice": 4, "correct": true, "ms": 38191, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:31:17+01:00", "run_id": "r-fixture05", "item_id": "vo-orthography-3", "choice": 1, "correct": true, "ms": 37691, "flag": "guess", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:32:26+01:00", "run_id": "r-fixture05", "item_id": "m1-gr-sentence_composition", "choice": 3, "correct": true, "ms": 16641, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:32:35+01:00", "run_id": "r-fixture05", "item_id": "gr-text_grammar-0", "choice": 2, "correct": true, "ms": 16303, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:33:03+01:00", "run_id": "r-fixture05", "item_id": "vo-contextual-3", "choice": 2, "correct": false, "ms": 89815, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-30T11:34:10+01:00", "run_id": "r-fixture05", "item_id": "m1-vo-kanji_reading", "choice": 4, "correct": true, "ms": 83663, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-10-31T10:34:21+01:00", "run_id": "r-fixture06", "item_id": "li-verbal_expression-3", "choice": 2, "correct": false, "ms": 7101, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:35:13+01:00", "run_id": "r-fixture06", "item_id": "vo-usage-0", "choice": 2, "correct": true, "ms": 20032, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:36:10+01:00", "run_id": "r-fixture06", "item_id": "li-key_points-0", "choice": 2, "correct": true, "ms": 80756, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:36:52+01:00", "run_id": "r-fixture06", "item_id": "re-short_passage-1", "choice": 4, "correct": false, "ms": 11359, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:37:10+01:00", "run_id": "r-fixture06", "item_id": "gr-sentence_composition-1", "choice": 3, "correct": true, "ms": 19503, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:37:26+01:00", "run_id": "r-fixture06", "item_id": "vo-usage-3", "choice": 1, "correct": true, "ms": 82243, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:37:35+01:00", "run_id": "r-fixture06", "item_id": "m1-li-key_points", "choice": 3, "correct": true, "ms": 20554, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:38:09+01:00", "run_id": "r-fixture06", "item_id": "li-verbal_expression-1", "choice": 3, "correct": true, "ms": 35366, "flag": "guess", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T10:38:59+01:00", "run_id": "r-fixture06", "item_id": "gr-grammar_form-3", "choice": 1, "correct": true, "ms": 20411, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-10-31T15:39:33+01:00", "run_id": "r-fixture07", "item_id": "li-key_points-3", "choice": 1, "correct": true, "ms": 45254, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:40:41+01:00", "run_id": "r-fixture07", "item_id": "re-short_passage-1", "choice": 3, "correct": true, "ms": 15723, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:41:24+01:00", "run_id": "r-fixture07", "item_id": "vo-usage-3", "choice": 1, "correct": true, "ms": 71377, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:41:53+01:00", "run_id": "r-fixture07", "item_id": "gr-text_grammar-2", "choice": 4, "correct": true, "ms": 45615, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:42:43+01:00", "run_id": "r-fixture07", "item_id": "vo-kanji_reading-2", "choice": 1, "correct": false, "ms": 35825, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:42:54+01:00", "run_id": "r-fixture07", "item_id": "m1-vo-kanji_reading", "choice": 1, "correct": false, "ms": 23771, "flag": "guess", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:43:47+01:00", "run_id": "r-fixture07", "item_id": "vo-usage-2", "choice": 1, "correct": false, "ms": 34475, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:44:16+01:00", "run_id": "r-fixture07", "item_id": "re-short_passage-3", "choice": 2, "correct": false, "ms": 64197, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-10-31T15:44:59+01:00", "run_id": "r-fixture07", "item_id": "gr-text_grammar-3", "choice": 2, "correct": false, "ms": 80097, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-01T02:46:08+01:00", "run_id": "r-fixture08", "item_id": "gr-grammar_form-1", "choice": 4, "correct": false, "ms": 8916, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:46:21+01:00", "run_id": "r-fixture08", "item_id": "li-verbal_expression-1", "choice": 3, "correct": true, "ms": 75660, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:46:37+01:00", "run_id": "r-fixture08", "item_id": "gr-grammar_form-0", "choice": 3, "correct": false, "ms": 6405, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:47:39+01:00", "run_id": "r-fixture08", "item_id": "m1-vo-kanji_reading", "choice": 1, "correct": false, "ms": 79055, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:48:48+01:00", "run_id": "r-fixture08", "item_id": "li-quick_response-2", "choice": 3, "correct": true, "ms": 74645, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:49:57+01:00", "run_id": "r-fixture08", "item_id": "vo-kanji_reading-0", "choice": 2, "correct": true, "ms": 15211, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:50:51+01:00", "run_id": "r-fixture08", "item_id": "m1-li-key_points", "choice": 3, "correct": true, "ms": 75760, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:51:18+01:00", "run_id": "r-fixture08", "item_id": "gr-grammar_form-3", "choice": 1, "correct": true, "ms": 81689, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T02:51:36+01:00", "run_id": "r-fixture08", "item_id": "m1-gr-grammar_form", "choice": 3, "correct": false, "ms": 41431, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-01T13:52:41+01:00", "run_id": "r-fixture09", "item_id": "li-key_points-2", "choice": 1, "correct": false, "ms": 74434, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:53:35+01:00", "run_id": "r-fixture09", "item_id": "gr-sentence_composition-1", "choice": 3, "correct": true, "ms": 27543, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:54:17+01:00", "run_id": "r-fixture09", "item_id": "vo-kanji_reading-2", "choice": 4, "correct": true, "ms": 7724, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:54:57+01:00", "run_id": "r-fixture09", "item_id": "m1-gr-sentence_composition", "choice": 3, "correct": true, "ms": 88332, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:55:58+01:00", "run_id": "r-fixture09", "item_id": "m1-li-key_points", "choice": 3, "correct": true, "ms": 52234, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:56:19+01:00", "run_id": "r-fixture09", "item_id": "gr-text_grammar-0", "choice": 2, "correct": true, "ms": 82577, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:56:35+01:00", "run_id": "r-fixture09", "item_id": "gr-grammar_form-3", "choice": 1, "correct": true, "ms": 46767, "flag": "unclear", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:56:49+01:00", "run_id": "r-fixture09", "item_id": "li-verbal_expression-0", "choice": 1, "correct": false, "ms": 53964, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-01T13:57:36+01:00", "run_id": "r-fixture09", "item_id": "m1-vo-orthography", "choice": 1, "correct": true, "ms": 19407, "flag": "none", "mode": "practice", "timed_out": false, "review": true}
+{"ts": "2026-11-02T12:58:06+01:00", "run_id": "r-fixture10", "item_id": "m1-re-mid_passage", "choice": 1, "correct": true, "ms": 15516, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T12:59:03+01:00", "run_id": "r-fixture10", "item_id": "vo-usage-0", "choice": 2, "correct": true, "ms": 33628, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T12:59:31+01:00", "run_id": "r-fixture10", "item_id": "re-short_passage-0", "choice": 2, "correct": true, "ms": 77606, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T12:59:59+01:00", "run_id": "r-fixture10", "item_id": "li-task_based-2", "choice": 1, "correct": false, "ms": 68643, "flag": "guess", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T13:00:27+01:00", "run_id": "r-fixture10", "item_id": "li-task_based-0", "choice": 2, "correct": true, "ms": 64687, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T13:01:30+01:00", "run_id": "r-fixture10", "item_id": "li-verbal_expression-1", "choice": 4, "correct": false, "ms": 49888, "flag": "guess", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T13:02:31+01:00", "run_id": "r-fixture10", "item_id": "gr-text_grammar-2", "choice": 1, "correct": false, "ms": 24234, "flag": "unclear", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T13:03:26+01:00", "run_id": "r-fixture10", "item_id": "li-quick_response-3", "choice": 2, "correct": false, "ms": 60530, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-02T13:03:55+01:00", "run_id": "r-fixture10", "item_id": "re-mid_passage-2", "choice": 1, "correct": false, "ms": 62254, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-03T00:04:39+01:00", "run_id": "r-fixture11", "item_id": "re-short_passage-3", "choice": 1, "correct": true, "ms": 56591, "flag": "guess", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:04:48+01:00", "run_id": "r-fixture11", "item_id": "gr-text_grammar-2", "choice": 4, "correct": true, "ms": 47144, "flag": "guess", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:05:17+01:00", "run_id": "r-fixture11", "item_id": "re-info_retrieval-3", "choice": 1, "correct": true, "ms": 68839, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:05:52+01:00", "run_id": "r-fixture11", "item_id": "vo-usage-3", "choice": 1, "correct": true, "ms": 47312, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:06:59+01:00", "run_id": "r-fixture11", "item_id": "re-mid_passage-0", "choice": 2, "correct": true, "ms": 26671, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:07:24+01:00", "run_id": "r-fixture11", "item_id": "li-key_points-2", "choice": 1, "correct": false, "ms": 47779, "flag": "guess", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:08:25+01:00", "run_id": "r-fixture11", "item_id": "vo-contextual-0", "choice": 3, "correct": false, "ms": 67296, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:08:33+01:00", "run_id": "r-fixture11", "item_id": "vo-usage-2", "choice": 4, "correct": true, "ms": 32818, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T00:09:23+01:00", "run_id": "r-fixture11", "item_id": "m1-re-mid_passage", "choice": 2, "correct": false, "ms": 6331, "flag": "none", "mode": "timed", "timed_out": false}
+{"ts": "2026-11-03T23:09:31+01:00", "run_id": "r-fixture12", "item_id": "m1-gr-grammar_form", "choice": 3, "correct": false, "ms": 32757, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:09:52+01:00", "run_id": "r-fixture12", "item_id": "re-mid_passage-0", "choice": 2, "correct": true, "ms": 26384, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:10:05+01:00", "run_id": "r-fixture12", "item_id": "li-key_points-0", "choice": 3, "correct": false, "ms": 81209, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:10:19+01:00", "run_id": "r-fixture12", "item_id": "vo-contextual-3", "choice": 1, "correct": true, "ms": 58989, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:10:38+01:00", "run_id": "r-fixture12", "item_id": "m1-vo-orthography", "choice": 1, "correct": true, "ms": 71295, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:11:46+01:00", "run_id": "r-fixture12", "item_id": "li-task_based-1", "choice": 4, "correct": false, "ms": 48730, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:12:16+01:00", "run_id": "r-fixture12", "item_id": "vo-paraphrase-1", "choice": 3, "correct": true, "ms": 66874, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:12:55+01:00", "run_id": "r-fixture12", "item_id": "re-short_passage-3", "choice": 2, "correct": false, "ms": 8812, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-03T23:13:11+01:00", "run_id": "r-fixture12", "item_id": "li-key_points-2", "choice": 4, "correct": true, "ms": 51996, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-04T22:13:45+01:00", "run_id": "r-fixture13", "item_id": "gr-sentence_composition-2", "choice": 1, "correct": false, "ms": 88601, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:14:55+01:00", "run_id": "r-fixture13", "item_id": "li-key_points-0", "choice": 2, "correct": true, "ms": 15890, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:15:34+01:00", "run_id": "r-fixture13", "item_id": "re-mid_passage-0", "choice": 2, "correct": true, "ms": 48513, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:15:53+01:00", "run_id": "r-fixture13", "item_id": "li-verbal_expression-0", "choice": 3, "correct": true, "ms": 77668, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:16:49+01:00", "run_id": "r-fixture13", "item_id": "gr-grammar_form-0", "choice": 2, "correct": true, "ms": 73205, "flag": "guess", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:17:37+01:00", "run_id": "r-fixture13", "item_id": "vo-paraphrase-2", "choice": 4, "correct": true, "ms": 83869, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:17:46+01:00", "run_id": "r-fixture13", "item_id": "re-mid_passage-2", "choice": 4, "correct": true, "ms": 31481, "flag": "guess", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:18:26+01:00", "run_id": "r-fixture13", "item_id": "vo-orthography-0", "choice": 3, "correct": false, "ms": 31692, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-04T22:19:23+01:00", "run_id": "r-fixture13", "item_id": "li-verbal_expression-1", "choice": 4, "correct": false, "ms": 77254, "flag": "none", "mode": "drill", "timed_out": false}
+{"ts": "2026-11-05T17:20:22+01:00", "run_id": "r-fixture14", "item_id": "li-key_points-3", "choice": null, "correct": false, "ms": 8525, "flag": "none", "mode": "timed", "timed_out": true, "review": true}
+{"ts": "2026-11-05T17:21:20+01:00", "run_id": "r-fixture14", "item_id": "gr-sentence_composition-1", "choice": 3, "correct": true, "ms": 27460, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:21:45+01:00", "run_id": "r-fixture14", "item_id": "gr-grammar_form-0", "choice": 3, "correct": false, "ms": 20775, "flag": "unclear", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:22:03+01:00", "run_id": "r-fixture14", "item_id": "m1-re-short_passage", "choice": 4, "correct": true, "ms": 11031, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:22:54+01:00", "run_id": "r-fixture14", "item_id": "li-task_based-3", "choice": 1, "correct": true, "ms": 88046, "flag": "unclear", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:24:00+01:00", "run_id": "r-fixture14", "item_id": "vo-contextual-2", "choice": 4, "correct": true, "ms": 7802, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:24:22+01:00", "run_id": "r-fixture14", "item_id": "vo-contextual-1", "choice": 3, "correct": true, "ms": 75138, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:24:59+01:00", "run_id": "r-fixture14", "item_id": "li-verbal_expression-0", "choice": 1, "correct": false, "ms": 46533, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T17:25:52+01:00", "run_id": "r-fixture14", "item_id": "li-verbal_expression-1", "choice": 3, "correct": true, "ms": 65713, "flag": "none", "mode": "timed", "timed_out": false, "review": true}
+{"ts": "2026-11-05T22:26:55+01:00", "run_id": "r-fixture15", "item_id": "vo-paraphrase-1", "choice": 4, "correct": false, "ms": 60771, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:27:56+01:00", "run_id": "r-fixture15", "item_id": "li-task_based-2", "choice": 1, "correct": false, "ms": 68822, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:28:27+01:00", "run_id": "r-fixture15", "item_id": "re-short_passage-1", "choice": 3, "correct": true, "ms": 59308, "flag": "guess", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:29:04+01:00", "run_id": "r-fixture15", "item_id": "re-info_retrieval-3", "choice": 2, "correct": false, "ms": 44462, "flag": "unclear", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:30:11+01:00", "run_id": "r-fixture15", "item_id": "li-key_points-1", "choice": 4, "correct": false, "ms": 16027, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:31:06+01:00", "run_id": "r-fixture15", "item_id": "vo-kanji_reading-2", "choice": 4, "correct": true, "ms": 14330, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:31:59+01:00", "run_id": "r-fixture15", "item_id": "vo-contextual-3", "choice": 1, "correct": true, "ms": 24718, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:32:18+01:00", "run_id": "r-fixture15", "item_id": "m1-re-short_passage", "choice": 4, "correct": true, "ms": 60831, "flag": "none", "mode": "practice", "timed_out": false}
+{"ts": "2026-11-05T22:33:23+01:00", "run_id": "r-fixture15", "item_id": "m1-vo-orthography", "choice": 2, "correct": false, "ms": 7997, "flag": "none", "mode": "practice", "timed_out": false}

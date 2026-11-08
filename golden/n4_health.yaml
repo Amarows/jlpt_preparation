@@ -1,0 +1,391 @@
+call: tests.golden_n4:health
+expect:
+  suspects:
+  - id: re-short_passage-3
+    batch: generated/golden/reading/b0
+    stem: 本の 問題 re-short_passage-3【本】
+    reasons:
+    - missed 2/4, expected 4% misses
+    - same wrong option 2 picked 2 times
+    - marked unclear 2 times
+  - id: li-task_based-1
+    batch: book/golden/listening/b0
+    stem: 天気の 問題 li-task_based-1【天気】
+    reasons: ['missed 3/3, expected 28% misses', same wrong option 4 picked 3 times]
+  - id: li-verbal_expression-1
+    batch: generated/golden/listening/b0
+    stem: 山の 問題 li-verbal_expression-1【山】
+    reasons: ['missed 2/4, expected 8% misses', same wrong option 4 picked 2 times]
+  - id: m1-gr-grammar_form
+    batch: generated/golden/grammar/b1
+    stem: 車の 問題 m1-gr-grammar_form【車】
+    reasons: ['missed 2/2, expected 18% misses', same wrong option 3 picked 2 times]
+  - id: vo-contextual-0
+    batch: generated/golden/vocab/b1
+    stem: 車の 問題 vo-contextual-0【車】
+    reasons: ['missed 2/2, expected 5% misses', same wrong option 3 picked 2 times]
+  - id: gr-text_grammar-2
+    batch: book/golden/grammar/b1
+    stem: 仕事の 問題 gr-text_grammar-2【仕事】
+    reasons: [marked unclear 2 times]
+  - id: li-key_points-1
+    batch: official/golden/listening/b0
+    stem: 駅の 問題 li-key_points-1【駅】
+    reasons: [same wrong option 4 picked 2 times]
+  - id: li-task_based-2
+    batch: official/golden/listening/b1
+    stem: 仕事の 問題 li-task_based-2【仕事】
+    reasons: [same wrong option 1 picked 2 times]
+  - id: m1-gr-sentence_composition
+    batch: book/golden/grammar/b0
+    stem: 電話の 問題 m1-gr-sentence_composition【電話】
+    reasons: [same wrong option 4 picked 2 times]
+  - id: m1-vo-kanji_reading
+    batch: book/golden/vocab/b1
+    stem: 川の 問題 m1-vo-kanji_reading【川】
+    reasons: [same wrong option 1 picked 2 times]
+  - id: m1-vo-orthography
+    batch: official/golden/vocab/b0
+    stem: 店の 問題 m1-vo-orthography【店】
+    reasons: [same wrong option 2 picked 2 times]
+  - id: vo-usage-2
+    batch: book/golden/vocab/b1
+    stem: 雨の 問題 vo-usage-2【雨】
+    reasons: [same wrong option 1 picked 2 times]
+  batches:
+  - batch: book/golden/grammar/b0
+    mondai: grammar_form
+    n: 1
+    correct: 0
+    expected: 0.619331819
+    accuracy: 0.0
+    expected_accuracy: 0.619331819
+  - batch: book/golden/grammar/b0
+    mondai: sentence_composition
+    n: 5
+    correct: 3
+    expected: 2.71515151
+    accuracy: 0.6
+    expected_accuracy: 0.543030302
+  - batch: book/golden/grammar/b1
+    mondai: sentence_composition
+    n: 1
+    correct: 1
+    expected: 0.496678325
+    accuracy: 1.0
+    expected_accuracy: 0.496678325
+  - batch: book/golden/grammar/b1
+    mondai: text_grammar
+    n: 4
+    correct: 3
+    expected: 2.47732727
+    accuracy: 0.75
+    expected_accuracy: 0.619331819
+  - batch: book/golden/listening/b0
+    mondai: key_points
+    n: 2
+    correct: 1
+    expected: 0.963082429
+    accuracy: 0.5
+    expected_accuracy: 0.481541214
+  - batch: book/golden/listening/b0
+    mondai: quick_response
+    n: 2
+    correct: 1
+    expected: 1.20989896
+    accuracy: 0.5
+    expected_accuracy: 0.604949478
+  - batch: book/golden/listening/b0
+    mondai: task_based
+    n: 3
+    correct: 0
+    expected: 2.14886925
+    accuracy: 0.0
+    expected_accuracy: 0.716289749
+  - batch: book/golden/listening/b1
+    mondai: key_points
+    n: 3
+    correct: 2
+    expected: 1.81484843
+    accuracy: 0.666666667
+    expected_accuracy: 0.604949478
+  - batch: book/golden/listening/b1
+    mondai: task_based
+    n: 1
+    correct: 1
+    expected: 0.716289749
+    accuracy: 1.0
+    expected_accuracy: 0.716289749
+  - batch: book/golden/reading/b0
+    mondai: short_passage
+    n: 4
+    correct: 3
+    expected: 2.67604039
+    accuracy: 0.75
+    expected_accuracy: 0.669010099
+  - batch: book/golden/reading/b1
+    mondai: info_retrieval
+    n: 1
+    correct: 1
+    expected: 0.669010099
+    accuracy: 1.0
+    expected_accuracy: 0.669010099
+  - batch: book/golden/reading/b1
+    mondai: mid_passage
+    n: 3
+    correct: 3
+    expected: 2.53805649
+    accuracy: 1.0
+    expected_accuracy: 0.846018829
+  - batch: book/golden/vocab/b0
+    mondai: contextual
+    n: 1
+    correct: 1
+    expected: 0.818289213
+    accuracy: 1.0
+    expected_accuracy: 0.818289213
+  - batch: book/golden/vocab/b1
+    mondai: kanji_reading
+    n: 5
+    correct: 3
+    expected: 3.74629389
+    accuracy: 0.6
+    expected_accuracy: 0.749258778
+  - batch: book/golden/vocab/b1
+    mondai: usage
+    n: 3
+    correct: 1
+    expected: 2.45486764
+    accuracy: 0.333333333
+    expected_accuracy: 0.818289213
+  - batch: generated/golden/grammar/b0
+    mondai: grammar_form
+    n: 3
+    correct: 2
+    expected: 2.44675324
+    accuracy: 0.666666667
+    expected_accuracy: 0.815584415
+  - batch: generated/golden/grammar/b1
+    mondai: grammar_form
+    n: 4
+    correct: 1
+    expected: 3.38995876
+    accuracy: 0.25
+    expected_accuracy: 0.84748969
+  - batch: generated/golden/grammar/b1
+    mondai: sentence_composition
+    n: 2
+    correct: 1
+    expected: 1.84641019
+    accuracy: 0.5
+    expected_accuracy: 0.923205094
+  - batch: generated/golden/listening/b0
+    mondai: quick_response
+    n: 1
+    correct: 0
+    expected: 0.80629781
+    accuracy: 0.0
+    expected_accuracy: 0.80629781
+  - batch: generated/golden/listening/b0
+    mondai: verbal_expression
+    n: 4
+    correct: 2
+    expected: 3.67519345
+    accuracy: 0.5
+    expected_accuracy: 0.918798363
+  - batch: generated/golden/listening/b1
+    mondai: key_points
+    n: 2
+    correct: 1
+    expected: 1.61259562
+    accuracy: 0.5
+    expected_accuracy: 0.80629781
+  - batch: generated/golden/listening/b1
+    mondai: task_based
+    n: 1
+    correct: 1
+    expected: 0.918798363
+    accuracy: 1.0
+    expected_accuracy: 0.918798363
+  - batch: generated/golden/reading/b0
+    mondai: info_retrieval
+    n: 1
+    correct: 1
+    expected: 0.900582291
+    accuracy: 1.0
+    expected_accuracy: 0.900582291
+  - batch: generated/golden/reading/b0
+    mondai: mid_passage
+    n: 2
+    correct: 1
+    expected: 1.9219474
+    accuracy: 0.5
+    expected_accuracy: 0.960973701
+  - batch: generated/golden/reading/b0
+    mondai: short_passage
+    n: 4
+    correct: 2
+    expected: 3.8438948
+    accuracy: 0.5
+    expected_accuracy: 0.960973701
+  - batch: generated/golden/reading/b1
+    mondai: mid_passage
+    n: 2
+    correct: 1
+    expected: 1.87449057
+    accuracy: 0.5
+    expected_accuracy: 0.937245284
+  - batch: generated/golden/reading/b1
+    mondai: short_passage
+    n: 2
+    correct: 2
+    expected: 1.80116458
+    accuracy: 1.0
+    expected_accuracy: 0.900582291
+  - batch: generated/golden/vocab/b0
+    mondai: contextual
+    n: 3
+    correct: 2
+    expected: 2.77343279
+    accuracy: 0.666666667
+    expected_accuracy: 0.924477598
+  - batch: generated/golden/vocab/b0
+    mondai: orthography
+    n: 1
+    correct: 1
+    expected: 0.881300074
+    accuracy: 1.0
+    expected_accuracy: 0.881300074
+  - batch: generated/golden/vocab/b0
+    mondai: usage
+    n: 1
+    correct: 1
+    expected: 0.952790482
+    accuracy: 1.0
+    expected_accuracy: 0.952790482
+  - batch: generated/golden/vocab/b1
+    mondai: contextual
+    n: 2
+    correct: 0
+    expected: 1.90558096
+    accuracy: 0.0
+    expected_accuracy: 0.952790482
+  - batch: generated/golden/vocab/b1
+    mondai: kanji_reading
+    n: 3
+    correct: 2
+    expected: 2.77343279
+    accuracy: 0.666666667
+    expected_accuracy: 0.924477598
+  - batch: generated/golden/vocab/b1
+    mondai: paraphrase
+    n: 1
+    correct: 1
+    expected: 0.881300074
+    accuracy: 1.0
+    expected_accuracy: 0.881300074
+  - batch: official/golden/grammar/b0
+    mondai: sentence_composition
+    n: 3
+    correct: 2
+    expected: 0.541356558
+    accuracy: 0.666666667
+    expected_accuracy: 0.180452186
+  - batch: official/golden/grammar/b0
+    mondai: text_grammar
+    n: 1
+    correct: 0
+    expected: 0.266337093
+    accuracy: 0.0
+    expected_accuracy: 0.266337093
+  - batch: official/golden/grammar/b1
+    mondai: text_grammar
+    n: 1
+    correct: 1
+    expected: 0.374423317
+    accuracy: 1.0
+    expected_accuracy: 0.374423317
+  - batch: official/golden/listening/b0
+    mondai: key_points
+    n: 5
+    correct: 2
+    expected: 1.59036998
+    accuracy: 0.4
+    expected_accuracy: 0.318073995
+  - batch: official/golden/listening/b0
+    mondai: verbal_expression
+    n: 3
+    correct: 1
+    expected: 1.08103386
+    accuracy: 0.333333333
+    expected_accuracy: 0.36034462
+  - batch: official/golden/listening/b1
+    mondai: quick_response
+    n: 2
+    correct: 2
+    expected: 0.509336117
+    accuracy: 1.0
+    expected_accuracy: 0.254668058
+  - batch: official/golden/listening/b1
+    mondai: task_based
+    n: 2
+    correct: 0
+    expected: 0.720689239
+    accuracy: 0.0
+    expected_accuracy: 0.36034462
+  - batch: official/golden/listening/b1
+    mondai: verbal_expression
+    n: 2
+    correct: 2
+    expected: 0.34333115
+    accuracy: 1.0
+    expected_accuracy: 0.171665575
+  - batch: official/golden/reading/b0
+    mondai: info_retrieval
+    n: 2
+    correct: 1
+    expected: 0.621639918
+    accuracy: 0.5
+    expected_accuracy: 0.310819959
+  - batch: official/golden/reading/b1
+    mondai: short_passage
+    n: 2
+    correct: 2
+    expected: 0.621639918
+    accuracy: 1.0
+    expected_accuracy: 0.310819959
+  - batch: official/golden/vocab/b0
+    mondai: orthography
+    n: 5
+    correct: 2
+    expected: 1.6757799
+    accuracy: 0.4
+    expected_accuracy: 0.335155979
+  - batch: official/golden/vocab/b0
+    mondai: paraphrase
+    n: 3
+    correct: 2
+    expected: 1.13600769
+    accuracy: 0.666666667
+    expected_accuracy: 0.378669229
+  - batch: official/golden/vocab/b0
+    mondai: usage
+    n: 4
+    correct: 4
+    expected: 2.00479948
+    accuracy: 1.0
+    expected_accuracy: 0.501199871
+  - batch: official/golden/vocab/b1
+    mondai: orthography
+    n: 1
+    correct: 0
+    expected: 0.378669229
+    accuracy: 0.0
+    expected_accuracy: 0.378669229
+  - batch: official/golden/vocab/b1
+    mondai: usage
+    n: 2
+    correct: 2
+    expected: 0.53977221
+    accuracy: 1.0
+    expected_accuracy: 0.269886105

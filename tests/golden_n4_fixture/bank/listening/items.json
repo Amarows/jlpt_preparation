@@ -1,0 +1,610 @@
+[
+ {
+  "id": "li-task_based-0",
+  "section": "listening",
+  "mondai": "task_based",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "料理の 問題 li-task_based-0【料理】",
+  "options": [
+   "てんき",
+   "りょうり",
+   "しごと",
+   "ねこ"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:task_based-0",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for li-task_based-0",
+  "distractor_notes": {
+   "3": "note li-task_based-0"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 5.0,
+   "duration": 5.0
+  },
+  "script": "M：li-task_based-0 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-task_based-1",
+  "section": "listening",
+  "mondai": "task_based",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "天気の 問題 li-task_based-1【天気】",
+  "options": [
+   "ねこ",
+   "しごと",
+   "てんき",
+   "いぬ"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:task_based-1",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for li-task_based-1",
+  "distractor_notes": {
+   "4": "note li-task_based-1"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 1.0,
+   "end": 6.0,
+   "duration": 5.0
+  },
+  "script": "M：li-task_based-1 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-task_based-2",
+  "section": "listening",
+  "mondai": "task_based",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "仕事の 問題 li-task_based-2【仕事】",
+  "options": [
+   "えき",
+   "ねこ",
+   "いぬ",
+   "しごと"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:task_based-2",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for li-task_based-2",
+  "distractor_notes": {
+   "1": "note li-task_based-2"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 2.0,
+   "end": 7.0,
+   "duration": 5.0
+  },
+  "script": "M：li-task_based-2 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-task_based-3",
+  "section": "listening",
+  "mondai": "task_based",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "猫の 問題 li-task_based-3【猫】",
+  "options": [
+   "ねこ",
+   "いぬ",
+   "えき",
+   "あめ"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:task_based-0",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for li-task_based-3",
+  "distractor_notes": {
+   "2": "note li-task_based-3"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/missing.mp3"
+  },
+  "script": "M：li-task_based-3 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-key_points-0",
+  "section": "listening",
+  "mondai": "key_points",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "犬の 問題 li-key_points-0【犬】",
+  "options": [
+   "えき",
+   "いぬ",
+   "あめ",
+   "ほん"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:key_points-1",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for li-key_points-0",
+  "distractor_notes": {
+   "3": "note li-key_points-0"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 5.0,
+   "duration": 5.0
+  },
+  "script": "M：li-key_points-0 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-key_points-1",
+  "section": "listening",
+  "mondai": "key_points",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "駅の 問題 li-key_points-1【駅】",
+  "options": [
+   "ほん",
+   "あめ",
+   "えき",
+   "みず"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:key_points-2",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for li-key_points-1",
+  "distractor_notes": {
+   "4": "note li-key_points-1"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 1.0,
+   "end": 6.0,
+   "duration": 5.0
+  },
+  "script": "M：li-key_points-1 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-key_points-2",
+  "section": "listening",
+  "mondai": "key_points",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "雨の 問題 li-key_points-2【雨】",
+  "options": [
+   "やま",
+   "ほん",
+   "みず",
+   "あめ"
+  ],
+  "answer": 4,
+  "tags": [
+   "skill:key_points-0",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for li-key_points-2",
+  "distractor_notes": {
+   "1": "note li-key_points-2"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 2.0,
+   "end": 7.0,
+   "duration": 5.0
+  },
+  "script": "M：li-key_points-2 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-key_points-3",
+  "section": "listening",
+  "mondai": "key_points",
+  "tier_prior": "medium",
+  "level": "N4-hard",
+  "stem": "本の 問題 li-key_points-3【本】",
+  "options": [
+   "ほん",
+   "みず",
+   "やま",
+   "かわ"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:key_points-1",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for li-key_points-3",
+  "distractor_notes": {
+   "2": "note li-key_points-3"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/missing.mp3"
+  },
+  "script": "M：li-key_points-3 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-verbal_expression-0",
+  "section": "listening",
+  "mondai": "verbal_expression",
+  "tier_prior": "hard",
+  "level": "N4-hard",
+  "stem": "水の 問題 li-verbal_expression-0【水】",
+  "options": [
+   "かわ",
+   "やま",
+   "みず"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:verbal_expression-2",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for li-verbal_expression-0",
+  "distractor_notes": {
+   "1": "note li-verbal_expression-0"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 5.0,
+   "duration": 5.0
+  },
+  "script": "M：li-verbal_expression-0 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-verbal_expression-1",
+  "section": "listening",
+  "mondai": "verbal_expression",
+  "tier_prior": "easy",
+  "level": "N5",
+  "stem": "山の 問題 li-verbal_expression-1【山】",
+  "options": [
+   "みせ",
+   "かわ",
+   "やま",
+   "くるま"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:verbal_expression-0",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for li-verbal_expression-1",
+  "distractor_notes": {
+   "4": "note li-verbal_expression-1"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 1.0,
+   "end": 6.0,
+   "duration": 5.0
+  },
+  "script": "M：li-verbal_expression-1 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-verbal_expression-2",
+  "section": "listening",
+  "mondai": "verbal_expression",
+  "tier_prior": "medium",
+  "level": "N5",
+  "stem": "川の 問題 li-verbal_expression-2【川】",
+  "options": [
+   "みせ",
+   "かわ",
+   "くるま"
+  ],
+  "answer": 2,
+  "tags": [
+   "skill:verbal_expression-1",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for li-verbal_expression-2",
+  "distractor_notes": {
+   "3": "note li-verbal_expression-2"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 2.0,
+   "end": 7.0,
+   "duration": 5.0
+  },
+  "script": "M：li-verbal_expression-2 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-verbal_expression-3",
+  "section": "listening",
+  "mondai": "verbal_expression",
+  "tier_prior": "hard",
+  "level": "N5",
+  "stem": "店の 問題 li-verbal_expression-3【店】",
+  "options": [
+   "みせ",
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:verbal_expression-2",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for li-verbal_expression-3",
+  "distractor_notes": {
+   "2": "note li-verbal_expression-3"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/missing.mp3"
+  },
+  "script": "M：li-verbal_expression-3 の スクリプト",
+  "hide_options": false
+ },
+ {
+  "id": "li-quick_response-0",
+  "section": "listening",
+  "mondai": "quick_response",
+  "tier_prior": "easy",
+  "level": "N4-core",
+  "stem": "車の 問題 li-quick_response-0【車】",
+  "options": [
+   "くるま",
+   "でんわ",
+   "りょこう"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:quick_response-0",
+   "topic:1"
+  ],
+  "explanation_en": "explanation for li-quick_response-0",
+  "distractor_notes": {
+   "2": "note li-quick_response-0"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 0.0,
+   "end": 5.0,
+   "duration": 5.0
+  },
+  "script": "M：li-quick_response-0 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-quick_response-1",
+  "section": "listening",
+  "mondai": "quick_response",
+  "tier_prior": "medium",
+  "level": "N4-core",
+  "stem": "電話の 問題 li-quick_response-1【電話】",
+  "options": [
+   "かいぎ",
+   "りょこう",
+   "でんわ",
+   "りょうり"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:quick_response-1",
+   "topic:2"
+  ],
+  "explanation_en": "explanation for li-quick_response-1",
+  "distractor_notes": {
+   "4": "note li-quick_response-1"
+  },
+  "source": {
+   "kind": "book",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 1.0,
+   "end": 6.0,
+   "duration": 5.0
+  },
+  "script": "M：li-quick_response-1 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-quick_response-2",
+  "section": "listening",
+  "mondai": "quick_response",
+  "tier_prior": "hard",
+  "level": "N4-core",
+  "stem": "旅行の 問題 li-quick_response-2【旅行】",
+  "options": [
+   "りょうり",
+   "かいぎ",
+   "りょこう"
+  ],
+  "answer": 3,
+  "tags": [
+   "skill:quick_response-2",
+   "topic:3"
+  ],
+  "explanation_en": "explanation for li-quick_response-2",
+  "distractor_notes": {
+   "1": "note li-quick_response-2"
+  },
+  "source": {
+   "kind": "official",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b1",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/clip.mp3",
+   "start": 2.0,
+   "end": 7.0,
+   "duration": 5.0
+  },
+  "script": "M：li-quick_response-2 の スクリプト",
+  "hide_options": true
+ },
+ {
+  "id": "li-quick_response-3",
+  "section": "listening",
+  "mondai": "quick_response",
+  "tier_prior": "easy",
+  "level": "N4-hard",
+  "stem": "会議の 問題 li-quick_response-3【会議】",
+  "options": [
+   "かいぎ",
+   "りょうり",
+   "てんき",
+   "しごと"
+  ],
+  "answer": 1,
+  "tags": [
+   "skill:quick_response-0",
+   "topic:0"
+  ],
+  "explanation_en": "explanation for li-quick_response-3",
+  "distractor_notes": {
+   "2": "note li-quick_response-3"
+  },
+  "source": {
+   "kind": "generated",
+   "ref": "golden fixture",
+   "author": "golden",
+   "batch": "listening/b0",
+   "created": "2026-10-20"
+  },
+  "verified": true,
+  "audio": {
+   "file": "audio/missing.mp3"
+  },
+  "script": "M：li-quick_response-3 の スクリプト",
+  "hide_options": true
+ }
+]

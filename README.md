@@ -13,7 +13,7 @@ Double-click `start_portal.bat` (it starts `server.py` without a console window)
 - `web/` — plain HTML/CSS/JS front end, no build step.
 - `tools/` — item generation, import (diagnostic, listening) and verification scripts.
 - `docs/SCHEMA.md` — item and attempt formats; `docs/specs/` — design specs.
-- `tests/` — pytest suite (`.venv\Scripts\python -m pytest tests`).
+- `tests/` — pytest suite (`.venvScriptspython -m pytest tests`); `golden/` — expected outputs (golden cases) run by the ai-oriented-programming tool; `requirements.txt` — Python packages.
 
 Not in git (synced through OneDrive): `data/bank/` (question bank), `audio/` and `materials/` (copyrighted source material), `confidential/` (the learner's attempts and model state).
 
