@@ -1,0 +1,29 @@
+{
+  "track": "de-work",
+  "rule": "Yoko's or her employer's documents never go into git or to an external service (Codex, Jev, web) without both her OK and her employer's. Until then they stay in the git-ignored materials/ folder of the main checkout and are read only locally.",
+  "materials": [
+    {"what": "Goethe-Zertifikat B1 Wortliste (official PDF, free on goethe.de)",
+     "unlocks": "CEFR level of every entry checked against an official list instead of my judgement; a B1 standard target and its word coverage measurable",
+     "who": "Alex downloads it into materials/", "confidential": false},
+    {"what": "Decision: Yoko's target – B1 standard (Goethe/telc B1) or a workplace target made of her units, with a date",
+     "unlocks": "P(pass) definition for the de-work track; unit order and pace",
+     "who": "Alex with Yoko", "confidential": false},
+    {"what": "Yoko's review of the units: which words she already knows, which ones her colleagues actually use (e.g. Ausschuss vs. Ausschussteile, du vs. Sie in meetings)",
+     "unlocks": "word lists matched to her plant's real vocabulary; known words dropped so the 5–10 per unit are all new",
+     "who": "Yoko, via Alex", "confidential": false},
+    {"what": "Swiss German listening: SRF Meteo, SRF 'Puls' / 'Kassensturz', SRF 'Mini Beiz, dini Beiz', the dialect courses of 'Schwiizerdütsch' apps (e.g. Grüezi-Kurse) or a colleague recording short workplace sentences",
+     "unlocks": "Unit E (Swiss German heard at work) as listening items with audio clips",
+     "who": "Alex chooses and downloads only what the source licence allows; recordings by colleagues need their OK",
+     "confidential": "recordings of colleagues: yes"},
+    {"what": "A powder-metallurgy glossary in German (e.g. Fachverband Pulvermetallurgie brochures, 'Pulvermetallurgie' Wikipedia, supplier datasheets from Höganäs or GKN, public)",
+     "unlocks": "Units A and F (mixing, pressing, sintering) with the terms the industry uses; correct technical plurals and collocations",
+     "who": "Alex", "confidential": false},
+    {"what": "Her own work documents: a process instruction (Arbeitsanweisung), a test plan (Prüfplan), an 8D or deviation report, meeting minutes",
+     "unlocks": "items built from the exact sentences she must read and say; the strongest source for units B, D and G",
+     "who": "only with Yoko's OK and her employer's OK; anonymised copies; kept in materials/ (git-ignored), never sent to Codex or other external models",
+     "confidential": true},
+    {"what": "Short voice notes of Yoko speaking German at work (optional)",
+     "unlocks": "goal 2 (more correct Standard German): her frequent errors become items, the way Anna's mistakes drive her N4 items",
+     "who": "Yoko, only if she wants", "confidential": true}
+  ]
+}
