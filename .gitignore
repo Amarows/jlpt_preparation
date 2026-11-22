@@ -2,7 +2,7 @@
 confidential/
 
 # Copyrighted or large materials
-audio/
+/audio/
 materials/
 
 # Question bank and derived data (the N4 word list stays tracked)
